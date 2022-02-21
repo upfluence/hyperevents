@@ -83453,7 +83453,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
           "config": {
             "modulePrefix": "dummy",
             "environment": "production",
-            "rootURL": "/",
+            "rootURL": "/hyperevents/",
             "locationType": "auto",
             "EmberENV": {
               "FEATURES": {},
