@@ -7,7 +7,6 @@ import { ObserverGroup } from 'hyperevents/helpers/observer-group';
 const NORMAL_CLOSURE_CODE = 1000;
 const USER_REQUESTED_CLOSURE = 'user-requested-closure';
 
-
 export interface ResourceEvent {
   resource: string;
   payload: any;
@@ -25,9 +24,9 @@ export function exactPath(path: string): Matcher<ResourceEvent> {
   };
 }
 
-type Connector = (url :string) => WebSocket;
+type Connector = (url: string) => WebSocket;
 
-function defaultConnector(url : string): WebSocket {
+function defaultConnector(url: string): WebSocket {
   return new WebSocket(url);
 }
 
@@ -50,7 +49,7 @@ export default class EventsService extends Service {
    * A method that returns an Observable that will emit events when a 'matching' message is received.
    *
    * @param {Matcher} matcher - A function that tells if a ResourceEvent should trigger the Observable.
-  */
+   */
   watch(matcher: Matcher<ResourceEvent>): Observable<ResourceEvent> {
     return new Observable(this._onMessageObservers, matcher);
   }
@@ -131,8 +130,6 @@ export default class EventsService extends Service {
   }
 
   private get _accessToken(): string {
-    console.log(encodeURIComponent(this.session.data.authenticated.access_token));
-    
     return encodeURIComponent(this.session.data.authenticated.access_token);
   }
 }
