@@ -25,6 +25,12 @@ export function exactPath(path: string): Matcher<ResourceEvent> {
   };
 }
 
+type Connector = (url :string) => WebSocket;
+
+function defaultConnector(url : string): WebSocket {
+  return new WebSocket(url);
+}
+
 export default class EventsService extends Service {
   @service declare session: any;
 
@@ -34,6 +40,7 @@ export default class EventsService extends Service {
   private _onMessageObservers: ObserverGroup<ResourceEvent> = new ObserverGroup();
   private _attempt: number = 0;
   private _url: string | null = null;
+  private _buildSocket: Connector = defaultConnector;
 
   constructor() {
     super(...arguments);
@@ -85,7 +92,7 @@ export default class EventsService extends Service {
   }
 
   private _connect(): void {
-    this._socket = new WebSocket(`${this._url}?access_token=${this._accessToken}`);
+    this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
     this._socket.addEventListener('message', this._handleMessage.bind(this));
     this._socket.addEventListener('error', this._handleError.bind(this));
     this._socket.addEventListener('close', this._handleClose.bind(this));
