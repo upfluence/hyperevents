@@ -24,7 +24,7 @@ export default class SubscriptionFeed extends Component<SubscriptionFeedArgs> {
 
   @action
   unsubscribe(): void {
-    this._dataObs?.unsubscribe()
+    this._dataObs?.unsubscribe();
     this.listeningState = 'Not Listening';
   }
 
@@ -47,6 +47,6 @@ export default class SubscriptionFeed extends Component<SubscriptionFeedArgs> {
       console.log('package received: ', JSON.stringify(event));
       this.data.push(JSON.stringify(event));
       this.data = this.data;
-    })
+    });
   }
 }

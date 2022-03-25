@@ -1,4 +1,4 @@
-import { ObserverGroup } from "./observer-group";
+import { ObserverGroup } from './observer-group';
 
 export type Matcher<T> = (event: T) => boolean;
 export type Callback<T> = (event: T) => void;

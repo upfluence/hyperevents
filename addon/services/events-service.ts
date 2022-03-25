@@ -24,12 +24,6 @@ export function exactPath(path: string): Matcher<ResourceEvent> {
   };
 }
 
-type Connector = (url: string) => WebSocket;
-
-function defaultConnector(url: string): WebSocket {
-  return new WebSocket(url);
-}
-
 export default class EventsService extends Service {
   @service declare session: any;
 
@@ -39,7 +33,6 @@ export default class EventsService extends Service {
   private _onMessageObservers: ObserverGroup<ResourceEvent> = new ObserverGroup();
   private _attempt: number = 0;
   private _url: string | null = null;
-  private _buildSocket: Connector = defaultConnector;
 
   constructor() {
     super(...arguments);
@@ -123,6 +116,10 @@ export default class EventsService extends Service {
       return 0;
     }
     return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
+  }
+
+  private _buildSocket(url: string): WebSocket {
+    return new WebSocket(url);
   }
 
   private get _jitterDelay(): number {

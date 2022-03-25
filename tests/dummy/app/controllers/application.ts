@@ -49,7 +49,7 @@ export default class ApplicationController extends Controller {
 
   @action
   removeObs(url: string): void {
-    this.obsUrlArray = this.obsUrlArray.filter(obsUrl => obsUrl !== url);
+    this.obsUrlArray = this.obsUrlArray.filter((obsUrl) => obsUrl !== url);
   }
 
   private _createObserver(): void {
