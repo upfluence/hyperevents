@@ -7,7 +7,6 @@ import { ObserverGroup } from 'hyperevents/helpers/observer-group';
 const NORMAL_CLOSURE_CODE = 1000;
 const USER_REQUESTED_CLOSURE = 'user-requested-closure';
 
-
 export interface ResourceEvent {
   resource: string;
   payload: any;
@@ -43,7 +42,7 @@ export default class EventsService extends Service {
    * A method that returns an Observable that will emit events when a 'matching' message is received.
    *
    * @param {Matcher} matcher - A function that tells if a ResourceEvent should trigger the Observable.
-  */
+   */
   watch(matcher: Matcher<ResourceEvent>): Observable<ResourceEvent> {
     return new Observable(this._onMessageObservers, matcher);
   }
@@ -85,7 +84,7 @@ export default class EventsService extends Service {
   }
 
   private _connect(): void {
-    this._socket = new WebSocket(`${this._url}?access_token=${this._accessToken}`);
+    this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
     this._socket.addEventListener('message', this._handleMessage.bind(this));
     this._socket.addEventListener('error', this._handleError.bind(this));
     this._socket.addEventListener('close', this._handleClose.bind(this));
@@ -119,13 +118,15 @@ export default class EventsService extends Service {
     return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
   }
 
+  private _buildSocket(url: string): WebSocket {
+    return new WebSocket(url);
+  }
+
   private get _jitterDelay(): number {
     return Math.floor(Math.random() * 5000);
   }
 
   private get _accessToken(): string {
-    console.log(encodeURIComponent(this.session.data.authenticated.access_token));
-    
     return encodeURIComponent(this.session.data.authenticated.access_token);
   }
 }
