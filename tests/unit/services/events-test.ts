@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { settled } from '@ember/test-helpers';
-import { prefixPath, exactPath } from 'hyperevents/services/events-service';
+import { prefixPath, exactPath } from '@upfluence/hyperevents/services/events-service';
 
 const eventPayload: any = {
   resource: '/toto',

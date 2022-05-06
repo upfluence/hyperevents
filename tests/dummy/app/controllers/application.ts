@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import EventsService from 'hyperevents/services/events-service';
+import EventsService from '@upfluence/hyperevents/services/events-service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 

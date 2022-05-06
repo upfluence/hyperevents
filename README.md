@@ -1,4 +1,4 @@
-hyperevents
+@upfluence/hyperevents
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install hyperevents
+ember install @upfluence/hyperevents
 ```
 
 

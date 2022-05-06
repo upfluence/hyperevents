@@ -29,16 +29,16 @@
         "tests/dummy/app/*",
         "app/*"
       ],
-      "hyperevents": [
+      "@upfluence/hyperevents": [
         "addon"
       ],
-      "hyperevents/*": [
+      "@upfluence/hyperevents/*": [
         "addon/*"
       ],
-      "hyperevents/test-support": [
+      "@upfluence/hyperevents/test-support": [
         "addon-test-support"
       ],
-      "hyperevents/test-support/*": [
+      "@upfluence/hyperevents/test-support/*": [
         "addon-test-support/*"
       ],
       "*": [

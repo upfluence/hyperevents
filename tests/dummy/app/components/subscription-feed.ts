@@ -2,8 +2,8 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { Observable } from 'hyperevents/helpers/observable';
-import EventsService, { prefixPath, ResourceEvent } from 'hyperevents/services/events-service';
+import { Observable } from '@upfluence/hyperevents/helpers/observable';
+import EventsService, { prefixPath, ResourceEvent } from '@upfluence/hyperevents/services/events-service';
 
 interface SubscriptionFeedArgs {
   url: string;

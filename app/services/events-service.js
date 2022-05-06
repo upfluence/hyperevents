@@ -1,1 +1,1 @@
-export { default } from 'hyperevents/services/events-service';
+export { default } from '@upfluence/hyperevents/services/events-service';
