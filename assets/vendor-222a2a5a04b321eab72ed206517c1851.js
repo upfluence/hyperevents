@@ -96047,7 +96047,7 @@ define("ember-resolver/features", [], function () {
      * A method that returns an Observable that will emit events when a 'matching' message is received.
      *
      * @param {Matcher} matcher - A function that tells if a ResourceEvent should trigger the Observable.
-    */
+     */
 
 
     watch(matcher) {
@@ -96089,7 +96089,7 @@ define("ember-resolver/features", [], function () {
     }
 
     _connect() {
-      this._socket = new WebSocket(`${this._url}?access_token=${this._accessToken}`);
+      this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
 
       this._socket.addEventListener('message', this._handleMessage.bind(this));
 
@@ -96130,12 +96130,15 @@ define("ember-resolver/features", [], function () {
       return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
     }
 
+    _buildSocket(url) {
+      return new WebSocket(url);
+    }
+
     get _jitterDelay() {
       return Math.floor(Math.random() * 5000);
     }
 
     get _accessToken() {
-      console.log(encodeURIComponent(this.session.data.authenticated.access_token));
       return encodeURIComponent(this.session.data.authenticated.access_token);
     }
 
