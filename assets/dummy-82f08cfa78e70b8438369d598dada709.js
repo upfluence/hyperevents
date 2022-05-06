@@ -361,7 +361,7 @@
     }
   });
 });
-;define("dummy/components/subscription-feed", ["exports", "@glimmer/component", "hyperevents/services/events-service"], function (_exports, _component, _eventsService) {
+;define("dummy/components/subscription-feed", ["exports", "@glimmer/component", "@upfluence/hyperevents/services/events-service"], function (_exports, _component, _eventsService) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -1587,7 +1587,7 @@
   var _default = _assetMap.default;
   _exports.default = _default;
 });
-;define("dummy/services/events-service", ["exports", "hyperevents/services/events-service"], function (_exports, _eventsService) {
+;define("dummy/services/events-service", ["exports", "@upfluence/hyperevents/services/events-service"], function (_exports, _eventsService) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {

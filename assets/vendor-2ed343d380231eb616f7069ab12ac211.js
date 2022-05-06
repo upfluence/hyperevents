@@ -82502,7 +82502,7 @@ require('ember');
     Ember._enableDestroyableTracking = enableDestroyableTracking;
   }
 })();
-;Ember.libraries.register('hyperevents', '0.0.3');
+;Ember.libraries.register('@upfluence/hyperevents', '0.0.4');
 ;(function () {
   function vendorModule() {
     'use strict';
@@ -84161,6 +84161,242 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
   var _default = GlimmerComponent;
   _exports.default = _default;
+});
+;define("@upfluence/hyperevents/helpers/observable", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.Observable = void 0;
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  class Observable {
+    constructor(group) {
+      let matcher = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      _defineProperty(this, "_callback", null);
+
+      _defineProperty(this, "_matcher", void 0);
+
+      _defineProperty(this, "_group", void 0);
+
+      this._matcher = matcher;
+      this._group = group;
+      group.subscribe(this);
+    }
+
+    subscribe(callback) {
+      this._callback = callback;
+    }
+
+    unsubscribe() {
+      this._group.unsubscribe(this);
+    }
+
+    dispatch(event) {
+      if (this._callback && (this._matcher?.(event) ?? true)) {
+        this._callback(event);
+      }
+    }
+
+  }
+
+  _exports.Observable = Observable;
+});
+;define("@upfluence/hyperevents/helpers/observer-group", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.ObserverGroup = void 0;
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  class ObserverGroup {
+    constructor() {
+      _defineProperty(this, "_observables", []);
+    }
+
+    subscribe(observable) {
+      this._observables.push(observable);
+    }
+
+    unsubscribe(observable) {
+      this._observables = this._observables.filter(o => o !== observable);
+    }
+
+    dispatch(event) {
+      this._observables.forEach(watcher => {
+        watcher.dispatch(event);
+      });
+    }
+
+  }
+
+  _exports.ObserverGroup = ObserverGroup;
+});
+;define("@upfluence/hyperevents/services/events-service", ["exports", "@upfluence/hyperevents/helpers/observable", "@upfluence/hyperevents/helpers/observer-group"], function (_exports, _observable, _observerGroup) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  _exports.exactPath = exactPath;
+  _exports.prefixPath = prefixPath;
+
+  var _dec, _class, _descriptor;
+
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+
+  const NORMAL_CLOSURE_CODE = 1000;
+  const USER_REQUESTED_CLOSURE = 'user-requested-closure';
+
+  function prefixPath(prefix) {
+    return event => {
+      return event.resource.startsWith(prefix);
+    };
+  }
+
+  function exactPath(path) {
+    return event => {
+      return event.resource === path;
+    };
+  }
+
+  let EventsService = (_dec = Ember.inject.service, (_class = class EventsService extends Ember.Service {
+    constructor() {
+      super(...arguments);
+
+      _initializerDefineProperty(this, "session", _descriptor, this);
+
+      _defineProperty(this, "_socket", null);
+
+      _defineProperty(this, "_onConnectedObservers", new _observerGroup.ObserverGroup());
+
+      _defineProperty(this, "_onDisconnectedObservers", new _observerGroup.ObserverGroup());
+
+      _defineProperty(this, "_onMessageObservers", new _observerGroup.ObserverGroup());
+
+      _defineProperty(this, "_attempt", 0);
+
+      _defineProperty(this, "_url", null);
+    }
+    /**
+     * A method that returns an Observable that will emit events when a 'matching' message is received.
+     *
+     * @param {Matcher} matcher - A function that tells if a ResourceEvent should trigger the Observable.
+     */
+
+
+    watch(matcher) {
+      return new _observable.Observable(this._onMessageObservers, matcher);
+    }
+
+    onConnected() {
+      return new _observable.Observable(this._onConnectedObservers);
+    }
+
+    onDisconnected() {
+      return new _observable.Observable(this._onDisconnectedObservers);
+    }
+
+    establishConnection(connectionUrl) {
+      this._url = connectionUrl;
+
+      this._tryConnect();
+    }
+
+    terminateConnection() {
+      this._socket?.close(NORMAL_CLOSURE_CODE, USER_REQUESTED_CLOSURE);
+    }
+
+    _tryConnect() {
+      const delay = this._backoffDelay(this._attempt);
+
+      console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
+      this._attempt++;
+      Ember.run.later(this, () => {
+        try {
+          this._connect();
+        } catch (e) {
+          console.error(`Could not establish connection: ${e}`);
+
+          this._tryConnect();
+        }
+      }, delay);
+    }
+
+    _connect() {
+      this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
+
+      this._socket.addEventListener('message', this._handleMessage.bind(this));
+
+      this._socket.addEventListener('error', this._handleError.bind(this));
+
+      this._socket.addEventListener('close', this._handleClose.bind(this));
+
+      this._socket.addEventListener('open', this._handleOpen.bind(this));
+    }
+
+    _handleOpen() {
+      this._onConnectedObservers.dispatch();
+
+      this._attempt = 0;
+    }
+
+    _handleMessage(event) {
+      this._onMessageObservers.dispatch(JSON.parse(event.data));
+    }
+
+    _handleClose(event) {
+      this._onDisconnectedObservers.dispatch();
+
+      if (event.code !== NORMAL_CLOSURE_CODE && event.reason !== USER_REQUESTED_CLOSURE) {
+        this._tryConnect();
+      }
+    }
+
+    _handleError() {
+      this._socket?.close();
+    }
+
+    _backoffDelay(attempt) {
+      if (attempt === 0) {
+        return 0;
+      }
+
+      return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
+    }
+
+    _buildSocket(url) {
+      return new WebSocket(url);
+    }
+
+    get _jitterDelay() {
+      return Math.floor(Math.random() * 5000);
+    }
+
+    get _accessToken() {
+      return encodeURIComponent(this.session.data.authenticated.access_token);
+    }
+
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "session", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = EventsService;
 });
 ;define("@upfluence/oss-components/components/app-base", ["exports"], function (_exports) {
   "use strict";
@@ -95913,242 +96149,6 @@ define("ember-resolver/features", [], function () {
     value: true
   });
   exports.default = Ember.HTMLBars.template({ "id": "HzJrAe2Z", "block": "{\"symbols\":[\"&default\"],\"statements\":[[18,1,[[30,[36,2],null,[[\"option\"],[[30,[36,1],[\"x-option\"],[[\"select\",\"register\",\"unregister\"],[[32,0],[30,[36,0],[[32,0],\"registerOption\"],null],[30,[36,0],[[32,0],\"unregisterOption\"],null]]]]]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"action\",\"component\",\"hash\"]}", "meta": { "moduleName": "emberx-select/templates/components/x-select.hbs" } });
-});
-;define("hyperevents/helpers/observable", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.Observable = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  class Observable {
-    constructor(group) {
-      let matcher = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-      _defineProperty(this, "_callback", null);
-
-      _defineProperty(this, "_matcher", void 0);
-
-      _defineProperty(this, "_group", void 0);
-
-      this._matcher = matcher;
-      this._group = group;
-      group.subscribe(this);
-    }
-
-    subscribe(callback) {
-      this._callback = callback;
-    }
-
-    unsubscribe() {
-      this._group.unsubscribe(this);
-    }
-
-    dispatch(event) {
-      if (this._callback && (this._matcher?.(event) ?? true)) {
-        this._callback(event);
-      }
-    }
-
-  }
-
-  _exports.Observable = Observable;
-});
-;define("hyperevents/helpers/observer-group", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.ObserverGroup = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  class ObserverGroup {
-    constructor() {
-      _defineProperty(this, "_observables", []);
-    }
-
-    subscribe(observable) {
-      this._observables.push(observable);
-    }
-
-    unsubscribe(observable) {
-      this._observables = this._observables.filter(o => o !== observable);
-    }
-
-    dispatch(event) {
-      this._observables.forEach(watcher => {
-        watcher.dispatch(event);
-      });
-    }
-
-  }
-
-  _exports.ObserverGroup = ObserverGroup;
-});
-;define("hyperevents/services/events-service", ["exports", "hyperevents/helpers/observable", "hyperevents/helpers/observer-group"], function (_exports, _observable, _observerGroup) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  _exports.exactPath = exactPath;
-  _exports.prefixPath = prefixPath;
-
-  var _dec, _class, _descriptor;
-
-  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-
-  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
-
-  const NORMAL_CLOSURE_CODE = 1000;
-  const USER_REQUESTED_CLOSURE = 'user-requested-closure';
-
-  function prefixPath(prefix) {
-    return event => {
-      return event.resource.startsWith(prefix);
-    };
-  }
-
-  function exactPath(path) {
-    return event => {
-      return event.resource === path;
-    };
-  }
-
-  let EventsService = (_dec = Ember.inject.service, (_class = class EventsService extends Ember.Service {
-    constructor() {
-      super(...arguments);
-
-      _initializerDefineProperty(this, "session", _descriptor, this);
-
-      _defineProperty(this, "_socket", null);
-
-      _defineProperty(this, "_onConnectedObservers", new _observerGroup.ObserverGroup());
-
-      _defineProperty(this, "_onDisconnectedObservers", new _observerGroup.ObserverGroup());
-
-      _defineProperty(this, "_onMessageObservers", new _observerGroup.ObserverGroup());
-
-      _defineProperty(this, "_attempt", 0);
-
-      _defineProperty(this, "_url", null);
-    }
-    /**
-     * A method that returns an Observable that will emit events when a 'matching' message is received.
-     *
-     * @param {Matcher} matcher - A function that tells if a ResourceEvent should trigger the Observable.
-     */
-
-
-    watch(matcher) {
-      return new _observable.Observable(this._onMessageObservers, matcher);
-    }
-
-    onConnected() {
-      return new _observable.Observable(this._onConnectedObservers);
-    }
-
-    onDisconnected() {
-      return new _observable.Observable(this._onDisconnectedObservers);
-    }
-
-    establishConnection(connectionUrl) {
-      this._url = connectionUrl;
-
-      this._tryConnect();
-    }
-
-    terminateConnection() {
-      this._socket?.close(NORMAL_CLOSURE_CODE, USER_REQUESTED_CLOSURE);
-    }
-
-    _tryConnect() {
-      const delay = this._backoffDelay(this._attempt);
-
-      console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
-      this._attempt++;
-      Ember.run.later(this, () => {
-        try {
-          this._connect();
-        } catch (e) {
-          console.error(`Could not establish connection: ${e}`);
-
-          this._tryConnect();
-        }
-      }, delay);
-    }
-
-    _connect() {
-      this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
-
-      this._socket.addEventListener('message', this._handleMessage.bind(this));
-
-      this._socket.addEventListener('error', this._handleError.bind(this));
-
-      this._socket.addEventListener('close', this._handleClose.bind(this));
-
-      this._socket.addEventListener('open', this._handleOpen.bind(this));
-    }
-
-    _handleOpen() {
-      this._onConnectedObservers.dispatch();
-
-      this._attempt = 0;
-    }
-
-    _handleMessage(event) {
-      this._onMessageObservers.dispatch(JSON.parse(event.data));
-    }
-
-    _handleClose(event) {
-      this._onDisconnectedObservers.dispatch();
-
-      if (event.code !== NORMAL_CLOSURE_CODE && event.reason !== USER_REQUESTED_CLOSURE) {
-        this._tryConnect();
-      }
-    }
-
-    _handleError() {
-      this._socket?.close();
-    }
-
-    _backoffDelay(attempt) {
-      if (attempt === 0) {
-        return 0;
-      }
-
-      return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
-    }
-
-    _buildSocket(url) {
-      return new WebSocket(url);
-    }
-
-    get _jitterDelay() {
-      return Math.floor(Math.random() * 5000);
-    }
-
-    get _accessToken() {
-      return encodeURIComponent(this.session.data.authenticated.access_token);
-    }
-
-  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "session", [_dec], {
-    configurable: true,
-    enumerable: true,
-    writable: true,
-    initializer: null
-  })), _class));
-  _exports.default = EventsService;
 });
 ;define("moment/index", ["exports", "moment/lib"], function (_exports, _lib) {
   "use strict";
