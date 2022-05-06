@@ -1,10 +1,9 @@
 {
-  "name": "hyperevents",
+  "name": "@upfluence/hyperevents",
   "version": "0.0.3",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon",
-    "ember-engine"
+    "ember-addon"
   ],
   "repository": "",
   "license": "MIT",
