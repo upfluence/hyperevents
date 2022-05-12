@@ -66,13 +66,13 @@ export default class EventsService extends Service {
 
   private _tryConnect(): void {
     const delay = this._backoffDelay(this._attempt);
-    console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
     this._attempt++;
 
     later(
       this,
       () => {
         try {
+          console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
           this._connect();
         } catch (e) {
           console.error(`Could not establish connection: ${e}`);
@@ -113,7 +113,7 @@ export default class EventsService extends Service {
 
   private _backoffDelay(attempt: number): number {
     if (attempt === 0) {
-      return 0;
+      return 200;
     }
     return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
   }
