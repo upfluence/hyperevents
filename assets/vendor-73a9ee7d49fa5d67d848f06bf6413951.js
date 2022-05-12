@@ -84323,10 +84323,11 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     _tryConnect() {
       const delay = this._backoffDelay(this._attempt);
 
-      console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
       this._attempt++;
       Ember.run.later(this, () => {
         try {
+          console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
+
           this._connect();
         } catch (e) {
           console.error(`Could not establish connection: ${e}`);
@@ -84372,7 +84373,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
     _backoffDelay(attempt) {
       if (attempt === 0) {
-        return 0;
+        return 200;
       }
 
       return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
