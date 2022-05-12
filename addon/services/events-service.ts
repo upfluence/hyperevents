@@ -113,7 +113,7 @@ export default class EventsService extends Service {
 
   private _backoffDelay(attempt: number): number {
     if (attempt === 0) {
-      return 0;
+      return 200;
     }
     return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
   }
