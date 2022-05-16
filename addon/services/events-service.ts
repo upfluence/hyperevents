@@ -33,6 +33,7 @@ export default class EventsService extends Service {
   private _onMessageObservers: ObserverGroup<ResourceEvent> = new ObserverGroup();
   private _attempt: number = 0;
   private _url: string | null = null;
+  private _connTimer: any | null;
 
   constructor() {
     super(...arguments);
@@ -65,17 +66,26 @@ export default class EventsService extends Service {
   }
 
   private _tryConnect(): void {
-    const delay = this._backoffDelay(this._attempt);
+    if (this._connTimer) {
+      console.info(`Canceling connection attempt connection already progress`);
+      return
+    }
+
+    const attempt = this._attempt;
+    const delay = this._backoffDelay(attempt);
     this._attempt++;
 
-    later(
+    console.info(`Scheduling connection attempt n°${attempt} after a delay of ${delay / 1000}s`);
+
+    this._connTimer = later(
       this,
       () => {
         try {
-          console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
+          console.info(`Attempting connection n°${attempt} after a delay of ${delay / 1000}s`);
           this._connect();
         } catch (e) {
           console.error(`Could not establish connection: ${e}`);
+          this._connTimer = null;
           this._tryConnect();
         }
       },
@@ -94,6 +104,7 @@ export default class EventsService extends Service {
   private _handleOpen(): void {
     this._onConnectedObservers.dispatch();
     this._attempt = 0;
+    this._connTimer = null;
   }
 
   private _handleMessage(event: MessageEvent): void {
@@ -103,6 +114,7 @@ export default class EventsService extends Service {
   private _handleClose(event: CloseEvent): void {
     this._onDisconnectedObservers.dispatch();
     if (event.code !== NORMAL_CLOSURE_CODE && event.reason !== USER_REQUESTED_CLOSURE) {
+      this._connTimer = null;
       this._tryConnect();
     }
   }
