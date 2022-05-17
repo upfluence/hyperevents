@@ -82502,7 +82502,7 @@ require('ember');
     Ember._enableDestroyableTracking = enableDestroyableTracking;
   }
 })();
-;Ember.libraries.register('@upfluence/hyperevents', '0.0.7');
+;Ember.libraries.register('@upfluence/hyperevents', '0.1.0');
 ;(function () {
   function vendorModule() {
     'use strict';
