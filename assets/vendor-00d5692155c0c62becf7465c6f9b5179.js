@@ -84290,6 +84290,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       _defineProperty(this, "_attempt", 0);
 
       _defineProperty(this, "_url", null);
+
+      _defineProperty(this, "_connTimer", void 0);
     }
     /**
      * A method that returns an Observable that will emit events when a 'matching' message is received.
@@ -84321,16 +84323,25 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     }
 
     _tryConnect() {
-      const delay = this._backoffDelay(this._attempt);
+      if (this._connTimer) {
+        console.info(`Canceling connection attempt connection already progress`);
+        return;
+      }
+
+      const attempt = this._attempt;
+
+      const delay = this._backoffDelay(attempt);
 
       this._attempt++;
-      Ember.run.later(this, () => {
+      console.info(`Scheduling connection attempt n°${attempt} after a delay of ${delay / 1000}s`);
+      this._connTimer = Ember.run.later(this, () => {
         try {
-          console.info(`Attempting connection n°${this._attempt + 1} after a delay of ${delay / 1000}s`);
+          console.info(`Attempting connection n°${attempt} after a delay of ${delay / 1000}s`);
 
           this._connect();
         } catch (e) {
           console.error(`Could not establish connection: ${e}`);
+          this._connTimer = null;
 
           this._tryConnect();
         }
@@ -84353,6 +84364,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       this._onConnectedObservers.dispatch();
 
       this._attempt = 0;
+      this._connTimer = null;
     }
 
     _handleMessage(event) {
@@ -84363,6 +84375,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       this._onDisconnectedObservers.dispatch();
 
       if (event.code !== NORMAL_CLOSURE_CODE && event.reason !== USER_REQUESTED_CLOSURE) {
+        this._connTimer = null;
+
         this._tryConnect();
       }
     }
