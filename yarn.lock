@@ -5412,17 +5412,6 @@ ember-cli-preprocess-registry@^3.3.0:
     debug "^3.0.1"
     process-relative-require "^1.0.0"
 
-ember-cli-shims@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/ember-cli-shims/-/ember-cli-shims-1.2.0.tgz"
-  integrity sha1-D1Ov8Kq4C18p2jqXMbrFYWndlB8=
-  dependencies:
-    broccoli-file-creator "^1.1.1"
-    broccoli-merge-trees "^2.0.0"
-    ember-cli-version-checker "^2.0.0"
-    ember-rfc176-data "^0.3.1"
-    silent-error "^1.0.1"
-
 ember-cli-sri@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/ember-cli-sri/-/ember-cli-sri-2.1.1.tgz"
@@ -5563,7 +5552,7 @@ ember-cli-version-checker@^1.1.4:
   dependencies:
     semver "^5.3.0"
 
-ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.2:
+ember-cli-version-checker@^2.1.2:
   version "2.2.0"
   resolved "https://registry.npmjs.org/ember-cli-version-checker/-/ember-cli-version-checker-2.2.0.tgz"
   integrity sha512-G+KtYIVlSOWGcNaTFHk76xR4GdzDLzAS4uxZUKdASuFX0KJE43C6DaqL+y3VTpUFLI2FIkAS6HZ4I1YBi+S3hg==
@@ -5845,7 +5834,7 @@ ember-resolver@^8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-rfc176-data@^0.3.1, ember-rfc176-data@^0.3.13, ember-rfc176-data@^0.3.15, ember-rfc176-data@^0.3.17:
+ember-rfc176-data@^0.3.13, ember-rfc176-data@^0.3.15, ember-rfc176-data@^0.3.17:
   version "0.3.17"
   resolved "https://registry.npmjs.org/ember-rfc176-data/-/ember-rfc176-data-0.3.17.tgz"
   integrity sha512-EVzTTKqxv9FZbEh6Ktw56YyWRAA0MijKvl7H8C06wVF+8f/cRRz3dXxa4nkwjzyVwx4rzKGuIGq77hxJAQhWWw==
