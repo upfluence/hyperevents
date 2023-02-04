@@ -5,6 +5,9 @@
   "repository": "",
   "license": "MIT",
   "author": "",
+  "engines": {
+    "node": ">= 16"
+  },
   "workspaces": [
     "hyperevents",
     "test-app"
