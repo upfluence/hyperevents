@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": "",
   "workspaces": [
-    "@upfluence/hyperevents",
+    "hyperevents",
     "test-app"
   ],
   "scripts": {
