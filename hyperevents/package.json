@@ -50,7 +50,10 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "app-js": {},
+    "app-js": {
+      "./helpers/observable.js": "./dist/_app_/helpers/observable.js",
+      "./services/events-service.js": "./dist/_app_/services/events-service.js"
+    },
     "main": "addon-main.cjs",
     "type": "addon",
     "version": 2

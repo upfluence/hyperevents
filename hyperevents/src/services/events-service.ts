@@ -1,8 +1,7 @@
 import { later } from '@ember/runloop';
 import Service, { inject as service } from '@ember/service';
-import { Matcher } from '@upfluence/hyperevents/helpers/observable';
-import { Observable } from '@upfluence/hyperevents/helpers/observable';
-import { ObserverGroup } from '@upfluence/hyperevents/helpers/observer-group';
+import { Matcher, Observable } from '../helpers/observable';
+import { ObserverGroup } from '../helpers/observer-group';
 
 const NORMAL_CLOSURE_CODE = 1000;
 const USER_REQUESTED_CLOSURE = 'user-requested-closure';
