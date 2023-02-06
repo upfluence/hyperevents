@@ -1082,7 +1082,7 @@
     silent-error "^1.1.1"
     util.promisify "^1.0.0"
 
-"@ember/test-helpers@*", "@ember/test-helpers@^2.6.0":
+"@ember/test-helpers@^2.9.1":
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.9.3.tgz#c2a9d6ab1c367af92cf1a334f97eb19b8e06e6e1"
   integrity sha512-ejVg4Dj+G/6zyLvQsYOvmGiOLU6AS94tY4ClaO1E2oVvjjtVJIRmVLFN61I+DuyBg9hS3cFoPjQRTZB9MRIbxQ==
@@ -1828,13 +1828,6 @@
   version "3.16.2"
   resolved "https://registry.yarnpkg.com/@types/ember__template/-/ember__template-3.16.2.tgz#2aaff4f9856a6f5cb9c50268178e37055d043b95"
   integrity sha512-eIv2eyff3dhW7FMKbnl49xnuFm6igZ7IoG6BCI4kM3pqwauVXk6gU0e9pA56N/VKNJsVBe95t+QUxZYYBm3+WQ==
-
-"@types/ember__test-helpers@^2.6.0":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-2.9.1.tgz#1d804d1f0331a912aba450485571f9e79cb2931f"
-  integrity sha512-KZ6jYr0ZiQHlklLcfyuy1j+FkvygEayf5mZ9FcaSOahw9ghK3K5TYSRDCuIBELRw//OB/WP9J7v9NduFRNfRgg==
-  dependencies:
-    "@ember/test-helpers" "*"
 
 "@types/ember__test@*":
   version "4.0.1"
