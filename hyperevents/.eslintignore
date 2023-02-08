@@ -1,8 +1,2 @@
-# unconventional js
-/blueprints/*/files/
-
-# compiled output
+## compiled output
 /dist/
-
-# misc
-/coverage/
