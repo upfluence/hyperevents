@@ -37,8 +37,7 @@ jobs:
     - name: Lint
       run: yarn lint:js
     - name: Run Tests
-      run: yarn test:ember
-
+      run: yarn workspace test-app test:ember
   release:
     name: Release Package
     runs-on: ubuntu-20.04
