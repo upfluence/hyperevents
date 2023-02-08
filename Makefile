@@ -18,7 +18,7 @@ echo:
 	@echo Starting Hyperevents Dummy App
 
 start: ## Starts the dev server
-	ember s --port 0
+	yarn start:test-app
 
 clean: ## Cleans ./node_modules && ./dist
 	@echo "Cleaning up ./node_modules & ./dist folders"
@@ -30,11 +30,11 @@ re:	clean install echo start ## Reinstalls dependencies & starts the dev server
 
 tests: ## Runs tests once
 	@echo "Running tests once"
-	ember test --silent -r dot
+	yarn workspace test-app test:ember
 
 testserver: ## Runs the test server
 	@echo "Starting Test Server"
-	ember test -s
+	yarn workspace test-app test:ember:server
 
 yarn_link_ls: ## Displays all the current projects linked using 'yarn link'
 	@echo Checking for yarn-links

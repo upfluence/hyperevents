@@ -6,8 +6,8 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     // Add options here
     autoImport: {
-      watchDependencies: ['@upfluence/hyperevents'],
-    },
+      watchDependencies: ['@upfluence/hyperevents']
+    }
   });
 
   const { maybeEmbroider } = require('@embroider/test-setup');

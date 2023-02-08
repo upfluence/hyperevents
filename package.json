@@ -8,10 +8,17 @@
   "engines": {
     "node": ">= 16"
   },
-  "workspaces": [
-    "hyperevents",
-    "test-app"
-  ],
+  "workspaces": {
+    "packages": [
+      "hyperevents",
+      "test-app"
+    ],
+    "nohoist": [
+      "**/@upfluence/oss-components",
+      "**/@fortawesome/fontawesome-free",
+      "**/@fortawesome/fontawesome-pro"
+    ]
+  },
   "scripts": {
     "build": "yarn workspace @upfluence/hyperevents run build",
     "lint": "yarn workspaces run lint",
