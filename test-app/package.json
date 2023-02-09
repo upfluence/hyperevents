@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "@upfluence/hyperevents": "*",
-    "@upfluence/oss-components": "^3.x"
+    "@upfluence/oss-components": "^3.x",
+    "ember-cli-less": "^3.0.2"
   },
   "devDependencies": {
     "@ember/jquery": "^2.0.0",

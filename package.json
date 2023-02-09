@@ -16,7 +16,8 @@
     "nohoist": [
       "**/@upfluence/oss-components",
       "**/@fortawesome/fontawesome-free",
-      "**/@fortawesome/fontawesome-pro"
+      "**/@fortawesome/fontawesome-pro",
+      "**/bootstrap"
     ]
   },
   "scripts": {
