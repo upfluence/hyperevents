@@ -9,10 +9,7 @@
     "node": ">= 16"
   },
   "workspaces": {
-    "packages": [
-      "hyperevents",
-      "test-app"
-    ],
+    "packages": ["packages/*"],
     "nohoist": [
       "**/@upfluence/oss-components",
       "**/@fortawesome/fontawesome-free",
