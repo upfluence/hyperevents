@@ -30,8 +30,7 @@ module.exports = {
         browser: false,
         node: true
       },
-      plugins: ['node'],
-      rules: {}
+      extends: ['plugin:n/recommended']
     }
   ]
 };

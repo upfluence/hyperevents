@@ -10,6 +10,7 @@ module.exports = function (defaults) {
     }
   });
 
+  // eslint-disable-next-line
   const { maybeEmbroider } = require('@embroider/test-setup');
 
   return maybeEmbroider(app);

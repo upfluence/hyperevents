@@ -35,7 +35,7 @@ jobs:
     - name: Install Dependencies
       run: yarn --prefer-offline --frozen-lockfile
     - name: Lint
-      run: yarn workspace test-app lint:js
+      run: yarn workspaces run lint:js
     - name: Run Tests
       run: yarn workspace test-app test:ember
   release:
