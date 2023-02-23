@@ -1,5 +1,4 @@
 {
-  "name": "@upfluence/hyperevents",
   "version": "0.1.1",
   "private": true,
   "repository": "",
@@ -9,12 +8,8 @@
     "node": ">= 16"
   },
   "workspaces": {
-    "packages": ["packages/*"],
-    "nohoist": [
-      "**/@upfluence/oss-components",
-      "**/@fortawesome/fontawesome-free",
-      "**/@fortawesome/fontawesome-pro",
-      "**/bootstrap"
+    "packages": [
+      "packages/*"
     ]
   },
   "scripts": {
@@ -30,5 +25,6 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "prettier": "^2.3.2"
-  }
+  },
+  "packageManager": "yarn@3.4.1"
 }

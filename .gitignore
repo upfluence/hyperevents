@@ -19,6 +19,12 @@
 /npm-debug.log*
 /testem.log
 /yarn-error.log
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # ember-try
 /.node_modules.ember-try/
