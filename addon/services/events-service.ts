@@ -68,7 +68,7 @@ export default class EventsService extends Service {
   private _tryConnect(): void {
     if (this._connTimer) {
       console.info(`Canceling connection attempt connection already progress`);
-      return
+      return;
     }
 
     const attempt = this._attempt;
