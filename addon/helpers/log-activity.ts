@@ -17,10 +17,10 @@ export default class extends Helper {
       typeof action === 'function'
     );
 
-    return () => {
+    return (event: PointerEvent) => {
       const activity = this.buildActivityObject(actionDescription);
       this.activityTracking.log(activity);
-      return action();
+      return action(event);
     };
   }
 
@@ -30,7 +30,7 @@ export default class extends Helper {
       route: window.location.origin,
       path: window.location.pathname,
       action: actionDescription
-    } as Activity;
+    };
   }
 }
 

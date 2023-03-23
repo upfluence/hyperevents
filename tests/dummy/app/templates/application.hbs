@@ -1,5 +1,27 @@
-<OSS::Button @skin="primary" @label="Dummy activity button" @icon="fa-connect"
-             {{on "click" (log-activity this.doAction "open product modal")}} />
+<div class="padding-lg fx-col fx-gap-px-12">
+  <div>Example of activity-tracking service usages:</div>
+  <div>
+    <OSS::Button @skin="primary" @label="Open modal" @icon="fa-connect"
+                 {{enable-tooltip title="Click will trigger activity-tracker log"}}
+                 {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}} />
+  </div>
+  {{#if this.modalVisible}}
+    <OSS::ModalDialog @title="Example modal" @close={{this.closeModal}} @size="md"
+                      {{track-on-insertion "Product Modal has been opened"}}
+                      {{track-on-deletion "Product Modal has been closed"}}>
+      <:content>
+        <div style="height: 200px; background-color: white">
+          Fake content goes here
+        </div>
+      </:content>
+      <:footer>
+        <div class="fx-row fx-gap-px-12">
+          <OSS::Button @skin="default" @label="Close" {{on "click" this.closeModal}} />
+        </div>
+      </:footer>
+    </OSS::ModalDialog>
+  {{/if}}
+</div>
 <div class="fx-col padding-lg fx-gap-px-40">
   <div class="">
     <span class="text-size-7 text-color-default">Socket Configuration</span>

@@ -1,15 +1,15 @@
 import Service, { inject as service } from '@ember/service';
 import Configuration from '@upfluence/hyperevents/configuration';
 
-export type ActivityType = 'page_view' | 'button_click';
+export type ActivityType = 'page_view' | 'button_click' | 'component_view';
 export type Activity = {
   type: ActivityType;
   action?: string;
   path: string;
   route: string;
-  engine: string;
-  version: string;
-  extra: {};
+  engine?: string;
+  version?: string;
+  extra?: {};
 };
 
 const RETRY_ATTEMPTS: number = 1;
