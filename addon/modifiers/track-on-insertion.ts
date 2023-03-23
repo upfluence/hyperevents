@@ -31,4 +31,3 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
   }
 }
 
-// track-on-destruction

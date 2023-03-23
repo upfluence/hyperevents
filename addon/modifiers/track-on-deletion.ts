@@ -2,14 +2,14 @@ import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
-interface TrackOnInsertionModifierArgs {
+interface TrackOnDeletionModifierArgs {
   positional: [string];
   named: {
     relative: boolean;
   };
 }
 
-export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionModifierArgs> {
+export default class TrackOnInsertionModifier extends Modifier<TrackOnDeletionModifierArgs> {
   @service declare activityTracking: ActivityTracking;
 
   get description(): string {

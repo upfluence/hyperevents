@@ -18,6 +18,10 @@ export default class ActivityTracking extends Service {
   @service declare session: any;
 
   log(activity: Activity): void {
+    // this method could also batch all the activities during XX seconds
+    // and then make the call to the BE
+    console.log('logging:');
+    console.log(activity);
     this.performCall([activity]);
   }
 
@@ -38,7 +42,7 @@ export default class ActivityTracking extends Service {
 
   private sendBulkActivities(activities: Activity[]): Promise<void> {
     return fetch(this.ApiUrl, {
-      method: 'PUT',
+      method: 'POST',
       headers: this.headers,
       body: JSON.stringify(activities)
     }).then((response: Response) => {
