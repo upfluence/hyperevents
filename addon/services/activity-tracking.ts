@@ -12,38 +12,31 @@ export type Activity = {
   extra: {};
 };
 
+const RETRY_ATTEMPTS: number = 1;
+
 export default class ActivityTracking extends Service {
   @service declare session: any;
 
   log(activity: Activity): void {
-    this.fakeBulk([activity])
-      .then(() => {
-        console.log('activity logged');
-        console.log(activity);
-      })
-      .catch(() => {
-        // retry once;
-      });
+    this.performCall([activity]);
   }
 
   logMultiple(activities: Activity[]): void {
-    this.fakeBulk(activities)
+    this.performCall(activities);
+  }
+
+  private performCall(activities: Activity[], tries: number = RETRY_ATTEMPTS): void {
+    this.sendBulkActivities(activities)
       .then(() => {
-        console.log('activities logged');
+        console.log('Activities have been logged');
         console.log(activities);
       })
       .catch(() => {
-        // retry once;
+        if (tries > 0) this.performCall(activities, --tries);
       });
   }
 
-  private fakeBulk(activities: Activity[]): Promise<void> {
-    activities;
-    return Promise.resolve();
-  }
-
-  // @ts-ignore
-  private bulk(activities: Activity[]): Promise<void> {
+  private sendBulkActivities(activities: Activity[]): Promise<void> {
     return fetch(this.ApiUrl, {
       method: 'PUT',
       headers: this.headers,
@@ -55,7 +48,6 @@ export default class ActivityTracking extends Service {
       return response.json();
     });
   }
-  // retry once on failure ?
 
   private get ApiUrl(): string {
     return `${Configuration.backendActivityUrl}api/v1/activity/bulk`;

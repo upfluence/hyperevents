@@ -12,6 +12,10 @@ export default class extends Helper {
       '[helper][log-activity] An action is required for this helper to work properly.',
       typeof action === 'function'
     );
+    assert(
+      '[helper][log-activity] An actionDescription needs to be passed for the activity-log to make sense.',
+      typeof action === 'function'
+    );
 
     return () => {
       const activity = this.buildActivityObject(actionDescription);
