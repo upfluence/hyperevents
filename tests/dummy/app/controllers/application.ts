@@ -19,6 +19,11 @@ export default class ApplicationController extends Controller {
   }
 
   @action
+  doAction(): void {
+    console.log('back in action');
+  }
+
+  @action
   initSocket(): void {
     if (!!this.token && !!this.wsUrl) {
       this.session.setAccessToken(this.token);

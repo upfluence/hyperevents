@@ -4,6 +4,7 @@ import Configuration from '@upfluence/hyperevents/configuration';
 export type ActivityType = 'page_view' | 'button_click';
 export type Activity = {
   type: ActivityType;
+  action?: string;
   path: string;
   route: string;
   engine: string;
@@ -14,16 +15,30 @@ export type Activity = {
 export default class ActivityTracking extends Service {
   @service declare session: any;
 
-  log(activity: Activity): Promise<void> {
-    return this.fakeBulk([activity]);
+  log(activity: Activity): void {
+    this.fakeBulk([activity])
+      .then(() => {
+        console.log('activity logged');
+        console.log(activity);
+      })
+      .catch(() => {
+        // retry once;
+      });
   }
 
-  logMultiple(activities: Activity[]): Promise<void> {
-    return this.fakeBulk(activities);
+  logMultiple(activities: Activity[]): void {
+    this.fakeBulk(activities)
+      .then(() => {
+        console.log('activities logged');
+        console.log(activities);
+      })
+      .catch(() => {
+        // retry once;
+      });
   }
 
   private fakeBulk(activities: Activity[]): Promise<void> {
-    console.log('logging ' + activities);
+    activities;
     return Promise.resolve();
   }
 
@@ -40,6 +55,7 @@ export default class ActivityTracking extends Service {
       return response.json();
     });
   }
+  // retry once on failure ?
 
   private get ApiUrl(): string {
     return `${Configuration.backendActivityUrl}api/v1/activity/bulk`;
