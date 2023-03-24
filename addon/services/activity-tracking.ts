@@ -18,11 +18,9 @@ export default class ActivityTracking extends Service {
   @service declare session: any;
 
   log(activity: Activity): void {
-    console.log('toto');
     // this method could also batch all the activities during XX seconds
     // and then make the call to the BE
-    console.log('logging:');
-    console.log(activity);
+    // Downside of doing this is that we might lose information if the user closes the page/app
     this.performCall([activity]);
   }
 

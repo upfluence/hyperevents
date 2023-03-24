@@ -33,12 +33,3 @@ export default class extends Helper {
     };
   }
 }
-
-// transitions are page_views
-
-// #2
-// component_view
-// decorator class that overloads the ctor
-
-// #1
-// modifier track-on-insertion
