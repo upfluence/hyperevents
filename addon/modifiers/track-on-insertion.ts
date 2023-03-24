@@ -1,5 +1,6 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
+import { assert } from '@ember/debug';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
 interface TrackOnInsertionModifierArgs {
@@ -17,6 +18,10 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
   }
 
   didReceiveArguments() {
+    assert(
+      '[modifier][track-on-insertion] An actionDescription needs to be passed for the activity-log to make sense.',
+      typeof this.description === 'string'
+    );
     const activity: Activity = this.buildActivityObject();
     this.activityTracking.log(activity);
   }
@@ -30,4 +35,3 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
     };
   }
 }
-

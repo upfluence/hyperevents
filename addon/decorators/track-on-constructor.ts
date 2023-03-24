@@ -1,4 +1,5 @@
 import { ActivityType } from '../services/activity-tracking';
+import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
 
 interface Constructable {
@@ -10,6 +11,10 @@ export function trackOnConstructor(actionDescription: string, actionType: Activi
     return class extends BaseClass {
       constructor(...args: any) {
         super(...args);
+        assert(
+          '[decorator][track-on-constructor] An actionDescription needs to be passed for the activity-log to make sense.',
+          typeof actionDescription === 'string'
+        );
         getOwner(this)
           .lookup('service:activity-tracking')
           .log({

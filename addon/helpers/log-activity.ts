@@ -14,7 +14,7 @@ export default class extends Helper {
     );
     assert(
       '[helper][log-activity] An actionDescription needs to be passed for the activity-log to make sense.',
-      typeof action === 'function'
+      typeof actionDescription === 'string'
     );
 
     return (event: PointerEvent) => {

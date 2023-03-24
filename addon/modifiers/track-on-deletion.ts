@@ -1,5 +1,6 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
+import { assert } from '@ember/debug';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
 interface TrackOnDeletionModifierArgs {
@@ -9,7 +10,7 @@ interface TrackOnDeletionModifierArgs {
   };
 }
 
-export default class TrackOnInsertionModifier extends Modifier<TrackOnDeletionModifierArgs> {
+export default class TrackOnDeletionModifier extends Modifier<TrackOnDeletionModifierArgs> {
   @service declare activityTracking: ActivityTracking;
 
   get description(): string {
@@ -17,6 +18,10 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnDeletionMo
   }
 
   willDestroy() {
+    assert(
+      '[modifier][track-on-deletion] An actionDescription needs to be passed for the activity-log to make sense.',
+      typeof this.description === 'string'
+    );
     const activity: Activity = this.buildActivityObject();
     this.activityTracking.log(activity);
   }
