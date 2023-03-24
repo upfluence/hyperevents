@@ -6,4 +6,4 @@ interface TestModalArgs {
 }
 
 @trackOnConstructor('action description from decorator', 'component_view')
-export default class SubscriptionFeed extends Component<TestModalArgs> {}
+export default class TestModal extends Component<TestModalArgs> {}
