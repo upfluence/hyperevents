@@ -17,7 +17,7 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
     return this.args.positional[0];
   }
 
-  didReceiveArguments() {
+  didReceiveArguments(): void {
     assert(
       '[modifier][track-on-insertion] An actionDescription needs to be passed for the activity-log to make sense.',
       typeof this.description === 'string'
