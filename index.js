@@ -4,12 +4,30 @@ const { name, version } = require('./package');
 const MergeTrees = require('broccoli-merge-trees');
 const writeFile = require('broccoli-file-creator');
 
+const deployedApps = ['upfluence-web', 'creators-web', 'plugin-web', 'identity-web'];
+
 module.exports = {
   name,
   version,
 
   isDevelopingAddon: function () {
     return true;
+  },
+
+  options: {
+    '@embroider/macros': {
+      setOwnConfig: {}
+    }
+  },
+
+  config(env, baseConfig) {
+    const config = this._super.config.apply(this, arguments);
+
+    if (deployedApps.includes(baseConfig.APP?.name) && baseConfig.APP?.version) {
+      this.options['@embroider/macros'].setOwnConfig.parentAppVersion = baseConfig.APP?.version;
+    }
+
+    return config;
   },
 
   included: function () {

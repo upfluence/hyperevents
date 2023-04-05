@@ -1,4 +1,6 @@
 import Service, { inject as service } from '@ember/service';
+import { getOwnConfig } from '@embroider/macros';
+
 import Configuration from '@upfluence/hyperevents/configuration';
 
 export type ActivityType = 'page_view' | 'button_click' | 'component_view';
@@ -34,6 +36,8 @@ export default class ActivityTracking extends Service {
   @service declare session: any;
 
   log(activity: Activity): void {
+    console.log(getOwnConfig());
+
     // this method could also batch all the activities during XX seconds
     // and then make the call to the BE
     // Downside of doing this is that we might lose information if the user closes the page/app

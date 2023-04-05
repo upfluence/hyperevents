@@ -31,6 +31,7 @@
     "postpack": "ember ts:clean"
   },
   "dependencies": {
+    "@embroider/macros": "^1.10.0",
     "@embroider/test-setup": "^1.2.0",
     "@embroider/util": "^0.50.0",
     "ember-auto-import": "^1.5.3",
