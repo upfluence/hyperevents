@@ -1,6 +1,7 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
+import { getOwner } from '@ember/application';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
 interface TrackOnDeletionModifierArgs {
@@ -29,7 +30,8 @@ export default class TrackOnDeletionModifier extends Modifier<TrackOnDeletionMod
   private buildActivityObject(): Activity {
     return {
       type: 'component_view',
-      route: window.location.origin,
+      origin: window.location.origin,
+      route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname,
       action: this.description
     };

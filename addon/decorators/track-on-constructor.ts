@@ -19,7 +19,8 @@ export function trackOnConstructor(actionDescription: string, actionType: Activi
           .lookup('service:activity-tracking')
           .log({
             type: actionType ?? 'page_view',
-            route: window.location.origin,
+            origin: window.location.origin,
+            route: getOwner(this).lookup('service:router').currentRouteName,
             path: window.location.pathname,
             action: actionDescription
           });

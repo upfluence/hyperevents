@@ -6,11 +6,27 @@ export type Activity = {
   type: ActivityType;
   action?: string;
   path: string;
-  route: string;
-  engine?: string;
+  route: string; // currentRoute formatted by Ember's Router
+  origin?: string; // should we add this to easily differentiate between the software, creators & wednesday apps ?
   version?: string;
   extra?: {};
 };
+
+// find a way to get version of the parent project
+
+// find a way to get the route /facade/:id/xxx/lists for instance
+// router.currentPath
+// in path, put window.location
+
+// batch activities
+
+// define a norm for extra params
+// [action]-[type]-[name]
+// e.g. open-modal-product
+
+// sync w/ Karim for endpoint & ActivityTypes
+// removing engine because its not that useful
+// added 'component_view' in ActivityTypes
 
 const RETRY_ATTEMPTS: number = 1;
 

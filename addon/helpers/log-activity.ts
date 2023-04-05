@@ -1,6 +1,7 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
+import { getOwner } from '@ember/application';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
 export default class extends Helper {
@@ -27,7 +28,8 @@ export default class extends Helper {
   private buildActivityObject(actionDescription: string): Activity {
     return {
       type: 'button_click',
-      route: window.location.origin,
+      origin: window.location.origin,
+      route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname,
       action: actionDescription
     };
