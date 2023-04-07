@@ -2,6 +2,7 @@ import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
+import { getOwnConfig } from '@embroider/macros';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
 
 interface TrackOnInsertionModifierArgs {
@@ -18,7 +19,7 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
     return this.args.positional[0];
   }
 
-  didReceiveArguments(): void {
+  didInstall(): void {
     assert(
       '[modifier][track-on-insertion] An actionDescription needs to be passed for the activity-log to make sense.',
       typeof this.description === 'string'
@@ -33,7 +34,8 @@ export default class TrackOnInsertionModifier extends Modifier<TrackOnInsertionM
       origin: window.location.origin,
       route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname,
-      action: this.description
+      action: this.description,
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
     };
   }
 }

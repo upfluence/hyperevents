@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
+import { getOwnConfig } from '@embroider/macros';
 
 interface TrackOnDeletionModifierArgs {
   positional: [string];
@@ -33,7 +34,8 @@ export default class TrackOnDeletionModifier extends Modifier<TrackOnDeletionMod
       origin: window.location.origin,
       route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname,
-      action: this.description
+      action: this.description,
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
     };
   }
 }

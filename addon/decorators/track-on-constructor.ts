@@ -1,6 +1,7 @@
 import { ActivityType } from '../services/activity-tracking';
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
+import { getOwnConfig } from '@embroider/macros';
 
 interface Constructable {
   new (...args: any[]): any;
@@ -22,7 +23,8 @@ export function trackOnConstructor(actionDescription: string, actionType: Activi
             origin: window.location.origin,
             route: getOwner(this).lookup('service:router').currentRouteName,
             path: window.location.pathname,
-            action: actionDescription
+            action: actionDescription,
+            version: (getOwnConfig() as any).parentAppVersion || 'unknown'
           });
       }
     };

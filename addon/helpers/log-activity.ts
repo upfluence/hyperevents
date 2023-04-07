@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
 import ActivityTracking, { Activity } from '../services/activity-tracking';
+import { getOwnConfig } from '@embroider/macros';
 
 export default class extends Helper {
   @service declare activityTracking: ActivityTracking;
@@ -31,7 +32,8 @@ export default class extends Helper {
       origin: window.location.origin,
       route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname,
-      action: actionDescription
+      action: actionDescription,
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
     };
   }
 }

@@ -1,5 +1,6 @@
+import { debounce } from '@ember/runloop';
 import Service, { inject as service } from '@ember/service';
-import { getOwnConfig } from '@embroider/macros';
+import { tracked } from '@glimmer/tracking';
 
 import Configuration from '@upfluence/hyperevents/configuration';
 
@@ -8,54 +9,40 @@ export type Activity = {
   type: ActivityType;
   action?: string;
   path: string;
-  route: string; // currentRoute formatted by Ember's Router
-  origin?: string; // should we add this to easily differentiate between the software, creators & wednesday apps ?
+  route: string;
+  origin?: string;
   version?: string;
   extra?: {};
 };
 
-// find a way to get version of the parent project
-
-// find a way to get the route /facade/:id/xxx/lists for instance
-// router.currentPath
-// in path, put window.location
-
-// batch activities
-
-// define a norm for extra params
-// [action]-[type]-[name]
-// e.g. open-modal-product
-
-// sync w/ Karim for endpoint & ActivityTypes
-// removing engine because its not that useful
-// added 'component_view' in ActivityTypes
-
 const RETRY_ATTEMPTS: number = 1;
+const THROTTLE_TIME_MS = 1000;
 
 export default class ActivityTracking extends Service {
   @service declare session: any;
+  @tracked activityQueue: Activity[] = [];
 
   log(activity: Activity): void {
-    console.log(getOwnConfig());
-
-    // this method could also batch all the activities during XX seconds
-    // and then make the call to the BE
-    // Downside of doing this is that we might lose information if the user closes the page/app
-    this.performCall([activity]);
+    this.activityQueue.push(activity);
+    debounce(this, this.performCall, THROTTLE_TIME_MS);
   }
 
   logMultiple(activities: Activity[]): void {
-    this.performCall(activities);
+    this.activityQueue.push(...activities);
+    debounce(this, this.performCall, THROTTLE_TIME_MS);
   }
 
-  private performCall(activities: Activity[], tries: number = RETRY_ATTEMPTS): void {
-    this.sendBulkActivities(activities)
+  private performCall(tries: number = RETRY_ATTEMPTS, retryActivityQueue?: Activity[]): void {
+    if (this.activityQueue.length === 0 && !retryActivityQueue) return;
+    const tempActivityQueue: Activity[] = retryActivityQueue ?? [...this.activityQueue];
+    this.activityQueue = [];
+    this.sendBulkActivities(tempActivityQueue)
       .then(() => {
-        console.log('Activities have been logged');
-        console.log(activities);
+        console.log('The following activities have been logged :');
+        console.log(tempActivityQueue);
       })
       .catch(() => {
-        if (tries > 0) this.performCall(activities, --tries);
+        if (tries > 0) this.performCall(--tries, tempActivityQueue);
       });
   }
 
@@ -63,7 +50,10 @@ export default class ActivityTracking extends Service {
     return fetch(this.ApiUrl, {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify(activities)
+      body: JSON.stringify({
+        environment: 'staging', // getOwnConfig().buildEnv ? check with @philippe
+        activities: activities
+      })
     }).then((response: Response) => {
       if (!response.ok) {
         return response.json().then((e) => Promise.reject(e));
@@ -73,7 +63,7 @@ export default class ActivityTracking extends Service {
   }
 
   private get ApiUrl(): string {
-    return `${Configuration.backendActivityUrl}api/v1/activity/bulk`;
+    return `${Configuration.backendActivityUrl}/activity/bulk`;
   }
 
   private get headers(): Headers {

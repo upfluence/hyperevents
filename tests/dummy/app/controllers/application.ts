@@ -21,8 +21,7 @@ export default class ApplicationController extends Controller {
   }
 
   @action
-  openModal(a: any, event: PointerEvent): void {
-    console.log(a);
+  openModal(_: any, event: PointerEvent): void {
     event.stopPropagation();
     this.modalVisible = true;
   }
