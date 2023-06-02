@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { logConstruction } from 'dummy/decorators/log-construction';
+import { logConstruction } from '@upfluence/hyperevents/decorators/log-construction';
 
 interface TestModalArgs {
   closeModal(): void;

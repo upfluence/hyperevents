@@ -83,7 +83,7 @@ Will trigger the activity log on `element destroyed`
 ### `@logConstruction` decorator
 ```typescript
 import Component from '@glimmer/component';
-import { logConstruction } from 'dummy/decorators/log-construction';
+import { logConstruction } from '@upfluence/hyperevents/decorators/log-construction';
 
 interface TestModalArgs {
   closeModal(): void;
