@@ -1,4 +1,15 @@
-<div class="fx-col padding-lg fx-gap-px-40">
+<div class="padding-lg fx-col fx-gap-px-12">
+  <div>Example of activity-tracking service usages:</div>
+  <div>
+    <OSS::Button @skin="primary" @label="Open modal" @icon="fa-connect"
+                 {{enable-tooltip title="Click will trigger activity-tracker log"}}
+                 {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}} />
+  </div>
+  {{#if this.modalVisible}}
+    <TestModal @closeModal={{this.closeModal}} />
+  {{/if}}
+</div>
+<div class="fx-col padding-lg fx-gpap-px-40">
   <div class="">
     <span class="text-size-7 text-color-default">Socket Configuration</span>
     <div class="fx-row">

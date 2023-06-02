@@ -14,8 +14,21 @@ export default class ApplicationController extends Controller {
   @tracked wsConnected: boolean = false;
   @tracked obsUrlArray: string[] = [];
 
+  @tracked modalVisible: boolean = false;
+
   constructor() {
     super(...arguments);
+  }
+
+  @action
+  openModal(_: any, event: PointerEvent): void {
+    event.stopPropagation();
+    this.modalVisible = true;
+  }
+
+  @action
+  closeModal(): void {
+    this.modalVisible = false;
   }
 
   @action

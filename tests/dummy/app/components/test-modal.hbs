@@ -1,0 +1,14 @@
+<OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
+                  {{log-insertion "log-insertion: Product Modal has been opened"}}
+                  {{log-deletion "log-deletion: Product Modal has been closed"}}>
+  <:content>
+    <div style="height: 200px; background-color: white">
+      Fake content goes here
+    </div>
+  </:content>
+  <:footer>
+    <div class="fx-row fx-gap-px-12">
+      <OSS::Button @skin="default" @label="Close" {{on "click" @closeModal}} />
+    </div>
+  </:footer>
+</OSS::ModalDialog>
