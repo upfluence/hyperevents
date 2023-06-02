@@ -66,40 +66,41 @@ or Using it next to an `on "click"` action wrapped inside an `fn` helper (if oth
                  {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}} />
 ```
 
-### `track-on-insertion` modifier
+### `log-insertion` modifier
 ```handlebars
 <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
-                                  {{track-on-insertion "Product Modal has been opened"}}>
+                                  {{log-insertion "Product Modal has been opened"}}>
 ```
 Will trigger the activity log on `element rendered`
 
-### `track-on-deletion` modifier
+### `log-deletion` modifier
 ```handlebars
 <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
-                                  {{track-on-deletion "Product Modal has been closed"}}>
+                  {{log-deletion "Product Modal has been closed"}}>
 ```
 Will trigger the activity log on `element destroyed`
 
-### `@trackOnConstructor` decorator
+### `@logConstruction` decorator
 ```typescript
 import Component from '@glimmer/component';
-import { trackOnConstructor } from 'dummy/decorators/track-on-constructor';
+import { logConstruction } from 'dummy/decorators/log-construction';
 
 interface TestModalArgs {
   closeModal(): void;
 }
 
-@trackOnConstructor('action description from decorator', 'component_view')
+@logConstruction('action description from decorator', 'component_view')
 export default class TestModal extends Component<TestModalArgs> {}
 ```
 Note that the actionType on the decorator will default to `page_view` if it is not specified.
 
 ### `ActivityTrackingService` direct usage
-The activity service has two public members `log` & `logMultiple`. The second one would be used if we wanted to batch some activities together in a single call.
+The activity service has a public member `log(type: ActivityType, action: string): void` used to register an Activity on the backend.
+The method will build an Activity object from the `type` & `action` parameters.
 
-Note that both of these methods batch all incoming activities (whether single object or array) into an `ActivityQueue` that will be triggered once every 1000ms. The call to the BE will only be triggered if there are activities in the `ActivityQueue`.
+Note: This method batches all incoming activities into an `ActivityQueue` that will be triggered once every 1000ms. The call to the BE will only be triggered if there are activities in the `ActivityQueue`.
 
-Both of these methods are voids (non-returning). They will make the fetch requests to the server on their own and retry on error if needed (currently configured to retry once).
-Having these methods resolving promises on there own means that as devs we don't need to handle anything else besides calling the `activityTracking.log(Activity)` where we want.
+The `log` method is of `void` type (not a promise). It will make the requests to the server on its own and retry on error if needed (currently configured to retry once).
+Having it resolve promises on its own means that as devs we don't need to handle anything else besides calling the `activityTracking.log(Activity)` where we want.
 
 As a usage example, this method will be used in upfluence's web current route.onTransition listener to call the proper parameters (instead of google analytics :) )

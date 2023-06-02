@@ -1,5 +1,7 @@
 import { debounce } from '@ember/runloop';
 import Service, { inject as service } from '@ember/service';
+import { getOwnConfig } from '@embroider/macros';
+import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 
 import Configuration from '@upfluence/hyperevents/configuration';
@@ -7,7 +9,7 @@ import Configuration from '@upfluence/hyperevents/configuration';
 export type ActivityType = 'page_view' | 'button_click' | 'component_view';
 export type Activity = {
   type: ActivityType;
-  action?: string;
+  action: string;
   path: string;
   route: string;
   origin?: string;
@@ -22,13 +24,8 @@ export default class ActivityTracking extends Service {
   @service declare session: any;
   @tracked activityQueue: Activity[] = [];
 
-  log(activity: Activity): void {
-    this.activityQueue.push(activity);
-    debounce(this, this.performCall, THROTTLE_TIME_MS);
-  }
-
-  logMultiple(activities: Activity[]): void {
-    this.activityQueue.push(...activities);
+  log(type: ActivityType, action: string): void {
+    this.activityQueue.push(this.buildActivityObject(type, action));
     debounce(this, this.performCall, THROTTLE_TIME_MS);
   }
 
@@ -36,22 +33,17 @@ export default class ActivityTracking extends Service {
     if (this.activityQueue.length === 0 && !retryActivityQueue) return;
     const tempActivityQueue: Activity[] = retryActivityQueue ?? [...this.activityQueue];
     this.activityQueue = [];
-    this.sendBulkActivities(tempActivityQueue)
-      .then(() => {
-        console.log('The following activities have been logged :');
-        console.log(tempActivityQueue);
-      })
-      .catch(() => {
-        if (tries > 0) this.performCall(--tries, tempActivityQueue);
-      });
+    this.sendBulkActivities(tempActivityQueue).catch(() => {
+      if (tries > 0) this.performCall(--tries, tempActivityQueue);
+    });
   }
 
   private sendBulkActivities(activities: Activity[]): Promise<void> {
-    return fetch(this.ApiUrl, {
+    return fetch(this.apiUrl, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        environment: 'staging', // getOwnConfig().buildEnv ? check with @philippe
+        environment: (getOwnConfig() as any).buildEnv,
         activities: activities
       })
     }).then((response: Response) => {
@@ -62,7 +54,7 @@ export default class ActivityTracking extends Service {
     });
   }
 
-  private get ApiUrl(): string {
+  private get apiUrl(): string {
     return `${Configuration.backendActivityUrl}/activity/bulk`;
   }
 
@@ -72,6 +64,17 @@ export default class ActivityTracking extends Service {
 
   private get accessToken(): string {
     return this.session.data.authenticated.access_token;
+  }
+
+  private buildActivityObject(type: ActivityType, action: string): Activity {
+    return {
+      type: type,
+      origin: window.location.origin,
+      route: getOwner(this).lookup('service:router').currentRouteName,
+      path: window.location.pathname,
+      action: action,
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
+    };
   }
 }
 

@@ -16,7 +16,9 @@ module.exports = {
 
   options: {
     '@embroider/macros': {
-      setOwnConfig: {}
+      setOwnConfig: {
+        buildEnv: process.BUILD_ENV || 'staging'
+      }
     }
   },
 

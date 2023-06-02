@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
-import { trackOnConstructor } from 'dummy/decorators/track-on-constructor';
+import { logConstruction } from 'dummy/decorators/log-construction';
 
 interface TestModalArgs {
   closeModal(): void;
 }
 
-@trackOnConstructor('action description from decorator', 'component_view')
+@logConstruction('action description from decorator', 'component_view')
 export default class TestModal extends Component<TestModalArgs> {}

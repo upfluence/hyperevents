@@ -4,7 +4,7 @@ import { render, setupOnerror } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
 
-module('Integration | Modifiers | modifiers/track-on-insertion', function (hooks) {
+module('Integration | Modifiers | modifiers/log-insertion', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
@@ -14,11 +14,11 @@ module('Integration | Modifiers | modifiers/track-on-insertion', function (hooks
 
   test('it logs the activity when the element is rendered', async function (assert) {
     await render(hbs`
-      <div {{track-on-insertion "description to log"}}></div>
+      <div {{log-insertion "description to log"}}></div>
     `);
 
-    assert.equal(this.acTrackStub.args[0][0].action, 'description to log');
-    assert.equal(this.acTrackStub.args[0][0].type, 'component_view');
+    assert.equal(this.acTrackStub.args[0][0], 'component_view');
+    assert.equal(this.acTrackStub.args[0][1], 'description to log');
     assert.true(this.acTrackStub.calledOnce);
   });
 
@@ -26,11 +26,11 @@ module('Integration | Modifiers | modifiers/track-on-insertion', function (hooks
     setupOnerror((err: Error) => {
       assert.equal(
         err.message,
-        'Assertion Failed: [modifier][track-on-insertion] An actionDescription needs to be passed for the activity-log to make sense.'
+        'Assertion Failed: [modifier][log-insertion] An actionDescription needs to be passed for the activity-log to make sense.'
       );
     });
     await render(hbs`
-      <div {{track-on-insertion}}></div>
+      <div {{log-insertion}}></div>
     `);
   });
 });

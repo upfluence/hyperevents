@@ -43,8 +43,8 @@ module('Integration | Helper | log-activity', function (hooks) {
       );
 
       await click('#click-me');
-      assert.equal(this.acTrackStub.args[0][0].action, 'description of action');
-      assert.equal(this.acTrackStub.args[0][0].type, 'button_click');
+      assert.equal(this.acTrackStub.args[0][0], 'button_click');
+      assert.equal(this.acTrackStub.args[0][1], 'description of action');
       assert.true(this.acTrackStub.calledOnce);
     });
 

@@ -1,13 +1,13 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import sinon from 'sinon';
-import { trackOnConstructor } from 'dummy/decorators/track-on-constructor';
+import { logConstruction } from 'dummy/decorators/log-construction';
 
-module('Unit | Decorators | @trackOnConstructor', function (hooks) {
+module('Unit | Decorators | @logConstruction', function (hooks) {
   setupTest(hooks);
 
   test('The decorator is defined', function (assert) {
-    assert.ok(trackOnConstructor);
+    assert.ok(logConstruction);
   });
 
   hooks.beforeEach(function () {
@@ -26,16 +26,16 @@ module('Unit | Decorators | @trackOnConstructor', function (hooks) {
   });
 
   test('The activity-tracking service logger is called in the ctor', function (assert) {
-    @trackOnConstructor('xxx')
+    @logConstruction('xxx')
     class TestWithDecorator {}
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][0].action, 'xxx');
+    assert.equal(this.logStub.args[0][1], 'xxx');
   });
 
   test('The original Ctor code is still executed', function (assert) {
-    @trackOnConstructor('description of the action')
+    @logConstruction('description of the action')
     class TestWithDecorator {
       randomMethod = sinon.stub();
       constructor() {
@@ -47,27 +47,27 @@ module('Unit | Decorators | @trackOnConstructor', function (hooks) {
   });
 
   test('The default actionType is page_view if none is specified', function (assert) {
-    @trackOnConstructor('description of the action')
+    @logConstruction('description of the action')
     class TestWithDecorator {}
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][0].action, 'description of the action');
-    assert.equal(this.logStub.args[0][0].type, 'page_view');
+    assert.equal(this.logStub.args[0][0], 'page_view');
+    assert.equal(this.logStub.args[0][1], 'description of the action');
   });
 
   test('Specifying an actionType sets it in the activityTracking.log call', function (assert) {
-    @trackOnConstructor('description of the action', 'component_view')
+    @logConstruction('description of the action', 'component_view')
     class TestWithDecorator {}
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][0].action, 'description of the action');
-    assert.equal(this.logStub.args[0][0].type, 'component_view');
+    assert.equal(this.logStub.args[0][0], 'component_view');
+    assert.equal(this.logStub.args[0][1], 'description of the action');
   });
 
   test('An error is thrown if the actionDescription is not set', function (assert) {
-    @trackOnConstructor()
+    @logConstruction()
     class TestWithDecorator {}
 
     assert.throws(
@@ -75,7 +75,7 @@ module('Unit | Decorators | @trackOnConstructor', function (hooks) {
         new TestWithDecorator();
       },
       new Error(
-        'Assertion Failed: [decorator][track-on-constructor] An actionDescription needs to be passed for the activity-log to make sense.'
+        'Assertion Failed: [decorator][log-construction] An actionDescription needs to be passed for the activity-log to make sense.'
       ),
       'Expect an error with this message'
     );

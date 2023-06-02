@@ -1,9 +1,7 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
-import { getOwner } from '@ember/application';
-import ActivityTracking, { Activity } from '../services/activity-tracking';
-import { getOwnConfig } from '@embroider/macros';
+import ActivityTracking from '../services/activity-tracking';
 
 export default class extends Helper {
   @service declare activityTracking: ActivityTracking;
@@ -20,20 +18,8 @@ export default class extends Helper {
     );
 
     return (event: PointerEvent) => {
-      const activity = this.buildActivityObject(actionDescription);
-      this.activityTracking.log(activity);
+      this.activityTracking.log('button_click', actionDescription);
       return action(event);
-    };
-  }
-
-  private buildActivityObject(actionDescription: string): Activity {
-    return {
-      type: 'button_click',
-      origin: window.location.origin,
-      route: getOwner(this).lookup('service:router').currentRouteName,
-      path: window.location.pathname,
-      action: actionDescription,
-      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
     };
   }
 }

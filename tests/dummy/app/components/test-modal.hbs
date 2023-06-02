@@ -1,6 +1,6 @@
 <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
-                  {{track-on-insertion "Product Modal has been opened"}}
-                  {{track-on-deletion "Product Modal has been closed"}}>
+                  {{log-insertion "log-insertion: Product Modal has been opened"}}
+                  {{log-deletion "log-deletion: Product Modal has been closed"}}>
   <:content>
     <div style="height: 200px; background-color: white">
       Fake content goes here
