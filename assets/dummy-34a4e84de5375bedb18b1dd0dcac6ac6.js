@@ -9,22 +9,17 @@
     value: true
   });
   _exports.default = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   class App extends Ember.Application {
     constructor() {
       super(...arguments);
-
       _defineProperty(this, "modulePrefix", _environment.default.modulePrefix);
-
       _defineProperty(this, "podModulePrefix", _environment.default.podModulePrefix);
-
       _defineProperty(this, "Resolver", _emberResolver.default);
     }
-
   }
-
   _exports.default = App;
   (0, _emberLoadInitializers.default)(App, _environment.default.modulePrefix);
 });
@@ -60,19 +55,6 @@
   _exports.default = void 0;
   var _default = _appHeader.default;
   _exports.default = _default;
-});
-;define("dummy/components/column-visibility-panel", ["exports", "@upfluence/oss-components/components/column-visibility-panel"], function (_exports, _columnVisibilityPanel) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _columnVisibilityPanel.default;
-    }
-  });
 });
 ;define("dummy/components/destructive-button", ["exports", "@upfluence/oss-components/components/destructive-button"], function (_exports, _destructiveButton) {
   "use strict";
@@ -130,6 +112,19 @@
     }
   });
 });
+;define("dummy/components/o-s-s/alert", ["exports", "@upfluence/oss-components/components/o-s-s/alert"], function (_exports, _alert) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _alert.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/array-input", ["exports", "@upfluence/oss-components/components/o-s-s/array-input"], function (_exports, _arrayInput) {
   "use strict";
 
@@ -140,6 +135,19 @@
     enumerable: true,
     get: function () {
       return _arrayInput.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/avatar", ["exports", "@upfluence/oss-components/components/o-s-s/avatar"], function (_exports, _avatar) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _avatar.default;
     }
   });
 });
@@ -169,6 +177,19 @@
     }
   });
 });
+;define("dummy/components/o-s-s/benjamin-button", ["exports", "@upfluence/oss-components/components/o-s-s/button"], function (_exports, _button) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _button.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/bruce", ["exports", "@upfluence/oss-components/components/o-s-s/banner"], function (_exports, _banner) {
   "use strict";
 
@@ -179,6 +200,19 @@
     enumerable: true,
     get: function () {
       return _banner.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/button-dropdown", ["exports", "@upfluence/oss-components/components/o-s-s/button-dropdown"], function (_exports, _buttonDropdown) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _buttonDropdown.default;
     }
   });
 });
@@ -208,6 +242,97 @@
     }
   });
 });
+;define("dummy/components/o-s-s/chip-n-fish", ["exports", "@upfluence/oss-components/components/o-s-s/chip"], function (_exports, _chip) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _chip.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/chip", ["exports", "@upfluence/oss-components/components/o-s-s/chip"], function (_exports, _chip) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _chip.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/code-block", ["exports", "@upfluence/oss-components/components/o-s-s/code-block"], function (_exports, _codeBlock) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _codeBlock.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/copy", ["exports", "@upfluence/oss-components/components/o-s-s/copy"], function (_exports, _copy) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _copy.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/country-selector", ["exports", "@upfluence/oss-components/components/o-s-s/country-selector"], function (_exports, _countrySelector) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _countrySelector.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/currency-input", ["exports", "@upfluence/oss-components/components/o-s-s/currency-input"], function (_exports, _currencyInput) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _currencyInput.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/email-input", ["exports", "@upfluence/oss-components/components/o-s-s/email-input"], function (_exports, _emailInput) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _emailInput.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/infinite-select", ["exports", "@upfluence/oss-components/components/o-s-s/infinite-select"], function (_exports, _infiniteSelect) {
   "use strict";
 
@@ -234,6 +359,19 @@
     }
   });
 });
+;define("dummy/components/o-s-s/input-group", ["exports", "@upfluence/oss-components/components/o-s-s/input-group"], function (_exports, _inputGroup) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _inputGroup.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/link", ["exports", "@upfluence/oss-components/components/o-s-s/link"], function (_exports, _link) {
   "use strict";
 
@@ -247,6 +385,19 @@
     }
   });
 });
+;define("dummy/components/o-s-s/modal-dialog", ["exports", "@upfluence/oss-components/components/o-s-s/modal-dialog"], function (_exports, _modalDialog) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _modalDialog.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/modal", ["exports", "@upfluence/oss-components/components/o-s-s/modal"], function (_exports, _modal) {
   "use strict";
 
@@ -257,6 +408,45 @@
     enumerable: true,
     get: function () {
       return _modal.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/multi-select", ["exports", "@upfluence/oss-components/components/o-s-s/power-select"], function (_exports, _powerSelect) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _powerSelect.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/nav-tab", ["exports", "@upfluence/oss-components/components/o-s-s/nav-tab"], function (_exports, _navTab) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _navTab.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/number-input", ["exports", "@upfluence/oss-components/components/o-s-s/number-input"], function (_exports, _numberInput) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _numberInput.default;
     }
   });
 });
@@ -299,6 +489,45 @@
     }
   });
 });
+;define("dummy/components/o-s-s/province-selector", ["exports", "@upfluence/oss-components/components/o-s-s/country-selector"], function (_exports, _countrySelector) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _countrySelector.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/radio-button", ["exports", "@upfluence/oss-components/components/o-s-s/radio-button"], function (_exports, _radioButton) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _radioButton.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/select", ["exports", "@upfluence/oss-components/components/o-s-s/select"], function (_exports, _select) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _select.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/star-rating", ["exports", "@upfluence/oss-components/components/o-s-s/star-rating"], function (_exports, _starRating) {
   "use strict";
 
@@ -309,6 +538,19 @@
     enumerable: true,
     get: function () {
       return _starRating.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/tag", ["exports", "@upfluence/oss-components/components/o-s-s/tag"], function (_exports, _tag) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _tag.default;
     }
   });
 });
@@ -325,6 +567,45 @@
     }
   });
 });
+;define("dummy/components/o-s-s/upload-area", ["exports", "@upfluence/oss-components/components/o-s-s/upload-area"], function (_exports, _uploadArea) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _uploadArea.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/upload-item", ["exports", "@upfluence/oss-components/components/o-s-s/upload-item"], function (_exports, _uploadItem) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _uploadItem.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/url-input", ["exports", "@upfluence/oss-components/components/o-s-s/url-input"], function (_exports, _urlInput) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _urlInput.default;
+    }
+  });
+});
 ;define("dummy/components/radio-button", ["exports", "@upfluence/oss-components/components/radio-button"], function (_exports, _radioButton) {
   "use strict";
 
@@ -337,16 +618,6 @@
       return _radioButton.default;
     }
   });
-});
-;define("dummy/components/standard-stat", ["exports", "@upfluence/oss-components/components/standard-stat"], function (_exports, _standardStat) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _standardStat.default;
-  _exports.default = _default;
 });
 ;define("dummy/components/star-rating", ["exports", "ember-star-rating/components/star-rating"], function (_exports, _starRating) {
   "use strict";
@@ -368,17 +639,13 @@
     value: true
   });
   _exports.default = void 0;
-
   var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _descriptor, _descriptor2, _descriptor3;
-
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
-
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
     <div class="subscription-feed padding-xx-sm">
@@ -412,48 +679,36 @@
       moduleName: "dummy/components/subscription-feed.hbs"
     }
   });
-
   let SubscriptionFeed = (_dec = Ember.inject.service, _dec2 = Ember._tracked, _dec3 = Ember._tracked, _dec4 = Ember._action, _dec5 = Ember._action, _dec6 = Ember._action, (_class = class SubscriptionFeed extends _component.default {
     constructor(owner, args) {
       super(owner, args);
-
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
-
       _initializerDefineProperty(this, "data", _descriptor2, this);
-
       _initializerDefineProperty(this, "listeningState", _descriptor3, this);
-
       _defineProperty(this, "_dataObs", null);
-
       this._initObserver();
     }
-
     unsubscribe() {
       this._dataObs?.unsubscribe();
       this.listeningState = 'Not Listening';
     }
-
     subscribe() {
       this._initObserver();
     }
-
     removeObs() {
       this.unsubscribe();
       this.args.removeObs(this.args.url);
     }
-
     _initObserver() {
       this._dataObs = this.eventsService.watch((0, _eventsService.prefixPath)(this.args.url));
       console.log('New Observer watching : ', this.args.url);
       this.listeningState = 'Listening';
-
       this._dataObs.subscribe(event => {
         console.log('package received: ', JSON.stringify(event));
         this.data.push(JSON.stringify(event));
         this.data = this.data;
       });
     }
-
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_dec], {
     configurable: true,
     enumerable: true,
@@ -475,8 +730,44 @@
     }
   }), _applyDecoratedDescriptor(_class.prototype, "unsubscribe", [_dec4], Object.getOwnPropertyDescriptor(_class.prototype, "unsubscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "subscribe", [_dec5], Object.getOwnPropertyDescriptor(_class.prototype, "subscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_dec6], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype)), _class));
   _exports.default = SubscriptionFeed;
-
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, SubscriptionFeed);
+});
+;define("dummy/components/test-modal", ["exports", "@glimmer/component", "dummy/decorators/log-construction"], function (_exports, _component, _logConstruction) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _class;
+  const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
+  /*
+    <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
+                    {{log-insertion "log-insertion: Product Modal has been opened"}}
+                    {{log-deletion "log-deletion: Product Modal has been closed"}}>
+    <:content>
+      <div style="height: 200px; background-color: white">
+        Fake content goes here
+      </div>
+    </:content>
+    <:footer>
+      <div class="fx-row fx-gap-px-12">
+        <OSS::Button @skin="default" @label="Close" {{on "click" @closeModal}} />
+      </div>
+    </:footer>
+  </OSS::ModalDialog>
+  
+  */
+  {
+    id: "9SJScFpr",
+    block: "{\"symbols\":[\"__arg0\",\"@closeModal\"],\"statements\":[[8,\"o-s-s/modal-dialog\",[[4,[38,4],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,5],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\",\"@namedBlocksInfo\"],[\"Example modal\",[32,2],\"md\",[30,[36,3],null,[[\"content\",\"footer\"],[0,0]]]]],[[\"default\"],[{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"content\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,5,\"height: 200px; background-color: white\"],[12],[2,\"\\n      Fake content goes here\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"footer\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-12\"],[12],[2,\"\\n      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,2]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[2,\"\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[1]}]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"on\",\"-is-named-block-invocation\",\"if\",\"hash\",\"log-insertion\",\"log-deletion\"]}",
+    meta: {
+      moduleName: "dummy/components/test-modal.hbs"
+    }
+  });
+  let TestModal = (_dec = (0, _logConstruction.logConstruction)('action description from decorator', 'component_view'), _dec(_class = class TestModal extends _component.default {}) || _class);
+  _exports.default = TestModal;
+  Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, TestModal);
 });
 ;define("dummy/components/upf-card", ["exports", "@upfluence/oss-components/components/upf-card"], function (_exports, _upfCard) {
   "use strict";
@@ -503,16 +794,6 @@
       return _upfCheckbox.default;
     }
   });
-});
-;define("dummy/components/upf-icon", ["exports", "@upfluence/oss-components/components/upf-icon"], function (_exports, _upfIcon) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _upfIcon.default;
-  _exports.default = _default;
 });
 ;define("dummy/components/upf-image", ["exports", "@upfluence/oss-components/components/upf-image"], function (_exports, _upfImage) {
   "use strict";
@@ -684,36 +965,32 @@
     value: true
   });
   _exports.default = void 0;
-
-  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
-
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
-
-  let ApplicationController = (_dec = Ember.inject.service, _dec2 = Ember.inject.service, _dec3 = Ember._tracked, _dec4 = Ember._tracked, _dec5 = Ember._tracked, _dec6 = Ember._tracked, _dec7 = Ember._tracked, _dec8 = Ember._action, _dec9 = Ember._action, _dec10 = Ember._action, _dec11 = Ember._action, _dec12 = Ember._action, (_class = class ApplicationController extends Ember.Controller {
+  let ApplicationController = (_dec = Ember.inject.service, _dec2 = Ember.inject.service, _dec3 = Ember._tracked, _dec4 = Ember._tracked, _dec5 = Ember._tracked, _dec6 = Ember._tracked, _dec7 = Ember._tracked, _dec8 = Ember._tracked, _dec9 = Ember._action, _dec10 = Ember._action, _dec11 = Ember._action, _dec12 = Ember._action, _dec13 = Ember._action, _dec14 = Ember._action, _dec15 = Ember._action, (_class = class ApplicationController extends Ember.Controller {
     constructor() {
       super(...arguments);
-
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
-
       _initializerDefineProperty(this, "session", _descriptor2, this);
-
       _initializerDefineProperty(this, "token", _descriptor3, this);
-
       _initializerDefineProperty(this, "wsUrl", _descriptor4, this);
-
       _initializerDefineProperty(this, "newObserver", _descriptor5, this);
-
       _initializerDefineProperty(this, "wsConnected", _descriptor6, this);
-
       _initializerDefineProperty(this, "obsUrlArray", _descriptor7, this);
+      _initializerDefineProperty(this, "modalVisible", _descriptor8, this);
     }
-
+    openModal(_, event) {
+      event.stopPropagation();
+      this.modalVisible = true;
+    }
+    closeModal() {
+      this.modalVisible = false;
+    }
     initSocket() {
       if (!!this.token && !!this.wsUrl) {
         this.session.setAccessToken(this.token);
@@ -724,32 +1001,26 @@
         });
       }
     }
-
     terminateSocket() {
       this.eventsService.terminateConnection();
     }
-
     handleNewObserverInput(event) {
       if (event.key === 'Enter') {
         this._createObserver();
       }
     }
-
     createNewObserver() {
       this._createObserver();
     }
-
     removeObs(url) {
       this.obsUrlArray = this.obsUrlArray.filter(obsUrl => obsUrl !== url);
     }
-
     _createObserver() {
       console.log('Creating new observer: ', this.newObserver);
       this.obsUrlArray.push(this.newObserver);
       this.obsUrlArray = this.obsUrlArray;
       this.newObserver = '';
     }
-
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_dec], {
     configurable: true,
     enumerable: true,
@@ -795,8 +1066,34 @@
     initializer: function () {
       return [];
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "initSocket", [_dec8], Object.getOwnPropertyDescriptor(_class.prototype, "initSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "terminateSocket", [_dec9], Object.getOwnPropertyDescriptor(_class.prototype, "terminateSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleNewObserverInput", [_dec10], Object.getOwnPropertyDescriptor(_class.prototype, "handleNewObserverInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "createNewObserver", [_dec11], Object.getOwnPropertyDescriptor(_class.prototype, "createNewObserver"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_dec12], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype)), _class));
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "modalVisible", [_dec8], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
+    }
+  }), _applyDecoratedDescriptor(_class.prototype, "openModal", [_dec9], Object.getOwnPropertyDescriptor(_class.prototype, "openModal"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "closeModal", [_dec10], Object.getOwnPropertyDescriptor(_class.prototype, "closeModal"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "initSocket", [_dec11], Object.getOwnPropertyDescriptor(_class.prototype, "initSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "terminateSocket", [_dec12], Object.getOwnPropertyDescriptor(_class.prototype, "terminateSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleNewObserverInput", [_dec13], Object.getOwnPropertyDescriptor(_class.prototype, "handleNewObserverInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "createNewObserver", [_dec14], Object.getOwnPropertyDescriptor(_class.prototype, "createNewObserver"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_dec15], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype)), _class));
   _exports.default = ApplicationController;
+});
+;define("dummy/decorators/log-construction", ["exports", "@upfluence/hyperevents/decorators/log-construction"], function (_exports, _logConstruction) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _logConstruction.default;
+    }
+  });
+  Object.defineProperty(_exports, "logConstruction", {
+    enumerable: true,
+    get: function () {
+      return _logConstruction.logConstruction;
+    }
+  });
 });
 ;define("dummy/helpers/-has-block-params", ["exports", "ember-named-blocks-polyfill/helpers/-has-block-params"], function (_exports, _hasBlockParams) {
   "use strict";
@@ -977,20 +1274,17 @@
   });
   _exports.default = void 0;
   _exports.formatNumericHelper = formatNumericHelper;
-
   function formatNumericHelper(params) {
     let [number] = params;
     let formatter = Intl.NumberFormat(['en-EN', 'fr-FR'], {
       style: 'decimal',
       minimumFractionDigits: 0 // show decimals only if there are ones
-
     });
+
     if (isNaN(parseInt(number))) return number;
     return formatter.format(number);
   }
-
   var _default = Ember.Helper.helper(formatNumericHelper);
-
   _exports.default = _default;
 });
 ;define("dummy/helpers/format-relative", ["exports", "ember-intl/helpers/format-relative"], function (_exports, _formatRelative) {
@@ -1108,6 +1402,25 @@
     }
   });
 });
+;define("dummy/helpers/log-activity", ["exports", "@upfluence/hyperevents/helpers/log-activity"], function (_exports, _logActivity) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _logActivity.default;
+    }
+  });
+  Object.defineProperty(_exports, "logActivity", {
+    enumerable: true,
+    get: function () {
+      return _logActivity.logActivity;
+    }
+  });
+});
 ;define("dummy/helpers/lt", ["exports", "ember-truth-helpers/helpers/lt"], function (_exports, _lt) {
   "use strict";
 
@@ -1203,6 +1516,44 @@
     }
   });
 });
+;define("dummy/helpers/redirect-to", ["exports", "@upfluence/oss-components/helpers/redirect-to"], function (_exports, _redirectTo) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _redirectTo.default;
+    }
+  });
+  Object.defineProperty(_exports, "redirectTo", {
+    enumerable: true,
+    get: function () {
+      return _redirectTo.redirectTo;
+    }
+  });
+});
+;define("dummy/helpers/stop-propagation", ["exports", "@upfluence/oss-components/helpers/stop-propagation"], function (_exports, _stopPropagation) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _stopPropagation.default;
+    }
+  });
+  Object.defineProperty(_exports, "stopPropagation", {
+    enumerable: true,
+    get: function () {
+      return _stopPropagation.stopPropagation;
+    }
+  });
+});
 ;define("dummy/helpers/t", ["exports", "ember-intl/helpers/t"], function (_exports, _t) {
   "use strict";
 
@@ -1216,6 +1567,25 @@
     }
   });
 });
+;define("dummy/helpers/transition-to", ["exports", "@upfluence/oss-components/helpers/transition-to"], function (_exports, _transitionTo) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _transitionTo.default;
+    }
+  });
+  Object.defineProperty(_exports, "transitionTo", {
+    enumerable: true,
+    get: function () {
+      return _transitionTo.transitionTo;
+    }
+  });
+});
 ;define("dummy/helpers/truncate", ["exports"], function (_exports) {
   "use strict";
 
@@ -1224,15 +1594,12 @@
   });
   _exports.default = void 0;
   _exports.truncateHelper = truncateHelper;
-
   function truncateHelper(params) {
     let [string, numberOfCharacters] = params;
     let remainingString = (string || '').slice(0, numberOfCharacters);
     return remainingString === string ? string : remainingString + '...';
   }
-
   var _default = Ember.Helper.helper(truncateHelper);
-
   _exports.default = _default;
 });
 ;define("dummy/helpers/xor", ["exports", "ember-truth-helpers/helpers/xor"], function (_exports, _xor) {
@@ -1273,12 +1640,10 @@
   _exports.default = void 0;
   var _default = {
     name: 'container-debug-adapter',
-
     initialize() {
       let app = arguments[1] || arguments[0];
       app.register('container-debug-adapter:main', _containerDebugAdapter.default);
     }
-
   };
   _exports.default = _default;
 });
@@ -1290,13 +1655,10 @@
   });
   _exports.default = void 0;
   _exports.initialize = initialize;
-
   function initialize() {
     var application = arguments[1] || arguments[0];
-
     if (_environment.default.exportApplicationGlobal !== false) {
       var theGlobal;
-
       if (typeof window !== 'undefined') {
         theGlobal = window;
       } else if (typeof global !== 'undefined') {
@@ -1307,29 +1669,24 @@
         // no reasonable global, just bail
         return;
       }
-
       var value = _environment.default.exportApplicationGlobal;
       var globalName;
-
       if (typeof value === 'string') {
         globalName = value;
       } else {
         globalName = Ember.String.classify(_environment.default.modulePrefix);
       }
-
       if (!theGlobal[globalName]) {
         theGlobal[globalName] = application;
         application.reopen({
           willDestroy: function () {
             this._super.apply(this, arguments);
-
             delete theGlobal[globalName];
           }
         });
       }
     }
   }
-
   var _default = {
     name: 'export-application-global',
     initialize: initialize
@@ -1437,6 +1794,44 @@
     }
   });
 });
+;define("dummy/modifiers/log-deletion", ["exports", "@upfluence/hyperevents/modifiers/log-deletion"], function (_exports, _logDeletion) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _logDeletion.default;
+    }
+  });
+  Object.defineProperty(_exports, "logActivity", {
+    enumerable: true,
+    get: function () {
+      return _logDeletion.logActivity;
+    }
+  });
+});
+;define("dummy/modifiers/log-insertion", ["exports", "@upfluence/hyperevents/modifiers/log-insertion"], function (_exports, _logInsertion) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _logInsertion.default;
+    }
+  });
+  Object.defineProperty(_exports, "logActivity", {
+    enumerable: true,
+    get: function () {
+      return _logInsertion.logActivity;
+    }
+  });
+});
 ;define("dummy/modifiers/on-bottom-reached", ["exports", "@upfluence/oss-components/modifiers/on-bottom-reached"], function (_exports, _onBottomReached) {
   "use strict";
 
@@ -1535,20 +1930,16 @@
     value: true
   });
   _exports.default = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   class Router extends Ember.Router {
     constructor() {
       super(...arguments);
-
       _defineProperty(this, "location", _environment.default.locationType);
-
       _defineProperty(this, "rootURL", _environment.default.rootURL);
     }
-
   }
-
   _exports.default = Router;
   Router.map(function () {});
 });
@@ -1559,9 +1950,7 @@
     value: true
   });
   _exports.default = void 0;
-
   class Application extends Ember.Route {}
-
   _exports.default = Application;
 });
 ;define("dummy/services/-ensure-registered", ["exports", "@embroider/util/services/ensure-registered"], function (_exports, _ensureRegistered) {
@@ -1577,6 +1966,19 @@
     }
   });
 });
+;define("dummy/services/activity-tracking", ["exports", "@upfluence/hyperevents/services/activity-tracking"], function (_exports, _activityTracking) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _activityTracking.default;
+    }
+  });
+});
 ;define("dummy/services/asset-map", ["exports", "ember-cli-ifa/services/asset-map"], function (_exports, _assetMap) {
   "use strict";
 
@@ -1586,6 +1988,19 @@
   _exports.default = void 0;
   var _default = _assetMap.default;
   _exports.default = _default;
+});
+;define("dummy/services/base-uploader", ["exports", "@upfluence/oss-components/services/base-uploader"], function (_exports, _baseUploader) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _baseUploader.default;
+    }
+  });
 });
 ;define("dummy/services/events-service", ["exports", "@upfluence/hyperevents/services/events-service"], function (_exports, _eventsService) {
   "use strict";
@@ -1620,17 +2035,16 @@
     value: true
   });
   _exports.default = void 0;
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  class Session extends Ember.Service.extend({// anything which *must* be merged to prototype here
+  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+  class Session extends Ember.Service.extend({
+    // anything which *must* be merged to prototype here
   }) {
     constructor() {
       super(...arguments);
-
       _defineProperty(this, "_token", null);
     }
-
     get data() {
       return {
         authenticated: {
@@ -1638,14 +2052,12 @@
         }
       };
     }
-
     setAccessToken(token) {
       this._token = token;
     }
+  }
 
-  } // DO NOT DELETE: this is how TypeScript knows how to look up your services.
-
-
+  // DO NOT DELETE: this is how TypeScript knows how to look up your services.
   _exports.default = Session;
 });
 ;define("dummy/services/toast", ["exports", "@upfluence/oss-components/services/toast"], function (_exports, _toast) {
@@ -1668,15 +2080,13 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
-    "id": "x+K3tZFT",
-    "block": "{\"symbols\":[\"obsUrl\"],\"statements\":[[10,\"div\"],[14,0,\"fx-col padding-lg fx-gap-px-40\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7 text-color-default\"],[12],[2,\"Socket Configuration\"],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[14,5,\"width: 300px\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter WS Url:\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"wsUrl\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter token :\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"token\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[2,\"\\n        \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[2,\"\\n        \"],[8,\"o-s-s/button\",[[16,\"disabled\",[30,[36,1],[[32,0,[\"wsConnected\"]]],null]],[4,[38,0],[\"click\",[32,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[2,\"\\n      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7\"],[12],[2,\"Observers:\"],[13],[2,\"\\n    \"],[10,\"div\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col margin-bottom-sm\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[2,\"\\n          Create a new observer :\\n          \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-20\"],[12],[2,\"\\n            \"],[8,\"o-s-s/input-container\",[[4,[38,0],[\"keydown\",[32,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[32,0,[\"newObserver\"]]]],null],[2,\"\\n            \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[2,\"\\n          \"],[13],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20\"],[12],[2,\"\\n\"],[6,[37,3],[[30,[36,2],[[30,[36,2],[[32,0,[\"obsUrlArray\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[8,\"subscription-feed\",[],[[\"@url\",\"@removeObs\"],[[32,1],[32,0,[\"removeObs\"]]]],null],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"on\",\"not\",\"-track-array\",\"each\"]}",
+    "id": "1w0nDd0x",
+    "block": "{\"symbols\":[\"obsUrl\"],\"statements\":[[10,\"div\"],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"Example of activity-tracking service usages:\"],[13],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[8,\"o-s-s/button\",[[4,[38,0],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,3],[\"click\",[30,[36,2],[[30,[36,1],[[32,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"],[6,[37,4],[[32,0,[\"modalVisible\"]]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[8,\"test-modal\",[],[[\"@closeModal\"],[[32,0,[\"closeModal\"]]]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[13],[2,\"\\n\"],[10,\"div\"],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7 text-color-default\"],[12],[2,\"Socket Configuration\"],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[14,5,\"width: 300px\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter WS Url:\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"wsUrl\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter token :\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"token\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[2,\"\\n        \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[2,\"\\n        \"],[8,\"o-s-s/button\",[[16,\"disabled\",[30,[36,5],[[32,0,[\"wsConnected\"]]],null]],[4,[38,3],[\"click\",[32,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[2,\"\\n      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7\"],[12],[2,\"Observers:\"],[13],[2,\"\\n    \"],[10,\"div\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col margin-bottom-sm\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[2,\"\\n          Create a new observer :\\n          \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-20\"],[12],[2,\"\\n            \"],[8,\"o-s-s/input-container\",[[4,[38,3],[\"keydown\",[32,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[32,0,[\"newObserver\"]]]],null],[2,\"\\n            \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[2,\"\\n          \"],[13],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20\"],[12],[2,\"\\n\"],[6,[37,7],[[30,[36,6],[[30,[36,6],[[32,0,[\"obsUrlArray\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[8,\"subscription-feed\",[],[[\"@url\",\"@removeObs\"],[[32,1],[32,0,[\"removeObs\"]]]],null],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"enable-tooltip\",\"fn\",\"log-activity\",\"on\",\"if\",\"not\",\"-track-array\",\"each\"]}",
     "meta": {
       "moduleName": "dummy/templates/application.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/app-base", ["exports"], function (_exports) {
@@ -1686,7 +2096,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "2f9jwMk3",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[10,\"div\"],[12],[2,\"\\n  \"],[18,1,null],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
@@ -1694,7 +2103,6 @@
       "moduleName": "dummy/templates/components/app-base.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/app-header", ["exports"], function (_exports) {
@@ -1704,7 +2112,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "hlaJeDni",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[10,\"div\"],[14,0,\"logo-container\"],[12],[2,\"\\n  \"],[10,\"a\"],[14,6,\"/\"],[12],[2,\"\\n\"],[6,[37,1],[[35,3]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"img\"],[15,\"src\",[31,[[34,2]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"img\"],[14,\"src\",\"/assets/images/upfluence-full-blue-logo.svg\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"      \"],[10,\"img\"],[14,\"src\",\"/assets/images/upfluence-white-logo.svg\"],[12],[13],[2,\"\\n    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[18,1,null],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"isTopbarStyle\",\"if\",\"logo\",\"hasLogo\"]}",
@@ -1712,25 +2119,6 @@
       "moduleName": "dummy/templates/components/app-header.hbs"
     }
   });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/column-visibility-panel", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "iLRO2r9z",
-    "block": "{\"symbols\":[\"column\"],\"statements\":[[10,\"button\"],[14,0,\"upf-btn upf-btn--default upf-btn--small upf-link--reset button-column-visibility-panel\"],[12],[2,\"\\n  \"],[10,\"i\"],[14,0,\"fa fa-columns\"],[12],[13],[2,\"  \\n  \"],[10,\"i\"],[15,0,[31,[\"fa \",[30,[36,6],[[35,5],\"fa-caret-up\",\"fa-caret-down\"],null]]]],[12],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[6,[37,6],[[35,5]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"div\"],[14,0,\"upf-datatable__side-panel--arrow-up side-panel--appearance\"],[12],[13],[2,\"\\n  \"],[10,\"div\"],[14,0,\"upf-datatable__side-panel side-panel--appearance column-visibility-panel\"],[12],[2,\"\\n\"],[6,[37,4],[[30,[36,3],[[30,[36,3],[[35,2]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,1],[[32,1,[\"unhideable\"]]],null,[[\"default\"],[{\"statements\":[[2,\"        \"],[10,\"div\"],[14,0,\"margin-bottom-sm\"],[12],[2,\"\\n\"],[6,[37,0],null,[[\"value\",\"hasLabel\"],[[32,1,[\"visible\"]],true]],[[\"default\"],[{\"statements\":[[2,\"            \"],[10,\"span\"],[14,0,\"text-color-contrast\"],[12],[1,[32,1,[\"title\"]]],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"        \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[1]}]]],[2,\"  \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"upf-checkbox\",\"unless\",\"columns\",\"-track-array\",\"each\",\"displayedColumnsPanel\",\"if\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/column-visibility-panel.hbs"
-    }
-  });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/destructive-button", ["exports"], function (_exports) {
@@ -1740,7 +2128,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "i01k/SsE",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[6,[37,2],[[35,7]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[1,[34,5]],[2,\" ( \"],[1,[34,6]],[2,\" )...\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[35,4]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[14,0,\"fa fa-refresh\"],[12],[13],[2,\"   \"],[1,[34,3]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[35,1]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[1,[34,0]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[18,1,null],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"successMessage\",\"isSuccess\",\"if\",\"failureMessage\",\"actionFailed\",\"ongoingMessage\",\"seconds\",\"isLoading\"]}",
@@ -1748,25 +2135,6 @@
       "moduleName": "dummy/templates/components/destructive-button.hbs"
     }
   });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/expanding-search", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "ipFC+l2T",
-    "block": "{\"symbols\":[],\"statements\":[[11,\"button\"],[24,0,\"upf-btn upf-btn--default expanding-search__submit\"],[4,[38,0],[[32,0],\"expandOrErase\"],[[\"bubbles\"],[false]]],[12],[2,\"\\n\"],[6,[37,2],[[35,1]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"    \"],[10,\"i\"],[14,0,\"fa fa-close\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"    \"],[10,\"i\"],[14,0,\"fa fa-search\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[13],[2,\"\\n\\n\"],[1,[30,[36,7],null,[[\"type\",\"class\",\"placeholder\",\"value\"],[\"text\",[30,[36,6],[\"form-control upf-input expanding-search__input\",[30,[36,2],[[35,5],\" upf-input--small\"],null]],null],[35,4],[35,3]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"action\",\"expandedSearch\",\"if\",\"searchQuery\",\"placeholder\",\"small\",\"concat\",\"input\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/expanding-search.hbs"
-    }
-  });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/input-wrapper", ["exports"], function (_exports) {
@@ -1776,7 +2144,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "K+hC9y2U",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[18,1,null],[2,\"\\n\\n\"],[6,[37,1],[[35,2]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--error\"],[12],[2,\"\\n    \"],[10,\"i\"],[14,0,\"fa fa-exclamation-circle\"],[15,\"aria-label\",[34,2]],[12],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--help\"],[12],[2,\"\\n    \"],[10,\"i\"],[14,0,\"fa fa-question-circle\"],[15,\"aria-label\",[34,0]],[12],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"help\",\"if\",\"error\"]}",
@@ -1784,7 +2151,6 @@
       "moduleName": "dummy/templates/components/input-wrapper.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/loading-button", ["exports"], function (_exports) {
@@ -1794,7 +2160,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "72HhKews",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[14,0,\"fa fa-circle-o-notch fa-spin\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[18,1,null],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"isLoading\",\"if\"]}",
@@ -1802,7 +2167,6 @@
       "moduleName": "dummy/templates/components/loading-button.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/loading-state", ["exports"], function (_exports) {
@@ -1812,7 +2176,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "gGBRss01",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[14,0,\"upf-align--center\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"spinner\"],[12],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce1\"],[12],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce2\"],[12],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce3\"],[12],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
@@ -1820,43 +2183,6 @@
       "moduleName": "dummy/templates/components/loading-state.hbs"
     }
   });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/radio-button", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "in8gZa+M",
-    "block": "{\"symbols\":[],\"statements\":[[10,\"input\"],[14,3,\"options\"],[15,2,[34,0]],[15,\"checked\",[34,1]],[14,4,\"radio\"],[12],[13],[2,\" \"],[1,[34,2]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"value\",\"isChecked\",\"label\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/radio-button.hbs"
-    }
-  });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/standard-stat", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "VG+H3iYf",
-    "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[14,0,\"upf-stat__number-container\"],[12],[2,\"\\n  \"],[10,\"div\"],[15,0,[31,[\"upf-progress-radial \",[34,8],\"\\n              \",[30,[36,7],[\"upf-progress-radial-\",[35,6]],null],\"\\n              \",[34,5]]]],[12],[2,\"\\n    \"],[10,\"div\"],[14,0,\"overlay\"],[12],[2,\"\\n      \"],[10,\"span\"],[14,0,\"upf-stat__icon\"],[12],[2,\"\\n\"],[6,[37,3],[[35,4]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"          \"],[10,\"i\"],[15,0,[31,[[34,4]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,3],[[35,1]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[1,[30,[36,2],[[35,1],[35,0],\"thicker\"],null]],[2,\"\\n        \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"      \"],[13],[2,\"\\n      \"],[10,\"span\"],[14,0,\"upf-stat__number\"],[12],[1,[34,9]],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"],[10,\"span\"],[14,0,\"upf-stat__title\"],[12],[1,[34,10]],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"upfIconColor\",\"upfIcon\",\"upf-icon\",\"if\",\"iconClass\",\"progressValueClass\",\"size\",\"concat\",\"type\",\"displayNumber\",\"title\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/standard-stat.hbs"
-    }
-  });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-card", ["exports"], function (_exports) {
@@ -1866,7 +2192,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "H2nBKaCj",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[14,0,\"upf-card__icon\"],[12],[2,\"\\n  \"],[10,\"img\"],[15,\"src\",[34,0]],[12],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-card__title text-size-8 text-color-default\"],[12],[2,\"\\n  \"],[1,[34,1]],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-card__description text-size-5 text-color-default-light\"],[12],[2,\"\\n  \"],[2,[34,2]],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"imageSrc\",\"title\",\"description\"]}",
@@ -1874,7 +2199,6 @@
       "moduleName": "dummy/templates/components/upf-card.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-checkbox", ["exports"], function (_exports) {
@@ -1884,7 +2208,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "1ItBYqS5",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[1,[30,[36,4],null,[[\"type\",\"checked\",\"class\",\"id\",\"disabled\"],[\"checkbox\",[35,3],\"upf-checkbox__input\",[30,[36,2],[\"unchecked-checkbox-\",[35,1]],null],[35,0]]]]],[2,\"\\n\\n\"],[10,\"label\"],[15,\"for\",[30,[36,2],[\"unchecked-checkbox-\",[35,1]],null]],[14,0,\"upf-checkbox__fake-checkbox\"],[12],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[6,[37,6],[[35,5]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"upf-checkbox__label\"],[12],[18,1,null],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"disabled\",\"elementId\",\"concat\",\"value\",\"input\",\"hasLabel\",\"if\"]}",
@@ -1892,7 +2215,6 @@
       "moduleName": "dummy/templates/components/upf-checkbox.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-numeric-range", ["exports"], function (_exports) {
@@ -1902,7 +2224,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "8v9e5WaW",
     "block": "{\"symbols\":[],\"statements\":[[1,[30,[36,5],null,[[\"type\",\"placeholder\",\"arrowless\",\"value\",\"step\",\"min\",\"max\",\"class\"],[\"number\",[35,3,[\"fromPlaceholder\"]],true,[35,4],[35,3,[\"step\"]],[35,3,[\"min\"]],[35,3,[\"max\"]],[30,[36,1],[\"upf-numeric-range__from form-control upf-input\",[30,[36,2],[[35,0],[30,[36,1],[\" upf-input--\",[35,0]],null]],null]],null]]]]],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-numeric-range__separator\"],[12],[2,\"\\n  —\\n\"],[13],[2,\"\\n\\n\"],[1,[30,[36,5],null,[[\"type\",\"placeholder\",\"arrowless\",\"value\",\"step\",\"min\",\"max\",\"class\"],[\"number\",[35,3,[\"toPlaceholder\"]],true,[35,6],[35,3,[\"step\"]],[35,3,[\"min\"]],[35,3,[\"max\"]],[30,[36,1],[\"upf-numeric-range__to form-control upf-input\",[30,[36,2],[[35,0],[30,[36,1],[\" upf-input--\",[35,0]],null]],null]],null]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"size\",\"concat\",\"if\",\"_options\",\"from\",\"input\",\"to\"]}",
@@ -1910,7 +2231,6 @@
       "moduleName": "dummy/templates/components/upf-numeric-range.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-progress", ["exports"], function (_exports) {
@@ -1920,7 +2240,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "fT+H+tNP",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[15,0,[31,[\"progress-bar \",[34,0]]]],[14,\"role\",\"progressbar\"],[15,\"aria-valuenow\",[31,[[34,1]]]],[14,\"aria-valuemin\",\"0\"],[14,\"aria-valuemax\",\"100\"],[22,5,[34,2]],[12],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"colorClass\",\"value\",\"maxWidthStyle\"]}",
@@ -1928,7 +2247,6 @@
       "moduleName": "dummy/templates/components/upf-progress.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-rating", ["exports"], function (_exports) {
@@ -1938,7 +2256,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "HrK8tkpU",
     "block": "{\"symbols\":[],\"statements\":[[1,[30,[36,3],null,[[\"rating\",\"wholeOnly\",\"useHalfStars\",\"fillColor\",\"baseColor\",\"onClick\",\"width\",\"height\"],[[35,2],true,false,\"#f4ba34\",\"#F1F2F3\",[35,1],[35,0],[35,0]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"size\",\"onRatingChange\",\"rating\",\"star-rating\"]}",
@@ -1946,7 +2263,6 @@
       "moduleName": "dummy/templates/components/upf-rating.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-slider", ["exports"], function (_exports) {
@@ -1956,7 +2272,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "Jj1PaCOD",
     "block": "{\"symbols\":[],\"statements\":[[10,\"span\"],[14,0,\"min-max-value min-value\"],[12],[1,[30,[36,1],[[35,0,[\"minLabel\"]],[35,0,[\"min\"]]],null]],[13],[2,\"\\n\"],[10,\"input\"],[14,0,\"slider\"],[14,4,\"text\"],[12],[13],[2,\"\\n\"],[10,\"span\"],[14,0,\"min-max-value max-value\"],[12],[1,[30,[36,1],[[35,0,[\"maxLabel\"]],[35,0,[\"max\"]]],null]],[13],[2,\"\\n\\n\"],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"options\",\"or\"]}",
@@ -1964,7 +2279,6 @@
       "moduleName": "dummy/templates/components/upf-slider.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-stat", ["exports"], function (_exports) {
@@ -1974,7 +2288,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "sRsbnrQM",
     "block": "{\"symbols\":[],\"statements\":[[10,\"span\"],[14,0,\"upf-stat__name\"],[12],[2,\"\\n  \"],[1,[34,8]],[2,\"\\n\\n\"],[6,[37,6],[[35,3]],null,[[\"default\"],[{\"statements\":[[6,[37,6],[[30,[36,5],[[35,4],\"top\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[11,\"span\"],[24,0,\"upf-stat__icon\"],[4,[38,1],null,[[\"title\"],[[32,0,[\"iconLabel\"]]]]],[12],[2,\"\\n\"],[6,[37,6],[[35,7]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"          \"],[10,\"a\"],[15,6,[31,[[34,7]]]],[14,\"target\",\"_blank\"],[12],[2,\"\\n            \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"          \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"      \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[13],[2,\"\\n\\n\"],[10,\"span\"],[15,0,[30,[36,12],[\"upf-stat__data \",[35,11],[30,[36,10],[[35,9],\" upf-stat__data--null\"],null]],null]],[12],[2,\"\\n  \"],[1,[34,9]],[2,\"\\n\\n\"],[6,[37,6],[[35,3]],null,[[\"default\"],[{\"statements\":[[6,[37,6],[[30,[36,5],[[35,4],\"right\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[11,\"span\"],[24,0,\"upf-stat__icon\"],[4,[38,1],null,[[\"title\"],[[32,0,[\"iconLabel\"]]]]],[12],[2,\"\\n        \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[13],[2,\"\\n\\n\"],[6,[37,6],[[35,0]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"upf-stat__label\"],[12],[2,[34,0]],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"label\",\"enable-tooltip\",\"iconClass\",\"icon\",\"iconPlacement\",\"eq\",\"if\",\"iconUrl\",\"name\",\"data\",\"unless\",\"dataClass\",\"concat\"]}",
@@ -1982,7 +2295,6 @@
       "moduleName": "dummy/templates/components/upf-stat.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-table", ["exports"], function (_exports) {
@@ -1992,15 +2304,13 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
-    "id": "kP+HDh/7",
-    "block": "{\"symbols\":[\"item\",\"index\",\"column\",\"column\",\"&default\"],\"statements\":[[10,\"ul\"],[14,0,\"row upf-datatable__actions-header\"],[12],[2,\"\\n\"],[6,[37,11],[[35,39]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[1,[30,[36,15],[[35,39]],[[\"collection\"],[[35,26]]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n  \"],[10,\"li\"],[14,0,\"upf-datatable__actions-pull-right\"],[12],[2,\"\\n\"],[6,[37,11],[[35,40]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[1,[30,[36,38],null,[[\"columns\"],[[35,20]]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[35,28]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,27]],null,[[\"default\"],[{\"statements\":[[2,\"        \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[35,41]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[1,[30,[36,37],null,[[\"classNames\",\"searchQuery\",\"placeholder\",\"small\"],[\"margin-left-xx-sm\",[35,36],[35,35],true]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"table\"],[14,0,\"upf-datatable__table\"],[12],[2,\"\\n  \"],[10,\"thead\"],[12],[2,\"\\n\"],[6,[37,25],null,[[\"isHeaderRow\"],[true]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,30]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"th\"],[14,\"width\",\"45px\"],[14,0,\"upf-datatable__column upf-datatable__column--unsortable\"],[12],[2,\"\\n            \"],[1,[30,[36,18],null,[[\"value\"],[[35,34]]]]],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,4,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[1,[30,[36,33],null,[[\"column\",\"click\"],[[32,4],[30,[36,32],[[32,0],\"onClickHeader\",[32,4]],null]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[4]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\\n  \"],[10,\"tbody\"],[12],[2,\"\\n\"],[6,[37,11],[[35,42]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"tr\"],[12],[2,\"\\n        \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n          \"],[1,[34,31]],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[35,30]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,29]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,25],null,null,[[\"default\"],[{\"statements\":[[2,\"            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]},{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,26]],null]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,25],null,[[\"ref\",\"action\",\"hasPolymorphicColumns\",\"onRowClick\"],[[32,1],\"callOnRowClickCallback\",[35,24],[35,23]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[2,\"              \"],[10,\"td\"],[14,0,\"upf-datatable__column upf-datatable__column--uneditable\"],[12],[2,\"\\n                \"],[1,[30,[36,18],null,[[\"value\"],[[32,1,[\"selected\"]]]]]],[2,\"\\n              \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,3,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[6,[37,16],null,[[\"ref\",\"editable\",\"classNames\"],[[32,3],[32,3,[\"editable\"]],[32,3,[\"additionalClasses\"]]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[32,3,[\"component\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                    \"],[1,[30,[36,15],[[32,3,[\"component\"]]],[[\"item\",\"column\"],[[32,1],[32,3]]]]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"money\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,14],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null],[30,[36,8],[[32,1],[32,3,[\"currency\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"numeric\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,12],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,10],[[30,[36,9],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null],[32,3,[\"emptyValue\"]]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                        \"],[10,\"span\"],[14,0,\"upf-datatable__column--empty-value\"],[12],[2,\"\\n                          \"],[1,[32,3,[\"emptyValue\"]]],[2,\"\\n                        \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"                        \"],[1,[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"                    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[3]}]]]],\"parameters\":[]}]]]],\"parameters\":[1,2]},{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n              \"],[18,5,null],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[30,[36,10],[[35,28],[35,27]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--right padding-sm\"],[12],[2,\"\\n              \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"_fullSizeColumnColspan\",\"itemName\",\"itemCount\",\"itemTotal\",\"totalPages\",\"perPage\",\"currentPage\",\"upf-table/pagination\",\"get\",\"not\",\"and\",\"if\",\"format-numeric\",\"eq\",\"format-money\",\"component\",\"upf-table/column\",\"unless\",\"upf-checkbox\",\"hasSelection\",\"_columns\",\"-track-array\",\"each\",\"onRowClick\",\"hasPolymorphicColumns\",\"upf-table/row\",\"collection\",\"isCompact\",\"hasPagination\",\"_contentPlaceholder\",\"contentChanging\",\"loading-state\",\"action\",\"upf-table/header_cell\",\"allRowsSelected\",\"searchInputPlaceholder\",\"_searchQuery\",\"expanding-search\",\"column-visibility-panel\",\"contextualActionsComponent\",\"hasToggleableColumns\",\"hasSearch\",\"isLoading\"]}",
+    "id": "bI8p0YO2",
+    "block": "{\"symbols\":[\"item\",\"index\",\"column\",\"column\",\"&default\"],\"statements\":[[10,\"ul\"],[14,0,\"row upf-datatable__actions-header\"],[12],[2,\"\\n\"],[6,[37,11],[[35,38]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[1,[30,[36,15],[[35,38]],[[\"collection\"],[[35,26]]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n  \"],[10,\"li\"],[14,0,\"upf-datatable__actions-pull-right\"],[12],[2,\"\\n\"],[6,[37,11],[[35,28]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,27]],null,[[\"default\"],[{\"statements\":[[2,\"        \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[35,39]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[1,[30,[36,37],null,[[\"classNames\",\"searchQuery\",\"placeholder\",\"small\"],[\"margin-left-xx-sm\",[35,36],[35,35],true]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"table\"],[14,0,\"upf-datatable__table\"],[12],[2,\"\\n  \"],[10,\"thead\"],[12],[2,\"\\n\"],[6,[37,25],null,[[\"isHeaderRow\"],[true]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,30]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"th\"],[14,\"width\",\"45px\"],[14,0,\"upf-datatable__column upf-datatable__column--unsortable\"],[12],[2,\"\\n            \"],[1,[30,[36,18],null,[[\"value\"],[[35,34]]]]],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,4,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[1,[30,[36,33],null,[[\"column\",\"click\"],[[32,4],[30,[36,32],[[32,0],\"onClickHeader\",[32,4]],null]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[4]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\\n  \"],[10,\"tbody\"],[12],[2,\"\\n\"],[6,[37,11],[[35,40]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"tr\"],[12],[2,\"\\n        \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n          \"],[1,[34,31]],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[35,30]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,29]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,25],null,null,[[\"default\"],[{\"statements\":[[2,\"            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]},{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,26]],null]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,25],null,[[\"ref\",\"action\",\"hasPolymorphicColumns\",\"onRowClick\"],[[32,1],\"callOnRowClickCallback\",[35,24],[35,23]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[2,\"              \"],[10,\"td\"],[14,0,\"upf-datatable__column upf-datatable__column--uneditable\"],[12],[2,\"\\n                \"],[1,[30,[36,18],null,[[\"value\"],[[32,1,[\"selected\"]]]]]],[2,\"\\n              \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,3,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[6,[37,16],null,[[\"ref\",\"editable\",\"classNames\"],[[32,3],[32,3,[\"editable\"]],[32,3,[\"additionalClasses\"]]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[32,3,[\"component\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                    \"],[1,[30,[36,15],[[32,3,[\"component\"]]],[[\"item\",\"column\"],[[32,1],[32,3]]]]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"money\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,14],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null],[30,[36,8],[[32,1],[32,3,[\"currency\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"numeric\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,12],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,10],[[30,[36,9],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null],[32,3,[\"emptyValue\"]]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                        \"],[10,\"span\"],[14,0,\"upf-datatable__column--empty-value\"],[12],[2,\"\\n                          \"],[1,[32,3,[\"emptyValue\"]]],[2,\"\\n                        \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"                        \"],[1,[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"                    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[3]}]]]],\"parameters\":[]}]]]],\"parameters\":[1,2]},{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n              \"],[18,5,null],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[30,[36,10],[[35,28],[35,27]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--right padding-sm\"],[12],[2,\"\\n              \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"_fullSizeColumnColspan\",\"itemName\",\"itemCount\",\"itemTotal\",\"totalPages\",\"perPage\",\"currentPage\",\"upf-table/pagination\",\"get\",\"not\",\"and\",\"if\",\"format-numeric\",\"eq\",\"format-money\",\"component\",\"upf-table/column\",\"unless\",\"upf-checkbox\",\"hasSelection\",\"_columns\",\"-track-array\",\"each\",\"onRowClick\",\"hasPolymorphicColumns\",\"upf-table/row\",\"collection\",\"isCompact\",\"hasPagination\",\"_contentPlaceholder\",\"contentChanging\",\"loading-state\",\"action\",\"upf-table/header_cell\",\"allRowsSelected\",\"searchInputPlaceholder\",\"_searchQuery\",\"expanding-search\",\"contextualActionsComponent\",\"hasSearch\",\"isLoading\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-table.hbs"
     }
   });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-table/header-cell", ["exports"], function (_exports) {
@@ -2010,7 +2320,6 @@
     value: true
   });
   _exports.default = void 0;
-
   var _default = Ember.HTMLBars.template({
     "id": "DRkGaZAR",
     "block": "{\"symbols\":[],\"statements\":[[6,[37,1],[[35,0,[\"titleIcon\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,0,[\"titleIcon\"]]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[1,[35,0,[\"title\"]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,1],[[35,0,[\"tooltip\"]]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"fa\"],[14,0,\"fa fa-info-circle\"],[14,\"data-toggle\",\"tooltip\"],[15,\"title\",[34,0,[\"tooltip\"]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,1],[[35,0,[\"subtitle\"]]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"div\"],[14,0,\"subtitle text-size-4\"],[12],[1,[35,0,[\"subtitle\"]]],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"column\",\"if\"]}",
@@ -2018,25 +2327,6 @@
       "moduleName": "dummy/templates/components/upf-table/header-cell.hbs"
     }
   });
-
-  _exports.default = _default;
-});
-;define("dummy/templates/components/upf-table/pagination", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-
-  var _default = Ember.HTMLBars.template({
-    "id": "2pdbClS3",
-    "block": "{\"symbols\":[],\"statements\":[[10,\"span\"],[14,0,\"text-size-5 margin-left-xx-sm\"],[12],[1,[34,0]],[2,\" to \"],[1,[34,1]],[2,\" out of \"],[1,[34,2]],[2,\" \"],[1,[34,3]],[13],[2,\"\\n\\n\"],[11,\"a\"],[16,0,[31,[\"upf-btn upf-btn--default upf-btn--small margin-left-xx-sm \",[30,[36,5],[[35,4],\"disabled\"],null]]]],[4,[38,6],[[32,0],\"previousPage\"],null],[12],[2,\"\\n  \"],[10,\"i\"],[14,0,\"fa fa-caret-left\"],[12],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[11,\"a\"],[16,0,[31,[\"upf-btn upf-btn--default upf-btn--small \",[30,[36,5],[[35,7],\"disabled\"],null]]]],[4,[38,6],[[32,0],\"nextPage\"],null],[12],[2,\"\\n  \"],[10,\"i\"],[14,0,\"fa fa-caret-right\"],[12],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"from\",\"to\",\"itemTotal\",\"itemName\",\"hasPrevious\",\"unless\",\"action\",\"hasNext\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/upf-table/pagination.hbs"
-    }
-  });
-
   _exports.default = _default;
 });
 ;define("dummy/templates/components/x-select", ["exports", "emberx-select/templates/components/x-select"], function (_exports, _xSelect) {
@@ -2064,6 +2354,38 @@
       "badge": {
         "image_alt": "Badge Icon"
       },
+      "button": {
+        "cancel_message": "Click to cancel {time}s..."
+      },
+      "code-block": {
+        "collapse": "Collapse",
+        "copy": "Copy",
+        "uncollapse": "Uncollapse"
+      },
+      "copy": {
+        "error": {
+          "subtitle": "Failed to copy to your clipboard. Please try again.",
+          "title": "Error"
+        },
+        "success": {
+          "subtitle": "Successfully copied to your clipboard.",
+          "title": "Copied to clipboard"
+        },
+        "tooltip": "Copy"
+      },
+      "country-selector": {
+        "placeholder": {
+          "country": "Select your country",
+          "province": "Select your province/state"
+        },
+        "search": "Search"
+      },
+      "currency-input": {
+        "search": "Search"
+      },
+      "email-input": {
+        "regex_error": "Please enter a valid email address."
+      },
       "infinite-select": {
         "empty": "Nothing to see here.",
         "empty_img_alt": "Empty content",
@@ -2074,10 +2396,74 @@
       },
       "password-input": {
         "regex_error": "Your password should have at least 8 characters with at least one lower-case character, one upper-case character and one digit."
+      },
+      "phone-input": {
+        "invalid_input": "Please select your country from the selector"
+      },
+      "select": {
+        "placeholder": "Select",
+        "search": "Search"
+      },
+      "upf-table": {
+        "pagination": "{from} to {to} out of {total} {item_name}"
+      },
+      "upload-area": {
+        "browse": "browse",
+        "drop_file": {
+          "default": "Drop your file here, or",
+          "disabled": "Drop your file here, or browse"
+        },
+        "errors": {
+          "filesize": {
+            "description": "The maximum file size is {max_filesize}",
+            "title": "File size too large"
+          },
+          "filetype": {
+            "description": "The uploaded file format is not allowed",
+            "title": "Unsupported format"
+          },
+          "server": "Upload failed, please try again",
+          "try_again": "Try again"
+        }
+      },
+      "url-input": {
+        "default_format_error": "This is not a valid URL."
       }
     }
   };
   _exports.default = _default;
+});
+;define("dummy/utils/easter-eggs", ["exports", "@upfluence/oss-components/utils/easter-eggs"], function (_exports, _easterEggs) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "registerEasterEgg", {
+    enumerable: true,
+    get: function () {
+      return _easterEggs.registerEasterEgg;
+    }
+  });
+});
+;define("dummy/utils/filesize-parser", ["exports", "@upfluence/oss-components/utils/filesize-parser"], function (_exports, _filesizeParser) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _filesizeParser.default;
+    }
+  });
+  Object.defineProperty(_exports, "humanizeFilesize", {
+    enumerable: true,
+    get: function () {
+      return _filesizeParser.humanizeFilesize;
+    }
+  });
 });
 ;define("dummy/utils/intl/missing-message", ["exports", "ember-intl/utils/missing-message"], function (_exports, _missingMessage) {
   "use strict";
