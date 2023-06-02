@@ -732,7 +732,7 @@
   _exports.default = SubscriptionFeed;
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, SubscriptionFeed);
 });
-;define("dummy/components/test-modal", ["exports", "@glimmer/component", "dummy/decorators/log-construction"], function (_exports, _component, _logConstruction) {
+;define("dummy/components/test-modal", ["exports", "@glimmer/component", "@upfluence/hyperevents/decorators/log-construction"], function (_exports, _component, _logConstruction) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
