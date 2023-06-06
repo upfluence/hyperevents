@@ -25,7 +25,7 @@ module.exports = {
   config(env, baseConfig) {
     const config = this._super.config.apply(this, arguments);
 
-    if (deployedApps.includes(baseConfig.APP.name) && baseConfig.APP && baseConfig.APP.version) {
+    if (baseConfig.APP && deployedApps.includes(baseConfig.APP.name) && baseConfig.APP.version) {
       this.options['@embroider/macros'].setOwnConfig.parentAppVersion = baseConfig.APP.version;
     }
 
