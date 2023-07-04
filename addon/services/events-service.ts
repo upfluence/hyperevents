@@ -14,7 +14,6 @@ export interface ResourceEvent {
 
 export function prefixPath(prefix: string): Matcher<ResourceEvent> {
   return (event: ResourceEvent): boolean => {
-    console.log(event);
     return event.resource.startsWith(prefix);
   };
 }
@@ -95,7 +94,6 @@ export default class EventsService extends Service {
   }
 
   private _connect(): void {
-    debugger;
     this._socket = this._buildSocket(`${this._url}?access_token=${this._accessToken}`);
     this._socket.addEventListener('message', this._handleMessage.bind(this));
     this._socket.addEventListener('error', this._handleError.bind(this));
@@ -125,14 +123,14 @@ export default class EventsService extends Service {
     this._socket?.close();
   }
 
-  protected _backoffDelay(attempt: number): number {
+  private _backoffDelay(attempt: number): number {
     if (attempt === 0) {
       return 200;
     }
     return Math.min(Math.exp(attempt) * 1000 + this._jitterDelay, 60000);
   }
 
-  protected _buildSocket(url: string): WebSocket {
+  private _buildSocket(url: string): WebSocket {
     return new WebSocket(url);
   }
 
