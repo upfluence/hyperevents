@@ -5,10 +5,10 @@ import { ObserverGroup } from '@upfluence/hyperevents/helpers/observer-group';
 import { Observable, Matcher } from '@upfluence/hyperevents/helpers/observable';
 
 export default class EventsServiceMock extends Service {
+  resource: string = '';
   _onMessageObservers: ObserverGroup<ResourceEvent> = new ObserverGroup();
 
   watch(matcher: Matcher<ResourceEvent>): Observable<ResourceEvent> {
-    console.log(matcher);
     return new Observable(this._onMessageObservers, matcher);
   }
 
@@ -17,10 +17,19 @@ export default class EventsServiceMock extends Service {
   }
 
   bulkDispatch(events: ResourceEvent[]) {
-    console.log('----------------', events);
     events.forEach((event) => {
-      console.log('++++++++', event);
       this._onMessageObservers.dispatch(event);
     });
+  }
+
+  registerResource(resource: string) {
+    this.resource = resource;
+  }
+
+  buildResourceEvent(payload: object): ResourceEvent {
+    return {
+      resource: this.resource,
+      payload: payload
+    };
   }
 }
