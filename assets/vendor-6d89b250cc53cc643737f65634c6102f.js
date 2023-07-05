@@ -73717,7 +73717,7 @@ require('ember');
     Ember._enableDestroyableTracking = enableDestroyableTracking;
   }
 })();
-;Ember.libraries.register('@upfluence/hyperevents', '0.2.3');
+;Ember.libraries.register('@upfluence/hyperevents', '0.2.4');
 ;(function () {
   function vendorModule() {
     'use strict';
@@ -75463,7 +75463,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         if (!response.ok) {
           return response.json().then(e => Promise.reject(e));
         }
-        return response.json();
+        return Promise.resolve();
       });
     }
     get apiUrl() {
