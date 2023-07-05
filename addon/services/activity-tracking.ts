@@ -50,7 +50,7 @@ export default class ActivityTracking extends Service {
       if (!response.ok) {
         return response.json().then((e) => Promise.reject(e));
       }
-      return response.json();
+      return Promise.resolve();
     });
   }
 
