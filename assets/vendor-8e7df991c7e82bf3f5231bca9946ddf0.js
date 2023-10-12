@@ -72572,7 +72572,7 @@ require('ember');
 }());
 //# sourceMappingURL=ember.map
 
-;Ember.libraries.register('@upfluence/hyperevents', '0.2.5');
+;Ember.libraries.register('@upfluence/hyperevents', '0.2.4');
 ;(function () {
   function vendorModule() {
     'use strict';
