@@ -13,8 +13,8 @@
   function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
   function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   class App extends Ember.Application {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
       _defineProperty(this, "modulePrefix", _environment.default.modulePrefix);
       _defineProperty(this, "podModulePrefix", _environment.default.podModulePrefix);
       _defineProperty(this, "Resolver", _emberResolver.default);
@@ -43,8 +43,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _appBase.default;
-  _exports.default = _default;
+  var _default = _exports.default = _appBase.default;
 });
 ;define("dummy/components/app-header", ["exports", "@upfluence/oss-components/components/app-header"], function (_exports, _appHeader) {
   "use strict";
@@ -53,31 +52,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _appHeader.default;
-  _exports.default = _default;
-});
-;define("dummy/components/destructive-button", ["exports", "@upfluence/oss-components/components/destructive-button"], function (_exports, _destructiveButton) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _destructiveButton.default;
-  _exports.default = _default;
-});
-;define("dummy/components/expanding-search", ["exports", "@upfluence/oss-components/components/expanding-search"], function (_exports, _expandingSearch) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _expandingSearch.default;
-    }
-  });
+  var _default = _exports.default = _appHeader.default;
 });
 ;define("dummy/components/input-wrapper", ["exports", "@upfluence/oss-components/components/input-wrapper"], function (_exports, _inputWrapper) {
   "use strict";
@@ -86,18 +61,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _inputWrapper.default;
-  _exports.default = _default;
-});
-;define("dummy/components/loading-button", ["exports", "@upfluence/oss-components/components/loading-button"], function (_exports, _loadingButton) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _loadingButton.default;
-  _exports.default = _default;
+  var _default = _exports.default = _inputWrapper.default;
 });
 ;define("dummy/components/loading-state", ["exports", "@upfluence/oss-components/components/loading-state"], function (_exports, _loadingState) {
   "use strict";
@@ -109,6 +73,19 @@
     enumerable: true,
     get: function () {
       return _loadingState.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/access-panel", ["exports", "@upfluence/oss-components/components/o-s-s/access-panel"], function (_exports, _accessPanel) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _accessPanel.default;
     }
   });
 });
@@ -281,6 +258,19 @@
     }
   });
 });
+;define("dummy/components/o-s-s/content-panel", ["exports", "@upfluence/oss-components/components/o-s-s/content-panel"], function (_exports, _contentPanel) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _contentPanel.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/copy", ["exports", "@upfluence/oss-components/components/o-s-s/copy"], function (_exports, _copy) {
   "use strict";
 
@@ -333,6 +323,32 @@
     }
   });
 });
+;define("dummy/components/o-s-s/icon", ["exports", "@upfluence/oss-components/components/o-s-s/icon"], function (_exports, _icon) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _icon.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/illustration", ["exports", "@upfluence/oss-components/components/o-s-s/illustration"], function (_exports, _illustration) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _illustration.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/infinite-select", ["exports", "@upfluence/oss-components/components/o-s-s/infinite-select"], function (_exports, _infiniteSelect) {
   "use strict";
 
@@ -369,6 +385,32 @@
     enumerable: true,
     get: function () {
       return _inputGroup.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/layout/sidebar", ["exports", "@upfluence/oss-components/components/o-s-s/layout/sidebar"], function (_exports, _sidebar) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _sidebar.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/layout/sidebar/item", ["exports", "@upfluence/oss-components/components/o-s-s/layout/sidebar/item"], function (_exports, _item) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _item.default;
     }
   });
 });
@@ -450,6 +492,32 @@
     }
   });
 });
+;define("dummy/components/o-s-s/panel", ["exports", "@upfluence/oss-components/components/o-s-s/panel"], function (_exports, _panel) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _panel.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/panel/row", ["exports", "@upfluence/oss-components/components/o-s-s/panel/row"], function (_exports, _row) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _row.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/password-input", ["exports", "@upfluence/oss-components/components/o-s-s/password-input"], function (_exports, _passwordInput) {
   "use strict";
 
@@ -528,6 +596,45 @@
     }
   });
 });
+;define("dummy/components/o-s-s/skeleton", ["exports", "@upfluence/oss-components/components/o-s-s/skeleton"], function (_exports, _skeleton) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _skeleton.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/social-post-badge", ["exports", "@upfluence/oss-components/components/o-s-s/social-post-badge"], function (_exports, _socialPostBadge) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _socialPostBadge.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/split-modal", ["exports", "@upfluence/oss-components/components/o-s-s/split-modal"], function (_exports, _splitModal) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _splitModal.default;
+    }
+  });
+});
 ;define("dummy/components/o-s-s/star-rating", ["exports", "@upfluence/oss-components/components/o-s-s/star-rating"], function (_exports, _starRating) {
   "use strict";
 
@@ -551,6 +658,45 @@
     enumerable: true,
     get: function () {
       return _tag.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/text-area", ["exports", "@upfluence/oss-components/components/o-s-s/text-area"], function (_exports, _textArea) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _textArea.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/togglable-section", ["exports", "@upfluence/oss-components/components/o-s-s/togglable-section"], function (_exports, _togglableSection) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _togglableSection.default;
+    }
+  });
+});
+;define("dummy/components/o-s-s/toggle-buttons", ["exports", "@upfluence/oss-components/components/o-s-s/toggle-buttons"], function (_exports, _toggleButtons) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _toggleButtons.default;
     }
   });
 });
@@ -645,7 +791,7 @@
   function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
   function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
     <div class="subscription-feed padding-xx-sm">
@@ -679,7 +825,7 @@
       moduleName: "dummy/components/subscription-feed.hbs"
     }
   });
-  let SubscriptionFeed = (_dec = Ember.inject.service, _dec2 = Ember._tracked, _dec3 = Ember._tracked, _dec4 = Ember._action, _dec5 = Ember._action, _dec6 = Ember._action, (_class = class SubscriptionFeed extends _component.default {
+  let SubscriptionFeed = _exports.default = (_dec = Ember.inject.service, _dec2 = Ember._tracked, _dec3 = Ember._tracked, _dec4 = Ember._action, _dec5 = Ember._action, _dec6 = Ember._action, (_class = class SubscriptionFeed extends _component.default {
     constructor(owner, args) {
       super(owner, args);
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
@@ -729,7 +875,6 @@
       return 'Not Listening';
     }
   }), _applyDecoratedDescriptor(_class.prototype, "unsubscribe", [_dec4], Object.getOwnPropertyDescriptor(_class.prototype, "unsubscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "subscribe", [_dec5], Object.getOwnPropertyDescriptor(_class.prototype, "subscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_dec6], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype)), _class));
-  _exports.default = SubscriptionFeed;
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, SubscriptionFeed);
 });
 ;define("dummy/components/test-modal", ["exports", "@glimmer/component", "@upfluence/hyperevents/decorators/log-construction"], function (_exports, _component, _logConstruction) {
@@ -765,8 +910,7 @@
       moduleName: "dummy/components/test-modal.hbs"
     }
   });
-  let TestModal = (_dec = (0, _logConstruction.logConstruction)('action description from decorator', 'component_view'), _dec(_class = class TestModal extends _component.default {}) || _class);
-  _exports.default = TestModal;
+  let TestModal = _exports.default = (_dec = (0, _logConstruction.logConstruction)('action description from decorator', 'component_view'), _dec(_class = class TestModal extends _component.default {}) || _class);
   Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, TestModal);
 });
 ;define("dummy/components/upf-card", ["exports", "@upfluence/oss-components/components/upf-card"], function (_exports, _upfCard) {
@@ -779,19 +923,6 @@
     enumerable: true,
     get: function () {
       return _upfCard.default;
-    }
-  });
-});
-;define("dummy/components/upf-checkbox", ["exports", "@upfluence/oss-components/components/upf-checkbox"], function (_exports, _upfCheckbox) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _upfCheckbox.default;
     }
   });
 });
@@ -945,8 +1076,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _xOption.default;
-  _exports.default = _default;
+  var _default = _exports.default = _xOption.default;
 });
 ;define("dummy/components/x-select", ["exports", "emberx-select/components/x-select"], function (_exports, _xSelect) {
   "use strict";
@@ -955,8 +1085,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _xSelect.default;
-  _exports.default = _default;
+  var _default = _exports.default = _xSelect.default;
 });
 ;define("dummy/controllers/application", ["exports"], function (_exports) {
   "use strict";
@@ -971,8 +1100,8 @@
   function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
   function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
-  let ApplicationController = (_dec = Ember.inject.service, _dec2 = Ember.inject.service, _dec3 = Ember._tracked, _dec4 = Ember._tracked, _dec5 = Ember._tracked, _dec6 = Ember._tracked, _dec7 = Ember._tracked, _dec8 = Ember._tracked, _dec9 = Ember._action, _dec10 = Ember._action, _dec11 = Ember._action, _dec12 = Ember._action, _dec13 = Ember._action, _dec14 = Ember._action, _dec15 = Ember._action, (_class = class ApplicationController extends Ember.Controller {
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
+  let ApplicationController = _exports.default = (_dec = Ember.inject.service, _dec2 = Ember.inject.service, _dec3 = Ember._tracked, _dec4 = Ember._tracked, _dec5 = Ember._tracked, _dec6 = Ember._tracked, _dec7 = Ember._tracked, _dec8 = Ember._tracked, _dec9 = Ember._action, _dec10 = Ember._action, _dec11 = Ember._action, _dec12 = Ember._action, _dec13 = Ember._action, _dec14 = Ember._action, _dec15 = Ember._action, (_class = class ApplicationController extends Ember.Controller {
     constructor() {
       super(...arguments);
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
@@ -1074,7 +1203,6 @@
       return false;
     }
   }), _applyDecoratedDescriptor(_class.prototype, "openModal", [_dec9], Object.getOwnPropertyDescriptor(_class.prototype, "openModal"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "closeModal", [_dec10], Object.getOwnPropertyDescriptor(_class.prototype, "closeModal"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "initSocket", [_dec11], Object.getOwnPropertyDescriptor(_class.prototype, "initSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "terminateSocket", [_dec12], Object.getOwnPropertyDescriptor(_class.prototype, "terminateSocket"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleNewObserverInput", [_dec13], Object.getOwnPropertyDescriptor(_class.prototype, "handleNewObserverInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "createNewObserver", [_dec14], Object.getOwnPropertyDescriptor(_class.prototype, "createNewObserver"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_dec15], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype)), _class));
-  _exports.default = ApplicationController;
 });
 ;define("dummy/decorators/log-construction", ["exports", "@upfluence/hyperevents/decorators/log-construction"], function (_exports, _logConstruction) {
   "use strict";
@@ -1173,8 +1301,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _assetMap.default;
-  _exports.default = _default;
+  var _default = _exports.default = _assetMap.default;
 });
 ;define("dummy/helpers/ensure-safe-component", ["exports", "@embroider/util"], function (_exports, _util) {
   "use strict";
@@ -1205,6 +1332,44 @@
     enumerable: true,
     get: function () {
       return _equal.equal;
+    }
+  });
+});
+;define("dummy/helpers/fa-icon-style", ["exports", "@upfluence/oss-components/helpers/fa-icon-style"], function (_exports, _faIconStyle) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _faIconStyle.default;
+    }
+  });
+  Object.defineProperty(_exports, "faIconStyle", {
+    enumerable: true,
+    get: function () {
+      return _faIconStyle.faIconStyle;
+    }
+  });
+});
+;define("dummy/helpers/fa-icon-value", ["exports", "@upfluence/oss-components/helpers/fa-icon-value"], function (_exports, _faIconValue) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _faIconValue.default;
+    }
+  });
+  Object.defineProperty(_exports, "faIconValue", {
+    enumerable: true,
+    get: function () {
+      return _faIconValue.faIconValue;
     }
   });
 });
@@ -1266,26 +1431,24 @@
     }
   });
 });
-;define("dummy/helpers/format-numeric", ["exports"], function (_exports) {
+;define("dummy/helpers/format-numeric", ["exports", "@upfluence/oss-components/helpers/format-numeric"], function (_exports, _formatNumeric) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
-  _exports.formatNumericHelper = formatNumericHelper;
-  function formatNumericHelper(params) {
-    let [number] = params;
-    let formatter = Intl.NumberFormat(['en-EN', 'fr-FR'], {
-      style: 'decimal',
-      minimumFractionDigits: 0 // show decimals only if there are ones
-    });
-
-    if (isNaN(parseInt(number))) return number;
-    return formatter.format(number);
-  }
-  var _default = Ember.Helper.helper(formatNumericHelper);
-  _exports.default = _default;
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _formatNumeric.default;
+    }
+  });
+  Object.defineProperty(_exports, "formatNumericHelper", {
+    enumerable: true,
+    get: function () {
+      return _formatNumeric.formatNumericHelper;
+    }
+  });
 });
 ;define("dummy/helpers/format-relative", ["exports", "ember-intl/helpers/format-relative"], function (_exports, _formatRelative) {
   "use strict";
@@ -1599,8 +1762,7 @@
     let remainingString = (string || '').slice(0, numberOfCharacters);
     return remainingString === string ? string : remainingString + '...';
   }
-  var _default = Ember.Helper.helper(truncateHelper);
-  _exports.default = _default;
+  var _default = _exports.default = Ember.Helper.helper(truncateHelper);
 });
 ;define("dummy/helpers/xor", ["exports", "ember-truth-helpers/helpers/xor"], function (_exports, _xor) {
   "use strict";
@@ -1628,8 +1790,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _assetMap.default;
-  _exports.default = _default;
+  var _default = _exports.default = _assetMap.default;
 });
 ;define("dummy/initializers/container-debug-adapter", ["exports", "ember-resolver/resolvers/classic/container-debug-adapter"], function (_exports, _containerDebugAdapter) {
   "use strict";
@@ -1638,14 +1799,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = {
+  var _default = _exports.default = {
     name: 'container-debug-adapter',
     initialize() {
       let app = arguments[1] || arguments[0];
       app.register('container-debug-adapter:main', _containerDebugAdapter.default);
     }
   };
-  _exports.default = _default;
 });
 ;define("dummy/initializers/export-application-global", ["exports", "dummy/config/environment"], function (_exports, _environment) {
   "use strict";
@@ -1687,11 +1847,10 @@
       }
     }
   }
-  var _default = {
+  var _default = _exports.default = {
     name: 'export-application-global',
     initialize: initialize
   };
-  _exports.default = _default;
 });
 ;define("dummy/mixins/header-style", ["exports", "@upfluence/oss-components/mixins/header-style"], function (_exports, _headerStyle) {
   "use strict";
@@ -1700,8 +1859,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _headerStyle.default;
-  _exports.default = _default;
+  var _default = _exports.default = _headerStyle.default;
 });
 ;define("dummy/mixins/upf-table-search", ["exports", "@upfluence/oss-components/mixins/upf-table-search"], function (_exports, _upfTableSearch) {
   "use strict";
@@ -1871,45 +2029,6 @@
     }
   });
 });
-;define("dummy/modifiers/sortable-group", ["exports", "ember-sortable/modifiers/sortable-group"], function (_exports, _sortableGroup) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _sortableGroup.default;
-    }
-  });
-});
-;define("dummy/modifiers/sortable-handle", ["exports", "ember-sortable/modifiers/sortable-handle"], function (_exports, _sortableHandle) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _sortableHandle.default;
-    }
-  });
-});
-;define("dummy/modifiers/sortable-item", ["exports", "ember-sortable/modifiers/sortable-item"], function (_exports, _sortableItem) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _sortableItem.default;
-    }
-  });
-});
 ;define("dummy/modifiers/will-destroy", ["exports", "@ember/render-modifiers/modifiers/will-destroy"], function (_exports, _willDestroy) {
   "use strict";
 
@@ -1934,8 +2053,8 @@
   function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
   function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
   class Router extends Ember.Router {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
       _defineProperty(this, "location", _environment.default.locationType);
       _defineProperty(this, "rootURL", _environment.default.rootURL);
     }
@@ -1986,8 +2105,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = _assetMap.default;
-  _exports.default = _default;
+  var _default = _exports.default = _assetMap.default;
 });
 ;define("dummy/services/base-uploader", ["exports", "@upfluence/oss-components/services/base-uploader"], function (_exports, _baseUploader) {
   "use strict";
@@ -2041,8 +2159,8 @@
   class Session extends Ember.Service.extend({
     // anything which *must* be merged to prototype here
   }) {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
       _defineProperty(this, "_token", null);
     }
     get data() {
@@ -2080,14 +2198,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "1w0nDd0x",
     "block": "{\"symbols\":[\"obsUrl\"],\"statements\":[[10,\"div\"],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"Example of activity-tracking service usages:\"],[13],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[8,\"o-s-s/button\",[[4,[38,0],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,3],[\"click\",[30,[36,2],[[30,[36,1],[[32,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"],[6,[37,4],[[32,0,[\"modalVisible\"]]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[8,\"test-modal\",[],[[\"@closeModal\"],[[32,0,[\"closeModal\"]]]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[13],[2,\"\\n\"],[10,\"div\"],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7 text-color-default\"],[12],[2,\"Socket Configuration\"],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[14,5,\"width: 300px\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter WS Url:\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"wsUrl\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter token :\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"token\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[2,\"\\n        \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[2,\"\\n        \"],[8,\"o-s-s/button\",[[16,\"disabled\",[30,[36,5],[[32,0,[\"wsConnected\"]]],null]],[4,[38,3],[\"click\",[32,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[2,\"\\n      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7\"],[12],[2,\"Observers:\"],[13],[2,\"\\n    \"],[10,\"div\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col margin-bottom-sm\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[2,\"\\n          Create a new observer :\\n          \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-20\"],[12],[2,\"\\n            \"],[8,\"o-s-s/input-container\",[[4,[38,3],[\"keydown\",[32,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[32,0,[\"newObserver\"]]]],null],[2,\"\\n            \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[2,\"\\n          \"],[13],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20\"],[12],[2,\"\\n\"],[6,[37,7],[[30,[36,6],[[30,[36,6],[[32,0,[\"obsUrlArray\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[8,\"subscription-feed\",[],[[\"@url\",\"@removeObs\"],[[32,1],[32,0,[\"removeObs\"]]]],null],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"enable-tooltip\",\"fn\",\"log-activity\",\"on\",\"if\",\"not\",\"-track-array\",\"each\"]}",
     "meta": {
       "moduleName": "dummy/templates/application.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/app-base", ["exports"], function (_exports) {
   "use strict";
@@ -2096,14 +2213,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "2f9jwMk3",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[10,\"div\"],[12],[2,\"\\n  \"],[18,1,null],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
     "meta": {
       "moduleName": "dummy/templates/components/app-base.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/app-header", ["exports"], function (_exports) {
   "use strict";
@@ -2112,30 +2228,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "hlaJeDni",
     "block": "{\"symbols\":[\"&default\"],\"statements\":[[10,\"div\"],[14,0,\"logo-container\"],[12],[2,\"\\n  \"],[10,\"a\"],[14,6,\"/\"],[12],[2,\"\\n\"],[6,[37,1],[[35,3]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"img\"],[15,\"src\",[31,[[34,2]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"img\"],[14,\"src\",\"/assets/images/upfluence-full-blue-logo.svg\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"      \"],[10,\"img\"],[14,\"src\",\"/assets/images/upfluence-white-logo.svg\"],[12],[13],[2,\"\\n    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[18,1,null],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"isTopbarStyle\",\"if\",\"logo\",\"hasLogo\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/app-header.hbs"
     }
   });
-  _exports.default = _default;
-});
-;define("dummy/templates/components/destructive-button", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
-    "id": "i01k/SsE",
-    "block": "{\"symbols\":[\"&default\"],\"statements\":[[6,[37,2],[[35,7]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[1,[34,5]],[2,\" ( \"],[1,[34,6]],[2,\" )...\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[35,4]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[14,0,\"fa fa-refresh\"],[12],[13],[2,\"   \"],[1,[34,3]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[35,1]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[1,[34,0]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[18,1,null],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"successMessage\",\"isSuccess\",\"if\",\"failureMessage\",\"actionFailed\",\"ongoingMessage\",\"seconds\",\"isLoading\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/destructive-button.hbs"
-    }
-  });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/input-wrapper", ["exports"], function (_exports) {
   "use strict";
@@ -2144,30 +2243,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
-    "id": "K+hC9y2U",
-    "block": "{\"symbols\":[\"&default\"],\"statements\":[[18,1,null],[2,\"\\n\\n\"],[6,[37,1],[[35,2]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--error\"],[12],[2,\"\\n    \"],[10,\"i\"],[14,0,\"fa fa-exclamation-circle\"],[15,\"aria-label\",[34,2]],[12],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--help\"],[12],[2,\"\\n    \"],[10,\"i\"],[14,0,\"fa fa-question-circle\"],[15,\"aria-label\",[34,0]],[12],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"help\",\"if\",\"error\"]}",
+  var _default = _exports.default = Ember.HTMLBars.template({
+    "id": "obTbN6+K",
+    "block": "{\"symbols\":[\"&default\"],\"statements\":[[18,1,null],[2,\"\\n\\n\"],[6,[37,0],[[32,0,[\"error\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--error\"],[12],[2,\"\\n    \"],[8,\"o-s-s/icon\",[[16,\"aria-label\",[32,0,[\"error\"]]]],[[\"@icon\"],[\"fa-exclamation-circle\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,0],[[32,0,[\"help\"]]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"col-xs-12 upf-input-feedback upf-input-feedback--help\"],[12],[2,\"\\n    \"],[8,\"o-s-s/icon\",[[16,\"aria-label\",[32,0,[\"help\"]]]],[[\"@icon\"],[\"fa-question-circle\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"if\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/input-wrapper.hbs"
     }
   });
-  _exports.default = _default;
-});
-;define("dummy/templates/components/loading-button", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
-    "id": "72HhKews",
-    "block": "{\"symbols\":[\"&default\"],\"statements\":[[6,[37,1],[[35,0]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[14,0,\"fa fa-circle-o-notch fa-spin\"],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[18,1,null],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"isLoading\",\"if\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/loading-button.hbs"
-    }
-  });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/loading-state", ["exports"], function (_exports) {
   "use strict";
@@ -2176,14 +2258,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "gGBRss01",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[14,0,\"upf-align--center\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"spinner\"],[12],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce1\"],[12],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce2\"],[12],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"bounce3\"],[12],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[]}",
     "meta": {
       "moduleName": "dummy/templates/components/loading-state.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-card", ["exports"], function (_exports) {
   "use strict";
@@ -2192,30 +2273,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "H2nBKaCj",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[14,0,\"upf-card__icon\"],[12],[2,\"\\n  \"],[10,\"img\"],[15,\"src\",[34,0]],[12],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-card__title text-size-8 text-color-default\"],[12],[2,\"\\n  \"],[1,[34,1]],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-card__description text-size-5 text-color-default-light\"],[12],[2,\"\\n  \"],[2,[34,2]],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"imageSrc\",\"title\",\"description\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-card.hbs"
     }
   });
-  _exports.default = _default;
-});
-;define("dummy/templates/components/upf-checkbox", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
-    "id": "1ItBYqS5",
-    "block": "{\"symbols\":[\"&default\"],\"statements\":[[1,[30,[36,4],null,[[\"type\",\"checked\",\"class\",\"id\",\"disabled\"],[\"checkbox\",[35,3],\"upf-checkbox__input\",[30,[36,2],[\"unchecked-checkbox-\",[35,1]],null],[35,0]]]]],[2,\"\\n\\n\"],[10,\"label\"],[15,\"for\",[30,[36,2],[\"unchecked-checkbox-\",[35,1]],null]],[14,0,\"upf-checkbox__fake-checkbox\"],[12],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[6,[37,6],[[35,5]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"upf-checkbox__label\"],[12],[18,1,null],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"disabled\",\"elementId\",\"concat\",\"value\",\"input\",\"hasLabel\",\"if\"]}",
-    "meta": {
-      "moduleName": "dummy/templates/components/upf-checkbox.hbs"
-    }
-  });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-numeric-range", ["exports"], function (_exports) {
   "use strict";
@@ -2224,14 +2288,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "8v9e5WaW",
     "block": "{\"symbols\":[],\"statements\":[[1,[30,[36,5],null,[[\"type\",\"placeholder\",\"arrowless\",\"value\",\"step\",\"min\",\"max\",\"class\"],[\"number\",[35,3,[\"fromPlaceholder\"]],true,[35,4],[35,3,[\"step\"]],[35,3,[\"min\"]],[35,3,[\"max\"]],[30,[36,1],[\"upf-numeric-range__from form-control upf-input\",[30,[36,2],[[35,0],[30,[36,1],[\" upf-input--\",[35,0]],null]],null]],null]]]]],[2,\"\\n\\n\"],[10,\"div\"],[14,0,\"upf-numeric-range__separator\"],[12],[2,\"\\n  —\\n\"],[13],[2,\"\\n\\n\"],[1,[30,[36,5],null,[[\"type\",\"placeholder\",\"arrowless\",\"value\",\"step\",\"min\",\"max\",\"class\"],[\"number\",[35,3,[\"toPlaceholder\"]],true,[35,6],[35,3,[\"step\"]],[35,3,[\"min\"]],[35,3,[\"max\"]],[30,[36,1],[\"upf-numeric-range__to form-control upf-input\",[30,[36,2],[[35,0],[30,[36,1],[\" upf-input--\",[35,0]],null]],null]],null]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"size\",\"concat\",\"if\",\"_options\",\"from\",\"input\",\"to\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-numeric-range.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-progress", ["exports"], function (_exports) {
   "use strict";
@@ -2240,14 +2303,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "fT+H+tNP",
     "block": "{\"symbols\":[],\"statements\":[[10,\"div\"],[15,0,[31,[\"progress-bar \",[34,0]]]],[14,\"role\",\"progressbar\"],[15,\"aria-valuenow\",[31,[[34,1]]]],[14,\"aria-valuemin\",\"0\"],[14,\"aria-valuemax\",\"100\"],[22,5,[34,2]],[12],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"colorClass\",\"value\",\"maxWidthStyle\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-progress.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-rating", ["exports"], function (_exports) {
   "use strict";
@@ -2256,14 +2318,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "HrK8tkpU",
     "block": "{\"symbols\":[],\"statements\":[[1,[30,[36,3],null,[[\"rating\",\"wholeOnly\",\"useHalfStars\",\"fillColor\",\"baseColor\",\"onClick\",\"width\",\"height\"],[[35,2],true,false,\"#f4ba34\",\"#F1F2F3\",[35,1],[35,0],[35,0]]]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"size\",\"onRatingChange\",\"rating\",\"star-rating\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-rating.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-slider", ["exports"], function (_exports) {
   "use strict";
@@ -2272,14 +2333,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "Jj1PaCOD",
     "block": "{\"symbols\":[],\"statements\":[[10,\"span\"],[14,0,\"min-max-value min-value\"],[12],[1,[30,[36,1],[[35,0,[\"minLabel\"]],[35,0,[\"min\"]]],null]],[13],[2,\"\\n\"],[10,\"input\"],[14,0,\"slider\"],[14,4,\"text\"],[12],[13],[2,\"\\n\"],[10,\"span\"],[14,0,\"min-max-value max-value\"],[12],[1,[30,[36,1],[[35,0,[\"maxLabel\"]],[35,0,[\"max\"]]],null]],[13],[2,\"\\n\\n\"],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"options\",\"or\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-slider.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-stat", ["exports"], function (_exports) {
   "use strict";
@@ -2288,14 +2348,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "sRsbnrQM",
     "block": "{\"symbols\":[],\"statements\":[[10,\"span\"],[14,0,\"upf-stat__name\"],[12],[2,\"\\n  \"],[1,[34,8]],[2,\"\\n\\n\"],[6,[37,6],[[35,3]],null,[[\"default\"],[{\"statements\":[[6,[37,6],[[30,[36,5],[[35,4],\"top\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[11,\"span\"],[24,0,\"upf-stat__icon\"],[4,[38,1],null,[[\"title\"],[[32,0,[\"iconLabel\"]]]]],[12],[2,\"\\n\"],[6,[37,6],[[35,7]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"          \"],[10,\"a\"],[15,6,[31,[[34,7]]]],[14,\"target\",\"_blank\"],[12],[2,\"\\n            \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"          \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"      \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[13],[2,\"\\n\\n\"],[10,\"span\"],[15,0,[30,[36,12],[\"upf-stat__data \",[35,11],[30,[36,10],[[35,9],\" upf-stat__data--null\"],null]],null]],[12],[2,\"\\n  \"],[1,[34,9]],[2,\"\\n\\n\"],[6,[37,6],[[35,3]],null,[[\"default\"],[{\"statements\":[[6,[37,6],[[30,[36,5],[[35,4],\"right\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[11,\"span\"],[24,0,\"upf-stat__icon\"],[4,[38,1],null,[[\"title\"],[[32,0,[\"iconLabel\"]]]]],[12],[2,\"\\n        \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,3],\" \",[34,2]]]],[12],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[13],[2,\"\\n\\n\"],[6,[37,6],[[35,0]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"span\"],[14,0,\"upf-stat__label\"],[12],[2,[34,0]],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"label\",\"enable-tooltip\",\"iconClass\",\"icon\",\"iconPlacement\",\"eq\",\"if\",\"iconUrl\",\"name\",\"data\",\"unless\",\"dataClass\",\"concat\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-stat.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-table", ["exports"], function (_exports) {
   "use strict";
@@ -2304,14 +2363,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
-    "id": "bI8p0YO2",
-    "block": "{\"symbols\":[\"item\",\"index\",\"column\",\"column\",\"&default\"],\"statements\":[[10,\"ul\"],[14,0,\"row upf-datatable__actions-header\"],[12],[2,\"\\n\"],[6,[37,11],[[35,38]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[1,[30,[36,15],[[35,38]],[[\"collection\"],[[35,26]]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n  \"],[10,\"li\"],[14,0,\"upf-datatable__actions-pull-right\"],[12],[2,\"\\n\"],[6,[37,11],[[35,28]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,27]],null,[[\"default\"],[{\"statements\":[[2,\"        \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[35,39]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[1,[30,[36,37],null,[[\"classNames\",\"searchQuery\",\"placeholder\",\"small\"],[\"margin-left-xx-sm\",[35,36],[35,35],true]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"table\"],[14,0,\"upf-datatable__table\"],[12],[2,\"\\n  \"],[10,\"thead\"],[12],[2,\"\\n\"],[6,[37,25],null,[[\"isHeaderRow\"],[true]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[35,30]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"th\"],[14,\"width\",\"45px\"],[14,0,\"upf-datatable__column upf-datatable__column--unsortable\"],[12],[2,\"\\n            \"],[1,[30,[36,18],null,[[\"value\"],[[35,34]]]]],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,4,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[1,[30,[36,33],null,[[\"column\",\"click\"],[[32,4],[30,[36,32],[[32,0],\"onClickHeader\",[32,4]],null]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[4]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\\n  \"],[10,\"tbody\"],[12],[2,\"\\n\"],[6,[37,11],[[35,40]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"tr\"],[12],[2,\"\\n        \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n          \"],[1,[34,31]],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[35,30]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,29]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,25],null,null,[[\"default\"],[{\"statements\":[[2,\"            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]},{\"statements\":[[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,26]],null]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,25],null,[[\"ref\",\"action\",\"hasPolymorphicColumns\",\"onRowClick\"],[[32,1],\"callOnRowClickCallback\",[35,24],[35,23]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[35,19]],null,[[\"default\"],[{\"statements\":[[2,\"              \"],[10,\"td\"],[14,0,\"upf-datatable__column upf-datatable__column--uneditable\"],[12],[2,\"\\n                \"],[1,[30,[36,18],null,[[\"value\"],[[32,1,[\"selected\"]]]]]],[2,\"\\n              \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,22],[[30,[36,21],[[30,[36,21],[[35,20]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,17],[[30,[36,13],[[32,3,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[6,[37,16],null,[[\"ref\",\"editable\",\"classNames\"],[[32,3],[32,3,[\"editable\"]],[32,3,[\"additionalClasses\"]]]],[[\"default\"],[{\"statements\":[[6,[37,11],[[32,3,[\"component\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                    \"],[1,[30,[36,15],[[32,3,[\"component\"]]],[[\"item\",\"column\"],[[32,1],[32,3]]]]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"money\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,14],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null],[30,[36,8],[[32,1],[32,3,[\"currency\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,13],[[32,3,[\"helper\"]],\"numeric\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,12],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,11],[[30,[36,10],[[30,[36,9],[[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],null],[32,3,[\"emptyValue\"]]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                        \"],[10,\"span\"],[14,0,\"upf-datatable__column--empty-value\"],[12],[2,\"\\n                          \"],[1,[32,3,[\"emptyValue\"]]],[2,\"\\n                        \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"                        \"],[1,[30,[36,8],[[32,1],[32,3,[\"property\"]]],null]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"                    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[3]}]]]],\"parameters\":[]}]]]],\"parameters\":[1,2]},{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--center\"],[12],[2,\"\\n              \"],[18,5,null],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,11],[[30,[36,10],[[35,28],[35,27]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[34,0]],[14,0,\"upf-align--right padding-sm\"],[12],[2,\"\\n              \"],[1,[30,[36,7],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[35,6],[35,5],[35,4],[35,3],[35,2],[35,1]]]]],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"_fullSizeColumnColspan\",\"itemName\",\"itemCount\",\"itemTotal\",\"totalPages\",\"perPage\",\"currentPage\",\"upf-table/pagination\",\"get\",\"not\",\"and\",\"if\",\"format-numeric\",\"eq\",\"format-money\",\"component\",\"upf-table/column\",\"unless\",\"upf-checkbox\",\"hasSelection\",\"_columns\",\"-track-array\",\"each\",\"onRowClick\",\"hasPolymorphicColumns\",\"upf-table/row\",\"collection\",\"isCompact\",\"hasPagination\",\"_contentPlaceholder\",\"contentChanging\",\"loading-state\",\"action\",\"upf-table/header_cell\",\"allRowsSelected\",\"searchInputPlaceholder\",\"_searchQuery\",\"expanding-search\",\"contextualActionsComponent\",\"hasSearch\",\"isLoading\"]}",
+  var _default = _exports.default = Ember.HTMLBars.template({
+    "id": "TCSTzXQE",
+    "block": "{\"symbols\":[\"item\",\"index\",\"column\",\"column\",\"&default\"],\"statements\":[[10,\"ul\"],[14,0,\"row upf-datatable__actions-header\"],[12],[2,\"\\n\"],[6,[37,4],[[32,0,[\"contextualActionsComponent\"]]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[1,[30,[36,8],[[32,0,[\"contextualActionsComponent\"]]],[[\"collection\"],[[32,0,[\"collection\"]]]]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n  \"],[10,\"li\"],[14,0,\"upf-datatable__actions-pull-right\"],[12],[2,\"\\n\"],[6,[37,4],[[32,0,[\"hasPagination\"]]],null,[[\"default\"],[{\"statements\":[[6,[37,10],[[32,0,[\"isCompact\"]]],null,[[\"default\"],[{\"statements\":[[2,\"        \"],[1,[30,[36,0],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[32,0,[\"currentPage\"]],[32,0,[\"perPage\"]],[32,0,[\"totalPages\"]],[32,0,[\"itemTotal\"]],[32,0,[\"itemCount\"]],[32,0,[\"itemName\"]]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\\n\"],[10,\"table\"],[14,0,\"upf-datatable__table\"],[12],[2,\"\\n  \"],[10,\"thead\"],[12],[2,\"\\n\"],[6,[37,15],null,[[\"isHeaderRow\"],[true]],[[\"default\"],[{\"statements\":[[6,[37,4],[[32,0,[\"hasSelection\"]]],null,[[\"default\"],[{\"statements\":[[6,[37,10],[[32,0,[\"contentChanging\"]]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"th\"],[14,\"width\",\"45px\"],[14,0,\"upf-datatable__column upf-datatable__column--unsortable\"],[12],[2,\"\\n            \"],[8,\"o-s-s/checkbox\",[],[[\"@checked\",\"@onChange\"],[[32,0,[\"allRowsSelected\"]],[30,[36,12],[[30,[36,11],[[32,0,[\"allRowsSelected\"]]],null],[30,[36,2],[[32,0,[\"allRowsSelected\"]]],null]],null]]],null],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,14],[[30,[36,13],[[30,[36,13],[[32,0,[\"_columns\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,10],[[30,[36,6],[[32,4,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[1,[30,[36,19],null,[[\"column\",\"click\"],[[32,4],[30,[36,18],[[32,0],\"onClickHeader\",[32,4]],null]]]]],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[4]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\\n  \"],[10,\"tbody\"],[12],[2,\"\\n\"],[6,[37,4],[[32,0,[\"isLoading\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[10,\"tr\"],[12],[2,\"\\n        \"],[10,\"td\"],[15,\"colspan\",[32,0,[\"_fullSizeColumnColspan\"]]],[14,0,\"upf-align--center\"],[12],[2,\"\\n          \"],[1,[34,17]],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,4],[[32,0,[\"contentChanging\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,14],[[30,[36,13],[[30,[36,13],[[32,0,[\"_contentPlaceholder\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,15],null,null,[[\"default\"],[{\"statements\":[[2,\"            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n            \"],[10,\"td\"],[14,\"valign\",\"middle\"],[14,0,\"upf-datatable__column upf-datatable__column--locked\"],[12],[2,\"\\n              \"],[10,\"div\"],[14,0,\"skeleton-placeholder\"],[12],[13],[2,\"\\n            \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]},{\"statements\":[[6,[37,14],[[30,[36,13],[[30,[36,13],[[35,16]],null]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[6,[37,15],null,[[\"ref\",\"action\",\"hasPolymorphicColumns\",\"onRowClick\"],[[32,1],\"callOnRowClickCallback\",[32,0,[\"hasPolymorphicColumns\"]],[32,0,[\"onRowClick\"]]]],[[\"default\"],[{\"statements\":[[6,[37,4],[[32,0,[\"hasSelection\"]]],null,[[\"default\"],[{\"statements\":[[2,\"              \"],[10,\"td\"],[14,0,\"upf-datatable__column upf-datatable__column--uneditable\"],[12],[2,\"\\n                \"],[8,\"o-s-s/checkbox\",[],[[\"@checked\",\"@onChange\"],[[30,[36,6],[[32,1,[\"selected\"]],true],null],[30,[36,12],[[30,[36,11],[[32,1,[\"selected\"]]],null],[30,[36,2],[[32,1,[\"selected\"]]],null]],null]]],null],[2,\"\\n              \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,14],[[30,[36,13],[[30,[36,13],[[32,0,[\"_columns\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[6,[37,10],[[30,[36,6],[[32,3,[\"visible\"]],false],null]],null,[[\"default\"],[{\"statements\":[[6,[37,9],null,[[\"ref\",\"editable\",\"classNames\"],[[32,3],[32,3,[\"editable\"]],[32,3,[\"additionalClasses\"]]]],[[\"default\"],[{\"statements\":[[6,[37,4],[[32,3,[\"component\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                    \"],[1,[30,[36,8],[[32,3,[\"component\"]]],[[\"item\",\"column\"],[[32,1],[32,3]]]]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,4],[[30,[36,6],[[32,3,[\"helper\"]],\"money\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,7],[[30,[36,1],[[32,1],[32,3,[\"property\"]]],null],[30,[36,1],[[32,1],[32,3,[\"currency\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,4],[[30,[36,6],[[32,3,[\"helper\"]],\"numeric\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                      \"],[1,[30,[36,5],[[30,[36,1],[[32,1],[32,3,[\"property\"]]],null]],null]],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[6,[37,4],[[30,[36,3],[[30,[36,2],[[30,[36,1],[[32,1],[32,3,[\"property\"]]],null]],null],[32,3,[\"emptyValue\"]]],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"                        \"],[10,\"span\"],[14,0,\"upf-datatable__column--empty-value\"],[12],[2,\"\\n                          \"],[1,[32,3,[\"emptyValue\"]]],[2,\"\\n                        \"],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"                        \"],[1,[30,[36,1],[[32,1],[32,3,[\"property\"]]],null]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"                    \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[3]}]]]],\"parameters\":[]}]]]],\"parameters\":[1,2]},{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[32,0,[\"_fullSizeColumnColspan\"]]],[14,0,\"upf-align--center\"],[12],[2,\"\\n              \"],[18,5,null],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,4],[[30,[36,3],[[32,0,[\"hasPagination\"]],[32,0,[\"isCompact\"]]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[10,\"tr\"],[12],[2,\"\\n            \"],[10,\"td\"],[15,\"colspan\",[32,0,[\"_fullSizeColumnColspan\"]]],[14,0,\"upf-align--right padding-sm\"],[12],[2,\"\\n              \"],[1,[30,[36,0],null,[[\"currentPage\",\"perPage\",\"totalPages\",\"itemTotal\",\"itemCount\",\"itemName\"],[[32,0,[\"currentPage\"]],[32,0,[\"perPage\"]],[32,0,[\"totalPages\"]],[32,0,[\"itemTotal\"]],[32,0,[\"itemCount\"]],[32,0,[\"itemName\"]]]]]],[2,\"\\n            \"],[13],[2,\"\\n          \"],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"upf-table/pagination\",\"get\",\"not\",\"and\",\"if\",\"format-numeric\",\"eq\",\"format-money\",\"component\",\"upf-table/column\",\"unless\",\"mut\",\"fn\",\"-track-array\",\"each\",\"upf-table/row\",\"collection\",\"loading-state\",\"action\",\"upf-table/header_cell\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-table.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/upf-table/header-cell", ["exports"], function (_exports) {
   "use strict";
@@ -2320,14 +2378,13 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = Ember.HTMLBars.template({
+  var _default = _exports.default = Ember.HTMLBars.template({
     "id": "DRkGaZAR",
     "block": "{\"symbols\":[],\"statements\":[[6,[37,1],[[35,0,[\"titleIcon\"]]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"  \"],[10,\"i\"],[15,0,[31,[\"fa fa-\",[34,0,[\"titleIcon\"]]]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"  \"],[1,[35,0,[\"title\"]]],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,1],[[35,0,[\"tooltip\"]]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"fa\"],[14,0,\"fa fa-info-circle\"],[14,\"data-toggle\",\"tooltip\"],[15,\"title\",[34,0,[\"tooltip\"]]],[12],[13],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"\\n\"],[6,[37,1],[[35,0,[\"subtitle\"]]],null,[[\"default\"],[{\"statements\":[[2,\"  \"],[10,\"div\"],[14,0,\"subtitle text-size-4\"],[12],[1,[35,0,[\"subtitle\"]]],[13],[2,\"\\n\"]],\"parameters\":[]}]]]],\"hasEval\":false,\"upvars\":[\"column\",\"if\"]}",
     "meta": {
       "moduleName": "dummy/templates/components/upf-table/header-cell.hbs"
     }
   });
-  _exports.default = _default;
 });
 ;define("dummy/templates/components/x-select", ["exports", "emberx-select/templates/components/x-select"], function (_exports, _xSelect) {
   "use strict";
@@ -2349,8 +2406,11 @@
     value: true
   });
   _exports.default = void 0;
-  var _default = {
+  var _default = _exports.default = {
     "oss-components": {
+      "access-panel": {
+        "search_placeholder": "Search..."
+      },
       "badge": {
         "image_alt": "Badge Icon"
       },
@@ -2431,7 +2491,6 @@
       }
     }
   };
-  _exports.default = _default;
 });
 ;define("dummy/utils/easter-eggs", ["exports", "@upfluence/oss-components/utils/easter-eggs"], function (_exports, _easterEggs) {
   "use strict";
