@@ -1303,19 +1303,6 @@
   _exports.default = void 0;
   var _default = _exports.default = _assetMap.default;
 });
-;define("dummy/helpers/ensure-safe-component", ["exports", "@embroider/util"], function (_exports, _util) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _util.EnsureSafeComponentHelper;
-    }
-  });
-});
 ;define("dummy/helpers/eq", ["exports", "ember-truth-helpers/helpers/equal"], function (_exports, _equal) {
   "use strict";
 
@@ -1634,10 +1621,10 @@
       return _notEqual.default;
     }
   });
-  Object.defineProperty(_exports, "notEq", {
+  Object.defineProperty(_exports, "notEqualHelper", {
     enumerable: true,
     get: function () {
-      return _notEqual.notEq;
+      return _notEqual.notEqualHelper;
     }
   });
 });
@@ -2071,19 +2058,6 @@
   _exports.default = void 0;
   class Application extends Ember.Route {}
   _exports.default = Application;
-});
-;define("dummy/services/-ensure-registered", ["exports", "@embroider/util/services/ensure-registered"], function (_exports, _ensureRegistered) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _ensureRegistered.default;
-    }
-  });
 });
 ;define("dummy/services/activity-tracking", ["exports", "@upfluence/hyperevents/services/activity-tracking"], function (_exports, _activityTracking) {
   "use strict";

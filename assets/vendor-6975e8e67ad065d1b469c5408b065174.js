@@ -72572,7 +72572,7 @@ require('ember');
 }());
 //# sourceMappingURL=ember.map
 
-;Ember.libraries.register('@upfluence/hyperevents', '0.2.4');
+;Ember.libraries.register('@upfluence/hyperevents', '0.2.5');
 ;(function () {
   function vendorModule() {
     'use strict';
@@ -73549,35 +73549,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   // this exists to be targeted by our babel plugin
   function initializeRuntimeMacrosConfig() {
     return {
-      "packages": {
-        "/home/runner/work/hyperevents/hyperevents": {
-          "buildEnv": "staging"
-        },
-        "/home/runner/work/hyperevents/hyperevents/node_modules/ember-get-config": {
-          "config": {
-            "modulePrefix": "dummy",
-            "environment": "production",
-            "rootURL": "/hyperevents/",
-            "locationType": "auto",
-            "EmberENV": {
-              "FEATURES": {},
-              "EXTEND_PROTOTYPES": {
-                "Date": false
-              },
-              "_APPLICATION_TEMPLATE_WRAPPER": false,
-              "_JQUERY_INTEGRATION": false,
-              "_TEMPLATE_ONLY_GLIMMER_COMPONENTS": true
-            },
-            "APP": {},
-            "exportApplicationGlobal": false
-          }
-        }
-      },
-      "global": {
-        "@embroider/macros": {
-          "isTesting": false
-        }
-      }
+      packages: {},
+      global: {}
     };
   }
   function updaterMethods() {
@@ -73612,149 +73585,6 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       updater(methods);
     }
   }
-});
-;define("@embroider/util/ember-private-api", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.isCurriedComponentDefinition = void 0;
-  _exports.lookupCurriedComponentDefinition = lookupCurriedComponentDefinition;
-  let runtime;
-  {
-    // older ember has its own internal loader
-    runtime = window.Ember.__loader.require('@glimmer/runtime');
-  }
-  let {
-    isCurriedComponentDefinition,
-    CurriedComponentDefinition,
-    curry,
-    CurriedValue
-  } = runtime;
-
-  // older embers have isCurriedComponentDefinition, new ones have CurriedValue
-  // and instanceof CurriedValue seems good enough.
-  _exports.isCurriedComponentDefinition = isCurriedComponentDefinition;
-  if (!isCurriedComponentDefinition) {
-    _exports.isCurriedComponentDefinition = isCurriedComponentDefinition = function (value) {
-      return value instanceof CurriedValue;
-    };
-  }
-  function runtimeResolver(owner) {
-    let resolver = owner.lookup('renderer:-dom')._runtimeResolver;
-    if (resolver) {
-      return resolver;
-    }
-    let entry = Object.entries(owner.__container__.cache).find(e => e[0].startsWith('template-compiler:main-'));
-    if (entry) {
-      return entry[1].resolver.resolver;
-    }
-    throw new Error(`@embroider/util couldn't locate the runtime resolver on this ember version`);
-  }
-  function lookupCurriedComponentDefinition(name, owner) {
-    let resolver = runtimeResolver(owner);
-    if (typeof resolver.lookupComponentHandle === 'function') {
-      let handle = resolver.lookupComponentHandle(name, contextForLookup(owner));
-      if (handle != null) {
-        return new CurriedComponentDefinition(resolver.resolve(handle), null);
-      }
-    }
-
-    // here we're doing the same thing the internal currying does, in order to
-    // generate a sane error message (even though we don't actually use
-    // resolvedDefinition as part of our return value).
-    let resolvedDefinition = resolver.lookupComponent(name, owner);
-    if (!resolvedDefinition) {
-      throw new Error(`Attempted to resolve \`${name}\` via ensureSafeComponent, but nothing was found.`);
-    }
-    return curry(0, name, owner, {
-      named: {},
-      positional: []
-    });
-  }
-  function contextForLookup(owner) {
-    {
-      return {
-        owner
-      };
-    }
-  }
-});
-;define("@embroider/util/index", ["exports", "@embroider/util/ember-private-api"], function (_exports, _emberPrivateApi) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.EnsureSafeComponentHelper = void 0;
-  _exports.ensureSafeComponent = ensureSafeComponent;
-  function ensureSafeComponent(value, thingWithOwner) {
-    if (typeof value === 'string') {
-      return handleString(value, thingWithOwner);
-    } else if ((0, _emberPrivateApi.isCurriedComponentDefinition)(value)) {
-      return value;
-    } else if (value == null) {
-      return value;
-    } else {
-      return handleClass(value, thingWithOwner);
-    }
-  }
-  class EnsureSafeComponentHelper extends Ember.Helper {
-    compute([value]) {
-      return ensureSafeComponent(value, this);
-    }
-  }
-  _exports.EnsureSafeComponentHelper = EnsureSafeComponentHelper;
-  function handleString(name, thingWithOwner) {
-    (false && !(false) && Ember.deprecate(`You're trying to invoke the component "${name}" by passing its name as a string. This won't work under Embroider.`, false, {
-      id: 'ensure-safe-component.string',
-      url: 'https://github.com/embroider-build/embroider/blob/master/ADDON-AUTHOR-GUIDE.md#when-youre-passing-a-component-to-someone-else',
-      until: 'embroider',
-      for: '@embroider/util',
-      since: '0.27.0'
-    }));
-    let owner = Ember.getOwner(thingWithOwner);
-    return (0, _emberPrivateApi.lookupCurriedComponentDefinition)(name, owner);
-  }
-  function ensureRegistered(klass, owner) {
-    let service = owner.lookup('service:-ensure-registered');
-    (false && !(service) && Ember.assert('Could not lookup private -ensure-registered service', service));
-    return service.register(klass, owner);
-  }
-  function handleClass(klass, thingWithOwner) {
-    let owner = Ember.getOwner(thingWithOwner);
-    let nonce = ensureRegistered(klass, owner);
-    return (0, _emberPrivateApi.lookupCurriedComponentDefinition)(nonce, owner);
-  }
-});
-;define("@embroider/util/services/ensure-registered", ["exports"], function (_exports) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-  function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-  function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-  class EnsureRegisteredService extends Ember.Service {
-    constructor(...args) {
-      super(...args);
-      _defineProperty(this, "classNonces", new WeakMap());
-      _defineProperty(this, "nonceCounter", 0);
-    }
-    register(klass, owner = Ember.getOwner(this)) {
-      let nonce = this.classNonces.get(klass);
-      if (nonce == null) {
-        nonce = `-ensure${this.nonceCounter++}`;
-        this.classNonces.set(klass, nonce);
-        owner.register(`component:${nonce}`, klass);
-      }
-      return nonce;
-    }
-  }
-  _exports.default = EnsureRegisteredService;
 });
 ;define("@glimmer/component/-private/base-component-manager", ["exports", "@glimmer/component/-private/component"], function (_exports, _component) {
   "use strict";
@@ -94342,13 +94172,14 @@ define("ember-resolver/features", [], function () {
     }
   }));
 });
-;define('ember-truth-helpers/helpers/and', ['exports', 'ember-truth-helpers/utils/truth-convert'], function (exports, _truthConvert) {
-  'use strict';
+;define("ember-truth-helpers/helpers/and", ["exports", "ember-truth-helpers/utils/truth-convert"], function (_exports, _truthConvert) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.and = and;
+  _exports.and = and;
+  _exports.default = void 0;
   function and(params) {
     for (let i = 0, len = params.length; i < len; i++) {
       if ((0, _truthConvert.default)(params[i]) === false) {
@@ -94357,8 +94188,7 @@ define("ember-resolver/features", [], function () {
     }
     return params[params.length - 1];
   }
-
-  exports.default = Ember.Helper.helper(and);
+  var _default = _exports.default = Ember.Helper.helper(and);
 });
 ;define("ember-truth-helpers/helpers/eq", ["exports", "ember-truth-helpers/helpers/equal"], function (_exports, _equal) {
   "use strict";
@@ -94379,26 +94209,27 @@ define("ember-resolver/features", [], function () {
     }
   });
 });
-;define('ember-truth-helpers/helpers/equal', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/equal", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.equal = equal;
+  _exports.default = void 0;
+  _exports.equal = equal;
   function equal(params) {
     return params[0] === params[1];
   }
-
-  exports.default = Ember.Helper.helper(equal);
+  var _default = _exports.default = Ember.Helper.helper(equal);
 });
-;define('ember-truth-helpers/helpers/gt', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/gt", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.gt = gt;
+  _exports.default = void 0;
+  _exports.gt = gt;
   function gt([left, right], hash) {
     if (hash.forceNumber) {
       if (typeof left !== 'number') {
@@ -94410,16 +94241,16 @@ define("ember-resolver/features", [], function () {
     }
     return left > right;
   }
-
-  exports.default = Ember.Helper.helper(gt);
+  var _default = _exports.default = Ember.Helper.helper(gt);
 });
-;define('ember-truth-helpers/helpers/gte', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/gte", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.gte = gte;
+  _exports.default = void 0;
+  _exports.gte = gte;
   function gte([left, right], hash) {
     if (hash.forceNumber) {
       if (typeof left !== 'number') {
@@ -94431,16 +94262,16 @@ define("ember-resolver/features", [], function () {
     }
     return left >= right;
   }
-
-  exports.default = Ember.Helper.helper(gte);
+  var _default = _exports.default = Ember.Helper.helper(gte);
 });
-;define('ember-truth-helpers/helpers/is-array', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/is-array", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.isArray = isArray;
+  _exports.default = void 0;
+  _exports.isArray = isArray;
   function isArray(params) {
     for (let i = 0, len = params.length; i < len; i++) {
       if (Ember.isArray(params[i]) === false) {
@@ -94449,39 +94280,40 @@ define("ember-resolver/features", [], function () {
     }
     return true;
   }
-
-  exports.default = Ember.Helper.helper(isArray);
+  var _default = _exports.default = Ember.Helper.helper(isArray);
 });
-;define('ember-truth-helpers/helpers/is-empty', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/is-empty", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.Helper.helper(function ([obj]) {
+  _exports.default = void 0;
+  var _default = _exports.default = Ember.Helper.helper(function ([obj]) {
     return Ember.isEmpty(obj);
   });
 });
-;define('ember-truth-helpers/helpers/is-equal', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/is-equal", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.isEqual = isEqual;
+  _exports.default = void 0;
+  _exports.isEqual = isEqual;
   function isEqual([a, b]) {
     return Ember.isEqual(a, b);
   }
-
-  exports.default = Ember.Helper.helper(isEqual);
+  var _default = _exports.default = Ember.Helper.helper(isEqual);
 });
-;define('ember-truth-helpers/helpers/lt', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/lt", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.lt = lt;
+  _exports.default = void 0;
+  _exports.lt = lt;
   function lt([left, right], hash) {
     if (hash.forceNumber) {
       if (typeof left !== 'number') {
@@ -94493,16 +94325,16 @@ define("ember-resolver/features", [], function () {
     }
     return left < right;
   }
-
-  exports.default = Ember.Helper.helper(lt);
+  var _default = _exports.default = Ember.Helper.helper(lt);
 });
-;define('ember-truth-helpers/helpers/lte', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/lte", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.lte = lte;
+  _exports.default = void 0;
+  _exports.lte = lte;
   function lte([left, right], hash) {
     if (hash.forceNumber) {
       if (typeof left !== 'number') {
@@ -94514,8 +94346,7 @@ define("ember-resolver/features", [], function () {
     }
     return left <= right;
   }
-
-  exports.default = Ember.Helper.helper(lte);
+  var _default = _exports.default = Ember.Helper.helper(lte);
 });
 ;define("ember-truth-helpers/helpers/not-eq", ["exports", "ember-truth-helpers/helpers/not-equal"], function (_exports, _notEqual) {
   "use strict";
@@ -94536,26 +94367,27 @@ define("ember-resolver/features", [], function () {
     }
   });
 });
-;define('ember-truth-helpers/helpers/not-equal', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/helpers/not-equal", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.notEqualHelper = notEqualHelper;
+  _exports.default = void 0;
+  _exports.notEqualHelper = notEqualHelper;
   function notEqualHelper(params) {
     return params[0] !== params[1];
   }
-
-  exports.default = Ember.Helper.helper(notEqualHelper);
+  var _default = _exports.default = Ember.Helper.helper(notEqualHelper);
 });
-;define('ember-truth-helpers/helpers/not', ['exports', 'ember-truth-helpers/utils/truth-convert'], function (exports, _truthConvert) {
-  'use strict';
+;define("ember-truth-helpers/helpers/not", ["exports", "ember-truth-helpers/utils/truth-convert"], function (_exports, _truthConvert) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.not = not;
+  _exports.default = void 0;
+  _exports.not = not;
   function not(params) {
     for (let i = 0, len = params.length; i < len; i++) {
       if ((0, _truthConvert.default)(params[i]) === true) {
@@ -94564,16 +94396,16 @@ define("ember-resolver/features", [], function () {
     }
     return true;
   }
-
-  exports.default = Ember.Helper.helper(not);
+  var _default = _exports.default = Ember.Helper.helper(not);
 });
-;define('ember-truth-helpers/helpers/or', ['exports', 'ember-truth-helpers/utils/truth-convert'], function (exports, _truthConvert) {
-  'use strict';
+;define("ember-truth-helpers/helpers/or", ["exports", "ember-truth-helpers/utils/truth-convert"], function (_exports, _truthConvert) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.or = or;
+  _exports.default = void 0;
+  _exports.or = or;
   function or(params) {
     for (let i = 0, len = params.length; i < len; i++) {
       if ((0, _truthConvert.default)(params[i]) === true) {
@@ -94582,35 +94414,33 @@ define("ember-resolver/features", [], function () {
     }
     return params[params.length - 1];
   }
-
-  exports.default = Ember.Helper.helper(or);
+  var _default = _exports.default = Ember.Helper.helper(or);
 });
-;define('ember-truth-helpers/helpers/xor', ['exports', 'ember-truth-helpers/utils/truth-convert'], function (exports, _truthConvert) {
-  'use strict';
+;define("ember-truth-helpers/helpers/xor", ["exports", "ember-truth-helpers/utils/truth-convert"], function (_exports, _truthConvert) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.xor = xor;
+  _exports.default = void 0;
+  _exports.xor = xor;
   function xor(params) {
     return (0, _truthConvert.default)(params[0]) !== (0, _truthConvert.default)(params[1]);
   }
-
-  exports.default = Ember.Helper.helper(xor);
+  var _default = _exports.default = Ember.Helper.helper(xor);
 });
-;define('ember-truth-helpers/utils/truth-convert', ['exports'], function (exports) {
-  'use strict';
+;define("ember-truth-helpers/utils/truth-convert", ["exports"], function (_exports) {
+  "use strict";
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  exports.default = truthConvert;
+  _exports.default = truthConvert;
   function truthConvert(result) {
     const truthy = result && Ember.get(result, 'isTruthy');
     if (typeof truthy === 'boolean') {
       return truthy;
     }
-
     if (Ember.isArray(result)) {
       return Ember.get(result, 'length') !== 0;
     } else {
