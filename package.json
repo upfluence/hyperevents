@@ -38,8 +38,7 @@
     "ember-cli-htmlbars": "^4.3.1",
     "ember-cli-typescript": "^4.2.1",
     "ember-modifier": "3.2.0",
-    "ember-named-blocks-polyfill": "^0.2.5",
-    "ember-truth-helpers": "^2.1.0"
+    "ember-named-blocks-polyfill": "^0.2.5"
   },
   "peerDependencies": {
     "@upfluence/oss-components": "^3.x"
@@ -100,6 +99,7 @@
     "ember-template-lint": "^2.6.0",
     "ember-try": "^1.4.0",
     "emberx-select": "^3.1.1",
+    "ember-truth-helpers": "3.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-ember": "^8.4.0",
