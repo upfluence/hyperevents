@@ -794,33 +794,31 @@
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
-    <div class="subscription-feed padding-xx-sm">
-    <div class="fx-1 fx-row fx-malign-space-between fx-xalign-center">
-      <span><b class="{{if (eq this.listeningState 'Listening') 'linked' 'unlinked'}}">{{this.listeningState}}</b> for events on: {{@url}}</span>
-      <div class="fx-1"></div>
+    <div class='subscription-feed padding-xx-sm'>
+    <div class='fx-1 fx-row fx-malign-space-between fx-xalign-center'>
+      <span><b class='{{if (eq this.listeningState "Listening") "linked" "unlinked"}}'>{{this.listeningState}}</b>
+        for events on:
+        {{@url}}</span>
+      <div class='fx-1'></div>
       {{#if (eq this.listeningState 'Listening')}}
-        <OSS::Button @skin="default" @label="Unsubscribe" @icon="fas fa-unlink"
-                     {{on "click" this.unsubscribe}} />
+        <OSS::Button @skin='default' @label='Unsubscribe' @icon='fas fa-unlink' {{on 'click' this.unsubscribe}} />
       {{else}}
-        <OSS::Button @skin="default" @label="Subscribe" @icon="fas fa-link"
-                     {{on "click" this.subscribe}} />
+        <OSS::Button @skin='default' @label='Subscribe' @icon='fas fa-link' {{on 'click' this.subscribe}} />
       {{/if}}
-      <OSS::Button @skin="default" @icon="fa fa-times"
-                   {{on "click" this.removeObs}} class="margin-left-xxx-sm" />
+      <OSS::Button @skin='default' @icon='fa fa-times' {{on 'click' this.removeObs}} class='margin-left-xxx-sm' />
     </div>
-    <div class="events">
+    <div class='events'>
       {{#each this.data as |event|}}
-        <div class="fx-row">
+        <div class='fx-row'>
           {{event}}
         </div>
       {{/each}}
     </div>
   </div>
-  
   */
   {
-    id: "N5INnAZD",
-    block: "{\"symbols\":[\"event\",\"@url\"],\"statements\":[[10,\"div\"],[14,0,\"subscription-feed padding-xx-sm\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[2,\"\\n    \"],[10,\"span\"],[12],[10,\"b\"],[15,0,[31,[[30,[36,2],[[30,[36,1],[[32,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"],null]]]],[12],[1,[32,0,[\"listeningState\"]]],[13],[2,\" for events on: \"],[1,[32,2]],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-1\"],[12],[13],[2,\"\\n\"],[6,[37,2],[[30,[36,1],[[32,0,[\"listeningState\"]],\"Listening\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"    \"],[8,\"o-s-s/button\",[[24,0,\"margin-left-xxx-sm\"],[4,[38,0],[\"click\",[32,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[2,\"\\n  \"],[13],[2,\"\\n  \"],[10,\"div\"],[14,0,\"events\"],[12],[2,\"\\n\"],[6,[37,4],[[30,[36,3],[[30,[36,3],[[32,0,[\"data\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n        \"],[1,[32,1]],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"on\",\"eq\",\"if\",\"-track-array\",\"each\"]}",
+    id: "s7fydE3W",
+    block: "{\"symbols\":[\"event\",\"@url\"],\"statements\":[[10,\"div\"],[14,0,\"subscription-feed padding-xx-sm\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[2,\"\\n    \"],[10,\"span\"],[12],[10,\"b\"],[15,0,[31,[[30,[36,2],[[30,[36,1],[[32,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"],null]]]],[12],[1,[32,0,[\"listeningState\"]]],[13],[2,\"\\n      for events on:\\n      \"],[1,[32,2]],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-1\"],[12],[13],[2,\"\\n\"],[6,[37,2],[[30,[36,1],[[32,0,[\"listeningState\"]],\"Listening\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[2,\"\\n\"]],\"parameters\":[]},{\"statements\":[[2,\"      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[2,\"    \"],[8,\"o-s-s/button\",[[24,0,\"margin-left-xxx-sm\"],[4,[38,0],[\"click\",[32,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[2,\"\\n  \"],[13],[2,\"\\n  \"],[10,\"div\"],[14,0,\"events\"],[12],[2,\"\\n\"],[6,[37,4],[[30,[36,3],[[30,[36,3],[[32,0,[\"data\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"      \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n        \"],[1,[32,1]],[2,\"\\n      \"],[13],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"  \"],[13],[2,\"\\n\"],[13]],\"hasEval\":false,\"upvars\":[\"on\",\"eq\",\"if\",\"-track-array\",\"each\"]}",
     meta: {
       moduleName: "dummy/components/subscription-feed.hbs"
     }
@@ -887,25 +885,28 @@
   var _dec, _class;
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
-    <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
-                    {{log-insertion "log-insertion: Product Modal has been opened"}}
-                    {{log-deletion "log-deletion: Product Modal has been closed"}}>
+    <OSS::ModalDialog
+    @title='Example modal'
+    @close={{@closeModal}}
+    @size='md'
+    {{log-insertion 'log-insertion: Product Modal has been opened'}}
+    {{log-deletion 'log-deletion: Product Modal has been closed'}}
+  >
     <:content>
-      <div style="height: 200px; background-color: white">
+      <div style='height: 200px; background-color: white'>
         Fake content goes here
       </div>
     </:content>
     <:footer>
-      <div class="fx-row fx-gap-px-12">
-        <OSS::Button @skin="default" @label="Close" {{on "click" @closeModal}} />
+      <div class='fx-row fx-gap-px-12'>
+        <OSS::Button @skin='default' @label='Close' {{on 'click' @closeModal}} />
       </div>
     </:footer>
   </OSS::ModalDialog>
-  
   */
   {
-    id: "9SJScFpr",
-    block: "{\"symbols\":[\"__arg0\",\"@closeModal\"],\"statements\":[[8,\"o-s-s/modal-dialog\",[[4,[38,4],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,5],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\",\"@namedBlocksInfo\"],[\"Example modal\",[32,2],\"md\",[30,[36,3],null,[[\"content\",\"footer\"],[0,0]]]]],[[\"default\"],[{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"content\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,5,\"height: 200px; background-color: white\"],[12],[2,\"\\n      Fake content goes here\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"footer\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-12\"],[12],[2,\"\\n      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,2]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[2,\"\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[1]}]]],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"on\",\"-is-named-block-invocation\",\"if\",\"hash\",\"log-insertion\",\"log-deletion\"]}",
+    id: "0TpjaTUu",
+    block: "{\"symbols\":[\"__arg0\",\"@closeModal\"],\"statements\":[[8,\"o-s-s/modal-dialog\",[[4,[38,4],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,5],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\",\"@namedBlocksInfo\"],[\"Example modal\",[32,2],\"md\",[30,[36,3],null,[[\"content\",\"footer\"],[0,0]]]]],[[\"default\"],[{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"content\"],null]],null,[[\"default\",\"else\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,5,\"height: 200px; background-color: white\"],[12],[2,\"\\n      Fake content goes here\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]},{\"statements\":[[6,[37,2],[[30,[36,1],[[32,1],\"footer\"],null]],null,[[\"default\"],[{\"statements\":[[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-12\"],[12],[2,\"\\n      \"],[8,\"o-s-s/button\",[[4,[38,0],[\"click\",[32,2]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[2,\"\\n    \"],[13],[2,\"\\n  \"]],\"parameters\":[]}]]]],\"parameters\":[]}]]]],\"parameters\":[1]}]]]],\"hasEval\":false,\"upvars\":[\"on\",\"-is-named-block-invocation\",\"if\",\"hash\",\"log-insertion\",\"log-deletion\"]}",
     meta: {
       moduleName: "dummy/components/test-modal.hbs"
     }
@@ -2173,8 +2174,8 @@
   });
   _exports.default = void 0;
   var _default = _exports.default = Ember.HTMLBars.template({
-    "id": "1w0nDd0x",
-    "block": "{\"symbols\":[\"obsUrl\"],\"statements\":[[10,\"div\"],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"Example of activity-tracking service usages:\"],[13],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[8,\"o-s-s/button\",[[4,[38,0],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,3],[\"click\",[30,[36,2],[[30,[36,1],[[32,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"],[6,[37,4],[[32,0,[\"modalVisible\"]]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[8,\"test-modal\",[],[[\"@closeModal\"],[[32,0,[\"closeModal\"]]]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[13],[2,\"\\n\"],[10,\"div\"],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7 text-color-default\"],[12],[2,\"Socket Configuration\"],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[14,5,\"width: 300px\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter WS Url:\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"wsUrl\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter token :\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"token\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[2,\"\\n        \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[2,\"\\n        \"],[8,\"o-s-s/button\",[[16,\"disabled\",[30,[36,5],[[32,0,[\"wsConnected\"]]],null]],[4,[38,3],[\"click\",[32,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[2,\"\\n      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7\"],[12],[2,\"Observers:\"],[13],[2,\"\\n    \"],[10,\"div\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col margin-bottom-sm\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[2,\"\\n          Create a new observer :\\n          \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-20\"],[12],[2,\"\\n            \"],[8,\"o-s-s/input-container\",[[4,[38,3],[\"keydown\",[32,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[32,0,[\"newObserver\"]]]],null],[2,\"\\n            \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[2,\"\\n          \"],[13],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20\"],[12],[2,\"\\n\"],[6,[37,7],[[30,[36,6],[[30,[36,6],[[32,0,[\"obsUrlArray\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[8,\"subscription-feed\",[],[[\"@url\",\"@removeObs\"],[[32,1],[32,0,[\"removeObs\"]]]],null],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13],[2,\"\\n\"]],\"hasEval\":false,\"upvars\":[\"enable-tooltip\",\"fn\",\"log-activity\",\"on\",\"if\",\"not\",\"-track-array\",\"each\"]}",
+    "id": "gg45OYpw",
+    "block": "{\"symbols\":[\"obsUrl\"],\"statements\":[[10,\"div\"],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"Example of activity-tracking service usages:\"],[13],[2,\"\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[8,\"o-s-s/button\",[[4,[38,0],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,3],[\"click\",[30,[36,2],[[30,[36,1],[[32,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[2,\"\\n  \"],[13],[2,\"\\n\"],[6,[37,4],[[32,0,[\"modalVisible\"]]],null,[[\"default\"],[{\"statements\":[[2,\"    \"],[8,\"test-modal\",[],[[\"@closeModal\"],[[32,0,[\"closeModal\"]]]],null],[2,\"\\n\"]],\"parameters\":[]}]]],[13],[2,\"\\n\"],[10,\"div\"],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[2,\"\\n  \"],[10,\"div\"],[14,0,\"\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7 text-color-default\"],[12],[2,\"Socket Configuration\"],[13],[2,\"\\n    \"],[10,\"div\"],[14,0,\"fx-row\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[14,5,\"width: 300px\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter WS Url:\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"wsUrl\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-col fx-1\"],[14,5,\"width:100%\"],[12],[2,\"\\n          \"],[10,\"span\"],[12],[2,\"Enter token :\"],[13],[2,\"\\n          \"],[8,\"o-s-s/input-container\",[],[[\"@value\"],[[32,0,[\"token\"]]]],null],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[2,\"\\n        \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[2,\"\\n        \"],[8,\"o-s-s/button\",[[16,\"disabled\",[30,[36,5],[[32,0,[\"wsConnected\"]]],null]],[4,[38,3],[\"click\",[32,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[2,\"\\n      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\\n  \"],[10,\"div\"],[12],[2,\"\\n    \"],[10,\"span\"],[14,0,\"text-size-7\"],[12],[2,\"Observers:\"],[13],[2,\"\\n    \"],[10,\"div\"],[12],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col margin-bottom-sm\"],[12],[2,\"\\n        \"],[10,\"div\"],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[2,\"\\n          Create a new observer :\\n          \"],[10,\"div\"],[14,0,\"fx-row fx-gap-px-20\"],[12],[2,\"\\n            \"],[8,\"o-s-s/input-container\",[[4,[38,3],[\"keydown\",[32,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[32,0,[\"newObserver\"]]]],null],[2,\"\\n            \"],[8,\"o-s-s/button\",[[4,[38,3],[\"click\",[32,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[2,\"\\n          \"],[13],[2,\"\\n        \"],[13],[2,\"\\n      \"],[13],[2,\"\\n      \"],[10,\"div\"],[14,0,\"fx-col fx-gap-px-20\"],[12],[2,\"\\n\"],[6,[37,7],[[30,[36,6],[[30,[36,6],[[32,0,[\"obsUrlArray\"]]],null]],null]],null,[[\"default\"],[{\"statements\":[[2,\"          \"],[8,\"subscription-feed\",[],[[\"@url\",\"@removeObs\"],[[32,1],[32,0,[\"removeObs\"]]]],null],[2,\"\\n\"]],\"parameters\":[1]}]]],[2,\"      \"],[13],[2,\"\\n    \"],[13],[2,\"\\n  \"],[13],[2,\"\\n\"],[13]],\"hasEval\":false,\"upvars\":[\"enable-tooltip\",\"fn\",\"log-activity\",\"on\",\"if\",\"not\",\"-track-array\",\"each\"]}",
     "meta": {
       "moduleName": "dummy/templates/application.hbs"
     }
