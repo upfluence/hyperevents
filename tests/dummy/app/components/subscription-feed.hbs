@@ -1,20 +1,19 @@
-<div class="subscription-feed padding-xx-sm">
-  <div class="fx-1 fx-row fx-malign-space-between fx-xalign-center">
-    <span><b class="{{if (eq this.listeningState 'Listening') 'linked' 'unlinked'}}">{{this.listeningState}}</b> for events on: {{@url}}</span>
-    <div class="fx-1"></div>
+<div class='subscription-feed padding-xx-sm'>
+  <div class='fx-1 fx-row fx-malign-space-between fx-xalign-center'>
+    <span><b class='{{if (eq this.listeningState "Listening") "linked" "unlinked"}}'>{{this.listeningState}}</b>
+      for events on:
+      {{@url}}</span>
+    <div class='fx-1'></div>
     {{#if (eq this.listeningState 'Listening')}}
-      <OSS::Button @skin="default" @label="Unsubscribe" @icon="fas fa-unlink"
-                   {{on "click" this.unsubscribe}} />
+      <OSS::Button @skin='default' @label='Unsubscribe' @icon='fas fa-unlink' {{on 'click' this.unsubscribe}} />
     {{else}}
-      <OSS::Button @skin="default" @label="Subscribe" @icon="fas fa-link"
-                   {{on "click" this.subscribe}} />
+      <OSS::Button @skin='default' @label='Subscribe' @icon='fas fa-link' {{on 'click' this.subscribe}} />
     {{/if}}
-    <OSS::Button @skin="default" @icon="fa fa-times"
-                 {{on "click" this.removeObs}} class="margin-left-xxx-sm" />
+    <OSS::Button @skin='default' @icon='fa fa-times' {{on 'click' this.removeObs}} class='margin-left-xxx-sm' />
   </div>
-  <div class="events">
+  <div class='events'>
     {{#each this.data as |event|}}
-      <div class="fx-row">
+      <div class='fx-row'>
         {{event}}
       </div>
     {{/each}}

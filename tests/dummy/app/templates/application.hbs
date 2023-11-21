@@ -1,52 +1,59 @@
-<div class="padding-lg fx-col fx-gap-px-12">
+<div class='padding-lg fx-col fx-gap-px-12'>
   <div>Example of activity-tracking service usages:</div>
   <div>
-    <OSS::Button @skin="primary" @label="Open modal" @icon="fa-connect"
-                 {{enable-tooltip title="Click will trigger activity-tracker log"}}
-                 {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}} />
+    <OSS::Button
+      @skin='primary'
+      @label='Open modal'
+      @icon='fa-connect'
+      {{enable-tooltip title='Click will trigger activity-tracker log'}}
+      {{on 'click' (log-activity (fn this.openModal 'randomParam') 'open product modal')}}
+    />
   </div>
   {{#if this.modalVisible}}
     <TestModal @closeModal={{this.closeModal}} />
   {{/if}}
 </div>
-<div class="fx-col padding-lg fx-gpap-px-40">
-  <div class="">
-    <span class="text-size-7 text-color-default">Socket Configuration</span>
-    <div class="fx-row">
-      <div class="fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm" style="width: 300px">
-        <div class="fx-col fx-1" style="width:100%">
+<div class='fx-col padding-lg fx-gpap-px-40'>
+  <div class=''>
+    <span class='text-size-7 text-color-default'>Socket Configuration</span>
+    <div class='fx-row'>
+      <div class='fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm' style='width: 300px'>
+        <div class='fx-col fx-1' style='width:100%'>
           <span>Enter WS Url:</span>
           <OSS::InputContainer @value={{this.wsUrl}} />
         </div>
-        <div class="fx-col fx-1" style="width:100%">
+        <div class='fx-col fx-1' style='width:100%'>
           <span>Enter token :</span>
           <OSS::InputContainer @value={{this.token}} />
         </div>
       </div>
-      <div class="fx-col fx-malign-end fx-gap-px-20">
-        <OSS::Button @skin="primary" @label="Establish connection" @icon="fa-connect"
-                     {{on "click" this.initSocket}} />
-        <OSS::Button @skin="destructive" @label="Terminate connection" @icon="fa-connect"
-                     {{on "click" this.terminateSocket}} disabled={{not this.wsConnected}} />
+      <div class='fx-col fx-malign-end fx-gap-px-20'>
+        <OSS::Button @skin='primary' @label='Establish connection' @icon='fa-connect' {{on 'click' this.initSocket}} />
+        <OSS::Button
+          @skin='destructive'
+          @label='Terminate connection'
+          @icon='fa-connect'
+          {{on 'click' this.terminateSocket}}
+          disabled={{not this.wsConnected}}
+        />
       </div>
     </div>
   </div>
 
   <div>
-    <span class="text-size-7">Observers:</span>
+    <span class='text-size-7'>Observers:</span>
     <div>
-      <div class="fx-col margin-bottom-sm">
-        <div class="fx-row fx-xalign-center fx-gap-px-40">
+      <div class='fx-col margin-bottom-sm'>
+        <div class='fx-row fx-xalign-center fx-gap-px-40'>
           Create a new observer :
-          <div class="fx-row fx-gap-px-20">
-            <OSS::InputContainer @value={{this.newObserver}} {{on "keydown" this.handleNewObserverInput}} />
-            <OSS::Button @skin="success" @label="Create" @icon="fas fa-check"
-                         {{on "click" this.createNewObserver}} />
+          <div class='fx-row fx-gap-px-20'>
+            <OSS::InputContainer @value={{this.newObserver}} {{on 'keydown' this.handleNewObserverInput}} />
+            <OSS::Button @skin='success' @label='Create' @icon='fas fa-check' {{on 'click' this.createNewObserver}} />
           </div>
         </div>
       </div>
-      <div class="fx-col fx-gap-px-20">
-        {{#each this.obsUrlArray as |obsUrl| }}
+      <div class='fx-col fx-gap-px-20'>
+        {{#each this.obsUrlArray as |obsUrl|}}
           <SubscriptionFeed @url={{obsUrl}} @removeObs={{this.removeObs}} />
         {{/each}}
       </div>
