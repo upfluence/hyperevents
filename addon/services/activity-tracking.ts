@@ -71,7 +71,7 @@ export default class ActivityTracking extends Service {
       type: type,
       origin: window.location.origin,
       route: getOwner(this).lookup('service:router').currentRouteName,
-      path: window.location.pathname,
+      path: window.location.pathname + window.location.search,
       action: action,
       version: (getOwnConfig() as any).parentAppVersion || 'unknown'
     };
