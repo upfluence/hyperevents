@@ -31,8 +31,6 @@ jobs:
           cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm install
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       - name: Lint
         run: pnpm lint:js
       - name: Test
