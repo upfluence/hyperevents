@@ -42,8 +42,8 @@ devDependencies:
     specifier: ^1.3.0
     version: 1.3.0
   '@ember/test-helpers':
-    specifier: ^2.6.0
-    version: 2.9.4(@babel/core@7.23.9)(ember-source@3.18.1)
+    specifier: 2.6.0
+    version: 2.6.0(@babel/core@7.23.9)
   '@glimmer/component':
     specifier: ^1.0.0
     version: 1.1.2(@babel/core@7.23.9)
@@ -102,8 +102,8 @@ devDependencies:
     specifier: ^3.16.1
     version: 3.16.7
   '@types/ember__test-helpers':
-    specifier: ^2.6.0
-    version: 2.9.1(@babel/core@7.23.9)(ember-source@3.18.1)
+    specifier: 2.6.0
+    version: 2.6.0
   '@types/ember__utils':
     specifier: ^3.16.2
     version: 3.16.8
@@ -163,7 +163,7 @@ devDependencies:
     version: 2.1.2(@babel/core@7.23.9)
   ember-qunit:
     specifier: ^5.1.5
-    version: 5.1.5(@ember/test-helpers@2.9.4)(qunit@2.20.0)
+    version: 5.1.5(@ember/test-helpers@2.6.0)(qunit@2.20.0)
   ember-resolver:
     specifier: ^8.0.3
     version: 8.1.0(@babel/core@7.23.9)
@@ -1714,25 +1714,18 @@ packages:
       - supports-color
     dev: true
 
-  /@ember/test-helpers@2.9.4(@babel/core@7.23.9)(ember-source@3.18.1):
-    resolution: {integrity: sha512-z+Qs1NYWyIVDmrY6WdmOS5mdG1lJ5CFfzh6dRhLfs9lq45deDaDrVNcaCYhnNeJZTvUBK2XR2SvPcZm0RloXdA==}
+  /@ember/test-helpers@2.6.0(@babel/core@7.23.9):
+    resolution: {integrity: sha512-N5sr3layWk60wB3maCy+/5hFHQRcTh8aqxcZTSs3Od9QkuHdWBtRgMGLP/35mXpJlgWuu3xqLpt6u3dGHc8gCg==}
     engines: {node: 10.* || 12.* || 14.* || 15.* || >= 16.*}
-    peerDependencies:
-      ember-source: '>=3.8.0'
     dependencies:
       '@ember/test-waiters': 3.1.0
-      '@embroider/macros': 1.11.1
-      '@embroider/util': 1.12.1(ember-source@3.18.1)
       broccoli-debug: 0.6.5
       broccoli-funnel: 3.0.8
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.3.0
+      ember-cli-htmlbars: 5.7.2
       ember-destroyable-polyfill: 2.0.3(@babel/core@7.23.9)
-      ember-source: 3.18.1(@babel/core@7.23.9)
     transitivePeerDependencies:
       - '@babel/core'
-      - '@glint/environment-ember-loose'
-      - '@glint/template'
       - supports-color
     dev: true
 
@@ -1839,27 +1832,6 @@ packages:
       lodash: 4.17.21
       resolve: 1.22.8
     dev: false
-
-  /@embroider/util@1.12.1(ember-source@3.18.1):
-    resolution: {integrity: sha512-sEjFf2HOcqQdm3auernvvD3oXX/CdGTjo9eB5N8DmQBz9vseYNjn4kQRaAcyHWpCpMHe5Yr0d9xW8+4c9a9fJw==}
-    engines: {node: 12.* || 14.* || >= 16}
-    peerDependencies:
-      '@glint/environment-ember-loose': ^1.0.0
-      '@glint/template': ^1.0.0
-      ember-source: '*'
-    peerDependenciesMeta:
-      '@glint/environment-ember-loose':
-        optional: true
-      '@glint/template':
-        optional: true
-    dependencies:
-      '@embroider/macros': 1.13.4
-      broccoli-funnel: 3.0.8
-      ember-cli-babel: 7.26.11
-      ember-source: 3.18.1(@babel/core@7.23.9)
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /@glimmer/component@1.1.2(@babel/core@7.23.9):
     resolution: {integrity: sha512-XyAsEEa4kWOPy+gIdMjJ8XlzA3qrGH55ZDv6nA16ibalCR17k74BI0CztxuRds+Rm6CtbUVgheCVlcCULuqD7A==}
@@ -2310,17 +2282,13 @@ packages:
     resolution: {integrity: sha512-Mj3BzTzXKrS2cX9rkUpsqnyCNnVUUJh6juhuJW9KleJNtrUdfGPPGkOonn+oXFKcWfxiRB15jx8Ypi668vDDQw==}
     dev: true
 
-  /@types/ember__test-helpers@2.9.1(@babel/core@7.23.9)(ember-source@3.18.1):
-    resolution: {integrity: sha512-KZ6jYr0ZiQHlklLcfyuy1j+FkvygEayf5mZ9FcaSOahw9ghK3K5TYSRDCuIBELRw//OB/WP9J7v9NduFRNfRgg==}
-    deprecated: This is a stub types definition. @ember/test-helpers provides its own type definitions, so you do not need this installed.
+  /@types/ember__test-helpers@2.6.0:
+    resolution: {integrity: sha512-iLb4npBAi2nWdAgnL/lClJkZUXuS4pCpGq3a5yzWoNjzRZCJzLI+zbmNgfY3nQjsV8lXclgfEY0ZzGkRpHU+Xw==}
     dependencies:
-      '@ember/test-helpers': 2.9.4(@babel/core@7.23.9)(ember-source@3.18.1)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@glint/environment-ember-loose'
-      - '@glint/template'
-      - ember-source
-      - supports-color
+      '@types/ember': 4.0.11
+      '@types/ember__application': 3.16.10
+      '@types/ember__error': 3.16.6
+      '@types/htmlbars-inline-precompile': 1.0.1
     dev: true
 
   /@types/ember__test@3.16.7:
@@ -5628,6 +5596,30 @@ packages:
       - supports-color
     dev: false
 
+  /ember-cli-htmlbars@5.7.2:
+    resolution: {integrity: sha512-Uj6R+3TtBV5RZoJY14oZn/sNPnc+UgmC8nb5rI4P3fR/gYoyTFIZSXiIM7zl++IpMoIrocxOrgt+mhonKphgGg==}
+    engines: {node: 10.* || >= 12.*}
+    dependencies:
+      '@ember/edition-utils': 1.2.0
+      babel-plugin-htmlbars-inline-precompile: 5.3.1
+      broccoli-debug: 0.6.5
+      broccoli-persistent-filter: 3.1.3
+      broccoli-plugin: 4.0.7
+      common-tags: 1.8.2
+      ember-cli-babel-plugin-helpers: 1.1.1
+      ember-cli-version-checker: 5.1.2
+      fs-tree-diff: 2.0.1
+      hash-for-dep: 1.5.1
+      heimdalljs-logger: 0.1.10
+      json-stable-stringify: 1.1.1
+      semver: 7.5.4
+      silent-error: 1.1.1
+      strip-bom: 4.0.0
+      walk-sync: 2.2.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /ember-cli-htmlbars@6.3.0:
     resolution: {integrity: sha512-N9Y80oZfcfWLsqickMfRd9YByVcTGyhYRnYQ2XVPVrp6jyUyOeRWmEAPh7ERSXpp8Ws4hr/JB9QVQrn/yZa+Ag==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -6192,14 +6184,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-qunit@5.1.5(@ember/test-helpers@2.9.4)(qunit@2.20.0):
+  /ember-qunit@5.1.5(@ember/test-helpers@2.6.0)(qunit@2.20.0):
     resolution: {integrity: sha512-2cFA4oMygh43RtVcMaBrr086Tpdhgbn3fVZ2awLkzF/rnSN0D0PSRpd7hAD7OdBPerC/ZYRwzVyGXLoW/Zes4A==}
     engines: {node: 10.* || 12.* || >= 14.*}
     peerDependencies:
       '@ember/test-helpers': ^2.4.0
       qunit: ^2.13.0
     dependencies:
-      '@ember/test-helpers': 2.9.4(@babel/core@7.23.9)(ember-source@3.18.1)
+      '@ember/test-helpers': 2.6.0(@babel/core@7.23.9)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 3.0.2
       common-tags: 1.8.2
@@ -10457,6 +10449,7 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: true
+    bundledDependencies: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -10485,6 +10478,7 @@ packages:
       object-assign: 4.1.1
       prop-types: 15.8.1
     dev: true
+    bundledDependencies: false
 
   /read-pkg@3.0.0:
     resolution: {integrity: sha512-BLq/cCO9two+lBgiTYNqD6GdtK8s4NpaWrl6/rCO9w0TUS8oJl7cmToOZfRYllKTISY6nt1U7jQ53brmKqY6BA==}
@@ -11591,7 +11585,6 @@ packages:
   /strip-bom@4.0.0:
     resolution: {integrity: sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==}
     engines: {node: '>=8'}
-    dev: false
 
   /strip-eof@1.0.0:
     resolution: {integrity: sha512-7FCwGGmx8mD5xQd3RPUvnSpUXHM3BWuzjtpD4TXsfcZ9EL4azvVVUscFYwD9nx8Kh+uCBC00XBtAykoMHwTh8Q==}
