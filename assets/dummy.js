@@ -1508,20 +1508,6 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-ifa/helpers/asset-map"eaimeta@70e063a35619d71f
   var _default = _exports.default = _assetMap.default;
 });
-;define("dummy/helpers/ensure-safe-component", ["exports", "@embroider/util"], function (_exports, _util) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _util.EnsureSafeComponentHelper;
-    }
-  });
-  0; //eaimeta@70e063a35619d71f0,"@embroider/util"eaimeta@70e063a35619d71f
-});
 ;define("dummy/helpers/eq", ["exports", "ember-truth-helpers/helpers/equal"], function (_exports, _equal) {
   "use strict";
 
@@ -2347,20 +2333,6 @@
   0; //eaimeta@70e063a35619d71f0,"@ember/routing/route"eaimeta@70e063a35619d71f
   class Application extends Ember.Route {}
   _exports.default = Application;
-});
-;define("dummy/services/-ensure-registered", ["exports", "@embroider/util/services/ensure-registered"], function (_exports, _ensureRegistered) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _ensureRegistered.default;
-    }
-  });
-  0; //eaimeta@70e063a35619d71f0,"@embroider/util/services/ensure-registered"eaimeta@70e063a35619d71f
 });
 ;define("dummy/services/activity-tracking", ["exports", "@upfluence/hyperevents/services/activity-tracking"], function (_exports, _activityTracking) {
   "use strict";
