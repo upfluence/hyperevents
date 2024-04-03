@@ -74069,8 +74069,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       _initializerDefineProperty(this, "session", _descriptor, this);
       _initializerDefineProperty(this, "activityQueue", _descriptor2, this);
     }
-    log(type, action) {
-      this.activityQueue.push(this.buildActivityObject(type, action));
+    log(type, action, extra = {}) {
+      this.activityQueue.push(this.buildActivityObject(type, action, extra));
       Ember.run.debounce(this, this.performCall, THROTTLE_TIME_MS);
     }
     performCall(tries = RETRY_ATTEMPTS, retryActivityQueue) {
@@ -74107,14 +74107,15 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     get accessToken() {
       return this.session.data.authenticated.access_token;
     }
-    buildActivityObject(type, action) {
+    buildActivityObject(type, action, extra) {
       return {
         type: type,
         origin: window.location.origin,
         route: Ember.getOwner(this).lookup('service:router').currentRouteName,
         path: window.location.pathname + window.location.search,
         action: action,
-        version: "unknown"
+        version: "unknown",
+        extra: extra
       };
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "session", [_dec], {
