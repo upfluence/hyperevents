@@ -24,8 +24,8 @@ export default class ActivityTracking extends Service {
   @service declare session: any;
   @tracked activityQueue: Activity[] = [];
 
-  log(type: ActivityType, action: string): void {
-    this.activityQueue.push(this.buildActivityObject(type, action));
+  log(type: ActivityType, action: string, extra: Record<string, unknown> = {}): void {
+    this.activityQueue.push(this.buildActivityObject(type, action, extra));
     debounce(this, this.performCall, THROTTLE_TIME_MS);
   }
 
@@ -66,14 +66,15 @@ export default class ActivityTracking extends Service {
     return this.session.data.authenticated.access_token;
   }
 
-  private buildActivityObject(type: ActivityType, action: string): Activity {
+  private buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
     return {
       type: type,
       origin: window.location.origin,
       route: getOwner(this).lookup('service:router').currentRouteName,
       path: window.location.pathname + window.location.search,
       action: action,
-      version: (getOwnConfig() as any).parentAppVersion || 'unknown'
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown',
+      extra: extra
     };
   }
 }
