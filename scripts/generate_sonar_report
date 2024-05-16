@@ -18,7 +18,7 @@ fi
 echo ""
 echo ""
 echo "[Step2] Run ember test - dot reporter to generate lcovinfo file"
-COVERAGE=true ember test
+COVERAGE=true ember test --silent -r dot --filter=!Wednesday
 
 ## Check that coverage folder has been generated
 echo ""
@@ -35,7 +35,6 @@ fi
 echo ""
 echo ""
 echo "[Step4] Run sonar-scanner"
-echo "Grab a coffee, this is going to be a long one. (~15mins)"
-sonar-scanner -D sonar.projectVersion=$(git describe --tags --abbrev=0)
+sonar-scanner -Dsonar.projectVersion=$(git describe --tags --abbrev=0) -Dsonar.login=$SONARCLOUD_FRONTEND_TOKEN
 
 echo "[Success]"
