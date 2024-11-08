@@ -73834,7 +73834,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@ember/utils"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/utils"eaimeta@70e063a35619d71f
   const DEFAULTS = {
     backendActivityUrl: 'https://activity.upfluence.co',
     enableEngineSupport: false
@@ -73847,9 +73847,9 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         // eslint-disable-next-line no-prototype-builtins
         if (this.hasOwnProperty(property) && Ember.typeOf(this[property]) !== 'function') {
           if (this[property].constructor == Object) {
-            this[property] = Object.assign(this[property], Ember.getWithDefault(config, property, DEFAULTS[property]));
+            this[property] = Object.assign(this[property], config[property] ?? DEFAULTS[property]);
           } else {
-            this[property] = Ember.getWithDefault(config, property, DEFAULTS[property]);
+            this[property] = config[property] ?? DEFAULTS[property];
           }
         }
       }
