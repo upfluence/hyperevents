@@ -17,9 +17,14 @@ module.exports = {
       setOwnConfig: {
         buildEnv: process.env.BUILD_ENV || 'staging'
       }
-    },
-    babel: {
-      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()]
+    }
+  },
+
+  included(parent) {
+    this._super.included.apply(this, arguments);
+
+    if (parent.name === 'dummy') {
+      this.options.babel.plugins.push(...require('ember-cli-code-coverage').buildBabelPlugin());
     }
   },
 
