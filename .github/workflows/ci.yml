@@ -16,7 +16,7 @@ env:
 jobs:
   test:
     name: Lint & Test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: webfactory/ssh-agent@v0.5.0
         with:
@@ -38,7 +38,7 @@ jobs:
 
   release:
     name: Release Package
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     if: contains(github.ref, 'refs/tags/v')
     needs: [test]
     steps:
@@ -63,7 +63,7 @@ jobs:
 
   deploy:
     name: Deploy preview app
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [test]
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
