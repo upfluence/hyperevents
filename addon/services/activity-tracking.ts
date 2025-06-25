@@ -19,14 +19,23 @@ export type Activity = {
 
 const RETRY_ATTEMPTS: number = 1;
 const THROTTLE_TIME_MS = 1000;
+const DEFAULT_LOG_OPTIONS = {
+  immediate: false
+};
 
 export default class ActivityTracking extends Service {
   @service declare session: any;
   @tracked activityQueue: Activity[] = [];
 
-  log(type: ActivityType, action: string, extra: Record<string, unknown> = {}): void {
+  log(
+    type: ActivityType,
+    action: string,
+    extra: Record<string, unknown> = {},
+    options: { immediate?: boolean } = DEFAULT_LOG_OPTIONS
+  ): void {
+    const logOptions = { ...DEFAULT_LOG_OPTIONS, ...options };
     this.activityQueue.push(this.buildActivityObject(type, action, extra));
-    debounce(this, this.performCall, THROTTLE_TIME_MS);
+    debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
   }
 
   private performCall(tries: number = RETRY_ATTEMPTS, retryActivityQueue?: Activity[]): void {
