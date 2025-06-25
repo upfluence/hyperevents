@@ -74063,15 +74063,22 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
   const RETRY_ATTEMPTS = 1;
   const THROTTLE_TIME_MS = 1000;
+  const DEFAULT_LOG_OPTIONS = {
+    immediate: false
+  };
   let ActivityTracking = _exports.default = (_dec = Ember.inject.service, _dec2 = Ember._tracked, (_class = class ActivityTracking extends Ember.Service {
     constructor(...args) {
       super(...args);
       _initializerDefineProperty(this, "session", _descriptor, this);
       _initializerDefineProperty(this, "activityQueue", _descriptor2, this);
     }
-    log(type, action, extra = {}) {
+    log(type, action, extra = {}, options = DEFAULT_LOG_OPTIONS) {
+      const logOptions = {
+        ...DEFAULT_LOG_OPTIONS,
+        ...options
+      };
       this.activityQueue.push(this.buildActivityObject(type, action, extra));
-      Ember.run.debounce(this, this.performCall, THROTTLE_TIME_MS);
+      Ember.run.debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
     }
     performCall(tries = RETRY_ATTEMPTS, retryActivityQueue) {
       if (this.activityQueue.length === 0 && !retryActivityQueue) return;
