@@ -2,7 +2,7 @@
 import { typeOf } from '@ember/utils';
 
 const DEFAULTS = {
-  backendActivityUrl: 'https://activity.upfluence.co',
+  activityUrl: 'https://activity.upfluence.co/',
   enableEngineSupport: false
 };
 
