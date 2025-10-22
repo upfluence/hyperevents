@@ -73836,7 +73836,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   _exports.default = void 0;
   0; //eaimeta@70e063a35619d71f0,"@ember/utils"eaimeta@70e063a35619d71f
   const DEFAULTS = {
-    backendActivityUrl: 'https://activity.upfluence.co',
+    activityUrl: 'https://activity.upfluence.co/',
     enableEngineSupport: false
   };
   var _default = _exports.default = {
@@ -73978,6 +73978,24 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   }
   _exports.ObserverGroup = ObserverGroup;
 });
+;define("@upfluence/hyperevents/initializers/hyperevents", ["exports", "@upfluence/hyperevents/configuration"], function (_exports, _configuration) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/hyperevents/configuration"eaimeta@70e063a35619d71f
+  var _default = _exports.default = {
+    name: 'hyperevents',
+    initialize: function (application) {
+      if (_configuration.default.__initialized__) return;
+      const appConfig = application.resolveRegistration('config:environment');
+      const addonConfig = appConfig['@upfluence/hyperevents'] || {};
+      _configuration.default.load(addonConfig);
+    }
+  };
+});
 ;define("@upfluence/hyperevents/modifiers/log-deletion", ["exports", "ember-modifier"], function (_exports, _emberModifier) {
   "use strict";
 
@@ -74104,7 +74122,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       });
     }
     get apiUrl() {
-      return `${_configuration.default.backendActivityUrl}/activity/bulk`;
+      return `${_configuration.default.activityUrl}activity/bulk`;
     }
     get headers() {
       return new Headers({

@@ -2098,6 +2098,26 @@
     initialize: initialize
   };
 });
+;define("dummy/initializers/hyperevents", ["exports", "@upfluence/hyperevents/initializers/hyperevents"], function (_exports, _hyperevents) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _hyperevents.default;
+    }
+  });
+  Object.defineProperty(_exports, "initialize", {
+    enumerable: true,
+    get: function () {
+      return _hyperevents.initialize;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/hyperevents/initializers/hyperevents"eaimeta@70e063a35619d71f
+});
 ;define("dummy/mixins/header-style", ["exports", "@upfluence/oss-components/mixins/header-style"], function (_exports, _headerStyle) {
   "use strict";
 
