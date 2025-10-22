@@ -64,7 +64,7 @@ export default class ActivityTracking extends Service {
   }
 
   private get apiUrl(): string {
-    return `${Configuration.backendActivityUrl}/activity/bulk`;
+    return `${Configuration.activityUrl}activity/bulk`;
   }
 
   private get headers(): Headers {
