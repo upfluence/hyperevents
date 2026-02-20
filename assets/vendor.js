@@ -74070,7 +74070,7 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
+  _exports.default = _exports.THROTTLE_TIME_MS = void 0;
   var _dec, _dec2, _class, _descriptor, _descriptor2;
   0; //eaimeta@70e063a35619d71f0,"@ember/runloop",0,"@ember/service",0,"@embroider/macros",0,"@ember/application",0,"@glimmer/tracking",0,"@upfluence/hyperevents/configuration"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
@@ -74079,8 +74079,8 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
+  const THROTTLE_TIME_MS = _exports.THROTTLE_TIME_MS = 1000;
   const RETRY_ATTEMPTS = 1;
-  const THROTTLE_TIME_MS = 1000;
   const DEFAULT_LOG_OPTIONS = {
     immediate: false
   };
@@ -74140,8 +74140,11 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
         path: window.location.pathname + window.location.search,
         action: action,
         version: "unknown",
-        extra: extra
+        extra: this.stringifyExtra(extra)
       };
+    }
+    stringifyExtra(extra) {
+      return Object.fromEntries(Object.entries(extra).map(([key, value]) => [key, String(value)]));
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "session", [_dec], {
     configurable: true,
