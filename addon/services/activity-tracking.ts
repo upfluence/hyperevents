@@ -14,7 +14,7 @@ export type Activity = {
   route: string;
   origin?: string;
   version?: string;
-  extra?: {};
+  extra?: Record<string, string>;
 };
 
 const RETRY_ATTEMPTS: number = 1;
@@ -83,8 +83,12 @@ export default class ActivityTracking extends Service {
       path: window.location.pathname + window.location.search,
       action: action,
       version: (getOwnConfig() as any).parentAppVersion || 'unknown',
-      extra: extra
+      extra: this.stringifyExtra(extra)
     };
+  }
+
+  private stringifyExtra(extra: Record<string, unknown>): Record<string, string> {
+    return Object.fromEntries(Object.entries(extra).map(([key, value]) => [key, String(value)]));
   }
 }
 
