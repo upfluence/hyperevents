@@ -17,8 +17,8 @@ export type Activity = {
   extra?: Record<string, string>;
 };
 
+export const THROTTLE_TIME_MS = 1000;
 const RETRY_ATTEMPTS: number = 1;
-const THROTTLE_TIME_MS = 1000;
 const DEFAULT_LOG_OPTIONS = {
   immediate: false
 };
