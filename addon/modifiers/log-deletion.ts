@@ -1,6 +1,8 @@
-import Modifier from 'ember-modifier';
-import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
+import { inject as service } from '@ember/service';
+
+import Modifier from 'ember-modifier';
+
 import ActivityTracking from '../services/activity-tracking';
 
 interface LogDeletionModifierArgs {

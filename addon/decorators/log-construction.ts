@@ -1,6 +1,7 @@
-import { ActivityType } from '../services/activity-tracking';
-import { assert } from '@ember/debug';
 import { getOwner } from '@ember/application';
+import { assert } from '@ember/debug';
+
+import { ActivityType } from '../services/activity-tracking';
 
 interface Constructable {
   new (...args: any[]): any;

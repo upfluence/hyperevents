@@ -1,5 +1,6 @@
 import { later } from '@ember/runloop';
 import Service, { inject as service } from '@ember/service';
+
 import { Matcher } from '@upfluence/hyperevents/helpers/observable';
 import { Observable } from '@upfluence/hyperevents/helpers/observable';
 import { ObserverGroup } from '@upfluence/hyperevents/helpers/observer-group';
