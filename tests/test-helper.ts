@@ -1,4 +1,3 @@
-// @ts-ignore
 import { setApplication } from '@ember/test-helpers';
 
 // @ts-ignore
@@ -7,7 +6,8 @@ import { start } from 'ember-qunit';
 import * as QUnit from 'qunit';
 import { setup } from 'qunit-dom';
 
-import Application from '../app';
+import Application from 'dummy/app';
+
 // @ts-ignore
 import config from '../config/environment';
 
