@@ -1,9 +1,10 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, settled, setupOnerror, waitFor } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-import sinon from 'sinon';
 import { set } from '@ember/object';
+import { render, settled, setupOnerror, waitFor } from '@ember/test-helpers';
+
+import { hbs } from 'ember-cli-htmlbars';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 module('Integration | Modifiers | modifiers/log-deletion', function (hooks) {
   setupRenderingTest(hooks);

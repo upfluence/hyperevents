@@ -1,1 +1,1 @@
-export { default, logConstruction } from '@upfluence/hyperevents/decorators/log-construction';
+export { logConstruction } from '@upfluence/hyperevents/decorators/log-construction';

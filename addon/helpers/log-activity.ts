@@ -1,8 +1,9 @@
 import Helper from '@ember/component/helper';
-import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
-import ActivityTracking from '../services/activity-tracking';
 import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
+
+import ActivityTracking from '../services/activity-tracking';
 
 export default class extends Helper {
   @service declare activityTracking: ActivityTracking;

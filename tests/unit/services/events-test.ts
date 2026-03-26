@@ -1,6 +1,8 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
 import { settled } from '@ember/test-helpers';
+
+import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+
 import { prefixPath, exactPath } from '@upfluence/hyperevents/services/events-service';
 
 const eventPayload: any = {

@@ -1,9 +1,10 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { click, render, setupOnerror } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
-import sinon from 'sinon';
+
 import { TemplateFactory } from 'ember-cli-htmlbars';
+import { setupRenderingTest } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+import { module, test } from 'qunit';
+import sinon from 'sinon';
 
 module('Integration | Helper | log-activity', function (hooks) {
   setupRenderingTest(hooks);

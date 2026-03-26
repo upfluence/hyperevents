@@ -1,8 +1,9 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import EventsService from '@upfluence/hyperevents/services/events-service';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+
+import EventsService from '@upfluence/hyperevents/services/events-service';
 
 export default class ApplicationController extends Controller {
   @service declare eventsService: EventsService;

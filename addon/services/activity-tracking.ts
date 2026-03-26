@@ -1,7 +1,7 @@
+import { getOwner } from '@ember/application';
 import { debounce } from '@ember/runloop';
 import Service, { inject as service } from '@ember/service';
 import { getOwnConfig } from '@embroider/macros';
-import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 
 import Configuration from '@upfluence/hyperevents/configuration';

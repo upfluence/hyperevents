@@ -1,6 +1,7 @@
-import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 import sinon from 'sinon';
+
 import { THROTTLE_TIME_MS } from '@upfluence/hyperevents/services/activity-tracking';
 
 module('Unit | Service | activity-tracking', function (hooks) {

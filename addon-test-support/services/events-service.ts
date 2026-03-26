@@ -1,8 +1,8 @@
 import Service from '@ember/service';
 
-import { ResourceEvent } from '@upfluence/hyperevents/services/events-service';
-import { ObserverGroup } from '@upfluence/hyperevents/helpers/observer-group';
 import { Observable, Matcher } from '@upfluence/hyperevents/helpers/observable';
+import { ObserverGroup } from '@upfluence/hyperevents/helpers/observer-group';
+import { ResourceEvent } from '@upfluence/hyperevents/services/events-service';
 
 export default class EventsServiceMock extends Service {
   resource: string = '';
