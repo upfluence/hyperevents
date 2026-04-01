@@ -2,14 +2,14 @@
 
 
 
-;define("dummy/app", ["exports", "ember-resolver", "ember-load-initializers", "dummy/config/environment"], function (_exports, _emberResolver, _emberLoadInitializers, _environment) {
+;define("dummy/app", ["exports", "ember-load-initializers", "ember-resolver", "dummy/config/environment"], function (_exports, _emberLoadInitializers, _emberResolver, _environment) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/application",0,"ember-resolver",0,"ember-load-initializers",0,"dummy/config/environment"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/application",0,"ember-load-initializers",0,"ember-resolver",0,"dummy/config/environment"eaimeta@70e063a35619d71f
   function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
@@ -1009,22 +1009,22 @@
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'transform-class-properties is enabled and runs after the decorators transform.'); }
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
-    <div class='subscription-feed padding-xx-sm'>
-    <div class='fx-1 fx-row fx-malign-space-between fx-xalign-center'>
-      <span><b class='{{if (eq this.listeningState "Listening") "linked" "unlinked"}}'>{{this.listeningState}}</b>
+    <div class="subscription-feed padding-xx-sm">
+    <div class="fx-1 fx-row fx-malign-space-between fx-xalign-center">
+      <span><b class="{{if (eq this.listeningState 'Listening') 'linked' 'unlinked'}}">{{this.listeningState}}</b>
         for events on:
         {{@url}}</span>
-      <div class='fx-1'></div>
-      {{#if (eq this.listeningState 'Listening')}}
-        <OSS::Button @skin='default' @label='Unsubscribe' @icon='fas fa-unlink' {{on 'click' this.unsubscribe}} />
+      <div class="fx-1"></div>
+      {{#if (eq this.listeningState "Listening")}}
+        <OSS::Button @skin="default" @label="Unsubscribe" @icon="fas fa-unlink" {{on "click" this.unsubscribe}} />
       {{else}}
-        <OSS::Button @skin='default' @label='Subscribe' @icon='fas fa-link' {{on 'click' this.subscribe}} />
+        <OSS::Button @skin="default" @label="Subscribe" @icon="fas fa-link" {{on "click" this.subscribe}} />
       {{/if}}
-      <OSS::Button @skin='default' @icon='fa fa-times' {{on 'click' this.removeObs}} class='margin-left-xxx-sm' />
+      <OSS::Button @skin="default" @icon="fa fa-times" {{on "click" this.removeObs}} class="margin-left-xxx-sm" />
     </div>
-    <div class='events'>
+    <div class="events">
       {{#each this.data as |event|}}
-        <div class='fx-row'>
+        <div class="fx-row">
           {{event}}
         </div>
       {{/each}}
@@ -1102,20 +1102,20 @@
   const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
   /*
     <OSS::ModalDialog
-    @title='Example modal'
+    @title="Example modal"
     @close={{@closeModal}}
-    @size='md'
-    {{log-insertion 'log-insertion: Product Modal has been opened'}}
-    {{log-deletion 'log-deletion: Product Modal has been closed'}}
+    @size="md"
+    {{log-insertion "log-insertion: Product Modal has been opened"}}
+    {{log-deletion "log-deletion: Product Modal has been closed"}}
   >
     <:content>
-      <div style='height: 200px; background-color: white'>
+      <div style="height: 200px; background-color: white">
         Fake content goes here
       </div>
     </:content>
     <:footer>
-      <div class='fx-row fx-gap-px-12'>
-        <OSS::Button @skin='default' @label='Close' {{on 'click' @closeModal}} />
+      <div class="fx-row fx-gap-px-12">
+        <OSS::Button @skin="default" @label="Close" {{on "click" @closeModal}} />
       </div>
     </:footer>
   </OSS::ModalDialog>
@@ -1292,7 +1292,7 @@
   });
   _exports.default = void 0;
   var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
-  0; //eaimeta@70e063a35619d71f0,"@ember/controller",0,"@ember/service",0,"@glimmer/tracking",0,"@ember/object"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/controller",0,"@ember/object",0,"@ember/service",0,"@glimmer/tracking"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
@@ -1407,12 +1407,6 @@
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _logConstruction.default;
-    }
   });
   Object.defineProperty(_exports, "logConstruction", {
     enumerable: true,
@@ -2108,12 +2102,6 @@
     enumerable: true,
     get: function () {
       return _hyperevents.default;
-    }
-  });
-  Object.defineProperty(_exports, "initialize", {
-    enumerable: true,
-    get: function () {
-      return _hyperevents.initialize;
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/hyperevents/initializers/hyperevents"eaimeta@70e063a35619d71f
