@@ -1,1 +1,1 @@
-export { default, initialize } from '@upfluence/hyperevents/initializers/hyperevents';
+export { default } from '@upfluence/hyperevents/initializers/hyperevents';

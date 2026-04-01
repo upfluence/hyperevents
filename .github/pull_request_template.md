@@ -16,8 +16,9 @@ Related to: #<!-- enter issue number here -->
 ### 🧑‍💻 Developer Heads Up
 
 ⚡ Since we are using [Ember Octane](https://blog.emberjs.com/octane-is-here/) now:
-* Feel free to migrate existing components to Glimmer Components.
-* Write new ones exclusively in it.
+
+- Feel free to migrate existing components to Glimmer Components.
+- Write new ones exclusively in it.
 
 Useful Resource : [Ember Octane vs Classic Cheat Sheet](https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/)
 

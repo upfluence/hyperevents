@@ -1,6 +1,7 @@
-import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 import sinon from 'sinon';
+
 import { logConstruction } from 'dummy/decorators/log-construction';
 
 module('Unit | Decorators | @logConstruction', function (hooks) {

@@ -1,13 +1,15 @@
-// @ts-ignore
-import Application from '../app';
-// @ts-ignore
-import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
+
+// @ts-ignore
+import { forceModulesToBeLoaded, sendCoverage } from 'ember-cli-code-coverage/test-support';
 import { start } from 'ember-qunit';
 import * as QUnit from 'qunit';
 import { setup } from 'qunit-dom';
+
+import Application from 'dummy/app';
+
 // @ts-ignore
-import { forceModulesToBeLoaded, sendCoverage } from 'ember-cli-code-coverage/test-support';
+import config from '../config/environment';
 
 setup(QUnit.assert);
 

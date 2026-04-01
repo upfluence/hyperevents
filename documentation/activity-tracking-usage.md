@@ -5,6 +5,7 @@ This document gives information about how to track user events on the frontend, 
 ## Activity object
 
 An Activity is defined as follows :
+
 ```typescript
 type Activity = {
   type: ActivityType;
@@ -14,10 +15,11 @@ type Activity = {
   origin?: string;
   version?: string;
   extra?: {};
-}
+};
 ```
 
 Where:
+
 - Type: the type of the activity, 'page_view', 'button_click' or 'component_view'
 - Action: The user action, formatted/normalized see section below
 - Path: The URL path excluding the origin, as it is written in the browser
@@ -27,6 +29,7 @@ Where:
 - Extra: Any extra information we will want to include in the future
 
 For example, a filled object could look like :
+
 ```javascript
 let activity = {
   type: 'page_view',
@@ -35,11 +38,12 @@ let activity = {
   route: '/workflow/campaigns/:campaign_id/sourcing',
   path: '/workflow/campaigns/464/sourcing',
   version: '42'
-}
+};
 ```
 
 ## Action formatting
-__**TO DO: discuss and update this section**__
+
+\***\*TO DO: discuss and update this section\*\***
 We will define a standard on how to format the "action" part of the Activity payload.
 This needs to be further discussed but as a base idea we could have :
 `[action]-[type]-[name]`
@@ -54,33 +58,49 @@ e.g.
 ### `log-activity` helper
 
 Using it next to an `on "click"` action
+
 ```handlebars
-    <OSS::Button @skin="primary" @label="Open modal" @icon="fa-connect"
-                 {{enable-tooltip title="Click will trigger activity-tracker log"}}
-                 {{on "click" (log-activity this.openModal "open product modal")}} />
+<OSS::Button
+  @skin='primary'
+  @label='Open modal'
+  @icon='fa-connect'
+  {{enable-tooltip title='Click will trigger activity-tracker log'}}
+  {{on 'click' (log-activity this.openModal 'open product modal')}}
+/>
 ```
+
 or Using it next to an `on "click"` action wrapped inside an `fn` helper (if other params need to be passed to the @action
+
 ```handlebars
-    <OSS::Button @skin="primary" @label="Open modal" @icon="fa-connect"
-                 {{enable-tooltip title="Click will trigger activity-tracker log"}}
-                 {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}} />
+<OSS::Button
+  @skin='primary'
+  @label='Open modal'
+  @icon='fa-connect'
+  {{enable-tooltip title='Click will trigger activity-tracker log'}}
+  {{on 'click' (log-activity (fn this.openModal 'randomParam') 'open product modal')}}
+/>
 ```
 
 ### `log-insertion` modifier
+
 ```handlebars
 <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
                                   {{log-insertion "Product Modal has been opened"}}>
 ```
+
 Will trigger the activity log on `element rendered`
 
 ### `log-deletion` modifier
+
 ```handlebars
 <OSS::ModalDialog @title="Example modal" @close={{@closeModal}} @size="md"
                   {{log-deletion "Product Modal has been closed"}}>
 ```
+
 Will trigger the activity log on `element destroyed`
 
 ### `@logConstruction` decorator
+
 ```typescript
 import Component from '@glimmer/component';
 import { logConstruction } from '@upfluence/hyperevents/decorators/log-construction';
@@ -92,9 +112,11 @@ interface TestModalArgs {
 @logConstruction('action description from decorator', 'component_view')
 export default class TestModal extends Component<TestModalArgs> {}
 ```
+
 Note that the actionType on the decorator will default to `page_view` if it is not specified.
 
 ### `ActivityTrackingService` direct usage
+
 The activity service has a public member `log(type: ActivityType, action: string): void` used to register an Activity on the backend.
 The method will build an Activity object from the `type` & `action` parameters.
 
