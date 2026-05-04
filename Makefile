@@ -1,4 +1,4 @@
-.PHONY: start tests
+.PHONY: all clear install echo start clean re tests testserver enable_pre_hook disable_pre_hook help h version_patch version_minor version_major upfluence sonar-report
 
 .EXPORT_ALL_VARIABLES:
 
@@ -15,50 +15,58 @@ install: ## Install dependencies
 	@echo ""; echo "\n-------------------------------\n"; echo ""
 
 echo:
-	@echo Starting Hyperevents Dummy App
+	@echo Starting Hyperevents test app
 
 start: ## Starts the dev server
-	pnpm ember s --port 0
+	pnpm start
 
 clean: ## Cleans ./node_modules && ./dist
-	@echo "Cleaning up ./node_modules & ./dist folders"
-	-rm -r ./node_modules
-	-rm -r ./dist
+	@echo "Cleaning up node_modules folders and generated outputs"
+	-rm -rf ./node_modules
+	-rm -rf ./packages/hyperevents/node_modules
+	-rm -rf ./packages/test-app/node_modules
+	-rm -rf ./packages/hyperevents/dist
+	-rm -rf ./packages/hyperevents/declarations
+	-rm -rf ./packages/test-app/dist
+	-rm -rf ./packages/test-app/tmp
+	-rm -rf ./packages/test-app/coverage
+	-rm -rf ./coverage
 	@echo ""; echo "-------------------------------"; echo ""
 
 re:	clean install echo start ## Reinstalls dependencies & starts the dev server
 
 tests: ## Runs tests once
 	@echo "Running tests once"
-	pnpm ember test --silent -r dot
+	pnpm --filter test-app exec ember test --silent -r dot
 
 testserver: ## Runs the test server
 	@echo "Starting Test Server"
-	pnpm ember test -s
+	pnpm --filter test-app exec ember test -s
 
 enable_pre_hook: ## Enables git pre-hook on the project. Will run Linter & Tests before pushing.
 	@echo "Installing git pre-push hook"
 	@echo ""; echo "-------------------------------"; echo ""
-	pnpm install-pre-push-hook
+	cp ./scripts/pre-push ./.git/hooks/pre-push
+	chmod +x ./.git/hooks/pre-push
 
 disable_pre_hook: ## Disables the git pre-push hook.
 	@echo "Removing git pre-push hook"
 	@echo ""; echo "-------------------------------"; echo ""
-	pnpm remove-pre-push-hook
+	rm -f ./.git/hooks/pre-push
 
 help: ## Displays the help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 h: help ## Displays the help message
 
-version_patch: ## Creates & pushes a new patch tag
-	./scripts/new-version-tag patch
+version_patch: ## Creates a new patch release
+	pnpm release-it patch
 
-version_minor: ## Creates & pushes a new minor tag
-	./scripts/new-version-tag minor
+version_minor: ## Creates a new minor release
+	pnpm release-it minor
 
-version_major: ## Creates & pushes a new major tag
-	./scripts/new-version-tag major
+version_major: ## Creates a new major release
+	pnpm release-it major
 
 upfluence: ## Displays the UPF logo :)
 	@sh ./scripts/upf_logo

@@ -24,14 +24,14 @@ const PublishrAdminWebEngine = Engine.extend({
 });
 ```
 
-### Update the dummy app
+### Update the test app
 
-In `tests/dummy/app/app.js` for engine or `app/app.js` for regular project, add events-service to `COMMON_SERVICES` list.
-After that, you are able to use it in the project. The websocket connection can be set up in `tests/dummy/app/routes/application.js`
+In `packages/test-app/app/app.js` for engine or `app/app.js` for regular project, add events-service to `COMMON_SERVICES` list.
+After that, you are able to use it in the project. The websocket connection can be set up in `packages/test-app/app/routes/application.js`
 with the following code.
 
 ```javascript
-import config from 'dummy/config/environment';
+import config from 'test-app/config/environment';
 
 export default class extends Route {
   @service('events-service') events;
@@ -44,7 +44,7 @@ export default class extends Route {
 ```
 
 Now the connection can be established, don't forget to configure the `eventsServerURL` value. To do that, go in
-`tests/dummy/config/environment.js` and add eventsServerURL `process.env.EVENTS_SERVER_URL || 'wss://events-staging.upfluence.co/ws'`
+`packages/test-app/config/environment.js` and add eventsServerURL `process.env.EVENTS_SERVER_URL || 'wss://events-staging.upfluence.co/ws'`
 in `ENV` definition.
 
 ## Use the service

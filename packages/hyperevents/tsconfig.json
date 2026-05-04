@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "es2020",
+    "allowJs": true,
+    "checkJs": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "declarationDir": "declarations",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "noEmitOnError": false,
+    "rootDir": "./src",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "baseUrl": ".",
+    "module": "es6",
+    "experimentalDecorators": true,
+    "paths": {
+      "@upfluence/hyperevents": ["src"],
+      "@upfluence/hyperevents/*": ["src/*"],
+      "*": ["unpublished-development-types/*"]
+    }
+  },
+  "glint": {
+    "environment": ["ember-loose"]
+  },
+  "include": ["src/**/*", "unpublished-development-types/**/*"]
+}

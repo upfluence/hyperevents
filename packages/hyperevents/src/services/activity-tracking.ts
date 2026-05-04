@@ -1,0 +1,103 @@
+import { getOwner } from '@ember/application';
+import { debounce } from '@ember/runloop';
+import Service, { inject as service } from '@ember/service';
+import { getOwnConfig } from '@embroider/macros';
+import { tracked } from '@glimmer/tracking';
+
+import Configuration from '../configuration';
+
+export type ActivityType = 'page_view' | 'button_click' | 'component_view';
+export type Activity = {
+  type: ActivityType;
+  action: string;
+  path: string;
+  route: string;
+  origin?: string;
+  version?: string;
+  extra?: Record<string, string>;
+};
+
+export const THROTTLE_TIME_MS = 1000;
+const RETRY_ATTEMPTS: number = 1;
+const DEFAULT_LOG_OPTIONS = {
+  immediate: false
+};
+const addonConfig = getOwnConfig() as {
+  buildEnv?: string;
+  parentAppVersion?: string;
+};
+
+export default class ActivityTracking extends Service {
+  @service declare session: any;
+  @tracked activityQueue: Activity[] = [];
+
+  log(
+    type: ActivityType,
+    action: string,
+    extra: Record<string, unknown> = {},
+    options: { immediate?: boolean } = DEFAULT_LOG_OPTIONS
+  ): void {
+    const logOptions = { ...DEFAULT_LOG_OPTIONS, ...options };
+    this.activityQueue.push(this.buildActivityObject(type, action, extra));
+    debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
+  }
+
+  private performCall(tries: number = RETRY_ATTEMPTS, retryActivityQueue?: Activity[]): void {
+    if (this.activityQueue.length === 0 && !retryActivityQueue) return;
+    const tempActivityQueue: Activity[] = retryActivityQueue ?? [...this.activityQueue];
+    this.activityQueue = [];
+    this.sendBulkActivities(tempActivityQueue).catch(() => {
+      if (tries > 0) this.performCall(--tries, tempActivityQueue);
+    });
+  }
+
+  private sendBulkActivities(activities: Activity[]): Promise<void> {
+    return fetch(this.apiUrl, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({
+        environment: addonConfig.buildEnv || 'staging',
+        activities: activities
+      })
+    }).then((response: Response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
+      }
+      return Promise.resolve();
+    });
+  }
+
+  private get apiUrl(): string {
+    return `${Configuration.activityUrl}activity/bulk`;
+  }
+
+  private get headers(): Headers {
+    return new Headers({ Authorization: `Bearer ${this.accessToken}` });
+  }
+
+  private get accessToken(): string {
+    return this.session.data.authenticated.access_token;
+  }
+
+  private buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
+    return {
+      type: type,
+      origin: window.location.origin,
+      route: getOwner(this).lookup('service:router').currentRouteName,
+      path: window.location.pathname + window.location.search,
+      action: action,
+      version: addonConfig.parentAppVersion || 'unknown',
+      extra: this.stringifyExtra(extra)
+    };
+  }
+
+  private stringifyExtra(extra: Record<string, unknown>): Record<string, string> {
+    return Object.fromEntries(Object.entries(extra).map(([key, value]) => [key, String(value)]));
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'activity-tracking': ActivityTracking;
+  }
+}

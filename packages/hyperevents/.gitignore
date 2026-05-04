@@ -1,0 +1,5 @@
+dist/
+declarations/
+node_modules/
+.eslintcache
+.prettiercache
