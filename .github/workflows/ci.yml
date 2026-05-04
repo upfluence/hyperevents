@@ -31,10 +31,14 @@ jobs:
           cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm install
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Build Addon
+        run: pnpm --filter @upfluence/hyperevents build
       - name: Lint
-        run: pnpm lint:js
+        run: pnpm lint
       - name: Test
-        run: pnpm test:ember
+        run: pnpm --filter test-app test:ember
 
   release:
     name: Release Package
@@ -57,7 +61,8 @@ jobs:
         run: pnpm install
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      - run: npm publish
+      - run: pnpm publish --no-git-checks
+        working-directory: packages/hyperevents
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -82,10 +87,12 @@ jobs:
         run: pnpm install
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      - name: Ember Build
-        run: pnpm ember build --silent --environment=production
+      - name: Build Addon
+        run: pnpm --filter @upfluence/hyperevents build
+      - name: Build Test App
+        run: pnpm --filter test-app build
       - name: Deploy website
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/
+          publish_dir: ./packages/test-app/dist/
