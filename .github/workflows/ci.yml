@@ -38,7 +38,7 @@ jobs:
       - name: Lint
         run: pnpm lint
       - name: Typecheck Addon
-        run: pnpm --filter @upfluence/hyperevents lint:types
+        run: pnpm lint:types
       - name: Test
         run: pnpm --filter test-app test:ember
 

@@ -6,6 +6,7 @@
     "build": "ember build --environment=production",
     "lint": "prettier . --cache --check && ESLINT_USE_FLAT_CONFIG=false eslint . --cache && ember-template-lint .",
     "lint:fix": "prettier . --cache --write && ESLINT_USE_FLAT_CONFIG=false eslint . --cache --fix && ember-template-lint . --fix",
+    "lint:types": "tsc --noEmit",
     "start": "ember serve",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test",
