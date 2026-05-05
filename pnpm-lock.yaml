@@ -135,6 +135,9 @@ importers:
       rollup:
         specifier: ^4.24.0
         version: 4.60.2
+      rollup-plugin-copy:
+        specifier: ^3.5.0
+        version: 3.5.0
       typescript:
         specifier: ^4.9.5
         version: 4.9.5
@@ -1345,8 +1348,8 @@ packages:
       typescript:
         optional: true
 
-  '@fortawesome/fontawesome-pro@git+https://git@github.com:upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420':
-    resolution: {commit: c639fe415de762c946eaebf4cc4e815ce3ede420, repo: git@github.com:upfluence/fontawesome-pro.git, type: git}
+  '@fortawesome/fontawesome-pro@git+https://github.com/upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420':
+    resolution: {commit: c639fe415de762c946eaebf4cc4e815ce3ede420, repo: https://github.com/upfluence/fontawesome-pro.git, type: git}
     version: 7.0.1
     engines: {node: '>=6'}
 
@@ -3175,6 +3178,9 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
+  colorette@1.4.0:
+    resolution: {integrity: sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==}
+
   colors@1.0.3:
     resolution: {integrity: sha512-pFGrxThWcWQ2MsAz6RtgeWe4NK2kUE1WfsrvvlctdII745EW9I0yflqhe7++M5LEc7bV2c/9/5zc8sFcpL0Drw==}
     engines: {node: '>=0.1.90'}
@@ -4870,6 +4876,10 @@ packages:
     resolution: {integrity: sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==}
     engines: {node: '>=8'}
 
+  globby@10.0.1:
+    resolution: {integrity: sha512-sSs4inE1FB2YQiymcmTv6NWENryABjUNPeWhOvmn4SjtKybglsyPZxFB3U1/+L1bYi0rNZDqCLlHyLYDl1Pq5A==}
+    engines: {node: '>=8'}
+
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -5441,6 +5451,10 @@ packages:
 
   is-plain-object@2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
+    engines: {node: '>=0.10.0'}
+
+  is-plain-object@3.0.1:
+    resolution: {integrity: sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==}
     engines: {node: '>=0.10.0'}
 
   is-plain-object@5.0.0:
@@ -7238,6 +7252,10 @@ packages:
     resolution: {integrity: sha512-ETShhQGb9SoiwcNrvb3BhUNSGR89Jao0+XxxfzzLW1YsUzx8+rMO4z9oqWWmo6OHUmfNQRvqRj0cAyPkS9lN9w==}
     peerDependencies:
       rollup: '>=1.1.2'
+
+  rollup-plugin-copy@3.5.0:
+    resolution: {integrity: sha512-wI8D5dvYovRMx/YYKtUNt3Yxaw4ORC9xo6Gt9t22kveWz1enG9QrhVlagzwrxSC455xD1dHMKhIJkbsQ7d48BA==}
+    engines: {node: '>=8.3'}
 
   rollup@4.60.2:
     resolution: {integrity: sha512-J9qZyW++QK/09NyN/zeO0dG/1GdGfyp9lV8ajHnRVLfo/uFsbji5mHnDgn/qYdUHyCkM2N+8VyspgZclfAh0eQ==}
@@ -9930,7 +9948,7 @@ snapshots:
     optionalDependencies:
       typescript: 4.9.5
 
-  '@fortawesome/fontawesome-pro@git+https://git@github.com:upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420': {}
+  '@fortawesome/fontawesome-pro@git+https://github.com/upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420': {}
 
   '@glimmer/component@1.1.2(@babel/core@7.29.0)':
     dependencies:
@@ -10754,7 +10772,7 @@ snapshots:
       '@embroider/macros': 1.20.2(@glint/template@1.7.7)
       '@embroider/util': 1.13.5(@glint/environment-ember-loose@1.5.2(@glimmer/component@1.1.2(@babel/core@7.29.0))(@glint/template@1.7.7)(@types/ember__array@3.16.11)(@types/ember__component@3.16.14)(@types/ember__controller@3.16.14)(@types/ember__object@3.12.13)(@types/ember__routing@3.16.23)(ember-cli-htmlbars@4.5.0)(ember-modifier@3.2.0(@babel/core@7.29.0)))(@glint/template@1.7.7)(ember-source@3.28.12(@babel/core@7.29.0))
       '@floating-ui/dom': 1.7.6
-      '@fortawesome/fontawesome-pro': git+https://git@github.com:upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420
+      '@fortawesome/fontawesome-pro': git+https://github.com/upfluence/fontawesome-pro.git#c639fe415de762c946eaebf4cc4e815ce3ede420
       babel-plugin-debug-macros: 0.3.4(@babel/core@7.29.0)
       bootstrap: 3.4.1
       broccoli-funnel: 3.0.8
@@ -12431,6 +12449,8 @@ snapshots:
   color-name@1.1.4: {}
 
   color-support@1.1.3: {}
+
+  colorette@1.4.0: {}
 
   colors@1.0.3: {}
 
@@ -14945,6 +14965,17 @@ snapshots:
       merge2: 1.4.1
       slash: 3.0.0
 
+  globby@10.0.1:
+    dependencies:
+      '@types/glob': 7.2.0
+      array-union: 2.1.0
+      dir-glob: 3.0.1
+      fast-glob: 3.3.2
+      glob: 7.2.3
+      ignore: 5.3.0
+      merge2: 1.4.1
+      slash: 3.0.0
+
   globby@11.1.0:
     dependencies:
       array-union: 2.1.0
@@ -15594,6 +15625,8 @@ snapshots:
   is-plain-object@2.0.4:
     dependencies:
       isobject: 3.0.1
+
+  is-plain-object@3.0.1: {}
 
   is-plain-object@5.0.0: {}
 
@@ -17531,6 +17564,14 @@ snapshots:
     dependencies:
       fs-extra: 7.0.1
       rollup: 4.60.2
+
+  rollup-plugin-copy@3.5.0:
+    dependencies:
+      '@types/fs-extra': 8.1.5
+      colorette: 1.4.0
+      fs-extra: 8.1.0
+      globby: 10.0.1
+      is-plain-object: 3.0.1
 
   rollup@4.60.2:
     dependencies:

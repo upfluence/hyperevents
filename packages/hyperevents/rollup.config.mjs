@@ -1,6 +1,7 @@
 import { Addon } from '@embroider/addon-dev/rollup';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import copy from 'rollup-plugin-copy';
 
 const addon = new Addon({
   srcDir: 'src',
@@ -43,6 +44,13 @@ export default {
 
     addon.keepAssets(['**/*.css']),
 
-    addon.clean()
+    addon.clean(),
+
+    copy({
+      targets: [
+        { src: '../../README.md', dest: '.' },
+        { src: '../../LICENSE.md', dest: '.' }
+      ]
+    })
   ]
 };

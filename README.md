@@ -52,4 +52,4 @@ To release a beta version, run `pnpm release-it --preRelease=beta` and follow th
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+The published `@upfluence/hyperevents` addon package is licensed under the [MIT License](LICENSE.md).

@@ -37,6 +37,8 @@ jobs:
         run: pnpm --filter @upfluence/hyperevents build
       - name: Lint
         run: pnpm lint
+      - name: Typecheck Addon
+        run: pnpm --filter @upfluence/hyperevents lint:types
       - name: Test
         run: pnpm --filter test-app test:ember
 
@@ -63,8 +65,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       - run: pnpm publish --no-git-checks
         working-directory: packages/hyperevents
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy preview app
