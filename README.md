@@ -27,6 +27,7 @@ Apps should provide activity metadata through `@embroider/macros`:
   setConfig: {
     '@upfluence/hyperevents': {
       buildEnv: process.env.BUILD_ENV || 'staging',
+      activityUrl: process.env.ACTIVITY_URL || 'https://activity.upfluence.com',
       parentAppVersion: '<app version>'
     }
   }

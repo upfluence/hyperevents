@@ -4,8 +4,6 @@ import Service, { inject as service } from '@ember/service';
 import { getOwnConfig } from '@embroider/macros';
 import { tracked } from '@glimmer/tracking';
 
-import Configuration from '../configuration';
-
 export type ActivityType = 'page_view' | 'button_click' | 'component_view';
 export type Activity = {
   type: ActivityType;
@@ -25,6 +23,7 @@ const DEFAULT_LOG_OPTIONS = {
 const addonConfig = getOwnConfig() as {
   buildEnv?: string;
   parentAppVersion?: string;
+  activityUrl: string;
 };
 
 export default class ActivityTracking extends Service {
@@ -68,7 +67,7 @@ export default class ActivityTracking extends Service {
   }
 
   private get apiUrl(): string {
-    return `${Configuration.activityUrl}activity/bulk`;
+    return `${addonConfig.activityUrl}activity/bulk`;
   }
 
   private get headers(): Headers {
