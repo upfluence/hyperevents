@@ -3,6 +3,7 @@ LICENSE.md
 
 dist/
 declarations/
+stats.html
 node_modules/
 .eslintcache
 .prettiercache

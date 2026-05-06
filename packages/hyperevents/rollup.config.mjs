@@ -2,13 +2,14 @@ import { Addon } from '@embroider/addon-dev/rollup';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const addon = new Addon({
   srcDir: 'src',
   destDir: 'dist'
 });
 
-export default {
+const config = {
   output: addon.output(),
 
   plugins: [
@@ -54,3 +55,9 @@ export default {
     })
   ]
 };
+
+if (process.env.DEBUG) {
+  config.plugins.push(visualizer());
+}
+
+export default config;
