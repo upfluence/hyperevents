@@ -134,7 +134,6 @@
       "./helpers/log-activity.js": "./dist/_app_/helpers/log-activity.js",
       "./helpers/observable.js": "./dist/_app_/helpers/observable.js",
       "./helpers/observer-group.js": "./dist/_app_/helpers/observer-group.js",
-      "./initializers/hyperevents.js": "./dist/_app_/initializers/hyperevents.js",
       "./modifiers/log-deletion.js": "./dist/_app_/modifiers/log-deletion.js",
       "./modifiers/log-insertion.js": "./dist/_app_/modifiers/log-insertion.js",
       "./services/activity-tracking.js": "./dist/_app_/services/activity-tracking.js",
