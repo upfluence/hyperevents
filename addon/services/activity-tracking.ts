@@ -38,6 +38,18 @@ export default class ActivityTracking extends Service {
     debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
   }
 
+  buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
+    return {
+      type: type,
+      origin: window.location.origin,
+      route: getOwner(this).lookup('service:router').currentRouteName,
+      path: window.location.pathname + window.location.search,
+      action: action,
+      version: (getOwnConfig() as any).parentAppVersion || 'unknown',
+      extra: this.stringifyExtra(extra)
+    };
+  }
+
   private performCall(tries: number = RETRY_ATTEMPTS, retryActivityQueue?: Activity[]): void {
     if (this.activityQueue.length === 0 && !retryActivityQueue) return;
     const tempActivityQueue: Activity[] = retryActivityQueue ?? [...this.activityQueue];
@@ -75,17 +87,7 @@ export default class ActivityTracking extends Service {
     return this.session.data.authenticated.access_token;
   }
 
-  private buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
-    return {
-      type: type,
-      origin: window.location.origin,
-      route: getOwner(this).lookup('service:router').currentRouteName,
-      path: window.location.pathname + window.location.search,
-      action: action,
-      version: (getOwnConfig() as any).parentAppVersion || 'unknown',
-      extra: this.stringifyExtra(extra)
-    };
-  }
+
 
   private stringifyExtra(extra: Record<string, unknown>): Record<string, string> {
     return Object.fromEntries(Object.entries(extra).map(([key, value]) => [key, String(value)]));
