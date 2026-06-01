@@ -38,7 +38,7 @@ export default class ActivityTracking extends Service {
     debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
   }
 
-  buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
+  protected buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
     return {
       type: type,
       origin: window.location.origin,
