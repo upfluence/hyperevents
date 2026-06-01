@@ -74098,6 +74098,17 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
       this.activityQueue.push(this.buildActivityObject(type, action, extra));
       Ember.run.debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
     }
+    buildActivityObject(type, action, extra) {
+      return {
+        type: type,
+        origin: window.location.origin,
+        route: Ember.getOwner(this).lookup('service:router').currentRouteName,
+        path: window.location.pathname + window.location.search,
+        action: action,
+        version: "unknown",
+        extra: this.stringifyExtra(extra)
+      };
+    }
     performCall(tries = RETRY_ATTEMPTS, retryActivityQueue) {
       if (this.activityQueue.length === 0 && !retryActivityQueue) return;
       const tempActivityQueue = retryActivityQueue ?? [...this.activityQueue];
@@ -74131,17 +74142,6 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
     }
     get accessToken() {
       return this.session.data.authenticated.access_token;
-    }
-    buildActivityObject(type, action, extra) {
-      return {
-        type: type,
-        origin: window.location.origin,
-        route: Ember.getOwner(this).lookup('service:router').currentRouteName,
-        path: window.location.pathname + window.location.search,
-        action: action,
-        version: "unknown",
-        extra: this.stringifyExtra(extra)
-      };
     }
     stringifyExtra(extra) {
       return Object.fromEntries(Object.entries(extra).map(([key, value]) => [key, String(value)]));
