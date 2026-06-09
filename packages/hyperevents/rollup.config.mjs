@@ -19,18 +19,15 @@ const config = {
 
     addon.publicEntrypoints(['**/*.js', '**/*.ts']),
 
-    addon.appReexports(
-      ['decorators/**/*.js', 'helpers/**/*.js', 'initializers/**/*.js', 'modifiers/**/*.js', 'services/**/*.js'],
-      {
-        exports(filename) {
-          if (filename === 'decorators/log-construction.js') {
-            return ['logConstruction'];
-          }
-
-          return ['default'];
+    addon.appReexports(['decorators/**/*.js', 'helpers/**/*.js', 'modifiers/**/*.js', 'services/**/*.js'], {
+      exports(filename) {
+        if (filename === 'decorators/log-construction.js') {
+          return ['logConstruction'];
         }
+
+        return ['default'];
       }
-    ),
+    }),
 
     addon.dependencies(),
 

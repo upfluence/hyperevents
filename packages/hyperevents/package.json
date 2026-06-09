@@ -91,10 +91,6 @@
       "types": "./declarations/helpers/observer-group.d.ts",
       "default": "./dist/helpers/observer-group.js"
     },
-    "./initializers/hyperevents": {
-      "types": "./declarations/initializers/hyperevents.d.ts",
-      "default": "./dist/initializers/hyperevents.js"
-    },
     "./modifiers/log-deletion": {
       "types": "./declarations/modifiers/log-deletion.d.ts",
       "default": "./dist/modifiers/log-deletion.js"
