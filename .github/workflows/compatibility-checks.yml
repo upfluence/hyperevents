@@ -36,5 +36,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       - run: pnpm ember try:one ${{ matrix.scenario }}
+        working-directory: packages/test-app
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

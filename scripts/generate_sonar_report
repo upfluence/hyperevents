@@ -18,16 +18,16 @@ fi
 echo ""
 echo ""
 echo "[Step2] Run ember test - dot reporter to generate lcovinfo file"
-COVERAGE=true ember test --silent -r dot --filter=!Wednesday
+COVERAGE=true pnpm --filter test-app exec ember test --silent -r dot --filter=!Wednesday
 
 ## Check that coverage folder has been generated
 echo ""
 echo ""
 echo "[Step3] Check that coverage folder has been generated"
-if [ -d "./coverage" ]; then
-  echo "./coverage directory successfully created."
+if [ -d "./packages/test-app/coverage" ]; then
+  echo "./packages/test-app/coverage directory successfully created."
 else
-  echo "./coverage directory not found. Check your configuration."
+  echo "./packages/test-app/coverage directory not found. Check your configuration."
   exit 1
 fi
 
