@@ -29,6 +29,8 @@ jobs:
         run: pnpm install
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Build Addon
+        run: pnpm --filter @upfluence/hyperevents build
       - name: Run tests
         run: pnpm --filter test-app test:coverage
       - name: SonarQube Scan
