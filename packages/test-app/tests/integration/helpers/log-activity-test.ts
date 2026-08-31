@@ -16,6 +16,7 @@ module('Integration | Helper | log-activity', function (hooks) {
   });
 
   test('It throws an error if an @action is not passed to the modifier', async function (assert) {
+    assert.expect(1);
     setupOnerror((err: Error) => {
       assert.strictEqual(
         err.message,
@@ -26,6 +27,7 @@ module('Integration | Helper | log-activity', function (hooks) {
   });
 
   test('It throws an error if a description is not passed to the modifier', async function (assert) {
+    assert.expect(1);
     setupOnerror((err: Error) => {
       assert.strictEqual(
         err.message,

@@ -17,8 +17,8 @@ export default class ApplicationController extends Controller {
 
   @tracked modalVisible: boolean = false;
 
-  constructor() {
-    super(...arguments);
+  constructor(...args: any[]) {
+    super(...args);
   }
 
   @action
@@ -68,8 +68,7 @@ export default class ApplicationController extends Controller {
 
   private _createObserver(): void {
     console.log('Creating new observer: ', this.newObserver);
-    this.obsUrlArray.push(this.newObserver);
-    this.obsUrlArray = this.obsUrlArray;
+    this.obsUrlArray = [...this.obsUrlArray, this.newObserver];
     this.newObserver = '';
   }
 }

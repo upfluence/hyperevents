@@ -36,8 +36,8 @@ export default class EventsService extends Service {
   private _url: string | null = null;
   private _connTimer: any | null;
 
-  constructor() {
-    super(...arguments);
+  constructor(...args: any[]) {
+    super(...args);
   }
 
   /**

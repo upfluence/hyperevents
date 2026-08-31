@@ -24,6 +24,7 @@ module('Integration | Modifiers | modifiers/log-insertion', function (hooks) {
   });
 
   test('it throws an error if the actionDescription is not passed', async function (assert) {
+    assert.expect(1);
     setupOnerror((err: Error) => {
       assert.strictEqual(
         err.message,

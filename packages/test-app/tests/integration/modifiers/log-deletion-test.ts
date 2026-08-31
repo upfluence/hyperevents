@@ -34,6 +34,7 @@ module('Integration | Modifiers | modifiers/log-deletion', function (hooks) {
   });
 
   test('it throws an error if the actionDescription is not passed', async function (assert) {
+    assert.expect(1);
     set(this, 'visible', true);
     setupOnerror((err: Error) => {
       assert.strictEqual(

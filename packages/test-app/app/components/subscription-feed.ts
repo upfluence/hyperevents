@@ -46,8 +46,7 @@ export default class SubscriptionFeed extends Component<SubscriptionFeedArgs> {
     this.listeningState = 'Listening';
     this._dataObs.subscribe((event: any) => {
       console.log('package received: ', JSON.stringify(event));
-      this.data.push(JSON.stringify(event));
-      this.data = this.data;
+      this.data = [...this.data, JSON.stringify(event)];
     });
   }
 }
