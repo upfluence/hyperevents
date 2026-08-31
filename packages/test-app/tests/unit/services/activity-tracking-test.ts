@@ -55,12 +55,12 @@ module('Unit | Service | activity-tracking', function (hooks) {
     this.service.log('button_click', 'test-action-2', {});
     this.service.log('button_click', 'test-action-3', {});
 
-    assert.equal(this.fetchStub.callCount, 0, 'fetch should not be called immediately');
+    assert.strictEqual(this.fetchStub.callCount, 0, 'fetch should not be called immediately');
     this.clock.tick(THROTTLE_TIME_MS);
-    assert.equal(this.fetchStub.callCount, 1, 'fetch should be called after throttle time');
+    assert.strictEqual(this.fetchStub.callCount, 1, 'fetch should be called after throttle time');
     const [url, options] = this.fetchStub.firstCall.args;
-    assert.equal(url, `${this.service.apiUrl}`, 'fetch should be called with correct URL');
+    assert.strictEqual(url, `${this.service.apiUrl}`, 'fetch should be called with correct URL');
     const body = JSON.parse(options.body);
-    assert.equal(body.activities.length, 3, 'fetch should be called with all enqueued activities');
+    assert.strictEqual(body.activities.length, 3, 'fetch should be called with all enqueued activities');
   });
 });

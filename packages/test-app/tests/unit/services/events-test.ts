@@ -96,8 +96,8 @@ module('Unit | Service | events', function (hooks) {
 
     test('The connection is closed when the terminateConnection() method is called', function (assert) {
       this.mockedSocket.close = (code: any, reason: string) => {
-        assert.equal(code, 1000);
-        assert.equal(reason, 'user-requested-closure');
+        assert.strictEqual(code, 1000);
+        assert.strictEqual(reason, 'user-requested-closure');
       };
 
       this.service.terminateConnection();
@@ -132,12 +132,12 @@ module('Unit | Service | events', function (hooks) {
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.equal(this.callcount, 1);
+      assert.strictEqual(this.callcount, 1);
       observer.unsubscribe();
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.equal(this.callcount, 1);
+      assert.strictEqual(this.callcount, 1);
     });
 
     test('ExactPath matches an exact resource path', function (assert) {
