@@ -5,9 +5,11 @@ import { tracked } from '@glimmer/tracking';
 
 import EventsService from '@upfluence/hyperevents/services/events-service';
 
+import type Session from '../services/session';
+
 export default class ApplicationController extends Controller {
   @service declare eventsService: EventsService;
-  @service declare session: any;
+  @service declare session: Session;
 
   @tracked token: string = '';
   @tracked wsUrl: string = 'wss://events-staging.upfluence.co/ws';
