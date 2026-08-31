@@ -1,34 +1,18 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "es2020",
-    "allowJs": true,
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
     "noEmitOnError": true,
     "noEmit": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "module": "es6",
-    "experimentalDecorators": true,
+    "rootDir": "..",
     "paths": {
-      "test-app/tests/*": ["tests/*"],
-      "test-app/*": ["app/*"],
+      "test-app/tests/*": ["./tests/*"],
+      "test-app/*": ["./app/*"],
       "@upfluence/hyperevents": ["../hyperevents/src"],
       "@upfluence/hyperevents/*": ["../hyperevents/src/*"],
       "@upfluence/hyperevents/test-support": ["../hyperevents/src/test-support"],
       "@upfluence/hyperevents/test-support/*": ["../hyperevents/src/test-support/*"],
-      "*": ["types/*"]
+      "*": ["./types/*"]
     }
   },
   "include": ["app/**/*", "tests/**/*", "types/**/*", "../hyperevents/src/**/*"]

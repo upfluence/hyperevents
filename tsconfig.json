@@ -1,4 +1,25 @@
 {
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "es2020",
+    "allowJs": true,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "module": "es6",
+    "experimentalDecorators": true
+  },
   "files": [],
   "references": [
     {
