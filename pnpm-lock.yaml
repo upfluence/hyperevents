@@ -4,6 +4,24 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@trivago/prettier-plugin-sort-imports':
+      specifier: ^5.2.2
+      version: 5.2.2
+    '@upfluence/w-conf':
+      specifier: ^0.4.0
+      version: 0.4.0
+    eslint:
+      specifier: ^10.5.0
+      version: 10.9.1
+    prettier:
+      specifier: ^3.6.2
+      version: 3.8.1
+    typescript:
+      specifier: ^5.9.3
+      version: 5.9.3
+
 importers:
 
   .:
@@ -12,16 +30,19 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(release-it@15.11.0)
       '@trivago/prettier-plugin-sort-imports':
-        specifier: ^5.2.2
+        specifier: 'catalog:'
         version: 5.2.2(prettier@3.8.1)
       '@upfluence/w-conf':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.8.1))(@typescript-eslint/parser@8.68.0(eslint@10.9.1)(typescript@5.9.3))(eslint@10.9.1)(prettier@3.8.1)(typescript@5.9.3)
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
+      eslint:
+        specifier: 'catalog:'
+        version: 10.9.1
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.8.1
       release-it:
         specifier: ^15.9.3
@@ -70,7 +91,7 @@ importers:
         specifier: ^16.0.1
         version: 16.0.3(rollup@4.60.2)
       '@trivago/prettier-plugin-sort-imports':
-        specifier: ^5.2.2
+        specifier: 'catalog:'
         version: 5.2.2(prettier@3.8.1)
       '@types/ember__application':
         specifier: ^3.16.3
@@ -94,7 +115,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@upfluence/w-conf':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.8.1))(@typescript-eslint/parser@8.68.0(eslint@10.9.1)(typescript@5.9.3))(eslint@10.9.1)(prettier@3.8.1)(typescript@5.9.3)
       babel-plugin-ember-template-compilation:
         specifier: ^2.2.1
@@ -112,10 +133,10 @@ importers:
         specifier: ^2.6.0
         version: 2.21.0
       eslint:
-        specifier: ^10.5.0
+        specifier: 'catalog:'
         version: 10.9.1
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.8.1
       rollup:
         specifier: ^4.24.0
@@ -127,7 +148,7 @@ importers:
         specifier: ^5.14.0
         version: 5.14.0(rollup@4.60.2)
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
 
   packages/test-app:
@@ -173,7 +194,7 @@ importers:
         specifier: ^1.0.0
         version: 1.1.2
       '@trivago/prettier-plugin-sort-imports':
-        specifier: ^5.2.2
+        specifier: 'catalog:'
         version: 5.2.2(prettier@3.8.1)
       '@types/ember-qunit':
         specifier: ^3.4.15
@@ -254,7 +275,7 @@ importers:
         specifier: ^3.95.0
         version: 3.95.0(@babel/core@7.29.7)(@ember/test-helpers@2.6.0(@babel/core@7.29.7))(@glint/environment-ember-loose@1.5.2(@glimmer/component@1.1.2(@babel/core@7.29.7))(@glint/template@1.7.7)(@types/ember__array@3.16.11)(@types/ember__component@3.16.14)(@types/ember__controller@3.16.14)(@types/ember__object@3.12.13)(@types/ember__routing@3.16.23)(ember-cli-htmlbars@4.5.0)(ember-modifier@3.2.0(@babel/core@7.29.7)))(@glint/template@1.7.7)(ember-source@3.28.12(@babel/core@7.29.7))(qunit@2.20.0)(typescript@5.9.3)(webpack@5.90.0)
       '@upfluence/w-conf':
-        specifier: ^0.4.0
+        specifier: 'catalog:'
         version: 0.4.0(@trivago/prettier-plugin-sort-imports@5.2.2(prettier@3.8.1))(@typescript-eslint/parser@8.68.0(eslint@10.9.1)(typescript@5.9.3))(eslint@10.9.1)(prettier@3.8.1)(typescript@5.9.3)
       ember-cli:
         specifier: ~3.28.6
@@ -314,7 +335,7 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       eslint:
-        specifier: ^10.5.0
+        specifier: 'catalog:'
         version: 10.9.1
       loader.js:
         specifier: ^4.7.0
@@ -323,7 +344,7 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       prettier:
-        specifier: ^3.6.2
+        specifier: 'catalog:'
         version: 3.8.1
       qunit:
         specifier: ^2.17.2
@@ -335,7 +356,7 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1
       typescript:
-        specifier: ^5.9.3
+        specifier: 'catalog:'
         version: 5.9.3
       typescript-coverage-report:
         specifier: ^0.8.0

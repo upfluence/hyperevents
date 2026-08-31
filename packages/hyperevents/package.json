@@ -44,19 +44,19 @@
     "@types/ember__service": "^3.16.1",
     "@types/ember__utils": "^3.16.2",
     "@types/htmlbars-inline-precompile": "^1.0.1",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "@upfluence/w-conf": "^0.4.0",
+    "@trivago/prettier-plugin-sort-imports": "catalog:",
+    "@upfluence/w-conf": "catalog:",
     "babel-plugin-ember-template-compilation": "^2.2.1",
     "ember-cli-babel": "^7.19.0",
     "ember-cli-htmlbars": "^4.3.1",
     "ember-source": "~3.28.12",
     "ember-template-lint": "^2.6.0",
-    "eslint": "^10.5.0",
-    "prettier": "^3.6.2",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
     "rollup": "^4.24.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-visualizer": "^5.14.0",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "ember-source": ">=3.28"
