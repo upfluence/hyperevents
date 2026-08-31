@@ -23,7 +23,7 @@ module('Unit | Service | activity-tracking', function (hooks) {
   });
 
   test('it exists', function (assert) {
-    let service = this.owner.lookup('service:activity-tracking');
+    const service = this.owner.lookup('service:activity-tracking');
     assert.ok(service);
   });
 
@@ -38,7 +38,7 @@ module('Unit | Service | activity-tracking', function (hooks) {
       arr: [1, 2]
     });
 
-    let [activity] = this.service.activityQueue;
+    const [activity] = this.service.activityQueue;
     assert.deepEqual(activity.extra, {
       text: 'hello',
       count: '3',
