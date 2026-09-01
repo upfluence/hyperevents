@@ -19,10 +19,6 @@ export default class ApplicationController extends Controller {
 
   @tracked modalVisible: boolean = false;
 
-  constructor(...args: any[]) {
-    super(...args);
-  }
-
   @action
   openModal(_: any, event: PointerEvent): void {
     event.stopPropagation();

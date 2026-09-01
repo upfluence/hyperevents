@@ -36,10 +36,6 @@ export default class EventsService extends Service {
   private _url: string | null = null;
   private _connTimer: any | null;
 
-  constructor(...args: any[]) {
-    super(...args);
-  }
-
   /**
    * A method that returns an Observable that will emit events when a 'matching' message is received.
    *
