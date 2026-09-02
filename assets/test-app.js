@@ -1645,8 +1645,7 @@
       this.listeningState = 'Listening';
       this._dataObs.subscribe(event => {
         console.log('package received: ', JSON.stringify(event));
-        this.data.push(JSON.stringify(event));
-        this.data = this.data;
+        this.data = [...this.data, JSON.stringify(event)];
       });
     }
   }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.inject], {
@@ -1796,8 +1795,8 @@
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   let ApplicationController = _exports.default = (_class = class ApplicationController extends _controller.default {
-    constructor() {
-      super(...arguments);
+    constructor(...args) {
+      super(...args);
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
       _initializerDefineProperty(this, "session", _descriptor2, this);
       _initializerDefineProperty(this, "token", _descriptor3, this);
@@ -1840,8 +1839,7 @@
     }
     _createObserver() {
       console.log('Creating new observer: ', this.newObserver);
-      this.obsUrlArray.push(this.newObserver);
-      this.obsUrlArray = this.obsUrlArray;
+      this.obsUrlArray = [...this.obsUrlArray, this.newObserver];
       this.newObserver = '';
     }
   }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.inject], {
