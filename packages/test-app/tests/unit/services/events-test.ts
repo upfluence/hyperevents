@@ -95,15 +95,17 @@ module('Unit | Service | events', function (hooks) {
     });
 
     test('The connection is closed when the terminateConnection() method is called', function (assert) {
+      assert.expect(2);
       this.mockedSocket.close = (code: any, reason: string) => {
-        assert.equal(code, 1000);
-        assert.equal(reason, 'user-requested-closure');
+        assert.strictEqual(code, 1000);
+        assert.strictEqual(reason, 'user-requested-closure');
       };
 
       this.service.terminateConnection();
     });
 
     test('Dispatches events when received from the socket', function (assert) {
+      assert.expect(2);
       const observer1 = this.service.watch(prefixPath('/toto'));
       const observer2 = this.service.watch(prefixPath('/toto'));
 
@@ -118,8 +120,6 @@ module('Unit | Service | events', function (hooks) {
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-
-      assert.expect(2);
     });
 
     test('Unsubscribe stops listening for incoming events', function (assert) {
@@ -132,15 +132,16 @@ module('Unit | Service | events', function (hooks) {
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.equal(this.callcount, 1);
+      assert.strictEqual(this.callcount, 1);
       observer.unsubscribe();
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.equal(this.callcount, 1);
+      assert.strictEqual(this.callcount, 1);
     });
 
     test('ExactPath matches an exact resource path', function (assert) {
+      assert.expect(1);
       const observer1 = this.service.watch(exactPath('/toto'));
       const observer2 = this.service.watch(exactPath('/toto/1'));
       // the obs2 with exactPath math on '/toto/1' will never trigger since the eventPayload is set to '/toto' ressource
@@ -154,10 +155,10 @@ module('Unit | Service | events', function (hooks) {
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.expect(1);
     });
 
     test('prefixPath matches an exact resource path', function (assert) {
+      assert.expect(2);
       const observer1 = this.service.watch(prefixPath('/to'));
       const observer2 = this.service.watch(prefixPath('/toto'));
       const observer3 = this.service.watch(prefixPath('/toto/1'));
@@ -174,10 +175,10 @@ module('Unit | Service | events', function (hooks) {
       this.mockedSocket.callbacks['message']({
         data: JSON.stringify(eventPayload)
       });
-      assert.expect(2);
     });
 
     test('If the connection is not closed by the user, then the connection is retried', async function (assert) {
+      assert.expect(1);
       this.connected = false;
       this.service._buildSocket = () => {
         assert.true(true);

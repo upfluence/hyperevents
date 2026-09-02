@@ -32,7 +32,7 @@ module('Unit | Decorators | @logConstruction', function (hooks) {
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][1], 'xxx');
+    assert.strictEqual(this.logStub.args[0][1], 'xxx');
   });
 
   test('The original Ctor code is still executed', function (assert) {
@@ -53,8 +53,8 @@ module('Unit | Decorators | @logConstruction', function (hooks) {
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][0], 'page_view');
-    assert.equal(this.logStub.args[0][1], 'description of the action');
+    assert.strictEqual(this.logStub.args[0][0], 'page_view');
+    assert.strictEqual(this.logStub.args[0][1], 'description of the action');
   });
 
   test('Specifying an actionType sets it in the activityTracking.log call', function (assert) {
@@ -63,8 +63,8 @@ module('Unit | Decorators | @logConstruction', function (hooks) {
 
     new TestWithDecorator();
     assert.true(this.logStub.calledOnce);
-    assert.equal(this.logStub.args[0][0], 'component_view');
-    assert.equal(this.logStub.args[0][1], 'description of the action');
+    assert.strictEqual(this.logStub.args[0][0], 'component_view');
+    assert.strictEqual(this.logStub.args[0][1], 'description of the action');
   });
 
   test('An error is thrown if the actionDescription is not set', function (assert) {

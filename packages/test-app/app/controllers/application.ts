@@ -5,9 +5,11 @@ import { tracked } from '@glimmer/tracking';
 
 import EventsService from '@upfluence/hyperevents/services/events-service';
 
+import type Session from '../services/session';
+
 export default class ApplicationController extends Controller {
   @service declare eventsService: EventsService;
-  @service declare session: any;
+  @service declare session: Session;
 
   @tracked token: string = '';
   @tracked wsUrl: string = 'wss://events-staging.upfluence.co/ws';
@@ -16,10 +18,6 @@ export default class ApplicationController extends Controller {
   @tracked obsUrlArray: string[] = [];
 
   @tracked modalVisible: boolean = false;
-
-  constructor() {
-    super(...arguments);
-  }
 
   @action
   openModal(_: any, event: PointerEvent): void {
@@ -68,8 +66,7 @@ export default class ApplicationController extends Controller {
 
   private _createObserver(): void {
     console.log('Creating new observer: ', this.newObserver);
-    this.obsUrlArray.push(this.newObserver);
-    this.obsUrlArray = this.obsUrlArray;
+    this.obsUrlArray = [...this.obsUrlArray, this.newObserver];
     this.newObserver = '';
   }
 }

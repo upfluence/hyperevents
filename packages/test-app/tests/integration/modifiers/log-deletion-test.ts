@@ -29,14 +29,15 @@ module('Integration | Modifiers | modifiers/log-deletion', function (hooks) {
     await settled();
 
     assert.true(this.acTrackStub.calledOnce);
-    assert.equal(this.acTrackStub.args[0][0], 'component_view');
-    assert.equal(this.acTrackStub.args[0][1], 'description to log');
+    assert.strictEqual(this.acTrackStub.args[0][0], 'component_view');
+    assert.strictEqual(this.acTrackStub.args[0][1], 'description to log');
   });
 
   test('it throws an error if the actionDescription is not passed', async function (assert) {
+    assert.expect(1);
     set(this, 'visible', true);
     setupOnerror((err: Error) => {
-      assert.equal(
+      assert.strictEqual(
         err.message,
         'Assertion Failed: [modifier][log-deletion] An actionDescription needs to be passed for the activity-log to make sense.'
       );

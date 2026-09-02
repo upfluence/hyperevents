@@ -16,8 +16,9 @@ module('Integration | Helper | log-activity', function (hooks) {
   });
 
   test('It throws an error if an @action is not passed to the modifier', async function (assert) {
+    assert.expect(1);
     setupOnerror((err: Error) => {
-      assert.equal(
+      assert.strictEqual(
         err.message,
         'Assertion Failed: [helper][log-activity] An action is required for this helper to work properly.'
       );
@@ -26,8 +27,9 @@ module('Integration | Helper | log-activity', function (hooks) {
   });
 
   test('It throws an error if a description is not passed to the modifier', async function (assert) {
+    assert.expect(1);
     setupOnerror((err: Error) => {
-      assert.equal(
+      assert.strictEqual(
         err.message,
         'Assertion Failed: [helper][log-activity] An actionDescription needs to be passed for the activity-log to make sense.'
       );
@@ -44,8 +46,8 @@ module('Integration | Helper | log-activity', function (hooks) {
       );
 
       await click('#click-me');
-      assert.equal(this.acTrackStub.args[0][0], 'button_click');
-      assert.equal(this.acTrackStub.args[0][1], 'description of action');
+      assert.strictEqual(this.acTrackStub.args[0][0], 'button_click');
+      assert.strictEqual(this.acTrackStub.args[0][1], 'description of action');
       assert.true(this.acTrackStub.calledOnce);
     });
 
@@ -58,7 +60,7 @@ module('Integration | Helper | log-activity', function (hooks) {
 
       await click('#click-me');
       assert.true(this.acTrackStub.calledOnce);
-      assert.equal(this.templateActionStub.args[0][0], 'extra-param');
+      assert.strictEqual(this.templateActionStub.args[0][0], 'extra-param');
     });
 
     test("It's still possible to receive the MouseEvent using this modifier", async function (assert) {
@@ -70,7 +72,7 @@ module('Integration | Helper | log-activity', function (hooks) {
 
       await click('#click-me');
       assert.true(this.acTrackStub.calledOnce);
-      assert.equal(this.templateActionStub.args[0][1].type, 'click');
+      assert.strictEqual(this.templateActionStub.args[0][1].type, 'click');
     });
   });
 });

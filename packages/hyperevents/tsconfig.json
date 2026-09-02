@@ -1,35 +1,17 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "es2020",
-    "allowJs": true,
-    "checkJs": false,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
+    "moduleResolution": "bundler",
     "declaration": true,
     "declarationDir": "declarations",
     "noEmit": false,
     "emitDeclarationOnly": true,
     "noEmitOnError": false,
     "rootDir": "./src",
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "module": "es6",
-    "experimentalDecorators": true,
     "paths": {
-      "@upfluence/hyperevents": ["src"],
-      "@upfluence/hyperevents/*": ["src/*"],
-      "*": ["unpublished-development-types/*"]
+      "@upfluence/hyperevents": ["./src"],
+      "@upfluence/hyperevents/*": ["./src/*"],
+      "*": ["./unpublished-development-types/*"]
     }
   },
   "glint": {
