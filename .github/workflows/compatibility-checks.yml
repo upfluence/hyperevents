@@ -1,6 +1,7 @@
 name: Compatibility Checks
 
 on:
+  pull_request:
   schedule:
     - cron: '45 9 * * 1'
 
@@ -35,6 +36,8 @@ jobs:
         run: pnpm install
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Build Addon
+        run: pnpm --filter @upfluence/hyperevents build
       - run: pnpm ember try:one ${{ matrix.scenario }}
         working-directory: packages/test-app
         env:
