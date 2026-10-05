@@ -59,52 +59,16 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "ember-source": ">=3.28"
+    "ember-source": "^3.28.0 || ^4.0.0"
   },
   "exports": {
     ".": {
       "types": "./declarations/index.d.ts",
       "default": "./dist/index.js"
     },
-    "./configuration": {
-      "types": "./declarations/configuration.d.ts",
-      "default": "./dist/configuration.js"
-    },
-    "./decorators/log-construction": {
-      "types": "./declarations/decorators/log-construction.d.ts",
-      "default": "./dist/decorators/log-construction.js"
-    },
-    "./helpers/log-activity": {
-      "types": "./declarations/helpers/log-activity.d.ts",
-      "default": "./dist/helpers/log-activity.js"
-    },
-    "./helpers/observable": {
-      "types": "./declarations/helpers/observable.d.ts",
-      "default": "./dist/helpers/observable.js"
-    },
-    "./helpers/observer-group": {
-      "types": "./declarations/helpers/observer-group.d.ts",
-      "default": "./dist/helpers/observer-group.js"
-    },
-    "./modifiers/log-deletion": {
-      "types": "./declarations/modifiers/log-deletion.d.ts",
-      "default": "./dist/modifiers/log-deletion.js"
-    },
-    "./modifiers/log-insertion": {
-      "types": "./declarations/modifiers/log-insertion.d.ts",
-      "default": "./dist/modifiers/log-insertion.js"
-    },
-    "./services/activity-tracking": {
-      "types": "./declarations/services/activity-tracking.d.ts",
-      "default": "./dist/services/activity-tracking.js"
-    },
-    "./services/events-service": {
-      "types": "./declarations/services/events-service.d.ts",
-      "default": "./dist/services/events-service.js"
-    },
-    "./test-support/services/events-service": {
-      "types": "./declarations/test-support/services/events-service.d.ts",
-      "default": "./dist/test-support/services/events-service.js"
+    "./*": {
+      "types": "./declarations/*.d.ts",
+      "default": "./dist/*.js"
     },
     "./addon-main.js": "./addon-main.cjs",
     "./package.json": "./package.json"
