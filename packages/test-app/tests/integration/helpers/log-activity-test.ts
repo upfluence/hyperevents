@@ -1,8 +1,8 @@
 import { click, render, setupOnerror } from '@ember/test-helpers';
 
-import { TemplateFactory } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import type { TemplateFactory } from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 

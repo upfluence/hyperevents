@@ -2,6 +2,7 @@ import { render, setupOnerror } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
+import type { TemplateFactory } from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
@@ -14,9 +15,11 @@ module('Integration | Modifiers | modifiers/log-insertion', function (hooks) {
   });
 
   test('it logs the activity when the element is rendered', async function (assert) {
-    await render(hbs`
+    await render(
+      hbs`
       <div {{log-insertion "description to log"}}></div>
-    `);
+    ` as unknown as TemplateFactory
+    );
 
     assert.strictEqual(this.acTrackStub.args[0][0], 'component_view');
     assert.strictEqual(this.acTrackStub.args[0][1], 'description to log');
@@ -31,8 +34,10 @@ module('Integration | Modifiers | modifiers/log-insertion', function (hooks) {
         'Assertion Failed: [modifier][log-insertion] An actionDescription needs to be passed for the activity-log to make sense.'
       );
     });
-    await render(hbs`
+    await render(
+      hbs`
       <div {{log-insertion}}></div>
-    `);
+    ` as unknown as TemplateFactory
+    );
   });
 });
