@@ -49,47 +49,11 @@ jobs:
       test-variants: |
         [{ "name": "default", "command": "pnpm -w test:ci" }]
 
-  tests:
-    name: Tests
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: current
-            command: pnpm test:ember
-          - name: next
-            command: pnpm ember try:one ember-4.12
-    steps:
-      - uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '${{ vars.PNPM_VERSION }}'
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: 'pnpm'
-      - name: Install Dependencies
-        run: pnpm install
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      - name: Build Addon
-        run: pnpm --filter @upfluence/hyperevents build
-      - name: Run ${{ matrix.name }} scenario
-        run: ${{ matrix.command }}
-        working-directory: packages/test-app
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-
   release:
     name: Release Package
     runs-on: ubuntu-24.04
     if: contains(github.ref, 'refs/tags/v')
-    needs: [lint, tests]
+    needs: [checks, test]
     steps:
       - uses: webfactory/ssh-agent@v0.5.0
         with:
@@ -112,7 +76,7 @@ jobs:
   deploy:
     name: Deploy preview app
     runs-on: ubuntu-24.04
-    needs: [lint, tests]
+    needs: [checks, test]
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: webfactory/ssh-agent@v0.5.0
