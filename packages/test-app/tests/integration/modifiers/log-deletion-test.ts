@@ -3,7 +3,6 @@ import { render, settled, setupOnerror, waitFor } from '@ember/test-helpers';
 
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import type { TemplateFactory } from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
@@ -17,15 +16,13 @@ module('Integration | Modifiers | modifiers/log-deletion', function (hooks) {
 
   test('it logs the activity when the element is removed from the DOM', async function (assert) {
     set(this, 'visible', true);
-    await render(
-      hbs`
+    await render(hbs`
     {{#if this.visible}}
       <div id="destroy-me" {{log-deletion "description to log"}}></div>
     {{else}}
       <div id="target-helper"></div>
     {{/if}}
-    ` as unknown as TemplateFactory
-    );
+    `);
 
     set(this, 'visible', false);
     await waitFor('#target-helper');
@@ -45,15 +42,13 @@ module('Integration | Modifiers | modifiers/log-deletion', function (hooks) {
         'Assertion Failed: [modifier][log-deletion] An actionDescription needs to be passed for the activity-log to make sense.'
       );
     });
-    await render(
-      hbs`
+    await render(hbs`
     {{#if this.visible}}
       <div id="destroy-me" {{log-deletion}}></div>
     {{else}}
       <div id="target-helper"></div>
     {{/if}}
-    ` as unknown as TemplateFactory
-    );
+    `);
 
     set(this, 'visible', false);
     await waitFor('#target-helper');

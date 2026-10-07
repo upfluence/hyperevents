@@ -6,8 +6,8 @@ import sinon from 'sinon';
 
 import { logConstruction } from 'test-app/decorators/log-construction';
 
-function instantiateWithOwner(owner, Klass) {
-  owner.register('test:with-decorator', Klass);
+function instantiateWithOwner(owner, DecoratedClass) {
+  owner.register('test:with-decorator', DecoratedClass);
 
   return owner.lookup('test:with-decorator');
 }
