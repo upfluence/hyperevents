@@ -1,9 +1,11 @@
 'use strict';
 
+const variants = JSON.parse(process.env.EMBER_TEST_VARIANTS || '[{"name":"default","command":"pnpm -w test:ci"}]');
+
 module.exports = async function () {
   return {
     packageManager: 'pnpm',
-    command: 'ember test --silent -r dot',
+    command: 'pnpm -w test:ci',
     scenarios: [
       {
         name: 'ember-lts-3.28',
@@ -14,15 +16,13 @@ module.exports = async function () {
           }
         }
       },
-      {
-        name: 'ember-4.12',
-        npm: {
-          devDependencies: {
-            'ember-source': '~4.12.3',
-            'ember-cli': '~4.12.3'
-          }
-        }
-      }
+      ...JSON.parse(process.env.EMBER_TRY_SCENARIOS || '[]').flatMap((scenario) =>
+        variants.map((variant) => ({
+          ...scenario,
+          name: `${scenario.name}-${variant.name}`,
+          command: variant.command
+        }))
+      )
     ]
   };
 };

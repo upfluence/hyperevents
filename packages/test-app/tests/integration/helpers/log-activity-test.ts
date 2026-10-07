@@ -1,8 +1,7 @@
 import { click, render, setupOnerror } from '@ember/test-helpers';
 
-import { TemplateFactory } from 'ember-cli-htmlbars';
+import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
@@ -23,7 +22,7 @@ module('Integration | Helper | log-activity', function (hooks) {
         'Assertion Failed: [helper][log-activity] An action is required for this helper to work properly.'
       );
     });
-    await render(hbs`{{log-activity "description of action"}}` as unknown as TemplateFactory);
+    await render(hbs`{{log-activity "description of action"}}`);
   });
 
   test('It throws an error if a description is not passed to the modifier', async function (assert) {
@@ -34,7 +33,7 @@ module('Integration | Helper | log-activity', function (hooks) {
         'Assertion Failed: [helper][log-activity] An actionDescription needs to be passed for the activity-log to make sense.'
       );
     });
-    await render(hbs`{{log-activity this.templateActionStub}}` as unknown as TemplateFactory);
+    await render(hbs`{{log-activity this.templateActionStub}}`);
   });
 
   module('If @action and description are properly passed', () => {
@@ -42,7 +41,7 @@ module('Integration | Helper | log-activity', function (hooks) {
       await render(
         hbs`
       <button id="click-me" type="button" {{on "click" (log-activity this.templateActionStub "description of action")}}>fake button</button>
-    ` as unknown as TemplateFactory
+    `
       );
 
       await click('#click-me');
@@ -55,7 +54,7 @@ module('Integration | Helper | log-activity', function (hooks) {
       await render(
         hbs`
       <button id="click-me" type="button" {{on "click" (log-activity (fn this.templateActionStub 'extra-param') "description of action")}}>fake button</button>
-    ` as unknown as TemplateFactory
+    `
       );
 
       await click('#click-me');
@@ -67,7 +66,7 @@ module('Integration | Helper | log-activity', function (hooks) {
       await render(
         hbs`
       <button id="click-me" type="button" {{on "click" (log-activity (fn this.templateActionStub 'extra-param') "description of action")}}>fake button</button>
-    ` as unknown as TemplateFactory
+    `
       );
 
       await click('#click-me');

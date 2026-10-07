@@ -8,9 +8,7 @@ interface Constructable {
 }
 
 function getActivityTrackingService(instance: object) {
-  const owner = getOwner(instance) ?? (globalThis as any).Ember?.getOwner?.(instance);
-
-  return owner.lookup('service:activity-tracking');
+  return getOwner(instance).lookup('service:activity-tracking');
 }
 
 export function logConstruction(actionDescription: string, actionType: ActivityType) {
