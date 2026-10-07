@@ -14,8 +14,8 @@ env:
   FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
 jobs:
-  lint:
-    name: Lint
+  checks:
+    name: Lint & Typecheck
     runs-on: ubuntu-24.04
     steps:
       - uses: webfactory/ssh-agent@v0.5.0
@@ -39,6 +39,15 @@ jobs:
         run: pnpm lint
       - name: Typecheck Addon
         run: pnpm lint:types
+  test:
+    name: Tests
+    needs: [checks]
+    uses: upfluence/actions/.github/workflows/any-js-ember-test.yml@master
+    secrets: inherit
+    with:
+      ember-try-working-directory: packages/test-app
+      test-variants: |
+        [{ "name": "default", "command": "pnpm -w test:ci" }]
 
   tests:
     name: Tests

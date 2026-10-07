@@ -12,6 +12,7 @@
     "start:addon": "pnpm --filter @upfluence/hyperevents start",
     "start:test-app": "pnpm --filter test-app start",
     "test": "pnpm --filter @upfluence/hyperevents --filter test-app test",
+    "test:ci": "pnpm build && pnpm --filter test-app test:ember",
     "test:ember-compatibility": "pnpm --filter test-app test:ember-compatibility"
   },
   "devDependencies": {
