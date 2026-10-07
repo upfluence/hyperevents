@@ -1574,7 +1574,7 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/components/o-s-s/url-input"eaimeta@70e063a35619d71f
 });
-;define("test-app/components/subscription-feed", ["exports", "@ember/object", "@ember/service", "@glimmer/component", "@glimmer/tracking", "@upfluence/hyperevents/services/events-service"], function (_exports, _object, _service, _component, _tracking, _eventsService) {
+;define("test-app/components/subscription-feed", ["exports", "@ember/component", "@ember/object", "@ember/service", "@glimmer/component", "@glimmer/tracking", "@upfluence/hyperevents/services/events-service", "@ember/template-factory"], function (_exports, _component, _object, _service, _component2, _tracking, _eventsService, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -1582,14 +1582,14 @@
   });
   _exports.default = void 0;
   var _class, _descriptor, _descriptor2, _descriptor3;
-  0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@ember/object",0,"@ember/service",0,"@glimmer/component",0,"@glimmer/tracking",0,"@upfluence/hyperevents/services/events-service"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@ember/service",0,"@glimmer/component",0,"@glimmer/tracking",0,"@upfluence/hyperevents/services/events-service",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
-  const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
+  const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <div class="subscription-feed padding-xx-sm">
     <div class="fx-1 fx-row fx-malign-space-between fx-xalign-center">
@@ -1614,12 +1614,12 @@
   </div>
   */
   {
-    id: "jHOWdXi0",
-    block: "[[[10,0],[14,0,\"subscription-feed padding-xx-sm\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,1],[12],[10,\"b\"],[15,0,[29,[[52,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"]]]],[12],[1,[30,0,[\"listeningState\"]]],[13],[1,\"\\n      for events on:\\n      \"],[1,[30,1]],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-1\"],[12],[13],[1,\"\\n\"],[41,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[8,[39,2],[[24,0,\"margin-left-xxx-sm\"],[4,[38,3],[\"click\",[30,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"events\"],[12],[1,\"\\n\"],[42,[28,[37,5],[[28,[37,5],[[30,0,[\"data\"]]],null]],null],null,[[[1,\"      \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n        \"],[1,[30,2]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[2]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@url\",\"event\"],false,[\"if\",\"eq\",\"o-s-s/button\",\"on\",\"each\",\"-track-array\"]]",
-    moduleName: "test-app/components/subscription-feed.hbs",
-    isStrictMode: false
+    "id": "NM6s49JA",
+    "block": "[[[10,0],[14,0,\"subscription-feed padding-xx-sm\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,1],[12],[10,\"b\"],[15,0,[29,[[52,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"]]]],[12],[1,[30,0,[\"listeningState\"]]],[13],[1,\"\\n      for events on:\\n      \"],[1,[30,1]],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-1\"],[12],[13],[1,\"\\n\"],[41,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[8,[39,2],[[24,0,\"margin-left-xxx-sm\"],[4,[38,3],[\"click\",[30,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"events\"],[12],[1,\"\\n\"],[42,[28,[37,5],[[28,[37,5],[[30,0,[\"data\"]]],null]],null],null,[[[1,\"      \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n        \"],[1,[30,2]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[2]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@url\",\"event\"],false,[\"if\",\"eq\",\"o-s-s/button\",\"on\",\"each\",\"-track-array\"]]",
+    "moduleName": "test-app/components/subscription-feed.hbs",
+    "isStrictMode": false
   });
-  let SubscriptionFeed = _exports.default = (_class = class SubscriptionFeed extends _component.default {
+  let SubscriptionFeed = _exports.default = (_class = class SubscriptionFeed extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
       _initializerDefineProperty(this, "eventsService", _descriptor, this);
@@ -1668,9 +1668,9 @@
       return 'Not Listening';
     }
   }), _applyDecoratedDescriptor(_class.prototype, "unsubscribe", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "unsubscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "subscribe", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "subscribe"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeObs", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "removeObs"), _class.prototype), _class);
-  Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, SubscriptionFeed);
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, SubscriptionFeed);
 });
-;define("test-app/components/test-modal", ["exports", "@glimmer/component", "@upfluence/hyperevents/decorators/log-construction"], function (_exports, _component, _logConstruction) {
+;define("test-app/components/test-modal", ["exports", "@ember/component", "@glimmer/component", "@upfluence/hyperevents/decorators/log-construction", "@ember/template-factory"], function (_exports, _component, _component2, _logConstruction, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -1678,8 +1678,8 @@
   });
   _exports.default = void 0;
   var _dec, _class;
-  0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@upfluence/hyperevents/decorators/log-construction"eaimeta@70e063a35619d71f
-  const __COLOCATED_TEMPLATE__ = Ember.HTMLBars.template(
+  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@upfluence/hyperevents/decorators/log-construction",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <OSS::ModalDialog
     @title="Example modal"
@@ -1701,13 +1701,13 @@
   </OSS::ModalDialog>
   */
   {
-    id: "LwFoskcT",
-    block: "[[[8,[39,0],[[4,[38,1],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,2],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\"],[\"Example modal\",[30,1],\"md\"]],[[\"content\",\"footer\"],[[[[1,\"\\n    \"],[10,0],[14,0,\"test-modal-content\"],[12],[1,\"\\n      Fake content goes here\\n    \"],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12\"],[12],[1,\"\\n      \"],[8,[39,3],[[4,[38,4],[\"click\",[30,1]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"@closeModal\"],false,[\"o-s-s/modal-dialog\",\"log-insertion\",\"log-deletion\",\"o-s-s/button\",\"on\"]]",
-    moduleName: "test-app/components/test-modal.hbs",
-    isStrictMode: false
+    "id": "vAejSYxl",
+    "block": "[[[8,[39,0],[[4,[38,1],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,2],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\"],[\"Example modal\",[30,1],\"md\"]],[[\"content\",\"footer\"],[[[[1,\"\\n    \"],[10,0],[14,0,\"test-modal-content\"],[12],[1,\"\\n      Fake content goes here\\n    \"],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12\"],[12],[1,\"\\n      \"],[8,[39,3],[[4,[38,4],[\"click\",[30,1]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"@closeModal\"],false,[\"o-s-s/modal-dialog\",\"log-insertion\",\"log-deletion\",\"o-s-s/button\",\"on\"]]",
+    "moduleName": "test-app/components/test-modal.hbs",
+    "isStrictMode": false
   });
-  let TestModal = _exports.default = (_dec = (0, _logConstruction.logConstruction)('action description from decorator', 'component_view'), _dec(_class = class TestModal extends _component.default {}) || _class);
-  Ember._setComponentTemplate(__COLOCATED_TEMPLATE__, TestModal);
+  let TestModal = _exports.default = (_dec = (0, _logConstruction.logConstruction)('action description from decorator', 'component_view'), _dec(_class = class TestModal extends _component2.default {}) || _class);
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, TestModal);
 });
 ;define("test-app/components/upf-image", ["exports", "@upfluence/oss-components/components/upf-image"], function (_exports, _upfImage) {
   "use strict";
@@ -2524,52 +2524,6 @@
     }
   };
 });
-;define("test-app/initializers/export-application-global", ["exports", "ember", "test-app/config/environment"], function (_exports, _ember, _environment) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  _exports.initialize = initialize;
-  0; //eaimeta@70e063a35619d71f0,"ember",0,"test-app/config/environment"eaimeta@70e063a35619d71f
-  function initialize() {
-    var application = arguments[1] || arguments[0];
-    if (_environment.default.exportApplicationGlobal !== false) {
-      var theGlobal;
-      if (typeof window !== 'undefined') {
-        theGlobal = window;
-      } else if (typeof global !== 'undefined') {
-        theGlobal = global;
-      } else if (typeof self !== 'undefined') {
-        theGlobal = self;
-      } else {
-        // no reasonable global, just bail
-        return;
-      }
-      var value = _environment.default.exportApplicationGlobal;
-      var globalName;
-      if (typeof value === 'string') {
-        globalName = value;
-      } else {
-        globalName = _ember.default.String.classify(_environment.default.modulePrefix);
-      }
-      if (!theGlobal[globalName]) {
-        theGlobal[globalName] = application;
-        application.reopen({
-          willDestroy: function () {
-            this._super.apply(this, arguments);
-            delete theGlobal[globalName];
-          }
-        });
-      }
-    }
-  }
-  var _default = _exports.default = {
-    name: 'export-application-global',
-    initialize: initialize
-  };
-});
 ;define("test-app/instance-initializers/override-intl", ["exports", "@upfluence/oss-components/instance-initializers/override-intl"], function (_exports, _overrideIntl) {
   "use strict";
 
@@ -2987,61 +2941,196 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/services/wizard-manager"eaimeta@70e063a35619d71f
 });
-;define("test-app/templates/application", ["exports"], function (_exports) {
+;define("test-app/templates/application", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  var _default = _exports.default = Ember.HTMLBars.template({
-    "id": "oAbLSQYP",
+  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
+  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div class="padding-lg fx-col fx-gap-px-12">
+    <div>Example of activity-tracking service usages:</div>
+    <div>
+      <OSS::Button
+        @skin="primary"
+        @label="Open modal"
+        @icon="fa-connect"
+        {{enable-tooltip title="Click will trigger activity-tracker log"}}
+        {{on "click" (log-activity (fn this.openModal "randomParam") "open product modal")}}
+      />
+    </div>
+    {{#if this.modalVisible}}
+      <TestModal @closeModal={{this.closeModal}} />
+    {{/if}}
+  </div>
+  <div class="fx-col padding-lg fx-gpap-px-40">
+    <div class="">
+      <span class="text-size-7 text-color-default">Socket Configuration</span>
+      <div class="fx-row">
+        <div class="socket-config-panel fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm">
+          <div class="socket-config-field fx-col fx-1">
+            <span>Enter WS Url:</span>
+            <OSS::InputContainer @value={{this.wsUrl}} />
+          </div>
+          <div class="socket-config-field fx-col fx-1">
+            <span>Enter token :</span>
+            <OSS::InputContainer @value={{this.token}} />
+          </div>
+        </div>
+        <div class="fx-col fx-malign-end fx-gap-px-20">
+          <OSS::Button @skin="primary" @label="Establish connection" @icon="fa-connect" {{on "click" this.initSocket}} />
+          <OSS::Button
+            @skin="destructive"
+            @label="Terminate connection"
+            @icon="fa-connect"
+            {{on "click" this.terminateSocket}}
+            disabled={{not this.wsConnected}}
+          />
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <span class="text-size-7">Observers:</span>
+      <div>
+        <div class="fx-col margin-bottom-sm">
+          <div class="fx-row fx-xalign-center fx-gap-px-40">
+            Create a new observer :
+            <div class="fx-row fx-gap-px-20">
+              <OSS::InputContainer @value={{this.newObserver}} {{on "keydown" this.handleNewObserverInput}} />
+              <OSS::Button @skin="success" @label="Create" @icon="fas fa-check" {{on "click" this.createNewObserver}} />
+            </div>
+          </div>
+        </div>
+        <div class="fx-col fx-gap-px-20">
+          {{#each this.obsUrlArray as |obsUrl|}}
+            <SubscriptionFeed @url={{obsUrl}} @removeObs={{this.removeObs}} />
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  */
+  {
+    "id": "c17O5WWl",
     "block": "[[[10,0],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[1,\"\\n  \"],[10,0],[12],[1,\"Example of activity-tracking service usages:\"],[13],[1,\"\\n  \"],[10,0],[12],[1,\"\\n    \"],[8,[39,0],[[4,[38,1],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,2],[\"click\",[28,[37,3],[[28,[37,4],[[30,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"modalVisible\"]],[[[1,\"    \"],[8,[39,6],null,[[\"@closeModal\"],[[30,0,[\"closeModal\"]]]],null],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"],[10,0],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"\"],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7 text-color-default\"],[12],[1,\"Socket Configuration\"],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"socket-config-panel fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter WS Url:\"],[13],[1,\"\\n          \"],[8,[39,7],null,[[\"@value\"],[[30,0,[\"wsUrl\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter token :\"],[13],[1,\"\\n          \"],[8,[39,7],null,[[\"@value\"],[[30,0,[\"token\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[1,\"\\n        \"],[8,[39,0],[[4,[38,2],[\"click\",[30,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[1,\"\\n        \"],[8,[39,0],[[16,\"disabled\",[28,[37,8],[[30,0,[\"wsConnected\"]]],null]],[4,[38,2],[\"click\",[30,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n  \"],[10,0],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7\"],[12],[1,\"Observers:\"],[13],[1,\"\\n    \"],[10,0],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col margin-bottom-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[1,\"\\n          Create a new observer :\\n          \"],[10,0],[14,0,\"fx-row fx-gap-px-20\"],[12],[1,\"\\n            \"],[8,[39,7],[[4,[38,2],[\"keydown\",[30,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[30,0,[\"newObserver\"]]]],null],[1,\"\\n            \"],[8,[39,0],[[4,[38,2],[\"click\",[30,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-gap-px-20\"],[12],[1,\"\\n\"],[42,[28,[37,10],[[28,[37,10],[[30,0,[\"obsUrlArray\"]]],null]],null],null,[[[1,\"          \"],[8,[39,11],null,[[\"@url\",\"@removeObs\"],[[30,1],[30,0,[\"removeObs\"]]]],null],[1,\"\\n\"]],[1]],null],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"obsUrl\"],false,[\"o-s-s/button\",\"enable-tooltip\",\"on\",\"log-activity\",\"fn\",\"if\",\"test-modal\",\"o-s-s/input-container\",\"not\",\"each\",\"-track-array\",\"subscription-feed\"]]",
     "moduleName": "test-app/templates/application.hbs",
     "isStrictMode": false
   });
 });
-;define("test-app/templates/components/input-wrapper", ["exports"], function (_exports) {
+;define("test-app/templates/components/input-wrapper", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  var _default = _exports.default = Ember.HTMLBars.template({
-    "id": "se9y+w/u",
+  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
+  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div class={{this.computedClasses}} ...attributes>
+    {{yield}}
+  
+    {{#if this.error}}
+      <span class="upf-input-feedback upf-input-feedback--error">
+        <OSS::Icon @icon="fa-exclamation-circle" aria-label={{this.error}} />
+      </span>
+    {{else if this.help}}
+      <span class="upf-input-feedback upf-input-feedback--help">
+        <OSS::Icon @icon="fa-question-circle" aria-label={{this.help}} />
+      </span>
+    {{/if}}
+  </div>
+  */
+  {
+    "id": "RcCpyS78",
     "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n  \"],[18,2,null],[1,\"\\n\\n\"],[41,[30,0,[\"error\"]],[[[1,\"    \"],[10,1],[14,0,\"upf-input-feedback upf-input-feedback--error\"],[12],[1,\"\\n      \"],[8,[39,2],[[16,\"aria-label\",[30,0,[\"error\"]]]],[[\"@icon\"],[\"fa-exclamation-circle\"]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"help\"]],[[[1,\"    \"],[10,1],[14,0,\"upf-input-feedback upf-input-feedback--help\"],[12],[1,\"\\n      \"],[8,[39,2],[[16,\"aria-label\",[30,0,[\"help\"]]]],[[\"@icon\"],[\"fa-question-circle\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"&attrs\",\"&default\"],false,[\"yield\",\"if\",\"o-s-s/icon\"]]",
     "moduleName": "test-app/templates/components/input-wrapper.hbs",
     "isStrictMode": false
   });
 });
-;define("test-app/templates/components/loading-state", ["exports"], function (_exports) {
+;define("test-app/templates/components/loading-state", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  var _default = _exports.default = Ember.HTMLBars.template({
-    "id": "CpET+h0X",
+  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
+  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div class='upf-align--center'>
+    <div class='spinner'>
+      <div class='bounce1'></div>
+      <div class='bounce2'></div>
+      <div class='bounce3'></div>
+    </div>
+  </div>
+  
+  */
+  {
+    "id": "jVV0jtWT",
     "block": "[[[10,0],[14,0,\"upf-align--center\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"spinner\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"bounce1\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce2\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce3\"],[12],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
     "moduleName": "test-app/templates/components/loading-state.hbs",
     "isStrictMode": false
   });
 });
-;define("test-app/templates/components/upf-stat", ["exports"], function (_exports) {
+;define("test-app/templates/components/upf-stat", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  var _default = _exports.default = Ember.HTMLBars.template({
-    "id": "ZWpbz9fZ",
+  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
+  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div class={{this.computedClasses}}>
+    <span class="upf-stat__name">
+      {{this.name}}
+  
+      {{#if this.icon}}
+        {{#if (eq this.iconPlacement "top")}}
+          <span class="upf-stat__icon" {{enable-tooltip title=this.iconLabel}}>
+            {{#if this.iconUrl}}
+              <a href="{{this.iconUrl}}" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
+              </a>
+            {{else}}
+              <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
+            {{/if}}
+          </span>
+        {{/if}}
+      {{/if}}
+    </span>
+  
+    <span class={{concat "upf-stat__data " this.dataClass (unless this.data " upf-stat__data--null")}}>
+      {{this.data}}
+  
+      {{#if this.icon}}
+        {{#if (eq this.iconPlacement "right")}}
+          <span class="upf-stat__icon" {{enable-tooltip title=this.iconLabel}}>
+            <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
+          </span>
+        {{/if}}
+      {{/if}}
+    </span>
+  
+    {{#if this.label}}
+      <span class={{if this.tooltip "upf-stat__label--with-tooltip" "upf-stat__label"}}>
+        {{{this.label}}}
+        {{#if this.tooltip}}
+          <OSS::Icon @icon="fa-info-circle" {{enable-tooltip title=this.tooltip}} />
+        {{/if}}
+      </span>
+    {{/if}}
+  </div>
+  */
+  {
+    "id": "q5XV3XLM",
     "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[10,1],[14,0,\"upf-stat__name\"],[12],[1,\"\\n    \"],[1,[30,0,[\"name\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"top\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n\"],[41,[30,0,[\"iconUrl\"]],[[[1,\"            \"],[10,3],[15,6,[29,[[30,0,[\"iconUrl\"]]]]],[14,\"target\",\"_blank\"],[14,\"rel\",\"noopener noreferrer\"],[12],[1,\"\\n              \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,1],[15,0,[28,[37,3],[\"upf-stat__data \",[30,0,[\"dataClass\"]],[52,[51,[30,0,[\"data\"]]],\" upf-stat__data--null\"]],null]],[12],[1,\"\\n    \"],[1,[30,0,[\"data\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"right\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n          \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"label\"]],[[[1,\"    \"],[10,1],[15,0,[52,[30,0,[\"tooltip\"]],\"upf-stat__label--with-tooltip\",\"upf-stat__label\"]],[12],[1,\"\\n      \"],[2,[30,0,[\"label\"]]],[1,\"\\n\"],[41,[30,0,[\"tooltip\"]],[[[1,\"        \"],[8,[39,5],[[4,[38,2],null,[[\"title\"],[[30,0,[\"tooltip\"]]]]]],[[\"@icon\"],[\"fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[],false,[\"if\",\"eq\",\"enable-tooltip\",\"concat\",\"unless\",\"o-s-s/icon\"]]",
     "moduleName": "test-app/templates/components/upf-stat.hbs",
     "isStrictMode": false
