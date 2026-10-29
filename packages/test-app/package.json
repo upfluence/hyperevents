@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@embroider/macros": "1.11.1",
+    "@embroider/macros": "1.21.4",
     "@upfluence/hyperevents": "workspace:*",
     "ember-auto-import": "^2.8.1",
     "ember-cli-babel": "^8.2.0",
