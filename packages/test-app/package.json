@@ -20,7 +20,7 @@
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-cli-typescript": "^4.2.1",
-    "ember-modifier": "4.2.0",
+    "ember-modifier": "3.2.0",
     "ember-named-blocks-polyfill": "^0.2.5"
   },
   "devDependencies": {
@@ -31,8 +31,6 @@
     "@glimmer/component": "^1.0.0",
     "@glimmer/tracking": "^1.0.0",
     "@trivago/prettier-plugin-sort-imports": "catalog:",
-    "@types/ember-qunit": "^3.4.15",
-    "@types/ember-resolver": "^5.0.10",
     "@types/ember__application": "^3.16.3",
     "@types/ember__array": "^3.16.4",
     "@types/ember__component": "^3.16.6",
@@ -41,6 +39,7 @@
     "@types/ember__engine": "^3.16.3",
     "@types/ember__error": "^3.16.1",
     "@types/ember__object": "^3.12.6",
+    "@types/ember__owner": "^4.0.9",
     "@types/ember__polyfills": "^3.12.1",
     "@types/ember__routing": "^3.16.15",
     "@types/ember__runloop": "^3.16.3",
@@ -51,14 +50,13 @@
     "@types/ember__utils": "^3.16.2",
     "@types/htmlbars-inline-precompile": "^1.0.1",
     "@types/jquery": "^3.5.11",
-    "@types/qunit": "^2.11.3",
+    "@types/qunit": "^2.19.11",
     "@types/rsvp": "^4.0.4",
     "@types/sinon": "^10.0.6",
     "@types/tether": "^1.4.6",
     "@upfluence/oss-components": "^3.95.0",
     "@upfluence/w-conf": "catalog:",
     "ember-cli": "~5.12.0",
-    "ember-cli-clean-css": "^3.0.0",
     "ember-cli-code-coverage": "^3.0.0",
     "ember-cli-dependency-checker": "^3.3.2",
     "ember-cli-inject-live-reload": "^2.0.2",
@@ -72,7 +70,7 @@
     "ember-sinon-qunit": "^6.0.0",
     "ember-source": "~5.12.0",
     "ember-source-channel-url": "^2.0.1",
-    "ember-template-lint": "^6.0.0",
+    "ember-template-lint": "^2.6.0",
     "ember-truth-helpers": "3.0.0",
     "ember-try": "^4.0.0",
     "eslint": "catalog:",
@@ -84,7 +82,7 @@
     "sinon": "^10.0.1",
     "typescript": "catalog:",
     "typescript-coverage-report": "^0.8.0",
-    "webpack": "5.95.0"
+    "webpack": "^5.95.0"
   },
   "ember": {
     "edition": "octane"
