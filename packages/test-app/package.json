@@ -82,6 +82,7 @@
     "sinon": "^10.0.1",
     "typescript": "catalog:",
     "typescript-coverage-report": "^0.8.0",
+    "util": "^0.12.5",
     "webpack": "^5.95.0"
   },
   "ember": {
