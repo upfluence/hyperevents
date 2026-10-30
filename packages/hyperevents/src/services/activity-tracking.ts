@@ -38,14 +38,14 @@ export default class ActivityTracking extends Service {
   ): void {
     const logOptions = { ...DEFAULT_LOG_OPTIONS, ...options };
     this.activityQueue.push(this.buildActivityObject(type, action, extra));
-    debounce(this, this.performCall, THROTTLE_TIME_MS, logOptions.immediate);
+    debounce(this, this.performCall as () => void, THROTTLE_TIME_MS, logOptions.immediate);
   }
 
   protected buildActivityObject(type: ActivityType, action: string, extra: Record<string, unknown>): Activity {
     return {
       type: type,
       origin: window.location.origin,
-      route: getOwner(this).lookup('service:router').currentRouteName,
+      route: getOwner(this)!.lookup('service:router').currentRouteName!,
       path: window.location.pathname + window.location.search,
       action: action,
       version: (getOwnConfig() as any).parentAppVersion || 'unknown',

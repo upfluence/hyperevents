@@ -1,3 +1,5 @@
+/// <reference types="ember-source/types" />
+
 declare module '@upfluence/hyperevents/templates/*' {
   import { TemplateFactory } from 'htmlbars-inline-precompile';
 
