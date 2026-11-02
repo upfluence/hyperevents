@@ -1,5 +1,5 @@
 import { later } from '@ember/runloop';
-import Service, { inject as service } from '@ember/service';
+import Service, { service } from '@ember/service';
 
 import { Observable } from '../helpers/observable';
 import type { Matcher } from '../helpers/observable';
