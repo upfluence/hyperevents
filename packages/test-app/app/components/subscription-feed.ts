@@ -1,4 +1,5 @@
 import { action } from '@ember/object';
+import type Owner from '@ember/owner';
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
@@ -18,7 +19,7 @@ export default class SubscriptionFeed extends Component<SubscriptionFeedArgs> {
 
   _dataObs: Observable<ResourceEvent> | null = null;
 
-  constructor(owner: unknown, args: SubscriptionFeedArgs) {
+  constructor(owner: Owner, args: SubscriptionFeedArgs) {
     super(owner, args);
     this._initObserver();
   }

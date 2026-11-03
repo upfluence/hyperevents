@@ -28,7 +28,7 @@
     "@ember/jquery": "^2.0.0",
     "@ember/optional-features": "^2.1.0",
     "@ember/test-helpers": "^5.4.1",
-    "@glimmer/component": "^1.0.0",
+    "@glimmer/component": "^2.2.1",
     "@glimmer/tracking": "^1.0.0",
     "@trivago/prettier-plugin-sort-imports": "catalog:",
     "@types/htmlbars-inline-precompile": "^1.0.1",
