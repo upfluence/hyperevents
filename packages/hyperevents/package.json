@@ -40,7 +40,7 @@
     "@types/htmlbars-inline-precompile": "^1.0.1",
     "@trivago/prettier-plugin-sort-imports": "catalog:",
     "@upfluence/w-conf": "catalog:",
-    "babel-plugin-ember-template-compilation": "^2.2.1",
+    "babel-plugin-ember-template-compilation": "^3.1.0",
     "ember-cli-babel": "^7.19.0",
     "ember-cli-htmlbars": "^7.0.1",
     "ember-source": "~6.12.1",
