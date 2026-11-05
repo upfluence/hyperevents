@@ -14,34 +14,33 @@ env:
   FONTAWESOME_NPM_AUTH_TOKEN: ${{ secrets.FONTAWESOME_NPM_AUTH_TOKEN }}
 
 jobs:
-  checks:
-    name: Lint & Typecheck
+  lint:
+    name: Lint
     runs-on: ubuntu-24.04
     steps:
-      - uses: webfactory/ssh-agent@v0.5.0
+      - uses: upfluence/actions/setup-js@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '${{ vars.PNPM_VERSION }}'
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: 'pnpm'
-      - name: Install Dependencies
-        run: pnpm install
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      - name: Build Addon
-        run: pnpm --filter @upfluence/hyperevents build
+          github-token: ${{ secrets.PAT_TOKEN }}
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ vars.PNPM_VERSION }}
       - name: Lint
         run: pnpm lint
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: upfluence/actions/setup-js@master
+        with:
+          github-token: ${{ secrets.PAT_TOKEN }}
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ vars.PNPM_VERSION }}
       - name: Typecheck Addon
         run: pnpm lint:types
+
   test:
     name: Tests
-    needs: [checks]
+    needs: [typecheck]
     uses: upfluence/actions/.github/workflows/any-js-ember-test.yml@master
     secrets: inherit
     with:
@@ -53,47 +52,27 @@ jobs:
     name: Release Package
     runs-on: ubuntu-24.04
     if: contains(github.ref, 'refs/tags/v')
-    needs: [checks, test]
+    needs: [lint, typecheck, test]
     steps:
-      - uses: webfactory/ssh-agent@v0.5.0
+      - uses: upfluence/actions/setup-js@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '${{ vars.PNPM_VERSION }}'
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: 'pnpm'
-      - name: Install Dependencies
-        run: pnpm install
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.PAT_TOKEN }}
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ vars.PNPM_VERSION }}
       - run: pnpm publish --no-git-checks
         working-directory: packages/hyperevents
 
   deploy:
     name: Deploy preview app
     runs-on: ubuntu-24.04
-    needs: [checks, test]
+    needs: [typecheck, test]
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - uses: webfactory/ssh-agent@v0.5.0
+      - uses: upfluence/actions/setup-js@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v4
-        with:
-          version: '${{ vars.PNPM_VERSION }}'
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '${{ env.NODE_VERSION }}'
-          cache: 'pnpm'
-      - name: Install Dependencies
-        run: pnpm install
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.PAT_TOKEN }}
+          node-version: ${{ env.NODE_VERSION }}
+          pnpm-version: ${{ vars.PNPM_VERSION }}
       - name: Build Addon
         run: pnpm --filter @upfluence/hyperevents build
       - name: Build Test App
