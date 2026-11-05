@@ -9,7 +9,8 @@
   "license": "MIT",
   "author": "Upfluence <dev@upfluence.com>",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "tag": "beta"
   },
   "scripts": {
     "build": "rollup --config",
