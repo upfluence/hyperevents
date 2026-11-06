@@ -1182,6 +1182,20 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/components/o-s-s/slider"eaimeta@70e063a35619d71f
 });
+;define("test-app/components/o-s-s/smart/blob", ["exports", "@upfluence/oss-components/components/o-s-s/smart/blob"], function (_exports, _blob) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _blob.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/components/o-s-s/smart/blob"eaimeta@70e063a35619d71f
+});
 ;define("test-app/components/o-s-s/smart/button", ["exports", "@upfluence/oss-components/components/o-s-s/smart/button"], function (_exports, _button) {
   "use strict";
 
@@ -1447,6 +1461,20 @@
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/components/o-s-s/star-rating"eaimeta@70e063a35619d71f
+});
+;define("test-app/components/o-s-s/stats/banner", ["exports", "@upfluence/oss-components/components/o-s-s/stats/banner"], function (_exports, _banner) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _banner.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/components/o-s-s/stats/banner"eaimeta@70e063a35619d71f
 });
 ;define("test-app/components/o-s-s/tag", ["exports", "@upfluence/oss-components/components/o-s-s/tag"], function (_exports, _tag) {
   "use strict";
@@ -1930,15 +1958,19 @@
   });
   0; //eaimeta@70e063a35619d71f0,"ember-truth-helpers/helpers/and"eaimeta@70e063a35619d71f
 });
-;define("test-app/helpers/asset-map", ["exports", "ember-cli-ifa/helpers/asset-map"], function (_exports, _assetMap) {
+;define("test-app/helpers/asset-map", ["exports", "@upfluence/oss-components/helpers/asset-map"], function (_exports, _assetMap) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"ember-cli-ifa/helpers/asset-map"eaimeta@70e063a35619d71f
-  var _default = _exports.default = _assetMap.default;
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _assetMap.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/helpers/asset-map"eaimeta@70e063a35619d71f
 });
 ;define("test-app/helpers/ensure-safe-component", ["exports", "@embroider/util"], function (_exports, _util) {
   "use strict";
@@ -1986,12 +2018,6 @@
       return _faIconStyle.default;
     }
   });
-  Object.defineProperty(_exports, "faIconStyle", {
-    enumerable: true,
-    get: function () {
-      return _faIconStyle.faIconStyle;
-    }
-  });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/helpers/fa-icon-style"eaimeta@70e063a35619d71f
 });
 ;define("test-app/helpers/fa-icon-value", ["exports", "@upfluence/oss-components/helpers/fa-icon-value"], function (_exports, _faIconValue) {
@@ -2004,12 +2030,6 @@
     enumerable: true,
     get: function () {
       return _faIconValue.default;
-    }
-  });
-  Object.defineProperty(_exports, "faIconValue", {
-    enumerable: true,
-    get: function () {
-      return _faIconValue.faIconValue;
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/helpers/fa-icon-value"eaimeta@70e063a35619d71f
@@ -2400,12 +2420,6 @@
       return _redirectTo.default;
     }
   });
-  Object.defineProperty(_exports, "redirectTo", {
-    enumerable: true,
-    get: function () {
-      return _redirectTo.redirectTo;
-    }
-  });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/helpers/redirect-to"eaimeta@70e063a35619d71f
 });
 ;define("test-app/helpers/stop-propagation", ["exports", "@upfluence/oss-components/helpers/stop-propagation"], function (_exports, _stopPropagation) {
@@ -2498,16 +2512,6 @@
   });
   0; //eaimeta@70e063a35619d71f0,"ember-truth-helpers/helpers/xor"eaimeta@70e063a35619d71f
 });
-;define("test-app/initializers/asset-map", ["exports", "ember-cli-ifa/initializers/asset-map"], function (_exports, _assetMap) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"ember-cli-ifa/initializers/asset-map"eaimeta@70e063a35619d71f
-  var _default = _exports.default = _assetMap.default;
-});
 ;define("test-app/initializers/container-debug-adapter", ["exports", "ember-resolver/resolvers/classic/container-debug-adapter"], function (_exports, _containerDebugAdapter) {
   "use strict";
 
@@ -2586,20 +2590,6 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@ember/render-modifiers/modifiers/did-update"eaimeta@70e063a35619d71f
 });
-;define("test-app/modifiers/enable-dropdown", ["exports", "@upfluence/oss-components/modifiers/enable-dropdown"], function (_exports, _enableDropdown) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _enableDropdown.default;
-    }
-  });
-  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/enable-dropdown"eaimeta@70e063a35619d71f
-});
 ;define("test-app/modifiers/enable-input-autofocus", ["exports", "@upfluence/oss-components/modifiers/enable-input-autofocus"], function (_exports, _enableInputAutofocus) {
   "use strict";
 
@@ -2613,20 +2603,6 @@
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/enable-input-autofocus"eaimeta@70e063a35619d71f
-});
-;define("test-app/modifiers/enable-popover", ["exports", "@upfluence/oss-components/modifiers/enable-popover"], function (_exports, _enablePopover) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(_exports, "default", {
-    enumerable: true,
-    get: function () {
-      return _enablePopover.default;
-    }
-  });
-  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/enable-popover"eaimeta@70e063a35619d71f
 });
 ;define("test-app/modifiers/enable-tooltip", ["exports", "@upfluence/oss-components/modifiers/enable-tooltip"], function (_exports, _enableTooltip) {
   "use strict";
@@ -2698,6 +2674,20 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/on-click-outside"eaimeta@70e063a35619d71f
 });
+;define("test-app/modifiers/on-top-reached", ["exports", "@upfluence/oss-components/modifiers/on-top-reached"], function (_exports, _onTopReached) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _onTopReached.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/on-top-reached"eaimeta@70e063a35619d71f
+});
 ;define("test-app/modifiers/register-form-field", ["exports", "@upfluence/oss-components/modifiers/register-form-field"], function (_exports, _registerFormField) {
   "use strict";
 
@@ -2739,6 +2729,20 @@
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/scroll-shadow"eaimeta@70e063a35619d71f
+});
+;define("test-app/modifiers/text-carousel", ["exports", "@upfluence/oss-components/modifiers/text-carousel"], function (_exports, _textCarousel) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _textCarousel.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/modifiers/text-carousel"eaimeta@70e063a35619d71f
 });
 ;define("test-app/modifiers/will-destroy", ["exports", "@ember/render-modifiers/modifiers/will-destroy"], function (_exports, _willDestroy) {
   "use strict";
@@ -2814,15 +2818,19 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/hyperevents/services/activity-tracking"eaimeta@70e063a35619d71f
 });
-;define("test-app/services/asset-map", ["exports", "ember-cli-ifa/services/asset-map"], function (_exports, _assetMap) {
+;define("test-app/services/asset-map", ["exports", "@upfluence/oss-components/services/asset-map"], function (_exports, _assetMap) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"ember-cli-ifa/services/asset-map"eaimeta@70e063a35619d71f
-  var _default = _exports.default = _assetMap.default;
+  Object.defineProperty(_exports, "default", {
+    enumerable: true,
+    get: function () {
+      return _assetMap.default;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/services/asset-map"eaimeta@70e063a35619d71f
 });
 ;define("test-app/services/base-uploader", ["exports", "@upfluence/oss-components/services/base-uploader"], function (_exports, _baseUploader) {
   "use strict";
@@ -3062,18 +3070,17 @@
   0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
   var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class='upf-align--center'>
-    <div class='spinner'>
-      <div class='bounce1'></div>
-      <div class='bounce2'></div>
-      <div class='bounce3'></div>
+    <div class="upf-align--center">
+    <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
     </div>
   </div>
-  
   */
   {
-    "id": "jVV0jtWT",
-    "block": "[[[10,0],[14,0,\"upf-align--center\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"spinner\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"bounce1\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce2\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce3\"],[12],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
+    "id": "Sco8jCO0",
+    "block": "[[[10,0],[14,0,\"upf-align--center\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"spinner\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"bounce1\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce2\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce3\"],[12],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[],false,[]]",
     "moduleName": "test-app/templates/components/loading-state.hbs",
     "isStrictMode": false
   });
@@ -3121,6 +3128,7 @@
   
     {{#if this.label}}
       <span class={{if this.tooltip "upf-stat__label--with-tooltip" "upf-stat__label"}}>
+        {{! template-lint-disable no-triple-curlies}}
         {{{this.label}}}
         {{#if this.tooltip}}
           <OSS::Icon @icon="fa-info-circle" {{enable-tooltip title=this.tooltip}} />
@@ -3130,8 +3138,8 @@
   </div>
   */
   {
-    "id": "q5XV3XLM",
-    "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[10,1],[14,0,\"upf-stat__name\"],[12],[1,\"\\n    \"],[1,[30,0,[\"name\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"top\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n\"],[41,[30,0,[\"iconUrl\"]],[[[1,\"            \"],[10,3],[15,6,[29,[[30,0,[\"iconUrl\"]]]]],[14,\"target\",\"_blank\"],[14,\"rel\",\"noopener noreferrer\"],[12],[1,\"\\n              \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,1],[15,0,[28,[37,3],[\"upf-stat__data \",[30,0,[\"dataClass\"]],[52,[51,[30,0,[\"data\"]]],\" upf-stat__data--null\"]],null]],[12],[1,\"\\n    \"],[1,[30,0,[\"data\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"right\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n          \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"label\"]],[[[1,\"    \"],[10,1],[15,0,[52,[30,0,[\"tooltip\"]],\"upf-stat__label--with-tooltip\",\"upf-stat__label\"]],[12],[1,\"\\n      \"],[2,[30,0,[\"label\"]]],[1,\"\\n\"],[41,[30,0,[\"tooltip\"]],[[[1,\"        \"],[8,[39,5],[[4,[38,2],null,[[\"title\"],[[30,0,[\"tooltip\"]]]]]],[[\"@icon\"],[\"fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[],false,[\"if\",\"eq\",\"enable-tooltip\",\"concat\",\"unless\",\"o-s-s/icon\"]]",
+    "id": "P9xrLAVK",
+    "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[10,1],[14,0,\"upf-stat__name\"],[12],[1,\"\\n    \"],[1,[30,0,[\"name\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"top\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n\"],[41,[30,0,[\"iconUrl\"]],[[[1,\"            \"],[10,3],[15,6,[29,[[30,0,[\"iconUrl\"]]]]],[14,\"target\",\"_blank\"],[14,\"rel\",\"noopener noreferrer\"],[12],[1,\"\\n              \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,1],[15,0,[28,[37,3],[\"upf-stat__data \",[30,0,[\"dataClass\"]],[52,[51,[30,0,[\"data\"]]],\" upf-stat__data--null\"]],null]],[12],[1,\"\\n    \"],[1,[30,0,[\"data\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"right\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n          \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"label\"]],[[[1,\"    \"],[10,1],[15,0,[52,[30,0,[\"tooltip\"]],\"upf-stat__label--with-tooltip\",\"upf-stat__label\"]],[12],[1,\"\\n\"],[1,\"      \"],[2,[30,0,[\"label\"]]],[1,\"\\n\"],[41,[30,0,[\"tooltip\"]],[[[1,\"        \"],[8,[39,5],[[4,[38,2],null,[[\"title\"],[[30,0,[\"tooltip\"]]]]]],[[\"@icon\"],[\"fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[],false,[\"if\",\"eq\",\"enable-tooltip\",\"concat\",\"unless\",\"o-s-s/icon\"]]",
     "moduleName": "test-app/templates/components/upf-stat.hbs",
     "isStrictMode": false
   });
@@ -3149,6 +3157,26 @@
     }
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/utils/attach-dropdown"eaimeta@70e063a35619d71f
+});
+;define("test-app/utils/constants", ["exports", "@upfluence/oss-components/utils/constants"], function (_exports, _constants) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(_exports, "DEFAULT_DATE_FORMAT", {
+    enumerable: true,
+    get: function () {
+      return _constants.DEFAULT_DATE_FORMAT;
+    }
+  });
+  Object.defineProperty(_exports, "DEFAULT_DATE_FORMAT_WITH_TIME", {
+    enumerable: true,
+    get: function () {
+      return _constants.DEFAULT_DATE_FORMAT_WITH_TIME;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/utils/constants"eaimeta@70e063a35619d71f
 });
 ;define("test-app/utils/easter-eggs", ["exports", "@upfluence/oss-components/utils/easter-eggs"], function (_exports, _easterEggs) {
   "use strict";
@@ -3232,16 +3260,25 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/utils/keyboard"eaimeta@70e063a35619d71f
 });
-;define("test-app/utils/logo-config", ["exports"], function (_exports) {
+;define("test-app/utils/logo-config", ["exports", "@upfluence/oss-components/utils/logo-config"], function (_exports, _logoConfig) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.LOGO_ICONS = _exports.LOGO_COLORS = void 0;
-  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  const LOGO_ICONS = _exports.LOGO_ICONS = ['rabbit', 'star', 'heart', 'rocket-launch', 'money-bill', 'glass-whiskey-rocks', 'joystick', 'scroll', 'carrot', 'volleyball-ball', 'crown', 'chart-bar', 'users', 'saxophone', 'duck', 'university', 'tree-palm', 'trophy', 'pizza-slice', 'popcorn', 'chart-line', 'analytics', 'hat-wizard', 'chart-network', 'leaf', 'utensils', 'ufo', 'hat-winter', 'guitar', 'parachute-box', 'sheep', 'boot', 'shopping-basket', 'shopping-cart', 'shopping-bag', 'tags', 'meteor', 'globe-americas', 'globe-snow'];
-  const LOGO_COLORS = _exports.LOGO_COLORS = ['stone', 'rose', 'orange', 'yellow', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuschia', 'pink', 'slate'];
+  Object.defineProperty(_exports, "LOGO_COLORS", {
+    enumerable: true,
+    get: function () {
+      return _logoConfig.LOGO_COLORS;
+    }
+  });
+  Object.defineProperty(_exports, "LOGO_ICONS", {
+    enumerable: true,
+    get: function () {
+      return _logoConfig.LOGO_ICONS;
+    }
+  });
+  0; //eaimeta@70e063a35619d71f0,"@upfluence/oss-components/utils/logo-config"eaimeta@70e063a35619d71f
 });
 ;define("test-app/utils/upf-local-storage", ["exports", "@upfluence/oss-components/utils/upf-local-storage"], function (_exports, _upfLocalStorage) {
   "use strict";

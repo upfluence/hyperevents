@@ -71027,34 +71027,35 @@ require('@ember/-internals/bootstrap')
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <div class={{concat "upf-alert " this.skinClass}} {{did-insert this.initSelf}} ...attributes>
-    <div class="indicator"></div>
-    <div class="main-container {{if this.plain 'main-container--plain'}}">
-      <span class="icon">
-        <OSS::Icon @icon={{this.iconClass}} />
-      </span>
-      <div class="text-container">
-        {{#if @title}}
-          <span class="title">{{@title}}</span>
-        {{/if}}
-        {{#if @subtitle}}
-          <span class="subtitle">{{@subtitle}}</span>
-        {{/if}}
-        {{#if (has-block "extra-content")}}
-          {{yield to="extra-content"}}
-        {{/if}}
-      </div>
-      {{#if @closable}}
-        <div class="fx-col">
-          <i role="button" class="far fa-times" {{on "click" this.removeSelf}}></i>
-        </div>
+    <span class="icon">
+      <OSS::Icon @icon={{this.iconClass}} />
+    </span>
+    <div class="text-container">
+      {{#if @title}}
+        <span class="title">{{@title}}</span>
+      {{/if}}
+      {{#if @subtitle}}
+        <span class="subtitle">{{@subtitle}}</span>
+      {{/if}}
+      {{#if (has-block "extra-content")}}
+        {{yield to="extra-content"}}
       {{/if}}
     </div>
+    {{#if @closable}}
+      <OSS::Button
+        class="upf-alert-close-button"
+        @size="sm"
+        @icon="fa-times"
+        @square={{true}}
+        {{on "click" this.removeSelf}}
+        data-control-name="upf-alert-close-button"
+      />
+    {{/if}}
   </div>
-  
   */
   {
-    "id": "YLqPr81b",
-    "block": "[[[11,0],[16,0,[28,[37,0],[\"upf-alert \",[30,0,[\"skinClass\"]]],null]],[17,1],[4,[38,1],[[30,0,[\"initSelf\"]]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"indicator\"],[12],[13],[1,\"\\n  \"],[10,0],[15,0,[29,[\"main-container \",[52,[30,0,[\"plain\"]],\"main-container--plain\"]]]],[12],[1,\"\\n    \"],[10,1],[14,0,\"icon\"],[12],[1,\"\\n      \"],[8,[39,3],null,[[\"@icon\"],[[30,0,[\"iconClass\"]]]],null],[1,\"\\n    \"],[13],[1,\"\\n    \"],[10,0],[14,0,\"text-container\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[10,1],[14,0,\"title\"],[12],[1,[30,2]],[13],[1,\"\\n\"]],[]],null],[41,[30,3],[[[1,\"        \"],[10,1],[14,0,\"subtitle\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,5]],[[[1,\"        \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[11,\"i\"],[24,\"role\",\"button\"],[24,0,\"far fa-times\"],[4,[38,6],[\"click\",[30,0,[\"removeSelf\"]]],null],[12],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[\"&attrs\",\"@title\",\"@subtitle\",\"@closable\",\"&extra-content\"],false,[\"concat\",\"did-insert\",\"if\",\"o-s-s/icon\",\"has-block\",\"yield\",\"on\"]]",
+    "id": "vQOK60o3",
+    "block": "[[[11,0],[16,0,[28,[37,0],[\"upf-alert \",[30,0,[\"skinClass\"]]],null]],[17,1],[4,[38,1],[[30,0,[\"initSelf\"]]],null],[12],[1,\"\\n  \"],[10,1],[14,0,\"icon\"],[12],[1,\"\\n    \"],[8,[39,2],null,[[\"@icon\"],[[30,0,[\"iconClass\"]]]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"text-container\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,1],[14,0,\"title\"],[12],[1,[30,2]],[13],[1,\"\\n\"]],[]],null],[41,[30,3],[[[1,\"      \"],[10,1],[14,0,\"subtitle\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,5]],[[[1,\"      \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"    \"],[8,[39,6],[[24,0,\"upf-alert-close-button\"],[24,\"data-control-name\",\"upf-alert-close-button\"],[4,[38,7],[\"click\",[30,0,[\"removeSelf\"]]],null]],[[\"@size\",\"@icon\",\"@square\"],[\"sm\",\"fa-times\",true]],null],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@title\",\"@subtitle\",\"@closable\",\"&extra-content\"],false,[\"concat\",\"did-insert\",\"o-s-s/icon\",\"if\",\"has-block\",\"yield\",\"o-s-s/button\",\"on\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/alert.hbs",
     "isStrictMode": false
   });
@@ -71062,9 +71063,6 @@ require('@ember/-internals/bootstrap')
   let OSSAlert = _exports.default = (_class = class OSSAlert extends _component2.default {
     get skinClass() {
       return `upf-alert--${this.args.skin || DEFAULT_SKIN}`;
-    }
-    get plain() {
-      return this.args.plain ?? true;
     }
     get iconClass() {
       switch (this.args.skin) {
@@ -71146,7 +71144,7 @@ require('@ember/-internals/bootstrap')
       const route = this.args.routePrefix ? this.args.routePrefix + '.' + this.args.link : this.args.link;
       try {
         return Boolean(this.router.urlFor(route));
-      } catch (error) {
+      } catch {
         return false;
       }
     }
@@ -71183,6 +71181,7 @@ require('@ember/-internals/bootstrap')
       <Input
         @value={{this.currentValue}}
         placeholder={{@placeholder}}
+        aria-label={{@ariaLabel}}
         autocomplete="off"
         disabled={{@disabled}}
         {{on "keydown" this.keyListener}}
@@ -71193,8 +71192,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "H1ppolMu",
-    "block": "[[[10,0],[14,0,\"fx-1 fx-col fx-gap-px-6\"],[12],[1,\"\\n  \"],[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"items\"]]],null]],null],null,[[[1,\"      \"],[8,[39,2],null,[[\"@label\",\"@onRemove\"],[[30,2],[28,[37,3],[[30,0,[\"removeItem\"]],[30,3]],null]]],null],[1,\"\\n\"]],[2,3]],null],[1,\"    \"],[8,[39,4],[[16,\"placeholder\",[30,4]],[24,\"autocomplete\",\"off\"],[16,\"disabled\",[30,5]],[4,[38,5],[\"keydown\",[30,0,[\"keyListener\"]]],null],[4,[38,5],[\"blur\",[30,0,[\"validateTagOnClickOutside\"]]],null]],[[\"@value\"],[[30,0,[\"currentValue\"]]]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,1],[14,0,\"font-color-error-500\"],[12],[1,[30,6]],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"item\",\"index\",\"@placeholder\",\"@disabled\",\"@errorMessage\"],false,[\"each\",\"-track-array\",\"o-s-s/chip\",\"fn\",\"input\",\"on\"]]",
+    "id": "Drq2IiqQ",
+    "block": "[[[10,0],[14,0,\"fx-1 fx-col fx-gap-px-6\"],[12],[1,\"\\n  \"],[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"items\"]]],null]],null],null,[[[1,\"      \"],[8,[39,2],null,[[\"@label\",\"@onRemove\"],[[30,2],[28,[37,3],[[30,0,[\"removeItem\"]],[30,3]],null]]],null],[1,\"\\n\"]],[2,3]],null],[1,\"    \"],[8,[39,4],[[16,\"placeholder\",[30,4]],[16,\"aria-label\",[30,5]],[24,\"autocomplete\",\"off\"],[16,\"disabled\",[30,6]],[4,[38,5],[\"keydown\",[30,0,[\"keyListener\"]]],null],[4,[38,5],[\"blur\",[30,0,[\"validateTagOnClickOutside\"]]],null]],[[\"@value\"],[[30,0,[\"currentValue\"]]]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,1],[14,0,\"font-color-error-500\"],[12],[1,[30,7]],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"item\",\"index\",\"@placeholder\",\"@ariaLabel\",\"@disabled\",\"@errorMessage\"],false,[\"each\",\"-track-array\",\"o-s-s/chip\",\"fn\",\"input\",\"on\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/array-input.hbs",
     "isStrictMode": false
   });
@@ -71209,7 +71208,7 @@ require('@ember/-internals/bootstrap')
       }
     }
     get computedClasses() {
-      let arr = ['array-input-container'];
+      const arr = ['array-input-container'];
       if (this.args.disabled) {
         arr.push('array-input-container--disabled');
       }
@@ -71222,9 +71221,7 @@ require('@ember/-internals/bootstrap')
       return DEFAULT_KEYBOARD_TRIGGERS.concat(this.args.keyboardTriggers || []);
     }
     _triggerComponentRedraw() {
-      // Since this.items is not properly tracked upon updating the values,
-      // re-assigning this way triggers the component redraw.
-      this.items = this.items;
+      this.items = [...this.items];
     }
     _addEntry() {
       this.items.push(this.currentValue);
@@ -71290,10 +71287,12 @@ require('@ember/-internals/bootstrap')
   0; //eaimeta@70e063a35619d71f0,"@ember/utils",0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="oss-attribute"
-       {{on "mouseenter" (fn (mut this.displayCopyBtn) true)}}
-       {{on "mouseleave" (fn (mut this.displayCopyBtn) false)}}
-       ...attributes>
+    <div
+    class="oss-attribute"
+    {{on "mouseenter" (fn (mut this.displayCopyBtn) true)}}
+    {{on "mouseleave" (fn (mut this.displayCopyBtn) false)}}
+    ...attributes
+  >
     {{#if (has-block "label")}}
       <div class="oss-attribute__label">{{yield to="label"}}</div>
     {{/if}}
@@ -71310,11 +71309,10 @@ require('@ember/-internals/bootstrap')
       </div>
     {{/if}}
   </div>
-  
   */
   {
-    "id": "I976PiNh",
-    "block": "[[[11,0],[24,0,\"oss-attribute\"],[17,1],[4,[38,0],[\"mouseenter\",[28,[37,1],[[28,[37,2],[[30,0,[\"displayCopyBtn\"]]],null],true],null]],null],[4,[38,0],[\"mouseleave\",[28,[37,1],[[28,[37,2],[[30,0,[\"displayCopyBtn\"]]],null],false],null]],null],[12],[1,\"\\n\"],[41,[48,[30,3]],[[[1,\"    \"],[10,0],[14,0,\"oss-attribute__label\"],[12],[18,3,null],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,4]],[[[1,\"    \"],[10,0],[14,0,\"oss-attribute__value\"],[12],[18,4,null],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[10,1],[14,0,\"oss-attribute__value\"],[12],[1,\"\\n      \"],[1,[30,2]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]]],[41,[30,0,[\"isCopyable\"]],[[[1,\"    \"],[10,0],[15,0,[29,[\"oss-attribute__copy \",[52,[30,0,[\"displayCopyBtn\"]],\"oss-attribute__copy--visible\"]]]],[12],[1,\"\\n      \"],[8,[39,6],null,[[\"@value\",\"@inline\"],[[30,2],true]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"]],[\"&attrs\",\"@value\",\"&label\",\"&value\"],false,[\"on\",\"fn\",\"mut\",\"if\",\"has-block\",\"yield\",\"o-s-s/copy\"]]",
+    "id": "97G1oEVh",
+    "block": "[[[11,0],[24,0,\"oss-attribute\"],[17,1],[4,[38,0],[\"mouseenter\",[28,[37,1],[[28,[37,2],[[30,0,[\"displayCopyBtn\"]]],null],true],null]],null],[4,[38,0],[\"mouseleave\",[28,[37,1],[[28,[37,2],[[30,0,[\"displayCopyBtn\"]]],null],false],null]],null],[12],[1,\"\\n\"],[41,[48,[30,3]],[[[1,\"    \"],[10,0],[14,0,\"oss-attribute__label\"],[12],[18,3,null],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,4]],[[[1,\"    \"],[10,0],[14,0,\"oss-attribute__value\"],[12],[18,4,null],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[10,1],[14,0,\"oss-attribute__value\"],[12],[1,\"\\n      \"],[1,[30,2]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]]],[41,[30,0,[\"isCopyable\"]],[[[1,\"    \"],[10,0],[15,0,[29,[\"oss-attribute__copy \",[52,[30,0,[\"displayCopyBtn\"]],\"oss-attribute__copy--visible\"]]]],[12],[1,\"\\n      \"],[8,[39,6],null,[[\"@value\",\"@inline\"],[[30,2],true]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@value\",\"&label\",\"&value\"],false,[\"on\",\"fn\",\"mut\",\"if\",\"has-block\",\"yield\",\"o-s-s/copy\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/base.hbs",
     "isStrictMode": false
   });
@@ -71351,11 +71349,10 @@ require('@ember/-internals/bootstrap')
       {{/if}}
     </:label>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "jje53aRc",
-    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-country\"],[17,1]],[[\"@value\"],[[30,0,[\"countryName\"]]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,1],[\"oss-components.attribute.country\"],null]],[13],[1,\"\\n\"],[41,[28,[37,3],[[30,0,[\"countryName\"]],\"-\"],null],[[[1,\"      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,2],\" ff-round ff-sm\"]]],[12],[13],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@countryCode\"],false,[\"o-s-s/attribute/base\",\"t\",\"if\",\"not-eq\"]]",
+    "id": "Dp8YQYzL",
+    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-country\"],[17,1]],[[\"@value\"],[[30,0,[\"countryName\"]]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,1],[\"oss-components.attribute.country\"],null]],[13],[1,\"\\n\"],[41,[28,[37,3],[[30,0,[\"countryName\"]],\"-\"],null],[[[1,\"      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,2],\" ff-round ff-sm\"]]],[12],[13],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]]],[\"&attrs\",\"@countryCode\"],false,[\"o-s-s/attribute/base\",\"t\",\"if\",\"not-eq\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/country.hbs",
     "isStrictMode": false
   });
@@ -71399,11 +71396,10 @@ require('@ember/-internals/bootstrap')
       {{/if}}
     </:label>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "GvBPURbg",
-    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-phone-number\"],[17,1]],[[\"@value\"],[[30,0,[\"formattedPhoneNumber\"]]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,1],[\"oss-components.attribute.phone_number\"],null]],[13],[1,\"\\n\"],[41,[30,0,[\"countryCodeDictionaryMatch\"]],[[[1,\"      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,2],\" ff-round ff-sm\"]]],[12],[13],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@countryCode\"],false,[\"o-s-s/attribute/base\",\"t\",\"if\"]]",
+    "id": "6lyWBSWA",
+    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-phone-number\"],[17,1]],[[\"@value\"],[[30,0,[\"formattedPhoneNumber\"]]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,1],[\"oss-components.attribute.phone_number\"],null]],[13],[1,\"\\n\"],[41,[30,0,[\"countryCodeDictionaryMatch\"]],[[[1,\"      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,2],\" ff-round ff-sm\"]]],[12],[13],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]]],[\"&attrs\",\"@countryCode\"],false,[\"o-s-s/attribute/base\",\"t\",\"if\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/phone-number.hbs",
     "isStrictMode": false
   });
@@ -71441,18 +71437,23 @@ require('@ember/-internals/bootstrap')
     </:label>
     <:value>
       {{#if @rating}}
-        <OSS::StarRating @rating={{@rating}} @totalStars={{5}} @activeColor="yellow"
-                         @passiveColor="yellow" @passiveStyle="regular" @disablePointerCursor={{true}} />
+        <OSS::StarRating
+          @rating={{@rating}}
+          @totalStars={{5}}
+          @activeColor="yellow"
+          @passiveColor="yellow"
+          @passiveStyle="regular"
+          @disablePointerCursor={{true}}
+        />
       {{else}}
         -
       {{/if}}
     </:value>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "b3mC633N",
-    "block": "[[[8,[39,0],[[24,0,\"oss-attribute--no-hover-effect\"],[24,\"data-control-name\",\"attribute-rating\"],[17,1]],null,[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[8,[39,2],null,[[\"@rating\",\"@totalStars\",\"@activeColor\",\"@passiveColor\",\"@passiveStyle\",\"@disablePointerCursor\"],[[30,3],5,\"yellow\",\"yellow\",\"regular\",true]],null],[1,\"\\n\"]],[]],[[[1,\"      -\\n\"]],[]]],[1,\"  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@label\",\"@rating\"],false,[\"o-s-s/attribute/base\",\"if\",\"o-s-s/star-rating\"]]",
+    "id": "6yymjkx7",
+    "block": "[[[8,[39,0],[[24,0,\"oss-attribute--no-hover-effect\"],[24,\"data-control-name\",\"attribute-rating\"],[17,1]],null,[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[8,[39,2],null,[[\"@rating\",\"@totalStars\",\"@activeColor\",\"@passiveColor\",\"@passiveStyle\",\"@disablePointerCursor\"],[[30,3],5,\"yellow\",\"yellow\",\"regular\",true]],null],[1,\"\\n\"]],[]],[[[1,\"      -\\n\"]],[]]],[1,\"  \"]],[]]]]]],[\"&attrs\",\"@label\",\"@rating\"],false,[\"o-s-s/attribute/base\",\"if\",\"o-s-s/star-rating\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/rating.hbs",
     "isStrictMode": false
   });
@@ -71482,10 +71483,13 @@ require('@ember/-internals/bootstrap')
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <OSS::Attribute::Base @copyable={{false}} data-control-name="attribute-removable-text"
-                        {{on "mouseenter" (fn (mut this.displayRemoveIcon) true)}}
-                        {{on "mouseleave" (fn (mut this.displayRemoveIcon) false)}}
-                        ...attributes>
+    <OSS::Attribute::Base
+    @copyable={{false}}
+    data-control-name="attribute-removable-text"
+    {{on "mouseenter" (fn (mut this.displayRemoveIcon) true)}}
+    {{on "mouseleave" (fn (mut this.displayRemoveIcon) false)}}
+    ...attributes
+  >
     <:label>
       <span>{{@label}}</span>
     </:label>
@@ -71495,17 +71499,20 @@ require('@ember/-internals/bootstrap')
         {{#if this.loading}}
           <OSS::Icon @icon="fa-circle-notch fa-spin" />
         {{else if this.displayRemoveIcon}}
-          <OSS::Icon @icon="fa-trash" {{on "click" this.onRemove}} role="button"
-                     {{enable-tooltip title=this.removeTooltip placement="top"}} />
+          <OSS::Icon
+            @icon="fa-trash"
+            {{on "click" this.onRemove}}
+            role="button"
+            {{enable-tooltip title=this.removeTooltip placement="top"}}
+          />
         {{/if}}
       </div>
     </:value>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "vXZ2J/Ku",
-    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-removable-text\"],[17,1],[4,[38,1],[\"mouseenter\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayRemoveIcon\"]]],null],true],null]],null],[4,[38,1],[\"mouseleave\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayRemoveIcon\"]]],null],false],null]],null]],[[\"@copyable\"],[false]],[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-1\"],[12],[1,[30,0,[\"value\"]]],[13],[1,\"\\n\"],[41,[30,0,[\"loading\"]],[[[1,\"        \"],[8,[39,5],null,[[\"@icon\"],[\"fa-circle-notch fa-spin\"]],null],[1,\"\\n\"]],[]],[[[41,[30,0,[\"displayRemoveIcon\"]],[[[1,\"        \"],[8,[39,5],[[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onRemove\"]]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[30,0,[\"removeTooltip\"]],\"top\"]]]],[[\"@icon\"],[\"fa-trash\"]],null],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@label\"],false,[\"o-s-s/attribute/base\",\"on\",\"fn\",\"mut\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
+    "id": "2UA+hyul",
+    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-removable-text\"],[17,1],[4,[38,1],[\"mouseenter\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayRemoveIcon\"]]],null],true],null]],null],[4,[38,1],[\"mouseleave\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayRemoveIcon\"]]],null],false],null]],null]],[[\"@copyable\"],[false]],[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-1\"],[12],[1,[30,0,[\"value\"]]],[13],[1,\"\\n\"],[41,[30,0,[\"loading\"]],[[[1,\"        \"],[8,[39,5],null,[[\"@icon\"],[\"fa-circle-notch fa-spin\"]],null],[1,\"\\n\"]],[]],[[[41,[30,0,[\"displayRemoveIcon\"]],[[[1,\"        \"],[8,[39,5],[[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onRemove\"]]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[30,0,[\"removeTooltip\"]],\"top\"]]]],[[\"@icon\"],[\"fa-trash\"]],null],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"&attrs\",\"@label\"],false,[\"o-s-s/attribute/base\",\"on\",\"fn\",\"mut\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/removable-text.hbs",
     "isStrictMode": false
   });
@@ -71559,15 +71566,22 @@ require('@ember/-internals/bootstrap')
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <OSS::Attribute::Base @copyable={{false}} data-control-name="attribute-revealable-email"
-                        {{on "mouseenter" (fn (mut this.displayLockIcon) true)}}
-                        {{on "mouseleave" (fn (mut this.displayLockIcon) false)}}
-                        ...attributes>
+    <OSS::Attribute::Base
+    @copyable={{false}}
+    data-control-name="attribute-revealable-email"
+    {{on "mouseenter" (fn (mut this.displayLockIcon) true)}}
+    {{on "mouseleave" (fn (mut this.displayLockIcon) false)}}
+    ...attributes
+  >
     <:label>
       <span>{{t "oss-components.attribute.email.label"}}</span>
       {{#if @tooltip}}
-        <OSS::Icon @icon="far fa-info-circle" class="oss-attribute__info" @inline={{true}}
-                   {{enable-tooltip title=@tooltip placement="top"}} />
+        <OSS::Icon
+          @icon="far fa-info-circle"
+          class="oss-attribute__info"
+          @inline={{true}}
+          {{enable-tooltip title=@tooltip placement="top"}}
+        />
       {{/if}}
     </:label>
     <:value>
@@ -71576,17 +71590,20 @@ require('@ember/-internals/bootstrap')
         {{#if this.loading}}
           <OSS::Icon @icon="fa-circle-notch fa-spin" />
         {{else if this.displayLockIcon}}
-          <OSS::Icon @icon="fa-lock" {{on "click" this.onRevealEmail}} role="button"
-                     {{enable-tooltip title=this.lockTooltip placement="top"}} />
+          <OSS::Icon
+            @icon="fa-lock"
+            {{on "click" this.onRevealEmail}}
+            role="button"
+            {{enable-tooltip title=this.lockTooltip placement="top"}}
+          />
         {{/if}}
       </div>
     </:value>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "lgvqrCdF",
-    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-revealable-email\"],[17,1],[4,[38,1],[\"mouseenter\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayLockIcon\"]]],null],true],null]],null],[4,[38,1],[\"mouseleave\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayLockIcon\"]]],null],false],null]],null]],[[\"@copyable\"],[false]],[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,4],[\"oss-components.attribute.email.label\"],null]],[13],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[8,[39,6],[[24,0,\"oss-attribute__info\"],[4,[38,7],null,[[\"title\",\"placement\"],[[30,2],\"top\"]]]],[[\"@icon\",\"@inline\"],[\"far fa-info-circle\",true]],null],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-1\"],[12],[1,\"•••••@••••.•••\"],[13],[1,\"\\n\"],[41,[30,0,[\"loading\"]],[[[1,\"        \"],[8,[39,6],null,[[\"@icon\"],[\"fa-circle-notch fa-spin\"]],null],[1,\"\\n\"]],[]],[[[41,[30,0,[\"displayLockIcon\"]],[[[1,\"        \"],[8,[39,6],[[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onRevealEmail\"]]],null],[4,[38,7],null,[[\"title\",\"placement\"],[[30,0,[\"lockTooltip\"]],\"top\"]]]],[[\"@icon\"],[\"fa-lock\"]],null],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@tooltip\"],false,[\"o-s-s/attribute/base\",\"on\",\"fn\",\"mut\",\"t\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
+    "id": "nAnUR7mZ",
+    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-revealable-email\"],[17,1],[4,[38,1],[\"mouseenter\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayLockIcon\"]]],null],true],null]],null],[4,[38,1],[\"mouseleave\",[28,[37,2],[[28,[37,3],[[30,0,[\"displayLockIcon\"]]],null],false],null]],null]],[[\"@copyable\"],[false]],[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[28,[35,4],[\"oss-components.attribute.email.label\"],null]],[13],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[8,[39,6],[[24,0,\"oss-attribute__info\"],[4,[38,7],null,[[\"title\",\"placement\"],[[30,2],\"top\"]]]],[[\"@icon\",\"@inline\"],[\"far fa-info-circle\",true]],null],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-1\"],[12],[1,\"•••••@••••.•••\"],[13],[1,\"\\n\"],[41,[30,0,[\"loading\"]],[[[1,\"        \"],[8,[39,6],null,[[\"@icon\"],[\"fa-circle-notch fa-spin\"]],null],[1,\"\\n\"]],[]],[[[41,[30,0,[\"displayLockIcon\"]],[[[1,\"        \"],[8,[39,6],[[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onRevealEmail\"]]],null],[4,[38,7],null,[[\"title\",\"placement\"],[[30,0,[\"lockTooltip\"]],\"top\"]]]],[[\"@icon\"],[\"fa-lock\"]],null],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"&attrs\",\"@tooltip\"],false,[\"o-s-s/attribute/base\",\"on\",\"fn\",\"mut\",\"t\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/revealable-email.hbs",
     "isStrictMode": false
   });
@@ -71629,8 +71646,11 @@ require('@ember/-internals/bootstrap')
   0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <OSS::Attribute::Base class="oss-attribute--auto-height oss-attribute--no-hover-effect"
-                        data-control-name="attribute-tag-array" ...attributes>
+    <OSS::Attribute::Base
+    class="oss-attribute--auto-height oss-attribute--no-hover-effect"
+    data-control-name="attribute-tag-array"
+    ...attributes
+  >
     <:label>
       <span>{{@label}}</span>
     </:label>
@@ -71646,11 +71666,10 @@ require('@ember/-internals/bootstrap')
       {{/if}}
     </:value>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "VLh9K/Sv",
-    "block": "[[[8,[39,0],[[24,0,\"oss-attribute--auto-height oss-attribute--no-hover-effect\"],[24,\"data-control-name\",\"attribute-tag-array\"],[17,1]],null,[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n\"],[41,[30,0,[\"displayTags\"]],[[[1,\"      \"],[10,0],[14,0,\"fx-row fx-wrap fx-gap-px-3\"],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"          \"],[8,[39,4],null,[[\"@label\",\"@skin\"],[[30,4],\"secondary\"]],null],[1,\"\\n\"]],[4]],null],[1,\"      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,1],[12],[1,\"-\"],[13],[1,\"\\n\"]],[]]],[1,\"  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@label\",\"@tags\",\"tagLabel\"],false,[\"o-s-s/attribute/base\",\"if\",\"each\",\"-track-array\",\"o-s-s/tag\"]]",
+    "id": "I3zoV9j/",
+    "block": "[[[8,[39,0],[[24,0,\"oss-attribute--auto-height oss-attribute--no-hover-effect\"],[24,\"data-control-name\",\"attribute-tag-array\"],[17,1]],null,[[\"label\",\"value\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,2]],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n\"],[41,[30,0,[\"displayTags\"]],[[[1,\"      \"],[10,0],[14,0,\"fx-row fx-wrap fx-gap-px-3\"],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"          \"],[8,[39,4],null,[[\"@label\",\"@skin\"],[[30,4],\"secondary\"]],null],[1,\"\\n\"]],[4]],null],[1,\"      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,1],[12],[1,\"-\"],[13],[1,\"\\n\"]],[]]],[1,\"  \"]],[]]]]]],[\"&attrs\",\"@label\",\"@tags\",\"tagLabel\"],false,[\"o-s-s/attribute/base\",\"if\",\"each\",\"-track-array\",\"o-s-s/tag\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/tag-array.hbs",
     "isStrictMode": false
   });
@@ -71680,16 +71699,18 @@ require('@ember/-internals/bootstrap')
     <:label>
       <span>{{@label}}</span>
       {{#if @tooltip}}
-        <OSS::Icon @icon="far fa-info-circle" class="oss-attribute__info"
-                   {{enable-tooltip title=@tooltip placement="top"}} />
+        <OSS::Icon
+          @icon="far fa-info-circle"
+          class="oss-attribute__info"
+          {{enable-tooltip title=@tooltip placement="top"}}
+        />
       {{/if}}
     </:label>
   </OSS::Attribute::Base>
-  
   */
   {
-    "id": "vs8AJN4c",
-    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-text\"],[17,1]],[[\"@value\",\"@copyable\"],[[30,0,[\"value\"]],[30,2]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,3]],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"      \"],[8,[39,2],[[24,0,\"oss-attribute__info\"],[4,[38,3],null,[[\"title\",\"placement\"],[[30,4],\"top\"]]]],[[\"@icon\"],[\"far fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]],[1,\"\\n\"]],[\"&attrs\",\"@copyable\",\"@label\",\"@tooltip\"],false,[\"o-s-s/attribute/base\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
+    "id": "amtxemwT",
+    "block": "[[[8,[39,0],[[24,\"data-control-name\",\"attribute-text\"],[17,1]],[[\"@value\",\"@copyable\"],[[30,0,[\"value\"]],[30,2]]],[[\"label\"],[[[[1,\"\\n    \"],[10,1],[12],[1,[30,3]],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"      \"],[8,[39,2],[[24,0,\"oss-attribute__info\"],[4,[38,3],null,[[\"title\",\"placement\"],[[30,4],\"top\"]]]],[[\"@icon\"],[\"far fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"]],[]]]]]],[\"&attrs\",\"@copyable\",\"@label\",\"@tooltip\"],false,[\"o-s-s/attribute/base\",\"if\",\"o-s-s/icon\",\"enable-tooltip\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attribute/text.hbs",
     "isStrictMode": false
   });
@@ -71737,8 +71758,13 @@ require('@ember/-internals/bootstrap')
           {{#if (has-block "contextual-action")}}
             {{yield to="contextual-action"}}
           {{/if}}
-          <OSS::Button @icon={{this.editIcon}} @square={{true}} @size="sm" {{on "click" this.onEdit}}
-                       data-control-name="attributes-panel-mode-switch-button" />
+          <OSS::Button
+            @icon={{this.editIcon}}
+            @square={{true}}
+            @size="sm"
+            {{on "click" this.onEdit}}
+            data-control-name="attributes-panel-mode-switch-button"
+          />
         </div>
       {{/if}}
     </div>
@@ -71753,21 +71779,29 @@ require('@ember/-internals/bootstrap')
           <div class="fx-col fx-gap-px-18">
             {{yield to="edition-mode"}}
             <div class="fx-row fx-gap-px-18 fx-malign-end">
-              <OSS::Button @label={{t "oss-components.attributes_panel.cancel"}} {{on "click" this.onCancel}}
-                           data-control-name="attributes-panel-cancel-button" />
-              <OSS::Button @skin="primary" @label={{t "oss-components.attributes_panel.save"}} @loading={{this.isLoading}}
-                           disabled={{@isSaveDisabled}} {{on "click" this.onSave}} data-control-name="attributes-panel-save-button" />
+              <OSS::Button
+                @label={{t "oss-components.attributes_panel.cancel"}}
+                {{on "click" this.onCancel}}
+                data-control-name="attributes-panel-cancel-button"
+              />
+              <OSS::Button
+                @skin="primary"
+                @label={{t "oss-components.attributes_panel.save"}}
+                @loading={{this.isLoading}}
+                disabled={{@isSaveDisabled}}
+                {{on "click" this.onSave}}
+                data-control-name="attributes-panel-save-button"
+              />
             </div>
           </div>
         {{/if}}
       {{/if}}
     </div>
   </div>
-  
   */
   {
-    "id": "Ez1DSS4W",
-    "block": "[[[11,0],[24,0,\"attributes-panel\"],[17,1],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-row fx-malign-space-between\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12 fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[8,[39,1],[[24,0,\"font-color-primary-500\"]],[[\"@icon\"],[[30,2]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[14,0,\"font-size-md font-weight-semibold\"],[12],[1,\"\\n        \"],[1,[30,3]],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[41,[28,[37,2],[[30,0,[\"modeSelected\"]],\"view\"],null],[[[1,\"      \"],[10,0],[14,0,\"fx-row fx-gap-px-6\"],[12],[1,\"\\n\"],[41,[48,[30,5]],[[[1,\"          \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"        \"],[8,[39,5],[[24,\"data-control-name\",\"attributes-panel-mode-switch-button\"],[4,[38,6],[\"click\",[30,0,[\"onEdit\"]]],null]],[[\"@icon\",\"@square\",\"@size\"],[[30,0,[\"editIcon\"]],true,\"sm\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,0],[15,0,[28,[37,7],[\"attributes-panel__container attributes-panel__container--\",[30,0,[\"modeSelected\"]]],null]],[12],[1,\"\\n\"],[41,[28,[37,2],[[30,0,[\"modeSelected\"]],\"view\"],null],[[[41,[48,[30,6]],[[[1,\"        \"],[18,6,null],[1,\"\\n\"]],[]],null]],[]],[[[41,[48,[30,7]],[[[1,\"        \"],[10,0],[14,0,\"fx-col fx-gap-px-18\"],[12],[1,\"\\n          \"],[18,7,null],[1,\"\\n          \"],[10,0],[14,0,\"fx-row fx-gap-px-18 fx-malign-end\"],[12],[1,\"\\n            \"],[8,[39,5],[[24,\"data-control-name\",\"attributes-panel-cancel-button\"],[4,[38,6],[\"click\",[30,0,[\"onCancel\"]]],null]],[[\"@label\"],[[28,[37,8],[\"oss-components.attributes_panel.cancel\"],null]]],null],[1,\"\\n            \"],[8,[39,5],[[16,\"disabled\",[30,4]],[24,\"data-control-name\",\"attributes-panel-save-button\"],[4,[38,6],[\"click\",[30,0,[\"onSave\"]]],null]],[[\"@skin\",\"@label\",\"@loading\"],[\"primary\",[28,[37,8],[\"oss-components.attributes_panel.save\"],null],[30,0,[\"isLoading\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[\"&attrs\",\"@icon\",\"@title\",\"@isSaveDisabled\",\"&contextual-action\",\"&view-mode\",\"&edition-mode\"],false,[\"if\",\"o-s-s/icon\",\"eq\",\"has-block\",\"yield\",\"o-s-s/button\",\"on\",\"concat\",\"t\"]]",
+    "id": "FDjjcCan",
+    "block": "[[[11,0],[24,0,\"attributes-panel\"],[17,1],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-row fx-malign-space-between\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12 fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[8,[39,1],[[24,0,\"font-color-primary-500\"]],[[\"@icon\"],[[30,2]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[14,0,\"font-size-md font-weight-semibold\"],[12],[1,\"\\n        \"],[1,[30,3]],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[41,[28,[37,2],[[30,0,[\"modeSelected\"]],\"view\"],null],[[[1,\"      \"],[10,0],[14,0,\"fx-row fx-gap-px-6\"],[12],[1,\"\\n\"],[41,[48,[30,5]],[[[1,\"          \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"        \"],[8,[39,5],[[24,\"data-control-name\",\"attributes-panel-mode-switch-button\"],[4,[38,6],[\"click\",[30,0,[\"onEdit\"]]],null]],[[\"@icon\",\"@square\",\"@size\"],[[30,0,[\"editIcon\"]],true,\"sm\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,0],[15,0,[28,[37,7],[\"attributes-panel__container attributes-panel__container--\",[30,0,[\"modeSelected\"]]],null]],[12],[1,\"\\n\"],[41,[28,[37,2],[[30,0,[\"modeSelected\"]],\"view\"],null],[[[41,[48,[30,6]],[[[1,\"        \"],[18,6,null],[1,\"\\n\"]],[]],null]],[]],[[[41,[48,[30,7]],[[[1,\"        \"],[10,0],[14,0,\"fx-col fx-gap-px-18\"],[12],[1,\"\\n          \"],[18,7,null],[1,\"\\n          \"],[10,0],[14,0,\"fx-row fx-gap-px-18 fx-malign-end\"],[12],[1,\"\\n            \"],[8,[39,5],[[24,\"data-control-name\",\"attributes-panel-cancel-button\"],[4,[38,6],[\"click\",[30,0,[\"onCancel\"]]],null]],[[\"@label\"],[[28,[37,8],[\"oss-components.attributes_panel.cancel\"],null]]],null],[1,\"\\n            \"],[8,[39,5],[[16,\"disabled\",[30,4]],[24,\"data-control-name\",\"attributes-panel-save-button\"],[4,[38,6],[\"click\",[30,0,[\"onSave\"]]],null]],[[\"@skin\",\"@label\",\"@loading\"],[\"primary\",[28,[37,8],[\"oss-components.attributes_panel.save\"],null],[30,0,[\"isLoading\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@icon\",\"@title\",\"@isSaveDisabled\",\"&contextual-action\",\"&view-mode\",\"&edition-mode\"],false,[\"if\",\"o-s-s/icon\",\"eq\",\"has-block\",\"yield\",\"o-s-s/button\",\"on\",\"concat\",\"t\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/attributes-panel.hbs",
     "isStrictMode": false
   });
@@ -71878,7 +71912,7 @@ require('@ember/-internals/bootstrap')
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = _exports.SizeDefinition = _exports.DEFAULT_IMAGE_URL = void 0;
+  _exports.default = _exports.SizeDefinition = _exports.DEFAULT_IMAGE_URL = _exports.AvatarSkins = void 0;
   var _class, _descriptor;
   0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/debug",0,"@glimmer/tracking",0,"@ember/object",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
@@ -71911,7 +71945,8 @@ require('@ember/-internals/bootstrap')
     md: 'upf-avatar--md',
     lg: 'upf-avatar--lg'
   };
-  const DEFAULT_IMAGE_URL = _exports.DEFAULT_IMAGE_URL = '/assets/images/avatar-placeholder.svg';
+  const AvatarSkins = _exports.AvatarSkins = ['danger', 'xtd-orange', 'xtd-violet-light', 'xtd-violet', 'xtd-lime', 'primary', 'primary-light', 'xtd-cyan'];
+  const DEFAULT_IMAGE_URL = _exports.DEFAULT_IMAGE_URL = '/@upfluence/oss-components/assets/images/avatar-placeholder-ecd1c2ef05647216fbe3f59bdc91aef5.svg';
   let OSSAvatar = _exports.default = (_class = class OSSAvatar extends _component2.default {
     constructor(...args) {
       super(...args);
@@ -71927,13 +71962,18 @@ require('@ember/-internals/bootstrap')
       return this.image === DEFAULT_IMAGE_URL || this.hasError ? 'default-img-placeholder' : '';
     }
     get computedClass() {
-      let classes = 'upf-avatar ';
+      const classes = ['upf-avatar'];
       const size = this.args.size || 'md';
       if (this.args.loading) {
-        classes = classes.concat('upf-avatar--loading ');
+        classes.push('upf-avatar--loading');
+      }
+      if (this.args.skin) {
+        (false && !(AvatarSkins.includes(this.args.skin)) && (0, _debug.assert)(`[component][OSS::Avatar] Unknown skin. Available skins are: ${AvatarSkins.join(', ')}`, AvatarSkins.includes(this.args.skin)));
+        classes.push('upf-avatar--skin', `upf-avatar--skin-${this.args.skin}`);
       }
       (false && !(Object.keys(SizeDefinition).includes(size)) && (0, _debug.assert)(`[component][OSS::Avatar] Unknown size. Available sizes are: ${Object.keys(SizeDefinition).join(', ')}`, Object.keys(SizeDefinition).includes(size)));
-      return classes.concat(SizeDefinition[size]);
+      classes.push(SizeDefinition[size]);
+      return classes.join(' ');
     }
     imageLoadError(event) {
       event.target.src = DEFAULT_IMAGE_URL;
@@ -71968,11 +72008,10 @@ require('@ember/-internals/bootstrap')
       <span class="upf-badge__text">{{@text}}</span>
     {{/if}}
   </div>
-  
   */
   {
-    "id": "qLRLoFew",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[17,1],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"    \"],[8,[39,1],null,[[\"@style\",\"@icon\"],[[28,[37,2],[[30,2]],null],[28,[37,3],[[30,2]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,3],[[[1,\"    \"],[10,\"img\"],[15,\"src\",[30,3]],[15,\"alt\",[28,[37,4],[\"oss-components.badge.image_alt\"],null]],[12],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[10,1],[14,0,\"upf-badge__text\"],[12],[1,[30,4]],[13],[1,\"\\n  \"]],[]]]],[]]],[13],[1,\"\\n\"]],[\"&attrs\",\"@icon\",\"@image\",\"@text\"],false,[\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"t\"]]",
+    "id": "r5ISQ6Ai",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[17,1],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"    \"],[8,[39,1],null,[[\"@style\",\"@icon\"],[[28,[37,2],[[30,2]],null],[28,[37,3],[[30,2]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,3],[[[1,\"    \"],[10,\"img\"],[15,\"src\",[30,3]],[15,\"alt\",[28,[37,4],[\"oss-components.badge.image_alt\"],null]],[12],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[10,1],[14,0,\"upf-badge__text\"],[12],[1,[30,4]],[13],[1,\"\\n  \"]],[]]]],[]]],[13]],[\"&attrs\",\"@icon\",\"@image\",\"@text\"],false,[\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"t\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/badge.hbs",
     "isStrictMode": false
   });
@@ -72141,10 +72180,16 @@ require('@ember/-internals/bootstrap')
         {{if this.displayDropdown 'oss-button-dropdown__trigger--active'}}
         fx-row fx-xalign-center"
       role={{unless @mainAction "button"}}
+      tabindex={{unless @mainAction "0"}}
       {{on "click" this.onDropdownClick}}
       ...attributes
     >
-      <div class="fx-row fx-xalign-center fx-gap-px-6" role={{if @mainAction "button"}} {{on "click" this.onMainAction}}>
+      <div
+        class="fx-row fx-xalign-center fx-gap-px-6"
+        role={{if @mainAction "button"}}
+        tabindex={{if @mainAction "0"}}
+        {{on "click" this.onMainAction}}
+      >
         {{#if @icon}}
           <OSS::Icon @style={{fa-icon-style @icon}} @icon={{fa-icon-value @icon}} />
         {{/if}}
@@ -72153,7 +72198,12 @@ require('@ember/-internals/bootstrap')
         {{/if}}
       </div>
       {{#unless @hideArrow}}
-        <div class="fx-row fx-xalign-center" role={{if @mainAction "button"}} {{on "click" this.toggleDropdown}}>
+        <div
+          class="fx-row fx-xalign-center"
+          role={{if @mainAction "button"}}
+          tabindex={{if @mainAction "0"}}
+          {{on "click" this.toggleDropdown}}
+        >
           <OSS::Icon @icon="fa-caret-{{if this.displayDropdown 'up' 'down'}}" />
         </div>
       {{/unless}}
@@ -72163,6 +72213,7 @@ require('@ember/-internals/bootstrap')
       <div
         class="oss-button-dropdown__items"
         {{on "click" this.toggleDropdown}}
+        role="button"
         {{did-insert this.setupChildrenClickHandler}}
         {{will-destroy this.teardownChildrenClickHandler}}
         {{on-click-outside this.onClickOutside useCapture=true}}
@@ -72173,8 +72224,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "wwuFWNnl",
-    "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-button-dropdown__trigger\\n      \",[52,[30,1],\"oss-button-dropdown__trigger-square\"],\"\\n      \",[52,[30,0,[\"displayDropdown\"]],\"oss-button-dropdown__trigger--active\"],\"\\n      fx-row fx-xalign-center\"]]],[16,\"role\",[52,[51,[30,2]],\"button\"]],[17,3],[4,[38,2],[\"click\",[30,0,[\"onDropdownClick\"]]],null],[12],[1,\"\\n    \"],[11,0],[24,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[16,\"role\",[52,[30,2],\"button\"]],[4,[38,2],[\"click\",[30,0,[\"onMainAction\"]]],null],[12],[1,\"\\n\"],[41,[30,4],[[[1,\"        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[[30,4]],null],[28,[37,5],[[30,4]],null]]],null],[1,\"\\n\"]],[]],null],[41,[28,[37,6],[[30,5],[28,[37,7],[[30,1]],null]],null],[[[1,\"        \"],[10,1],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[51,[30,6]],[[[1,\"      \"],[11,0],[24,0,\"fx-row fx-xalign-center\"],[16,\"role\",[52,[30,2],\"button\"]],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@icon\"],[[29,[\"fa-caret-\",[52,[30,0,[\"displayDropdown\"]],\"up\",\"down\"]]]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"displayDropdown\"]],[[[1,\"    \"],[11,0],[24,0,\"oss-button-dropdown__items\"],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[4,[38,8],[[30,0,[\"setupChildrenClickHandler\"]]],null],[4,[38,9],[[30,0,[\"teardownChildrenClickHandler\"]]],null],[4,[38,10],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[true]]],[12],[1,\"\\n      \"],[18,7,null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"@square\",\"@mainAction\",\"&attrs\",\"@icon\",\"@label\",\"@hideArrow\",\"&items\"],false,[\"if\",\"unless\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"and\",\"not\",\"did-insert\",\"will-destroy\",\"on-click-outside\",\"yield\"]]",
+    "id": "j6D5DPno",
+    "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-button-dropdown__trigger\\n      \",[52,[30,1],\"oss-button-dropdown__trigger-square\"],\"\\n      \",[52,[30,0,[\"displayDropdown\"]],\"oss-button-dropdown__trigger--active\"],\"\\n      fx-row fx-xalign-center\"]]],[16,\"role\",[52,[51,[30,2]],\"button\"]],[16,\"tabindex\",[52,[51,[30,2]],\"0\"]],[17,3],[4,[38,2],[\"click\",[30,0,[\"onDropdownClick\"]]],null],[12],[1,\"\\n    \"],[11,0],[24,0,\"fx-row fx-xalign-center fx-gap-px-6\"],[16,\"role\",[52,[30,2],\"button\"]],[16,\"tabindex\",[52,[30,2],\"0\"]],[4,[38,2],[\"click\",[30,0,[\"onMainAction\"]]],null],[12],[1,\"\\n\"],[41,[30,4],[[[1,\"        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[[30,4]],null],[28,[37,5],[[30,4]],null]]],null],[1,\"\\n\"]],[]],null],[41,[28,[37,6],[[30,5],[28,[37,7],[[30,1]],null]],null],[[[1,\"        \"],[10,1],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[51,[30,6]],[[[1,\"      \"],[11,0],[24,0,\"fx-row fx-xalign-center\"],[16,\"role\",[52,[30,2],\"button\"]],[16,\"tabindex\",[52,[30,2],\"0\"]],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@icon\"],[[29,[\"fa-caret-\",[52,[30,0,[\"displayDropdown\"]],\"up\",\"down\"]]]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"displayDropdown\"]],[[[1,\"    \"],[11,0],[24,0,\"oss-button-dropdown__items\"],[24,\"role\",\"button\"],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[4,[38,8],[[30,0,[\"setupChildrenClickHandler\"]]],null],[4,[38,9],[[30,0,[\"teardownChildrenClickHandler\"]]],null],[4,[38,10],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[true]]],[12],[1,\"\\n      \"],[18,7,null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"@square\",\"@mainAction\",\"&attrs\",\"@icon\",\"@label\",\"@hideArrow\",\"&items\"],false,[\"if\",\"unless\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"and\",\"not\",\"did-insert\",\"will-destroy\",\"on-click-outside\",\"yield\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/button-dropdown.hbs",
     "isStrictMode": false
   });
@@ -72221,7 +72272,7 @@ require('@ember/-internals/bootstrap')
         child.removeEventListener('click', this.closeDropdown);
       });
     }
-    closeDropdown(e) {
+    closeDropdown(event) {
       event?.stopPropagation();
       this.displayDropdown = false;
     }
@@ -72295,7 +72346,9 @@ require('@ember/-internals/bootstrap')
   const SkinDefinition = {
     default: 'default',
     primary: 'primary',
+    'primary-smart': 'primary-smart',
     secondary: 'secondary',
+    'secondary-smart': 'secondary-smart',
     destructive: 'destructive',
     success: 'success',
     alert: 'alert',
@@ -72353,7 +72406,7 @@ require('@ember/-internals/bootstrap')
       return this.args.theme;
     }
     get computedClass() {
-      let classes = [this.args.square ? SQUARE_CLASS : BASE_CLASS, `upf-btn--${this.skin}`];
+      const classes = [this.args.square ? SQUARE_CLASS : BASE_CLASS, `upf-btn--${this.skin}`];
       if (this.size) {
         classes.push(this.args.square ? `upf-square-btn--${this.size}` : `upf-btn--${this.size}`);
       }
@@ -72367,6 +72420,7 @@ require('@ember/-internals/bootstrap')
         return false;
       }
       if (this.args.loading && !this.args.loadingOptions?.showLabel) {
+        // eslint-disable-next-line ember/no-side-effects
         this.DOMElement.style.width = `${this.DOMElement?.offsetWidth}px`;
       } else {
         this.DOMElement.style.removeProperty('width');
@@ -72441,7 +72495,7 @@ require('@ember/-internals/bootstrap')
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
   0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@glimmer/component",0,"@glimmer/tracking",0,"@embroider/macros",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
@@ -72476,6 +72530,7 @@ require('@ember/-internals/bootstrap')
       {{#if this.showPreviousControl}}
         <div
           class="carousel-control {{concat 'carousel-control--left' (if this.showControlsOutside '-outside')}}"
+          data-control-name={{concat this.controlNamePrefix "-control-left"}}
           {{on "click" this.previousPage}}
           role="button"
         >
@@ -72485,6 +72540,7 @@ require('@ember/-internals/bootstrap')
       {{#if this.showNextControl}}
         <div
           class="carousel-control {{concat 'carousel-control--right' (if this.showControlsOutside '-outside')}}"
+          data-control-name={{concat this.controlNamePrefix "-control-right"}}
           {{on "click" this.nextPage}}
           role="button"
         >
@@ -72495,12 +72551,13 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "pTYtPGMq",
-    "block": "[[[11,0],[16,0,[29,[\"oss-carousel \",[52,[28,[37,1],[[30,1],\"bottom\"],null],\"oss-carousel__reverse\"]]]],[17,2],[4,[38,2],[[30,0,[\"initialize\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"showIndicators\"]],[[[1,\"    \"],[10,0],[14,0,\"fx-row oss-carousel__indicators\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"pages\"]]],null]],null],null,[[[1,\"        \"],[11,0],[24,0,\"page-btn\"],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"displayPage\"]],[30,3]],null]],null],[12],[1,\"\\n          \"],[8,[39,7],[[16,0,[29,[[52,[28,[37,1],[[30,4],[30,0,[\"currentPageIndex\"]]],null],\"page-btn--active\"]]]]],[[\"@icon\",\"@style\"],[[30,0,[\"buttonIcon\"]],\"solid\"]],null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[3,4]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[10,0],[14,0,\"page-container\"],[12],[1,\"\\n    \"],[18,5,null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"showControls\"]],[[[41,[30,0,[\"showPreviousControl\"]],[[[1,\"      \"],[11,0],[16,0,[29,[\"carousel-control \",[28,[37,9],[\"carousel-control--left\",[52,[30,0,[\"showControlsOutside\"]],\"-outside\"]],null]]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"previousPage\"]]],null],[12],[1,\"\\n        \"],[8,[39,7],null,[[\"@icon\"],[\"fa-arrow-left\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[41,[30,0,[\"showNextControl\"]],[[[1,\"      \"],[11,0],[16,0,[29,[\"carousel-control \",[28,[37,9],[\"carousel-control--right\",[52,[30,0,[\"showControlsOutside\"]],\"-outside\"]],null]]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"nextPage\"]]],null],[12],[1,\"\\n        \"],[8,[39,7],null,[[\"@icon\"],[\"fa-arrow-right\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[13]],[\"@indicatorsPosition\",\"&attrs\",\"page\",\"index\",\"&pages\"],false,[\"if\",\"eq\",\"did-insert\",\"each\",\"-track-array\",\"on\",\"fn\",\"o-s-s/icon\",\"yield\",\"concat\"]]",
+    "id": "4lsMAW3W",
+    "block": "[[[11,0],[16,0,[29,[\"oss-carousel \",[52,[28,[37,1],[[30,1],\"bottom\"],null],\"oss-carousel__reverse\"]]]],[17,2],[4,[38,2],[[30,0,[\"initialize\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"showIndicators\"]],[[[1,\"    \"],[10,0],[14,0,\"fx-row oss-carousel__indicators\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"pages\"]]],null]],null],null,[[[1,\"        \"],[11,0],[24,0,\"page-btn\"],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"displayPage\"]],[30,3]],null]],null],[12],[1,\"\\n          \"],[8,[39,7],[[16,0,[29,[[52,[28,[37,1],[[30,4],[30,0,[\"currentPageIndex\"]]],null],\"page-btn--active\"]]]]],[[\"@icon\",\"@style\"],[[30,0,[\"buttonIcon\"]],\"solid\"]],null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[3,4]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[10,0],[14,0,\"page-container\"],[12],[1,\"\\n    \"],[18,5,null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"showControls\"]],[[[41,[30,0,[\"showPreviousControl\"]],[[[1,\"      \"],[11,0],[16,0,[29,[\"carousel-control \",[28,[37,9],[\"carousel-control--left\",[52,[30,0,[\"showControlsOutside\"]],\"-outside\"]],null]]]],[16,\"data-control-name\",[28,[37,9],[[30,0,[\"controlNamePrefix\"]],\"-control-left\"],null]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"previousPage\"]]],null],[12],[1,\"\\n        \"],[8,[39,7],null,[[\"@icon\"],[\"fa-arrow-left\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[41,[30,0,[\"showNextControl\"]],[[[1,\"      \"],[11,0],[16,0,[29,[\"carousel-control \",[28,[37,9],[\"carousel-control--right\",[52,[30,0,[\"showControlsOutside\"]],\"-outside\"]],null]]]],[16,\"data-control-name\",[28,[37,9],[[30,0,[\"controlNamePrefix\"]],\"-control-right\"],null]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"nextPage\"]]],null],[12],[1,\"\\n        \"],[8,[39,7],null,[[\"@icon\"],[\"fa-arrow-right\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[13]],[\"@indicatorsPosition\",\"&attrs\",\"page\",\"index\",\"&pages\"],false,[\"if\",\"eq\",\"did-insert\",\"each\",\"-track-array\",\"on\",\"fn\",\"o-s-s/icon\",\"yield\",\"concat\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/carousel.hbs",
     "isStrictMode": false
   });
   const DEFAULT_BUTTON_ICON = 'fa-circle';
+  const DEFAULT_CONTROL_NAME_PREFIX = 'oss-carousel';
   const ANIMATION_TIME = false ? 5 : 500;
   let OSSCarousel = _exports.default = (_class = class OSSCarousel extends _component2.default {
     constructor(...args) {
@@ -72510,6 +72567,7 @@ require('@ember/-internals/bootstrap')
       _initializerDefineProperty(this, "currentPageIndex", _descriptor3, this);
       _initializerDefineProperty(this, "prevPageIndex", _descriptor4, this);
       _initializerDefineProperty(this, "ongoingAnimation", _descriptor5, this);
+      _initializerDefineProperty(this, "controlNamePrefix", _descriptor6, this);
       _defineProperty(this, "slideAnimationHandler", (page, executeAfterAnimation) => {
         const classesToCleanup = ['animate--slide-from-left', 'animate--slide-from-right', 'animate--slide-to-left', 'animate--slide-to-right'];
         this.pages.forEach(p => p.classList.remove(...classesToCleanup));
@@ -72540,7 +72598,7 @@ require('@ember/-internals/bootstrap')
       return this.args.showIndicators ?? true;
     }
     get showControls() {
-      return !!this.args.showControls ?? false;
+      return Boolean(this.args.showControls);
     }
     get loop() {
       return this.args.loop ?? true;
@@ -72556,6 +72614,7 @@ require('@ember/-internals/bootstrap')
     }
     initialize(element) {
       this.element = element;
+      this.controlNamePrefix = element.getAttribute('data-control-name') || DEFAULT_CONTROL_NAME_PREFIX;
       this.pages = Array.from(this.element.querySelectorAll('.page'));
       if (this.pages.length === 0) {
         throw new Error('[component][OSS::Carousel] No pages found in the carousel');
@@ -72640,6 +72699,13 @@ require('@ember/-internals/bootstrap')
     initializer: function () {
       return false;
     }
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "controlNamePrefix", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return DEFAULT_CONTROL_NAME_PREFIX;
+    }
   }), _applyDecoratedDescriptor(_class.prototype, "initialize", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "initialize"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "previousPage", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "previousPage"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "nextPage", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "nextPage"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "displayPage", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "displayPage"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSCarousel);
 });
@@ -72655,7 +72721,12 @@ require('@ember/-internals/bootstrap')
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="upf-checkbox {{this.modifierClasses}}" ...attributes {{on "click" this.updateValue}}>
+    <div
+    {{! template-lint-disable no-invalid-interactive }}
+    class="upf-checkbox {{this.modifierClasses}}"
+    ...attributes
+    {{on "click" this.updateValue}}
+  >
     <Input
       @type="checkbox"
       @checked={{@checked}}
@@ -72734,7 +72805,7 @@ require('@ember/-internals/bootstrap')
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class={{this.computedClass}} ...attributes {{on "click" this.stopPropagation}}>
+    <div class={{this.computedClass}} role="button" ...attributes {{on "click" this.stopPropagation}}>
     {{#if (has-block "prefix")}}
       {{yield to="prefix"}}
     {{/if}}
@@ -72750,8 +72821,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "Cuh4pEPd",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[17,1],[4,[38,0],[\"click\",[30,0,[\"stopPropagation\"]]],null],[12],[1,\"\\n\"],[41,[48,[30,5]],[[[1,\"    \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"\\n  \"],[11,1],[16,0,[29,[\"font-weight-semibold \",[52,[30,2],\"chip-ellipsis\"]]]],[16,5,[52,[30,2],[30,0,[\"ellipsisStyle\"]]]],[4,[38,4],null,[[\"title\",\"placement\"],[[52,[30,2],[30,3],\"\"],\"top\"]]],[12],[1,\"\\n    \"],[1,[30,3]],[1,\"\\n  \"],[13],[1,\"\\n  \"],[8,[39,5],[[16,\"role\",[52,[51,[30,4]],\"button\"]],[4,[38,0],[\"click\",[30,0,[\"onCrossClick\"]]],null]],[[\"@icon\"],[\"fa-times-circle\"]],null],[1,\"\\n\"],[13]],[\"&attrs\",\"@maxDisplayWidth\",\"@label\",\"@disabled\",\"&prefix\"],false,[\"on\",\"if\",\"has-block\",\"yield\",\"enable-tooltip\",\"o-s-s/icon\",\"unless\"]]",
+    "id": "k5+k6mJo",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[24,\"role\",\"button\"],[17,1],[4,[38,0],[\"click\",[30,0,[\"stopPropagation\"]]],null],[12],[1,\"\\n\"],[41,[48,[30,5]],[[[1,\"    \"],[18,5,null],[1,\"\\n\"]],[]],null],[1,\"\\n  \"],[11,1],[16,0,[29,[\"font-weight-semibold \",[52,[30,2],\"chip-ellipsis\"]]]],[16,5,[52,[30,2],[30,0,[\"ellipsisStyle\"]]]],[4,[38,4],null,[[\"title\",\"placement\"],[[52,[30,2],[30,3],\"\"],\"top\"]]],[12],[1,\"\\n    \"],[1,[30,3]],[1,\"\\n  \"],[13],[1,\"\\n  \"],[8,[39,5],[[16,\"role\",[52,[51,[30,4]],\"button\"]],[4,[38,0],[\"click\",[30,0,[\"onCrossClick\"]]],null]],[[\"@icon\"],[\"fa-times-circle\"]],null],[1,\"\\n\"],[13]],[\"&attrs\",\"@maxDisplayWidth\",\"@label\",\"@disabled\",\"&prefix\"],false,[\"on\",\"if\",\"has-block\",\"yield\",\"enable-tooltip\",\"o-s-s/icon\",\"unless\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/chip.hbs",
     "isStrictMode": false
   });
@@ -72819,34 +72890,46 @@ require('@ember/-internals/bootstrap')
     <div class="code-container {{if @scrollable 'scrollable' 'scroll-shadow scroll-shadow--default'}}">
       <pre class="code">
       {{#each this.codeLineArray as |codeline|}}
-        <code>{{codeline}}</code>
-      {{/each}}
+          <code>{{codeline}}</code>
+        {{/each}}
       </pre>
     </div>
     {{#if @copyable}}
       <div class="floating-copy-btn">
-        <OSS::Button @skin="default" @size="sm"
-                     @label={{t "oss-components.code-block.copy"}}
-                     {{on "click" this.copyToClipboard}} />
+        <OSS::Button
+          @skin="default"
+          @size="sm"
+          @label={{t "oss-components.code-block.copy"}}
+          {{on "click" this.copyToClipboard}}
+        />
       </div>
     {{/if}}
     {{#if this.collapsable}}
       {{#if this.collapsed}}
-        <OSS::Button class="floating-collapse-btn" @skin="default" @size="xs"
-                     @label={{t "oss-components.code-block.uncollapse"}}
-                     @icon="fas fa-angle-down" {{on "click" this.uncollapse}} />
+        <OSS::Button
+          class="floating-collapse-btn"
+          @skin="default"
+          @size="xs"
+          @label={{t "oss-components.code-block.uncollapse"}}
+          @icon="fas fa-angle-down"
+          {{on "click" this.uncollapse}}
+        />
       {{else}}
-        <OSS::Button class="floating-collapse-btn" @skin="default" @size="xs"
-                     @label={{t "oss-components.code-block.collapse"}}
-                     @icon="fas fa-angle-up" {{on "click" this.collapse}} />
+        <OSS::Button
+          class="floating-collapse-btn"
+          @skin="default"
+          @size="xs"
+          @label={{t "oss-components.code-block.collapse"}}
+          @icon="fas fa-angle-up"
+          {{on "click" this.collapse}}
+        />
       {{/if}}
     {{/if}}
   </div>
-  
   */
   {
-    "id": "xxGy/ao4",
-    "block": "[[[11,0],[24,0,\"code-block\"],[23,5,[30,0,[\"heightStyle\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"code-container \",[52,[30,2],\"scrollable\",\"scroll-shadow scroll-shadow--default\"]]]],[12],[1,\"\\n    \"],[10,\"pre\"],[14,0,\"code\"],[12],[1,\"\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"codeLineArray\"]]],null]],null],null,[[[1,\"      \"],[10,\"code\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[3]],null],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"    \"],[10,0],[14,0,\"floating-copy-btn\"],[12],[1,\"\\n      \"],[8,[39,3],[[4,[38,5],[\"click\",[30,0,[\"copyToClipboard\"]]],null]],[[\"@skin\",\"@size\",\"@label\"],[\"default\",\"sm\",[28,[37,4],[\"oss-components.code-block.copy\"],null]]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[41,[30,0,[\"collapsable\"]],[[[41,[30,0,[\"collapsed\"]],[[[1,\"      \"],[8,[39,3],[[24,0,\"floating-collapse-btn\"],[4,[38,5],[\"click\",[30,0,[\"uncollapse\"]]],null]],[[\"@skin\",\"@size\",\"@label\",\"@icon\"],[\"default\",\"xs\",[28,[37,4],[\"oss-components.code-block.uncollapse\"],null],\"fas fa-angle-down\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[24,0,\"floating-collapse-btn\"],[4,[38,5],[\"click\",[30,0,[\"collapse\"]]],null]],[[\"@skin\",\"@size\",\"@label\",\"@icon\"],[\"default\",\"xs\",[28,[37,4],[\"oss-components.code-block.collapse\"],null],\"fas fa-angle-up\"]],null],[1,\"\\n\"]],[]]]],[]],null],[13],[1,\"\\n\"]],[\"&attrs\",\"@scrollable\",\"codeline\",\"@copyable\"],false,[\"if\",\"each\",\"-track-array\",\"o-s-s/button\",\"t\",\"on\"]]",
+    "id": "h3OjM4pq",
+    "block": "[[[11,0],[24,0,\"code-block\"],[23,5,[30,0,[\"heightStyle\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"code-container \",[52,[30,2],\"scrollable\",\"scroll-shadow scroll-shadow--default\"]]]],[12],[1,\"\\n    \"],[10,\"pre\"],[14,0,\"code\"],[12],[1,\"\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"codeLineArray\"]]],null]],null],null,[[[1,\"        \"],[10,\"code\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[3]],null],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"    \"],[10,0],[14,0,\"floating-copy-btn\"],[12],[1,\"\\n      \"],[8,[39,3],[[4,[38,5],[\"click\",[30,0,[\"copyToClipboard\"]]],null]],[[\"@skin\",\"@size\",\"@label\"],[\"default\",\"sm\",[28,[37,4],[\"oss-components.code-block.copy\"],null]]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[41,[30,0,[\"collapsable\"]],[[[41,[30,0,[\"collapsed\"]],[[[1,\"      \"],[8,[39,3],[[24,0,\"floating-collapse-btn\"],[4,[38,5],[\"click\",[30,0,[\"uncollapse\"]]],null]],[[\"@skin\",\"@size\",\"@label\",\"@icon\"],[\"default\",\"xs\",[28,[37,4],[\"oss-components.code-block.uncollapse\"],null],\"fas fa-angle-down\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[24,0,\"floating-collapse-btn\"],[4,[38,5],[\"click\",[30,0,[\"collapse\"]]],null]],[[\"@skin\",\"@size\",\"@label\",\"@icon\"],[\"default\",\"xs\",[28,[37,4],[\"oss-components.code-block.collapse\"],null],\"fas fa-angle-up\"]],null],[1,\"\\n\"]],[]]]],[]],null],[13]],[\"&attrs\",\"@scrollable\",\"codeline\",\"@copyable\"],false,[\"if\",\"each\",\"-track-array\",\"o-s-s/button\",\"t\",\"on\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/code-block.hbs",
     "isStrictMode": false
   });
@@ -73044,11 +73127,10 @@ require('@ember/-internals/bootstrap')
     <div class="oss-content-panel" ...attributes>
     {{yield}}
   </div>
-  
   */
   {
-    "id": "7DYOeyXq",
-    "block": "[[[11,0],[24,0,\"oss-content-panel\"],[17,1],[12],[1,\"\\n  \"],[18,2,null],[1,\"\\n\"],[13],[1,\"\\n\"]],[\"&attrs\",\"&default\"],false,[\"yield\"]]",
+    "id": "VgF8BmWl",
+    "block": "[[[11,0],[24,0,\"oss-content-panel\"],[17,1],[12],[1,\"\\n  \"],[18,2,null],[1,\"\\n\"],[13]],[\"&attrs\",\"&default\"],false,[\"yield\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/content-panel.hbs",
     "isStrictMode": false
   });
@@ -73124,7 +73206,11 @@ require('@ember/-internals/bootstrap')
       event.stopPropagation();
       if (this.args.loading) return;
       this.displayContextMenuPanel = !this.displayContextMenuPanel;
-      this.displayContextMenuPanel ? this.args.onMenuOpened?.() : this.args.onMenuClosed?.();
+      if (this.displayContextMenuPanel) {
+        this.args.onMenuOpened?.();
+      } else {
+        this.args.onMenuClosed?.();
+      }
     }
     onContextMenuPanelMouseLeave() {
       if (!this.args.closeOnMouseLeave) return;
@@ -73223,7 +73309,7 @@ require('@ember/-internals/bootstrap')
                   @selected={{item.selected}}
                   @disabled={{item.disabled}}
                   @onSelect={{item.action}}
-                  {{did-insert registerMouseEnterOnParent (fn this.openSubMenu item.items index)}}
+                  {{did-insert this.registerMouseEnterOnParent (fn this.openSubMenu item.items index)}}
                   {{on "click" (fn this.openSubMenu item.items index)}}
                   class="infinit-select-option-panel-container {{if (eq index this.subReferenceIndex) 'active' ''}}"
                   data-control-name={{item.dataControlName}}
@@ -73231,7 +73317,7 @@ require('@ember/-internals/bootstrap')
               {{else if item.rowRenderer}}
                 <item.rowRenderer
                   @item={{item}}
-                  {{did-insert registerMouseEnterOnParent this.closeSubMenu}}
+                  {{did-insert this.registerMouseEnterOnParent this.closeSubMenu}}
                   {{on "click" (fn this.callAction item.action)}}
                 />
               {{else}}
@@ -73250,7 +73336,7 @@ require('@ember/-internals/bootstrap')
                   @selected={{item.selected}}
                   @disabled={{item.disabled}}
                   @onSelect={{fn this.callAction item.action}}
-                  {{did-insert registerMouseEnterOnParent this.closeSubMenu}}
+                  {{did-insert this.registerMouseEnterOnParent this.closeSubMenu}}
                   class="infinit-select-option-panel-container"
                   data-control-name={{item.dataControlName}}
                 />
@@ -73277,8 +73363,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "8arOHm6B",
-    "block": "[[[11,0],[16,0,[30,0,[\"panelContainerCustomClasses\"]]],[4,[38,0],[[30,0,[\"registerPanelContainer\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"isInitialized\"]],[[[40,[[[1,\"      \"],[8,[39,4],[[16,1,[30,0,[\"portalId\"]]],[24,0,\"context-menu-panel__scrollable-container\"],[17,1],[4,[38,0],[[30,0,[\"registerPanel\"]]],null],[4,[38,5],[\"mouseleave\",[30,0,[\"mouseLeave\"]]],null],[4,[38,5],[\"scroll\",[30,0,[\"onScroll\"]]],null]],null,[[\"default\"],[[[[1,\"\\n        \"],[8,[39,6],[[24,0,\"margin-top-px-0 context-menu-panel__dropdown\"],[4,[38,7],[[30,0,[\"onClickOutside\"]]],null]],[[\"@items\",\"@searchEnabled\",\"@onSelect\",\"@onClose\",\"@enableKeyboard\"],[[30,2],false,[30,0,[\"noop\"]],[30,0,[\"closeDropdown\"]],false]],[[\"option\"],[[[[1,\"\\n\"],[41,[30,3,[\"items\"]],[[[1,\"              \"],[8,[39,8],[[16,0,[29,[\"infinit-select-option-panel-container \",[52,[28,[37,9],[[30,4],[30,0,[\"subReferenceIndex\"]]],null],\"active\",\"\"]]]],[16,\"data-control-name\",[30,3,[\"dataControlName\"]]],[4,[38,0],[[33,12],[28,[37,13],[[30,0,[\"openSubMenu\"]],[30,3,[\"items\"]],[30,4]],null]],null],[4,[38,5],[\"click\",[28,[37,13],[[30,0,[\"openSubMenu\"]],[30,3,[\"items\"]],[30,4]],null]],null]],[[\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"@selectionType\",\"@selected\",\"@disabled\",\"@onSelect\"],[[30,3,[\"prefixAvatar\"]],[30,3,[\"prefixBadge\"]],[30,3,[\"prefixIcon\"]],[30,3,[\"prefixCountry\"]],[30,3,[\"title\"]],[30,3,[\"subtitle\"]],[30,3,[\"icon\"]],[30,3,[\"suffixHint\"]],[30,3,[\"suffixTag\"]],[28,[37,10],[[30,3,[\"suffixIcon\"]],[28,[37,11],null,[[\"icon\"],[\"fa-chevron-right\"]]]],null],[30,3,[\"selectionType\"]],[30,3,[\"selected\"]],[30,3,[\"disabled\"]],[30,3,[\"action\"]]]],null],[1,\"\\n\"]],[]],[[[41,[30,3,[\"rowRenderer\"]],[[[1,\"              \"],[8,[30,3,[\"rowRenderer\"]],[[4,[38,0],[[33,12],[30,0,[\"closeSubMenu\"]]],null],[4,[38,5],[\"click\",[28,[37,13],[[30,0,[\"callAction\"]],[30,3,[\"action\"]]],null]],null]],[[\"@item\"],[[30,3]]],null],[1,\"\\n\"]],[]],[[[1,\"              \"],[8,[39,8],[[24,0,\"infinit-select-option-panel-container\"],[16,\"data-control-name\",[30,3,[\"dataControlName\"]]],[4,[38,0],[[33,12],[30,0,[\"closeSubMenu\"]]],null]],[[\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"@selectionType\",\"@selected\",\"@disabled\",\"@onSelect\"],[[30,3,[\"prefixAvatar\"]],[30,3,[\"prefixBadge\"]],[30,3,[\"prefixIcon\"]],[30,3,[\"prefixCountry\"]],[30,3,[\"title\"]],[30,3,[\"subtitle\"]],[30,3,[\"icon\"]],[30,3,[\"suffixHint\"]],[30,3,[\"suffixTag\"]],[30,3,[\"suffixIcon\"]],[30,3,[\"selectionType\"]],[30,3,[\"selected\"]],[30,3,[\"disabled\"]],[28,[37,13],[[30,0,[\"callAction\"]],[30,3,[\"action\"]]],null]]],null],[1,\"\\n            \"]],[]]]],[]]],[1,\"          \"]],[3,4]]]]],[1,\"\\n      \"]],[]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,3],[[30,0,[\"portalTarget\"]]],null],null],[1,\"\\n\"],[41,[30,0,[\"displaySubMenu\"]],[[[1,\"      \"],[8,[39,14],[[4,[38,0],[[30,0,[\"registerSubPanel\"]]],null]],[[\"@referenceTarget\",\"@items\",\"@placement\",\"@offset\",\"@onMouseLeave\",\"@onClose\",\"@registerPanel\",\"@unregisterPanel\"],[[30,0,[\"subReferenceTarget\"]],[30,0,[\"subItems\"]],\"right-start\",[30,0,[\"subPanelOffset\"]],[30,0,[\"onSubPanelMouseLeave\"]],[30,5],[30,6],[30,7]]],null],[1,\"\\n\"]],[]],null]],[]],null],[13]],[\"&attrs\",\"@items\",\"item\",\"index\",\"@onClose\",\"@registerPanel\",\"@unregisterPanel\"],false,[\"did-insert\",\"if\",\"in-element\",\"-in-el-null\",\"o-s-s/scrollable-panel\",\"on\",\"o-s-s/infinite-select\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"eq\",\"or\",\"hash\",\"registerMouseEnterOnParent\",\"fn\",\"o-s-s/context-menu/panel\"]]",
+    "id": "JNZUOqDD",
+    "block": "[[[11,0],[16,0,[30,0,[\"panelContainerCustomClasses\"]]],[4,[38,0],[[30,0,[\"registerPanelContainer\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"isInitialized\"]],[[[40,[[[1,\"      \"],[8,[39,4],[[16,1,[30,0,[\"portalId\"]]],[24,0,\"context-menu-panel__scrollable-container\"],[17,1],[4,[38,0],[[30,0,[\"registerPanel\"]]],null],[4,[38,5],[\"mouseleave\",[30,0,[\"mouseLeave\"]]],null],[4,[38,5],[\"scroll\",[30,0,[\"onScroll\"]]],null]],null,[[\"default\"],[[[[1,\"\\n        \"],[8,[39,6],[[24,0,\"margin-top-px-0 context-menu-panel__dropdown\"],[4,[38,7],[[30,0,[\"onClickOutside\"]]],null]],[[\"@items\",\"@searchEnabled\",\"@onSelect\",\"@onClose\",\"@enableKeyboard\"],[[30,2],false,[30,0,[\"noop\"]],[30,0,[\"closeDropdown\"]],false]],[[\"option\"],[[[[1,\"\\n\"],[41,[30,3,[\"items\"]],[[[1,\"              \"],[8,[39,8],[[16,0,[29,[\"infinit-select-option-panel-container \",[52,[28,[37,9],[[30,4],[30,0,[\"subReferenceIndex\"]]],null],\"active\",\"\"]]]],[16,\"data-control-name\",[30,3,[\"dataControlName\"]]],[4,[38,0],[[30,0,[\"registerMouseEnterOnParent\"]],[28,[37,12],[[30,0,[\"openSubMenu\"]],[30,3,[\"items\"]],[30,4]],null]],null],[4,[38,5],[\"click\",[28,[37,12],[[30,0,[\"openSubMenu\"]],[30,3,[\"items\"]],[30,4]],null]],null]],[[\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"@selectionType\",\"@selected\",\"@disabled\",\"@onSelect\"],[[30,3,[\"prefixAvatar\"]],[30,3,[\"prefixBadge\"]],[30,3,[\"prefixIcon\"]],[30,3,[\"prefixCountry\"]],[30,3,[\"title\"]],[30,3,[\"subtitle\"]],[30,3,[\"icon\"]],[30,3,[\"suffixHint\"]],[30,3,[\"suffixTag\"]],[28,[37,10],[[30,3,[\"suffixIcon\"]],[28,[37,11],null,[[\"icon\"],[\"fa-chevron-right\"]]]],null],[30,3,[\"selectionType\"]],[30,3,[\"selected\"]],[30,3,[\"disabled\"]],[30,3,[\"action\"]]]],null],[1,\"\\n\"]],[]],[[[41,[30,3,[\"rowRenderer\"]],[[[1,\"              \"],[8,[30,3,[\"rowRenderer\"]],[[4,[38,0],[[30,0,[\"registerMouseEnterOnParent\"]],[30,0,[\"closeSubMenu\"]]],null],[4,[38,5],[\"click\",[28,[37,12],[[30,0,[\"callAction\"]],[30,3,[\"action\"]]],null]],null]],[[\"@item\"],[[30,3]]],null],[1,\"\\n\"]],[]],[[[1,\"              \"],[8,[39,8],[[24,0,\"infinit-select-option-panel-container\"],[16,\"data-control-name\",[30,3,[\"dataControlName\"]]],[4,[38,0],[[30,0,[\"registerMouseEnterOnParent\"]],[30,0,[\"closeSubMenu\"]]],null]],[[\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"@selectionType\",\"@selected\",\"@disabled\",\"@onSelect\"],[[30,3,[\"prefixAvatar\"]],[30,3,[\"prefixBadge\"]],[30,3,[\"prefixIcon\"]],[30,3,[\"prefixCountry\"]],[30,3,[\"title\"]],[30,3,[\"subtitle\"]],[30,3,[\"icon\"]],[30,3,[\"suffixHint\"]],[30,3,[\"suffixTag\"]],[30,3,[\"suffixIcon\"]],[30,3,[\"selectionType\"]],[30,3,[\"selected\"]],[30,3,[\"disabled\"]],[28,[37,12],[[30,0,[\"callAction\"]],[30,3,[\"action\"]]],null]]],null],[1,\"\\n            \"]],[]]]],[]]],[1,\"          \"]],[3,4]]]]],[1,\"\\n      \"]],[]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,3],[[30,0,[\"portalTarget\"]]],null],null],[1,\"\\n\"],[41,[30,0,[\"displaySubMenu\"]],[[[1,\"      \"],[8,[39,13],[[4,[38,0],[[30,0,[\"registerSubPanel\"]]],null]],[[\"@referenceTarget\",\"@items\",\"@placement\",\"@offset\",\"@onMouseLeave\",\"@onClose\",\"@registerPanel\",\"@unregisterPanel\"],[[30,0,[\"subReferenceTarget\"]],[30,0,[\"subItems\"]],\"right-start\",[30,0,[\"subPanelOffset\"]],[30,0,[\"onSubPanelMouseLeave\"]],[30,5],[30,6],[30,7]]],null],[1,\"\\n\"]],[]],null]],[]],null],[13]],[\"&attrs\",\"@items\",\"item\",\"index\",\"@onClose\",\"@registerPanel\",\"@unregisterPanel\"],false,[\"did-insert\",\"if\",\"in-element\",\"-in-el-null\",\"o-s-s/scrollable-panel\",\"on\",\"o-s-s/infinite-select\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"eq\",\"or\",\"hash\",\"fn\",\"o-s-s/context-menu/panel\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/context-menu/panel.hbs",
     "isStrictMode": false
   });
@@ -73311,9 +73397,7 @@ require('@ember/-internals/bootstrap')
     registerPanel(element) {
       this.currentPanel = element;
       this.args.registerPanel?.(this.currentPanel);
-      (0, _runloop.scheduleOnce)('afterRender', this, () => {
-        this.initializeDropdown();
-      });
+      (0, _runloop.scheduleOnce)('afterRender', this, this.initializeDropdown);
       this.currentPanel.querySelector('.oss-scrollable-panel-content')?.addEventListener('scroll', this.onScrollbound);
     }
     willDestroy() {
@@ -73667,6 +73751,7 @@ require('@ember/-internals/bootstrap')
       _initializerDefineProperty(this, "filteredItems", _descriptor2, this);
       _defineProperty(this, "cleanupDrodpownAutoplacement", void 0);
       _defineProperty(this, "handleSelectorClose", this.closeDropdown);
+      this.filteredItems = this.args.sourceList;
       (false && !(typeof this.args.sourceList === 'object') && (0, _debug.assert)('[component][OSS::CountrySelector] The parameter @sourceList of type object is mandatory', typeof this.args.sourceList === 'object'));
       (false && !(typeof this.args.onChange === 'function') && (0, _debug.assert)('[component][OSS::CountrySelector] The @onChange parameter is mandatory', typeof this.args.onChange === 'function'));
       if (!(0, _utils.isEmpty)(this.args.value)) {
@@ -73702,15 +73787,7 @@ require('@ember/-internals/bootstrap')
       super.toggleDropdown(event);
       this.filteredItems = this.args.sourceList;
       if (this.isOpen) {
-        (0, _runloop.scheduleOnce)('afterRender', this, () => {
-          const referenceTarget = this.container.querySelector('.upf-input');
-          const floatingTarget = document.querySelector(`#${this.portalId}`);
-          if (referenceTarget && floatingTarget) {
-            this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, {
-              placementStrategy: 'auto'
-            });
-          }
-        });
+        (0, _runloop.scheduleOnce)('afterRender', this, this.attachDropdownToInput);
       }
     }
     closeDropdown(preventFocus = false) {
@@ -73728,6 +73805,15 @@ require('@ember/-internals/bootstrap')
       this.closeDropdown(preventFocus);
       this.args.onChange(value);
     }
+    attachDropdownToInput() {
+      const referenceTarget = this.container.querySelector('.upf-input');
+      const floatingTarget = document.querySelector(`#${this.portalId}`);
+      if (referenceTarget && floatingTarget) {
+        this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, {
+          placementStrategy: 'auto'
+        });
+      }
+    }
     matchValueWithSourceList() {
       if (this.selectedCountry) this.onItemSelected(this.selectedCountry, true);
     }
@@ -73740,9 +73826,7 @@ require('@ember/-internals/bootstrap')
     configurable: true,
     enumerable: true,
     writable: true,
-    initializer: function () {
-      return this.args.sourceList;
-    }
+    initializer: null
   }), _applyDecoratedDescriptor(_class.prototype, "handleKeyEvent", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleKeyEvent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleDropdown", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleDropdown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "closeDropdown", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "closeDropdown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "search", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "search"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onItemSelected", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onItemSelected"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSCountrySelector);
 });
@@ -73772,6 +73856,7 @@ require('@ember/-internals/bootstrap')
       <div
         class="currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center"
         role={{if this.allowCurrencyUpdate "button" "img"}}
+        tabindex={{if this.allowCurrencyUpdate "0"}}
         {{on "click" this.toggleCurrencySelector}}
       >
         <div class="fx-col">
@@ -73802,6 +73887,7 @@ require('@ember/-internals/bootstrap')
           min="0"
           autocomplete="off"
           placeholder={{this.placeholder}}
+          aria-label={{@ariaLabel}}
           disabled={{this.disabled}}
           class="fx-1"
           {{on "keydown" this.onlyNumeric}}
@@ -73817,9 +73903,9 @@ require('@ember/-internals/bootstrap')
       </div>
     {{else if this.feedbackMessage}}
       <span class={{this.feedbackMessageComputedClasses}}>
-        {{#unless (eq this.feedbackMessage.type "error")}}
+        {{#if (not-eq this.feedbackMessage.type "error")}}
           <OSS::Icon @icon={{this.messageIcon}} />
-        {{/unless}}
+        {{/if}}
         <span>{{this.feedbackMessage.value}}</span>
       </span>
     {{/if}}
@@ -73848,8 +73934,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "9UPJaCDO",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"currency-input fx-row fx-1 fx-xalign-center\\n      \",[52,[30,2],\"onlycurrency\"],\"\\n      \",[52,[30,0,[\"currencySelectorShown\"]],\"currency-input--active\"]]]],[12],[1,\"\\n    \"],[11,0],[24,0,\"currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center\"],[16,\"role\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"button\",\"img\"]],[4,[38,1],[\"click\",[30,0,[\"toggleCurrencySelector\"]]],null],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-gap-px-9\"],[12],[1,\"\\n\"],[41,[30,0,[\"displayOnlyCurrencyPlaceholder\"]],[[[1,\"            \"],[10,1],[14,0,\"font-color-gray-400\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,1],[12],[1,[30,0,[\"selectedCurrencySymbol\"]]],[13],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[28,[37,2],[[30,2],[28,[37,3],[[30,0,[\"displayOnlyCurrencyPlaceholder\"]]],null]],null],[[[1,\"            \"],[10,1],[14,0,\"margin-right-px-12\"],[12],[1,[30,0,[\"selectedCurrencyCode\"]]],[13],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[28,[37,2],[[30,0,[\"allowCurrencyUpdate\"]],[28,[37,3],[[30,0,[\"disabled\"]]],null]],null],[[[1,\"        \"],[8,[39,4],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[[52,[30,0,[\"currencySelectorShown\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[51,[30,2]],[[[1,\"      \"],[8,[39,6],[[24,\"min\",\"0\"],[24,\"autocomplete\",\"off\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"disabled\",[30,0,[\"disabled\"]]],[24,0,\"fx-1\"],[4,[38,1],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,1],[\"keyup\",[30,0,[\"notifyChanges\"]]],null],[4,[38,1],[\"paste\",[30,0,[\"handlePaste\"]]],null]],[[\"@value\",\"@type\"],[[30,0,[\"localValue\"]],\"text\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,4],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,4],null,[[\"@icon\"],[\"fa-exclamation-triangle\"]],null],[1,\"\\n      \"],[1,[30,4]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[30,0,[\"feedbackMessageComputedClasses\"]]],[12],[1,\"\\n\"],[41,[51,[28,[37,7],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null]],[[[1,\"        \"],[8,[39,4],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[41,[30,0,[\"currencySelectorShown\"]],[[[1,\"    \"],[8,[39,8],[[4,[38,10],[[30,0,[\"hideCurrencySelector\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\"],[[30,0,[\"filteredCurrencies\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"enabledSearch\"]],[28,[37,9],[\"oss-components.currency-input.search\"],null]]],[[\"option\"],[[[[1,\"\\n        \"],[8,[39,11],null,[[\"@title\",\"@selected\",\"@onSelect\"],[[30,5,[\"code\"]],[28,[37,7],[[30,0,[\"selectedCurrency\"]],[30,5]],null],[28,[37,12],[[30,0,[\"onSelect\"]],[30,5]],null]]],[[\"prefix\"],[[[[1,\"\\n            \"],[10,1],[15,0,[52,[28,[37,7],[[30,0,[\"selectedCurrency\"]],[30,5]],null],\"font-color-primary-500\"]],[12],[1,[30,5,[\"symbol\"]]],[13],[1,\"\\n          \"]],[]]]]],[1,\"\\n      \"]],[5]]]]],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@onlyCurrency\",\"@placeholder\",\"@errorMessage\",\"currency\"],false,[\"if\",\"on\",\"and\",\"not\",\"o-s-s/icon\",\"unless\",\"input\",\"eq\",\"o-s-s/infinite-select\",\"t\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"fn\"]]",
+    "id": "nFDzTPvl",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"currency-input fx-row fx-1 fx-xalign-center\\n      \",[52,[30,2],\"onlycurrency\"],\"\\n      \",[52,[30,0,[\"currencySelectorShown\"]],\"currency-input--active\"]]]],[12],[1,\"\\n    \"],[11,0],[24,0,\"currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center\"],[16,\"role\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"button\",\"img\"]],[16,\"tabindex\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"0\"]],[4,[38,1],[\"click\",[30,0,[\"toggleCurrencySelector\"]]],null],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-gap-px-9\"],[12],[1,\"\\n\"],[41,[30,0,[\"displayOnlyCurrencyPlaceholder\"]],[[[1,\"            \"],[10,1],[14,0,\"font-color-gray-400\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,1],[12],[1,[30,0,[\"selectedCurrencySymbol\"]]],[13],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[28,[37,2],[[30,2],[28,[37,3],[[30,0,[\"displayOnlyCurrencyPlaceholder\"]]],null]],null],[[[1,\"            \"],[10,1],[14,0,\"margin-right-px-12\"],[12],[1,[30,0,[\"selectedCurrencyCode\"]]],[13],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[28,[37,2],[[30,0,[\"allowCurrencyUpdate\"]],[28,[37,3],[[30,0,[\"disabled\"]]],null]],null],[[[1,\"        \"],[8,[39,4],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[[52,[30,0,[\"currencySelectorShown\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[51,[30,2]],[[[1,\"      \"],[8,[39,6],[[24,\"min\",\"0\"],[24,\"autocomplete\",\"off\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"aria-label\",[30,4]],[16,\"disabled\",[30,0,[\"disabled\"]]],[24,0,\"fx-1\"],[4,[38,1],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,1],[\"keyup\",[30,0,[\"notifyChanges\"]]],null],[4,[38,1],[\"paste\",[30,0,[\"handlePaste\"]]],null]],[[\"@value\",\"@type\"],[[30,0,[\"localValue\"]],\"text\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,5],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,4],null,[[\"@icon\"],[\"fa-exclamation-triangle\"]],null],[1,\"\\n      \"],[1,[30,5]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[30,0,[\"feedbackMessageComputedClasses\"]]],[12],[1,\"\\n\"],[41,[28,[37,7],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null],[[[1,\"        \"],[8,[39,4],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[41,[30,0,[\"currencySelectorShown\"]],[[[1,\"    \"],[8,[39,8],[[4,[38,10],[[30,0,[\"hideCurrencySelector\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\"],[[30,0,[\"filteredCurrencies\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"enabledSearch\"]],[28,[37,9],[\"oss-components.currency-input.search\"],null]]],[[\"option\"],[[[[1,\"\\n        \"],[8,[39,11],null,[[\"@title\",\"@selected\",\"@onSelect\"],[[30,6,[\"code\"]],[28,[37,12],[[30,0,[\"selectedCurrency\"]],[30,6]],null],[28,[37,13],[[30,0,[\"onSelect\"]],[30,6]],null]]],[[\"prefix\"],[[[[1,\"\\n            \"],[10,1],[15,0,[52,[28,[37,12],[[30,0,[\"selectedCurrency\"]],[30,6]],null],\"font-color-primary-500\"]],[12],[1,[30,6,[\"symbol\"]]],[13],[1,\"\\n          \"]],[]]]]],[1,\"\\n      \"]],[6]]]]],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@onlyCurrency\",\"@placeholder\",\"@ariaLabel\",\"@errorMessage\",\"currency\"],false,[\"if\",\"on\",\"and\",\"not\",\"o-s-s/icon\",\"unless\",\"input\",\"not-eq\",\"o-s-s/infinite-select\",\"t\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"eq\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/currency-input.hbs",
     "isStrictMode": false
   });
@@ -73948,6 +74034,7 @@ require('@ember/-internals/bootstrap')
       _initializerDefineProperty(this, "currencySelectorShown", _descriptor, this);
       _initializerDefineProperty(this, "filteredCurrencies", _descriptor2, this);
       _initializerDefineProperty(this, "localValue", _descriptor3, this);
+      this.localValue = this.args.value;
       if (preventDefaultAssertions) return;
       if (!this.args.value && !this.args.placeholder) {
         this.localValue = 0;
@@ -74083,9 +74170,7 @@ require('@ember/-internals/bootstrap')
     configurable: true,
     enumerable: true,
     writable: true,
-    initializer: function () {
-      return this.args.value;
-    }
+    initializer: null
   }), _applyDecoratedDescriptor(_class.prototype, "onlyNumeric", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onlyNumeric"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handlePaste", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handlePaste"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "notifyChanges", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "notifyChanges"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onSearch", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onSearch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onSelect", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onSelect"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleCurrencySelector", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleCurrencySelector"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "hideCurrencySelector", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "hideCurrencySelector"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSCurrencyInput);
 });
@@ -74198,7 +74283,9 @@ require('@ember/-internals/bootstrap')
     "isStrictMode": false
   });
   const DEFAULT_PLACEHOLDER = 'e.g., john.doe@example.com';
-  const EMAIL_REGEXP = _exports.EMAIL_REGEXP = new RegExp(/^(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/);
+  const EMAIL_REGEXP = _exports.EMAIL_REGEXP = new RegExp(
+  // eslint-disable-next-line no-control-regex
+  /^(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/);
   let OSSEmailInput = _exports.default = (_class = class OSSEmailInput extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
@@ -74321,7 +74408,7 @@ require('@ember/-internals/bootstrap')
     ...attributes
   >
     {{#if @icon}}
-      <OSS::Icon @style={{fa-icon-style @icon}} @icon={{fa-icon-value @icon}} class={{@iconColorClass}}/>
+      <OSS::Icon @style={{fa-icon-style @icon}} @icon={{fa-icon-value @icon}} class={{@iconColorClass}} />
     {{else if @image}}
       <img src={{@image}} alt={{t "oss-components.badge.image_alt"}} />
     {{else if @flag}}
@@ -74515,7 +74602,7 @@ require('@ember/-internals/bootstrap')
   _exports.default = OSSFeatureCardsContainer;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSFeatureCardsContainer);
 });
-;define("@upfluence/oss-components/components/o-s-s/form", ["exports", "@ember/component", "@glimmer/component", "@glimmer/tracking", "@ember/object", "@ember/service", "@ember/template-factory"], function (_exports, _component, _component2, _tracking, _object, _service, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/form", ["exports", "@ember/component", "@glimmer/component", "@glimmer/tracking", "@ember/object", "@ember/destroyable", "@ember/service", "@ember/template-factory"], function (_exports, _component, _component2, _tracking, _object, _destroyable, _service, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -74523,7 +74610,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class, _descriptor, _descriptor2, _descriptor3;
-  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/object",0,"@ember/service",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/object",0,"@ember/destroyable",0,"@ember/service",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
@@ -74534,7 +74621,7 @@ require('@ember/-internals/bootstrap')
   /*
     <form id={{this.id}} ...attributes {{on "submit" this.onSubmit}}>
     {{yield to="content"}}
-    <button type="submit" hidden></button>
+    <button {{! template-lint-disable u-template-lint/no-bare-button}} type="submit" hidden></button>
   </form>
   */
   {
@@ -74552,6 +74639,7 @@ require('@ember/-internals/bootstrap')
       this.id = this.formManager.generateId();
       this.formInstance = this.formManager.getInstance(this.id);
       this.args.onSetup(this.formInstance);
+      (0, _destroyable.registerDestructor)(this, () => this.formManager.unregisterForm(this.id));
     }
     onSubmit(event) {
       event.preventDefault();
@@ -74634,7 +74722,6 @@ require('@ember/-internals/bootstrap')
   });
   _exports.IconNames = void 0;
   0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  /* eslint-disable no-unused-vars */
   let IconNames = _exports.IconNames = /*#__PURE__*/function (IconNames) {
     IconNames["Analytics"] = "fa-analytics";
     IconNames["AngleLeft"] = "fa-angle-left";
@@ -74780,6 +74867,7 @@ require('@ember/-internals/bootstrap')
   /*
     <div class="fx-1" ...attributes>
     {{#if this.preloaded}}
+      {{! template-lint-disable no-triple-curlies}}
       {{{this.svgDocument}}}
     {{else}}
       <OSS::Skeleton @width="100%" />
@@ -74796,7 +74884,7 @@ require('@ember/-internals/bootstrap')
     return Array.from(document.styleSheets).filter(styleSheet => {
       try {
         return styleSheet.cssRules;
-      } catch (e) {
+      } catch {
         return false;
       }
     }).map(styleSheet => Array.from(styleSheet.cssRules)).flat().filter(cssRule => cssRule.selectorText === ':root').map(cssRule => {
@@ -74891,6 +74979,7 @@ require('@ember/-internals/bootstrap')
     {{/if}}
     <div class="upf-infinite-select__container">
       <ul
+        {{! template-lint-disable no-invalid-interactive }}
         class="upf-infinite-select__items-container
           {{if (eq this.items.length 0) 'upf-infinite-select__items-container--empty'}}"
         {{on-bottom-reached this.onBottomReached}}
@@ -74934,7 +75023,7 @@ require('@ember/-internals/bootstrap')
                 {{yield to="empty-state"}}
               {{else}}
                 <OSS::Illustration
-                  @src="/@upfluence/oss-components/assets/images/no-records.svg"
+                  @src="/@upfluence/oss-components/assets/images/no-records-e7557ae6948bae5e650b03ceeca7b6b5.svg"
                   data-control-name="infinite-select-empty-state-illustration"
                 />
                 <div class="margin-top-xx-sm text-color-default upf-align--center">
@@ -74971,7 +75060,7 @@ require('@ember/-internals/bootstrap')
   */
   {
     "id": "J1CU32Qp",
-    "block": "[[[11,0],[16,1,[30,0,[\"elementId\"]]],[16,\"data-internal-id\",[30,0,[\"elementId\"]]],[16,0,[29,[\"fx-col fx-gap-px-12 upf-infinite-select\\n    \",[52,[51,[30,0,[\"inline\"]]],\"upf-infinite-select--absolute\"],\"\\n    upf-infinite-select--\",[30,0,[\"skin\"]]]]],[17,1],[4,[38,1],[[30,0,[\"onRender\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"searchEnabled\"]],[[[1,\"    \"],[8,[39,3],[[24,0,\"upf-infinite-select--search\"],[4,[38,4],[\"keydown\",[30,0,[\"handleKeyEventInput\"]]],null],[4,[38,1],[[30,0,[\"initSearchInput\"]]],null]],[[\"@value\",\"@placeholder\",\"@onChange\"],[[30,0,[\"_searchKeyword\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"updateSearchKeyword\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[10,0],[14,0,\"upf-infinite-select__container\"],[12],[1,\"\\n    \"],[11,\"ul\"],[16,0,[29,[\"upf-infinite-select__items-container\\n        \",[52,[28,[37,5],[[30,0,[\"items\",\"length\"]],0],null],\"upf-infinite-select__items-container--empty\"]]]],[4,[38,6],[[30,0,[\"onBottomReached\"]]],null],[4,[38,7],null,null],[4,[38,4],[\"keydown\",[30,0,[\"handleKeyEvent\"]]],null],[12],[1,\"\\n\"],[41,[28,[37,8],[[30,2],[28,[37,9],[[30,3]],null]],null],[[[1,\"        \"],[8,[39,10],null,[[\"@width\",\"@height\",\"@multiple\",\"@direction\"],[\"100%\",\"18\",5,\"col\"]],null],[1,\"\\n\"]],[]],[[[42,[28,[37,12],[[30,0,[\"groups\"]]],null],null,[[[1,\"          \"],[10,\"ul\"],[14,0,\"group-container\"],[15,\"data-control-name\",[28,[37,13],[\"infinite-select-group-\",[30,5]],null]],[12],[1,\"\\n\"],[42,[28,[37,14],[[28,[37,14],[[30,4]],null]],null],null,[[[44,[[28,[30,0,[\"findItemIndex\"]],null,[[\"item\"],[[30,6]]]]],[[[1,\"                \"],[11,\"li\"],[16,0,[29,[\"upf-infinite-select__item\\n                    \",[52,[28,[37,8],[[28,[37,5],[[30,7],[30,0,[\"_focusElement\"]]],null],[30,0,[\"focusStylesDisabled\"]]],null],\" upf-infinite-select__item--disabled-focus\"]]]],[24,\"role\",\"button\"],[24,\"tabindex\",\"0\"],[4,[38,4],[\"mouseenter\",[28,[37,16],[[30,0,[\"handleItemHover\"]],[30,7]],null]],null],[4,[38,4],[\"mouseleave\",[30,0,[\"clearHoverState\"]]],null],[4,[38,4],[\"click\",[28,[37,16],[[30,0,[\"didSelectItem\"]],[30,6]],null]],null],[12],[1,\"\\n\"],[41,[48,[30,9]],[[[1,\"                    \"],[18,9,[[30,6],[30,7]]],[1,\"\\n\"]],[]],[[[1,\"                    \"],[1,[28,[35,19],[[30,6],[30,0,[\"itemLabel\"]]],null]],[1,\"\\n\"]],[]]],[1,\"                \"],[13],[1,\"\\n\"]],[7]]]],[6]],null],[41,[28,[37,20],[[30,5],[30,0,[\"lastKey\"]]],null],[[[1,\"              \"],[10,\"hr\"],[14,0,\"group-separator\"],[12],[13],[1,\"\\n\"]],[]],null],[1,\"          \"],[13],[1,\"\\n\"]],[4,5]],[[[1,\"          \"],[10,0],[14,0,\"fx-col fx-xalign-center\"],[12],[1,\"\\n\"],[41,[48,[30,10]],[[[1,\"              \"],[18,10,null],[1,\"\\n\"]],[]],[[[1,\"              \"],[8,[39,21],[[24,\"data-control-name\",\"infinite-select-empty-state-illustration\"]],[[\"@src\"],[\"/@upfluence/oss-components/assets/images/no-records.svg\"]],null],[1,\"\\n              \"],[10,0],[14,0,\"margin-top-xx-sm text-color-default upf-align--center\"],[12],[1,\"\\n\"],[41,[30,0,[\"_searchKeyword\"]],[[[1,\"                  \"],[10,2],[12],[1,[28,[35,22],[\"oss-components.infinite-select.no-match.title\"],null]],[13],[1,\"\\n                  \"],[10,2],[14,0,\"text-color-default-light\"],[12],[1,\"\\n                    \"],[1,[28,[35,22],[\"oss-components.infinite-select.no-match.description\"],null]],[1,\"\\n                  \"],[13],[1,\"\\n\"]],[]],[[[1,\"                  \"],[1,[28,[35,22],[\"oss-components.infinite-select.empty\"],null]],[1,\"\\n\"]],[]]],[1,\"              \"],[13],[1,\"\\n\"]],[]]],[1,\"          \"],[13],[1,\"\\n\"]],[]]],[41,[30,3],[[[1,\"          \"],[8,[39,10],null,[[\"@width\",\"@height\",\"@multiple\",\"@direction\"],[\"100%\",\"18\",3,\"col\"]],null],[1,\"\\n\"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,8],[[[1,\"    \"],[8,[39,23],[[24,0,\"fx-1 margin-left-px-6 margin-right-px-6\"],[24,\"data-control-name\",\"infinite-select-footer-action-button\"],[4,[38,4],[\"click\",[30,8,[\"onClick\"]]],null]],[[\"@size\",\"@label\",\"@skin\",\"@icon\"],[\"sm\",[30,8,[\"label\"]],[30,8,[\"skin\"]],[30,8,[\"icon\"]]]],null],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@loading\",\"@loadingMore\",\"items\",\"groupKey\",\"item\",\"index\",\"@action\",\"&option\",\"&empty-state\"],false,[\"unless\",\"did-insert\",\"if\",\"o-s-s/search-field\",\"on\",\"eq\",\"on-bottom-reached\",\"scroll-shadow\",\"and\",\"not\",\"o-s-s/skeleton\",\"each\",\"-each-in\",\"concat\",\"-track-array\",\"let\",\"fn\",\"has-block\",\"yield\",\"get\",\"not-eq\",\"o-s-s/illustration\",\"t\",\"o-s-s/button\"]]",
+    "block": "[[[11,0],[16,1,[30,0,[\"elementId\"]]],[16,\"data-internal-id\",[30,0,[\"elementId\"]]],[16,0,[29,[\"fx-col fx-gap-px-12 upf-infinite-select\\n    \",[52,[51,[30,0,[\"inline\"]]],\"upf-infinite-select--absolute\"],\"\\n    upf-infinite-select--\",[30,0,[\"skin\"]]]]],[17,1],[4,[38,1],[[30,0,[\"onRender\"]]],null],[12],[1,\"\\n\"],[41,[30,0,[\"searchEnabled\"]],[[[1,\"    \"],[8,[39,3],[[24,0,\"upf-infinite-select--search\"],[4,[38,4],[\"keydown\",[30,0,[\"handleKeyEventInput\"]]],null],[4,[38,1],[[30,0,[\"initSearchInput\"]]],null]],[[\"@value\",\"@placeholder\",\"@onChange\"],[[30,0,[\"_searchKeyword\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"updateSearchKeyword\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[10,0],[14,0,\"upf-infinite-select__container\"],[12],[1,\"\\n    \"],[11,\"ul\"],[16,0,[29,[\"upf-infinite-select__items-container\\n        \",[52,[28,[37,5],[[30,0,[\"items\",\"length\"]],0],null],\"upf-infinite-select__items-container--empty\"]]]],[4,[38,6],[[30,0,[\"onBottomReached\"]]],null],[4,[38,7],null,null],[4,[38,4],[\"keydown\",[30,0,[\"handleKeyEvent\"]]],null],[12],[1,\"\\n\"],[41,[28,[37,8],[[30,2],[28,[37,9],[[30,3]],null]],null],[[[1,\"        \"],[8,[39,10],null,[[\"@width\",\"@height\",\"@multiple\",\"@direction\"],[\"100%\",\"18\",5,\"col\"]],null],[1,\"\\n\"]],[]],[[[42,[28,[37,12],[[30,0,[\"groups\"]]],null],null,[[[1,\"          \"],[10,\"ul\"],[14,0,\"group-container\"],[15,\"data-control-name\",[28,[37,13],[\"infinite-select-group-\",[30,5]],null]],[12],[1,\"\\n\"],[42,[28,[37,14],[[28,[37,14],[[30,4]],null]],null],null,[[[44,[[28,[30,0,[\"findItemIndex\"]],null,[[\"item\"],[[30,6]]]]],[[[1,\"                \"],[11,\"li\"],[16,0,[29,[\"upf-infinite-select__item\\n                    \",[52,[28,[37,8],[[28,[37,5],[[30,7],[30,0,[\"_focusElement\"]]],null],[30,0,[\"focusStylesDisabled\"]]],null],\" upf-infinite-select__item--disabled-focus\"]]]],[24,\"role\",\"button\"],[24,\"tabindex\",\"0\"],[4,[38,4],[\"mouseenter\",[28,[37,16],[[30,0,[\"handleItemHover\"]],[30,7]],null]],null],[4,[38,4],[\"mouseleave\",[30,0,[\"clearHoverState\"]]],null],[4,[38,4],[\"click\",[28,[37,16],[[30,0,[\"didSelectItem\"]],[30,6]],null]],null],[12],[1,\"\\n\"],[41,[48,[30,9]],[[[1,\"                    \"],[18,9,[[30,6],[30,7]]],[1,\"\\n\"]],[]],[[[1,\"                    \"],[1,[28,[35,19],[[30,6],[30,0,[\"itemLabel\"]]],null]],[1,\"\\n\"]],[]]],[1,\"                \"],[13],[1,\"\\n\"]],[7]]]],[6]],null],[41,[28,[37,20],[[30,5],[30,0,[\"lastKey\"]]],null],[[[1,\"              \"],[10,\"hr\"],[14,0,\"group-separator\"],[12],[13],[1,\"\\n\"]],[]],null],[1,\"          \"],[13],[1,\"\\n\"]],[4,5]],[[[1,\"          \"],[10,0],[14,0,\"fx-col fx-xalign-center\"],[12],[1,\"\\n\"],[41,[48,[30,10]],[[[1,\"              \"],[18,10,null],[1,\"\\n\"]],[]],[[[1,\"              \"],[8,[39,21],[[24,\"data-control-name\",\"infinite-select-empty-state-illustration\"]],[[\"@src\"],[\"/@upfluence/oss-components/assets/images/no-records-e7557ae6948bae5e650b03ceeca7b6b5.svg\"]],null],[1,\"\\n              \"],[10,0],[14,0,\"margin-top-xx-sm text-color-default upf-align--center\"],[12],[1,\"\\n\"],[41,[30,0,[\"_searchKeyword\"]],[[[1,\"                  \"],[10,2],[12],[1,[28,[35,22],[\"oss-components.infinite-select.no-match.title\"],null]],[13],[1,\"\\n                  \"],[10,2],[14,0,\"text-color-default-light\"],[12],[1,\"\\n                    \"],[1,[28,[35,22],[\"oss-components.infinite-select.no-match.description\"],null]],[1,\"\\n                  \"],[13],[1,\"\\n\"]],[]],[[[1,\"                  \"],[1,[28,[35,22],[\"oss-components.infinite-select.empty\"],null]],[1,\"\\n\"]],[]]],[1,\"              \"],[13],[1,\"\\n\"]],[]]],[1,\"          \"],[13],[1,\"\\n\"]],[]]],[41,[30,3],[[[1,\"          \"],[8,[39,10],null,[[\"@width\",\"@height\",\"@multiple\",\"@direction\"],[\"100%\",\"18\",3,\"col\"]],null],[1,\"\\n\"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,8],[[[1,\"    \"],[8,[39,23],[[24,0,\"fx-1 margin-left-px-6 margin-right-px-6\"],[24,\"data-control-name\",\"infinite-select-footer-action-button\"],[4,[38,4],[\"click\",[30,8,[\"onClick\"]]],null]],[[\"@size\",\"@label\",\"@skin\",\"@icon\"],[\"sm\",[30,8,[\"label\"]],[30,8,[\"skin\"]],[30,8,[\"icon\"]]]],null],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@loading\",\"@loadingMore\",\"items\",\"groupKey\",\"item\",\"index\",\"@action\",\"&option\",\"&empty-state\"],false,[\"unless\",\"did-insert\",\"if\",\"o-s-s/search-field\",\"on\",\"eq\",\"on-bottom-reached\",\"scroll-shadow\",\"and\",\"not\",\"o-s-s/skeleton\",\"each\",\"-each-in\",\"concat\",\"-track-array\",\"let\",\"fn\",\"has-block\",\"yield\",\"get\",\"not-eq\",\"o-s-s/illustration\",\"t\",\"o-s-s/button\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/infinite-select.hbs",
     "isStrictMode": false
   });
@@ -75183,7 +75272,13 @@ require('@ember/-internals/bootstrap')
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class={{this.computedClasses}} {{on "click" (fn this.onSelect (not this.selected))}} ...attributes>
+    <div
+    class={{this.computedClasses}}
+    role="button"
+    tabindex="0"
+    {{on "click" (fn this.onSelect (not this.selected))}}
+    ...attributes
+  >
     <div class="oss-infinite-select-option__container">
       {{#if this.isSelectionMultiple}}
         <OSS::Checkbox @checked={{this.selected}} @disabled={{@disabled}} @onChange={{this.onSelect}} />
@@ -75271,8 +75366,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "e1n13aH0",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[4,[38,0],[\"click\",[28,[37,1],[[30,0,[\"onSelect\"]],[28,[37,2],[[30,0,[\"selected\"]]],null]],null]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-infinite-select-option__container\"],[12],[1,\"\\n\"],[41,[30,0,[\"isSelectionMultiple\"]],[[[1,\"      \"],[8,[39,4],null,[[\"@checked\",\"@disabled\",\"@onChange\"],[[30,0,[\"selected\"]],[30,2],[30,0,[\"onSelect\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,3],[[[1,\"      \"],[8,[39,5],[[24,0,\"oss-infinite-select-option__prefix-avatar\"]],[[\"@image\",\"@initials\",\"@size\",\"@loading\"],[[30,3,[\"image\"]],[30,3,[\"initials\"]],[30,3,[\"size\"]],[30,3,[\"loading\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,4],[[[1,\"      \"],[8,[39,6],[[24,0,\"oss-infinite-select-option__prefix-badge\"]],[[\"@icon\",\"@image\",\"@text\",\"@skin\",\"@plain\",\"@size\"],[[30,4,[\"icon\"]],[30,4,[\"image\"]],[30,4,[\"text\"]],[30,4,[\"skin\"]],[30,4,[\"plain\"]],[30,4,[\"size\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,5],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__prefix-icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,5,[\"tooltip\",\"title\"]],[30,5,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,5,[\"icon\"]],[30,5,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,6],[[[1,\"      \"],[10,0],[15,0,[29,[\"oss-infinite-select-option__prefix-country fflag fflag-\",[30,6],\" ff-sm ff-round\"]]],[12],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,13]],[[[1,\"      \"],[18,13,null],[1,\"\\n\"]],[]],null],[1,\"    \"],[10,1],[14,0,\"oss-infinite-select-option__title\"],[12],[1,[30,7]],[13],[1,\"\\n\"],[41,[30,8],[[[1,\"      \"],[10,1],[14,0,\"oss-infinite-select-option__subtitle\"],[12],[1,[30,8]],[13],[1,\"\\n\"]],[]],null],[41,[30,9],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,9,[\"tooltip\",\"title\"]],[30,9,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,9,[\"icon\"]],[30,9,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,0],[14,0,\"oss-infinite-select-option__container\"],[12],[1,\"\\n\"],[41,[30,10],[[[1,\"      \"],[10,1],[14,0,\"oss-infinite-select-option__suffix-hint\"],[12],[1,[30,10]],[13],[1,\"\\n\"]],[]],null],[41,[30,11],[[[1,\"      \"],[8,[39,11],[[24,0,\"oss-infinite-select-option__suffix-tag\"]],[[\"@label\",\"@skin\",\"@icon\",\"@suffixIcon\",\"@hasEllipsis\",\"@plain\",\"@htmlSafe\",\"@size\"],[[30,11,[\"label\"]],[30,11,[\"skin\"]],[30,11,[\"icon\"]],[30,11,[\"suffixIcon\"]],[30,11,[\"hasEllipsis\"]],[30,11,[\"plain\"]],[30,11,[\"htmlSafe\"]],[30,11,[\"size\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,12],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__suffix-icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,12,[\"tooltip\",\"title\"]],[30,12,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,12,[\"icon\"]],[30,12,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[41,[48,[30,14]],[[[1,\"      \"],[18,14,null],[1,\"\\n\"]],[]],null],[41,[28,[37,12],[[30,0,[\"selected\"]],[30,0,[\"isSelectionSingle\"]]],null],[[[1,\"      \"],[8,[39,7],[[24,0,\"font-color-primary-500\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@disabled\",\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"&prefix\",\"&suffix\"],false,[\"on\",\"fn\",\"not\",\"if\",\"o-s-s/checkbox\",\"o-s-s/avatar\",\"o-s-s/badge\",\"o-s-s/icon\",\"enable-tooltip\",\"has-block\",\"yield\",\"o-s-s/tag\",\"and\"]]",
+    "id": "AiTvbinZ",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[24,\"role\",\"button\"],[24,\"tabindex\",\"0\"],[17,1],[4,[38,0],[\"click\",[28,[37,1],[[30,0,[\"onSelect\"]],[28,[37,2],[[30,0,[\"selected\"]]],null]],null]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-infinite-select-option__container\"],[12],[1,\"\\n\"],[41,[30,0,[\"isSelectionMultiple\"]],[[[1,\"      \"],[8,[39,4],null,[[\"@checked\",\"@disabled\",\"@onChange\"],[[30,0,[\"selected\"]],[30,2],[30,0,[\"onSelect\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,3],[[[1,\"      \"],[8,[39,5],[[24,0,\"oss-infinite-select-option__prefix-avatar\"]],[[\"@image\",\"@initials\",\"@size\",\"@loading\"],[[30,3,[\"image\"]],[30,3,[\"initials\"]],[30,3,[\"size\"]],[30,3,[\"loading\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,4],[[[1,\"      \"],[8,[39,6],[[24,0,\"oss-infinite-select-option__prefix-badge\"]],[[\"@icon\",\"@image\",\"@text\",\"@skin\",\"@plain\",\"@size\"],[[30,4,[\"icon\"]],[30,4,[\"image\"]],[30,4,[\"text\"]],[30,4,[\"skin\"]],[30,4,[\"plain\"]],[30,4,[\"size\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,5],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__prefix-icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,5,[\"tooltip\",\"title\"]],[30,5,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,5,[\"icon\"]],[30,5,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,6],[[[1,\"      \"],[10,0],[15,0,[29,[\"oss-infinite-select-option__prefix-country fflag fflag-\",[30,6],\" ff-sm ff-round\"]]],[12],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,13]],[[[1,\"      \"],[18,13,null],[1,\"\\n\"]],[]],null],[1,\"    \"],[10,1],[14,0,\"oss-infinite-select-option__title\"],[12],[1,[30,7]],[13],[1,\"\\n\"],[41,[30,8],[[[1,\"      \"],[10,1],[14,0,\"oss-infinite-select-option__subtitle\"],[12],[1,[30,8]],[13],[1,\"\\n\"]],[]],null],[41,[30,9],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,9,[\"tooltip\",\"title\"]],[30,9,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,9,[\"icon\"]],[30,9,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,0],[14,0,\"oss-infinite-select-option__container\"],[12],[1,\"\\n\"],[41,[30,10],[[[1,\"      \"],[10,1],[14,0,\"oss-infinite-select-option__suffix-hint\"],[12],[1,[30,10]],[13],[1,\"\\n\"]],[]],null],[41,[30,11],[[[1,\"      \"],[8,[39,11],[[24,0,\"oss-infinite-select-option__suffix-tag\"]],[[\"@label\",\"@skin\",\"@icon\",\"@suffixIcon\",\"@hasEllipsis\",\"@plain\",\"@htmlSafe\",\"@size\"],[[30,11,[\"label\"]],[30,11,[\"skin\"]],[30,11,[\"icon\"]],[30,11,[\"suffixIcon\"]],[30,11,[\"hasEllipsis\"]],[30,11,[\"plain\"]],[30,11,[\"htmlSafe\"]],[30,11,[\"size\"]]]],null],[1,\"\\n\"]],[]],null],[41,[30,12],[[[1,\"      \"],[8,[39,7],[[24,0,\"oss-infinite-select-option__suffix-icon\"],[4,[38,8],null,[[\"title\",\"placement\"],[[30,12,[\"tooltip\",\"title\"]],[30,12,[\"tooltip\",\"placement\"]]]]]],[[\"@icon\",\"@style\"],[[30,12,[\"icon\"]],[30,12,[\"style\"]]]],null],[1,\"\\n\"]],[]],null],[41,[48,[30,14]],[[[1,\"      \"],[18,14,null],[1,\"\\n\"]],[]],null],[41,[28,[37,12],[[30,0,[\"selected\"]],[30,0,[\"isSelectionSingle\"]]],null],[[[1,\"      \"],[8,[39,7],[[24,0,\"font-color-primary-500\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@disabled\",\"@prefixAvatar\",\"@prefixBadge\",\"@prefixIcon\",\"@prefixCountry\",\"@title\",\"@subtitle\",\"@icon\",\"@suffixHint\",\"@suffixTag\",\"@suffixIcon\",\"&prefix\",\"&suffix\"],false,[\"on\",\"fn\",\"not\",\"if\",\"o-s-s/checkbox\",\"o-s-s/avatar\",\"o-s-s/badge\",\"o-s-s/icon\",\"enable-tooltip\",\"has-block\",\"yield\",\"o-s-s/tag\",\"and\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/infinite-select/option.hbs",
     "isStrictMode": false
   });
@@ -75411,6 +75506,7 @@ require('@ember/-internals/bootstrap')
           @value={{@value}}
           @type={{this.type}}
           placeholder={{@placeholder}}
+          aria-label={{@ariaLabel}}
           disabled={{@disabled}}
           autocomplete={{this.autocomplete}}
           class="upf-input"
@@ -75427,17 +75523,17 @@ require('@ember/-internals/bootstrap')
       <span class="text-color-error margin-top-px-6">{{@errorMessage}}</span>
     {{else if this.feedbackMessage.value}}
       <span class={{concat "margin-top-px-6 font-color-" this.feedbackMessage.type "-500"}}>
-        {{#unless (eq this.feedbackMessage.type "error")}}
+        {{#if (not-eq this.feedbackMessage.type "error")}}
           <OSS::Icon @icon={{this.messageIcon}} />
-        {{/unless}}
+        {{/if}}
         <span>{{this.feedbackMessage.value}}</span>
       </span>
     {{/if}}
   </div>
   */
   {
-    "id": "pAmcI7Ap",
-    "block": "[[[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-input-container\\n      \",[30,0,[\"containerClass\"]],\"\\n      \",[52,[48,[30,6]],\" has-prefix\"],\"\\n      \",[52,[48,[30,7]],\" has-suffix\"]]]],[17,1],[12],[1,\"\\n\"],[41,[48,[30,6]],[[[1,\"      \"],[10,0],[14,0,\"prefix\"],[12],[18,6,null],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"      \"],[10,0],[14,0,\"yielded-input\"],[12],[1,\"\\n        \"],[18,8,null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[16,\"placeholder\",[30,2]],[16,\"disabled\",[30,3]],[16,\"autocomplete\",[30,0,[\"autocomplete\"]]],[24,0,\"upf-input\"],[4,[38,4],[\"keyup\",[28,[37,5],[[30,0,[\"_onChange\"]],[30,4]],null]],null],[4,[38,4],[\"paste\",[30,0,[\"onPaste\"]]],null]],[[\"@value\",\"@type\"],[[30,4],[30,0,[\"type\"]]]],null],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[48,[30,7]],[[[1,\"      \"],[10,0],[14,0,\"suffix\"],[12],[18,7,null],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,5],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\",\"value\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,6],[\"margin-top-px-6 font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[51,[28,[37,8],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null]],[[[1,\"        \"],[8,[39,9],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"&attrs\",\"@placeholder\",\"@disabled\",\"@value\",\"@errorMessage\",\"&prefix\",\"&suffix\",\"&input\"],false,[\"if\",\"has-block\",\"yield\",\"input\",\"on\",\"fn\",\"concat\",\"unless\",\"eq\",\"o-s-s/icon\"]]",
+    "id": "Oh1fEkUQ",
+    "block": "[[[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-input-container\\n      \",[30,0,[\"containerClass\"]],\"\\n      \",[52,[48,[30,7]],\" has-prefix\"],\"\\n      \",[52,[48,[30,8]],\" has-suffix\"]]]],[17,1],[12],[1,\"\\n\"],[41,[48,[30,7]],[[[1,\"      \"],[10,0],[14,0,\"prefix\"],[12],[18,7,null],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,9]],[[[1,\"      \"],[10,0],[14,0,\"yielded-input\"],[12],[1,\"\\n        \"],[18,9,null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[16,\"placeholder\",[30,2]],[16,\"aria-label\",[30,3]],[16,\"disabled\",[30,4]],[16,\"autocomplete\",[30,0,[\"autocomplete\"]]],[24,0,\"upf-input\"],[4,[38,4],[\"keyup\",[28,[37,5],[[30,0,[\"_onChange\"]],[30,5]],null]],null],[4,[38,4],[\"paste\",[30,0,[\"onPaste\"]]],null]],[[\"@value\",\"@type\"],[[30,5],[30,0,[\"type\"]]]],null],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"      \"],[10,0],[14,0,\"suffix\"],[12],[18,8,null],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,6],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,6]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\",\"value\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,6],[\"margin-top-px-6 font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[28,[37,7],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null],[[[1,\"        \"],[8,[39,8],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"&attrs\",\"@placeholder\",\"@ariaLabel\",\"@disabled\",\"@value\",\"@errorMessage\",\"&prefix\",\"&suffix\",\"&input\"],false,[\"if\",\"has-block\",\"yield\",\"input\",\"on\",\"fn\",\"concat\",\"not-eq\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/input-container.hbs",
     "isStrictMode": false
   });
@@ -75552,7 +75648,7 @@ require('@ember/-internals/bootstrap')
   0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="oss-navbar-item fx-1 {{if @active "oss-navbar-item--active"}}" ...attributes>
+    <div class="oss-navbar-item fx-1 {{if @active 'oss-navbar-item--active'}}" ...attributes>
     <div class="oss-navbar-item--icon-container">
       <OSS::Icon @icon={{@icon}} class="font-color-gray-500" />
     </div>
@@ -75568,7 +75664,6 @@ require('@ember/-internals/bootstrap')
     "moduleName": "@upfluence/oss-components/components/o-s-s/layout/navbar/nav-item.hbs",
     "isStrictMode": false
   });
-  // eslint-disable-next-line ember/no-empty-glimmer-component-classes
   class OSSLayoutNavbarNavItem extends _component2.default {}
   _exports.default = OSSLayoutNavbarNavItem;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSLayoutNavbarNavItem);
@@ -75701,10 +75796,11 @@ require('@ember/-internals/bootstrap')
           @icon={{@icon}}
           @label={{@label}}
           @expanded={{@expanded}}
+          @active={{this.isActive}}
           @hasNotifications={{and (not @expanded) this.hasNotifications}}
           {{on "mouseenter" this.handleMouseEnter}}
           {{on "mouseleave" this.handleMouseLeave}}
-          class={{concat (if @expanded "oss-sidebar-item--group-header") (if this.isActive " active")}}
+          class={{if @expanded "oss-sidebar-item--group-header"}}
         >
           <:icon>
             {{yield (hash expanded=@expanded) to="icon"}}
@@ -75715,10 +75811,11 @@ require('@ember/-internals/bootstrap')
           @icon={{@icon}}
           @label={{@label}}
           @expanded={{@expanded}}
+          @active={{this.isActive}}
           @hasNotifications={{and (not @expanded) this.hasNotifications}}
           {{on "mouseenter" this.handleMouseEnter}}
           {{on "mouseleave" this.handleMouseLeave}}
-          class={{concat (if @expanded "oss-sidebar-item--group-header") (if this.isActive " active")}}
+          class={{if @expanded "oss-sidebar-item--group-header"}}
         />
       {{/if}}
   
@@ -75756,21 +75853,22 @@ require('@ember/-internals/bootstrap')
               @hasNotifications={{item.hasNotifications}}
               @link={{item.link}}
               @routePrefix={{item.routePrefix}}
+              @tag={{item.tag}}
+              @active={{item.active}}
               @lockedAction={{item.lockedAction}}
               @action={{item.action}}
-              @disableAutoActive={{item.disableAutoActive}}
               data-control-name={{item.dataControlName}}
-              class={{if item.active "active"}}
             />
           {{/each}}
         </div>
       </div>
     {{/if}}
   </div>
+  
   */
   {
-    "id": "0Bl7q2GY",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[4,[38,0],[[30,0,[\"registerTrigger\"]]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-sidebar-group__title-container\"],[12],[1,\"\\n\"],[41,[48,[30,6]],[[[1,\"      \"],[8,[39,3],[[16,0,[28,[37,4],[[52,[30,2],\"oss-sidebar-item--group-header\"],[52,[30,0,[\"isActive\"]],\" active\"]],null]],[4,[38,7],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null],[4,[38,7],[\"mouseleave\",[30,0,[\"handleMouseLeave\"]]],null]],[[\"@icon\",\"@label\",\"@expanded\",\"@hasNotifications\"],[[30,3],[30,4],[30,2],[28,[37,5],[[28,[37,6],[[30,2]],null],[30,0,[\"hasNotifications\"]]],null]]],[[\"icon\"],[[[[1,\"\\n          \"],[18,6,[[28,[37,9],null,[[\"expanded\"],[[30,2]]]]]],[1,\"\\n        \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[16,0,[28,[37,4],[[52,[30,2],\"oss-sidebar-item--group-header\"],[52,[30,0,[\"isActive\"]],\" active\"]],null]],[4,[38,7],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null],[4,[38,7],[\"mouseleave\",[30,0,[\"handleMouseLeave\"]]],null]],[[\"@icon\",\"@label\",\"@expanded\",\"@hasNotifications\"],[[30,3],[30,4],[30,2],[28,[37,5],[[28,[37,6],[[30,2]],null],[30,0,[\"hasNotifications\"]]],null]]],null],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[30,0,[\"collapsible\"]],[[[1,\"      \"],[8,[39,10],[[24,\"role\",\"button\"],[24,0,\"oss-sidebar-group__collapse-trigger\"],[4,[38,7],[\"click\",[30,0,[\"toggleCollapsed\"]]],null]],[[\"@icon\"],[[52,[30,0,[\"collapsed\"]],\"fa-chevron-down\",\"fa-chevron-up\"]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"hasItems\"]],[[[1,\"    \"],[11,0],[16,0,[28,[37,4],[\"oss-sidebar-group__items-container\",[52,[28,[37,11],[[30,2],[30,0,[\"displayGroupList\"]]],null],\" oss-sidebar-group__items-container--visible\"]],null]],[4,[38,7],[\"mouseenter\",[30,0,[\"handleGroupListEnter\"]]],null],[4,[38,7],[\"mouseleave\",[30,0,[\"handleGroupListLeave\"]]],null],[12],[1,\"\\n\"],[41,[51,[30,2]],[[[1,\"        \"],[10,0],[14,0,\"group-name\"],[12],[1,\"\\n          \"],[1,[30,4]],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,0],[14,0,\"group-list\"],[12],[1,\"\\n\"],[42,[28,[37,14],[[28,[37,14],[[30,0,[\"items\"]]],null]],null],null,[[[1,\"          \"],[8,[39,3],[[16,\"data-control-name\",[30,5,[\"dataControlName\"]]],[16,0,[52,[30,5,[\"active\"]],\"active\"]]],[[\"@expanded\",\"@icon\",\"@label\",\"@locked\",\"@hasNotifications\",\"@link\",\"@routePrefix\",\"@lockedAction\",\"@action\",\"@disableAutoActive\"],[[28,[37,11],[[30,2],[30,0,[\"displayGroupList\"]]],null],[30,5,[\"icon\"]],[30,5,[\"label\"]],[30,5,[\"locked\"]],[30,5,[\"hasNotifications\"]],[30,5,[\"link\"]],[30,5,[\"routePrefix\"]],[30,5,[\"lockedAction\"]],[30,5,[\"action\"]],[30,5,[\"disableAutoActive\"]]]],null],[1,\"\\n\"]],[5]],null],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@expanded\",\"@icon\",\"@label\",\"item\",\"&icon\"],false,[\"did-insert\",\"if\",\"has-block\",\"o-s-s/layout/sidebar/item\",\"concat\",\"and\",\"not\",\"on\",\"yield\",\"hash\",\"o-s-s/icon\",\"or\",\"unless\",\"each\",\"-track-array\"]]",
+    "id": "zG3YDhgH",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[4,[38,0],[[30,0,[\"registerTrigger\"]]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-sidebar-group__title-container\"],[12],[1,\"\\n\"],[41,[48,[30,6]],[[[1,\"      \"],[8,[39,3],[[16,0,[52,[30,2],\"oss-sidebar-item--group-header\"]],[4,[38,6],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null],[4,[38,6],[\"mouseleave\",[30,0,[\"handleMouseLeave\"]]],null]],[[\"@icon\",\"@label\",\"@expanded\",\"@active\",\"@hasNotifications\"],[[30,3],[30,4],[30,2],[30,0,[\"isActive\"]],[28,[37,4],[[28,[37,5],[[30,2]],null],[30,0,[\"hasNotifications\"]]],null]]],[[\"icon\"],[[[[1,\"\\n          \"],[18,6,[[28,[37,8],null,[[\"expanded\"],[[30,2]]]]]],[1,\"\\n        \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,3],[[16,0,[52,[30,2],\"oss-sidebar-item--group-header\"]],[4,[38,6],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null],[4,[38,6],[\"mouseleave\",[30,0,[\"handleMouseLeave\"]]],null]],[[\"@icon\",\"@label\",\"@expanded\",\"@active\",\"@hasNotifications\"],[[30,3],[30,4],[30,2],[30,0,[\"isActive\"]],[28,[37,4],[[28,[37,5],[[30,2]],null],[30,0,[\"hasNotifications\"]]],null]]],null],[1,\"\\n\"]],[]]],[1,\"\\n\"],[41,[30,0,[\"collapsible\"]],[[[1,\"      \"],[8,[39,9],[[24,\"role\",\"button\"],[24,0,\"oss-sidebar-group__collapse-trigger\"],[4,[38,6],[\"click\",[30,0,[\"toggleCollapsed\"]]],null]],[[\"@icon\"],[[52,[30,0,[\"collapsed\"]],\"fa-chevron-down\",\"fa-chevron-up\"]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"hasItems\"]],[[[1,\"    \"],[11,0],[16,0,[28,[37,10],[\"oss-sidebar-group__items-container\",[52,[28,[37,11],[[30,2],[30,0,[\"displayGroupList\"]]],null],\" oss-sidebar-group__items-container--visible\"]],null]],[4,[38,6],[\"mouseenter\",[30,0,[\"handleGroupListEnter\"]]],null],[4,[38,6],[\"mouseleave\",[30,0,[\"handleGroupListLeave\"]]],null],[12],[1,\"\\n\"],[41,[51,[30,2]],[[[1,\"        \"],[10,0],[14,0,\"group-name\"],[12],[1,\"\\n          \"],[1,[30,4]],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,0],[14,0,\"group-list\"],[12],[1,\"\\n\"],[42,[28,[37,14],[[28,[37,14],[[30,0,[\"items\"]]],null]],null],null,[[[1,\"          \"],[8,[39,3],[[16,\"data-control-name\",[30,5,[\"dataControlName\"]]]],[[\"@expanded\",\"@icon\",\"@label\",\"@locked\",\"@hasNotifications\",\"@link\",\"@routePrefix\",\"@tag\",\"@active\",\"@lockedAction\",\"@action\"],[[28,[37,11],[[30,2],[30,0,[\"displayGroupList\"]]],null],[30,5,[\"icon\"]],[30,5,[\"label\"]],[30,5,[\"locked\"]],[30,5,[\"hasNotifications\"]],[30,5,[\"link\"]],[30,5,[\"routePrefix\"]],[30,5,[\"tag\"]],[30,5,[\"active\"]],[30,5,[\"lockedAction\"]],[30,5,[\"action\"]]]],null],[1,\"\\n\"]],[5]],null],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"]],[\"&attrs\",\"@expanded\",\"@icon\",\"@label\",\"item\",\"&icon\"],false,[\"did-insert\",\"if\",\"has-block\",\"o-s-s/layout/sidebar/item\",\"and\",\"not\",\"on\",\"yield\",\"hash\",\"o-s-s/icon\",\"concat\",\"or\",\"unless\",\"each\",\"-track-array\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/layout/sidebar/group.hbs",
     "isStrictMode": false
   });
@@ -75815,9 +75913,7 @@ require('@ember/-internals/bootstrap')
     handleMouseEnter() {
       if (this.args.expanded) return;
       this.clearTimeouts();
-      (0, _runloop.scheduleOnce)('afterRender', this, () => {
-        this.triggerHovered = this.displayGroupList = true;
-      });
+      (0, _runloop.scheduleOnce)('afterRender', this, this.showGroupList);
       document.querySelectorAll('.oss-sidebar-group__items-container--visible').forEach(el => {
         if (!this.triggerElement.contains(el)) {
           el.classList.remove('oss-sidebar-group__items-container--visible');
@@ -75842,6 +75938,9 @@ require('@ember/-internals/bootstrap')
     }
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
+    }
+    showGroupList() {
+      this.triggerHovered = this.displayGroupList = true;
     }
     hideGroupList(immediate = false) {
       const hide = () => {
@@ -75904,7 +76003,7 @@ require('@ember/-internals/bootstrap')
     <OSS::Anchor
     @link={{@link}}
     @routePrefix={{@routePrefix}}
-    @disableAutoActive={{@disableAutoActive}}
+    @disableAutoActive={{true}}
     class={{this.computedClasses}}
     disabled={{this.locked}}
     {{on "click" this.onClick}}
@@ -75931,14 +76030,25 @@ require('@ember/-internals/bootstrap')
       {{@label}}
     </div>
   
+    {{#if @tag}}
+      <OSS::Tag
+        @label={{@tag.label}}
+        @skin={{@tag.skin}}
+        @icon={{@tag.icon}}
+        @plain={{@tag.plain}}
+        @size="xs"
+        class="oss-sidebar-item__tag"
+      />
+    {{/if}}
+  
     {{#if this.hasNotifications}}
       <div class="oss-sidebar-item__notification"></div>
     {{/if}}
   </OSS::Anchor>
   */
   {
-    "id": "S7/ognbq",
-    "block": "[[[8,[39,0],[[16,0,[30,0,[\"computedClasses\"]]],[16,\"disabled\",[30,0,[\"locked\"]]],[17,1],[4,[38,1],[\"click\",[30,0,[\"onClick\"]]],null],[4,[38,1],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null]],[[\"@link\",\"@routePrefix\",\"@disableAutoActive\"],[[30,2],[30,3],[30,4]]],[[\"default\"],[[[[1,\"\\n\"],[41,[30,0,[\"locked\"]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__lock\"],[12],[1,\"\\n      \"],[8,[39,3],null,[[\"@icon\"],[\"fa-lock\"]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__icon\"],[12],[1,\"\\n      \"],[18,8,[[28,[37,6],null,[[\"expanded\"],[[30,5]]]]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,6],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__icon\"],[12],[1,\"\\n      \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,7],[[30,6]],null],[28,[37,8],[[30,6]],null]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[1,\"\\n  \"],[10,0],[15,0,[28,[37,9],[\"oss-sidebar-item__label\",[52,[51,[30,6]],\" oss-sidebar-item__label--no-icon\"]],null]],[12],[1,\"\\n    \"],[1,[30,7]],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"hasNotifications\"]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__notification\"],[12],[13],[1,\"\\n\"]],[]],null]],[]]]]]],[\"&attrs\",\"@link\",\"@routePrefix\",\"@disableAutoActive\",\"@expanded\",\"@icon\",\"@label\",\"&icon\"],false,[\"o-s-s/anchor\",\"on\",\"if\",\"o-s-s/icon\",\"has-block\",\"yield\",\"hash\",\"fa-icon-style\",\"fa-icon-value\",\"concat\",\"unless\"]]",
+    "id": "u5jdwhc5",
+    "block": "[[[8,[39,0],[[16,0,[30,0,[\"computedClasses\"]]],[16,\"disabled\",[30,0,[\"locked\"]]],[17,1],[4,[38,1],[\"click\",[30,0,[\"onClick\"]]],null],[4,[38,1],[\"mouseenter\",[30,0,[\"handleMouseEnter\"]]],null]],[[\"@link\",\"@routePrefix\",\"@disableAutoActive\"],[[30,2],[30,3],true]],[[\"default\"],[[[[1,\"\\n\"],[41,[30,0,[\"locked\"]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__lock\"],[12],[1,\"\\n      \"],[8,[39,3],null,[[\"@icon\"],[\"fa-lock\"]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__icon\"],[12],[1,\"\\n      \"],[18,8,[[28,[37,6],null,[[\"expanded\"],[[30,4]]]]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,5],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__icon\"],[12],[1,\"\\n      \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,7],[[30,5]],null],[28,[37,8],[[30,5]],null]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[1,\"\\n  \"],[10,0],[15,0,[28,[37,9],[\"oss-sidebar-item__label\",[52,[51,[30,5]],\" oss-sidebar-item__label--no-icon\"]],null]],[12],[1,\"\\n    \"],[1,[30,6]],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,7],[[[1,\"    \"],[8,[39,11],[[24,0,\"oss-sidebar-item__tag\"]],[[\"@label\",\"@skin\",\"@icon\",\"@plain\",\"@size\"],[[30,7,[\"label\"]],[30,7,[\"skin\"]],[30,7,[\"icon\"]],[30,7,[\"plain\"]],\"xs\"]],null],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"hasNotifications\"]],[[[1,\"    \"],[10,0],[14,0,\"oss-sidebar-item__notification\"],[12],[13],[1,\"\\n\"]],[]],null]],[]]]]]],[\"&attrs\",\"@link\",\"@routePrefix\",\"@expanded\",\"@icon\",\"@label\",\"@tag\",\"&icon\"],false,[\"o-s-s/anchor\",\"on\",\"if\",\"o-s-s/icon\",\"has-block\",\"yield\",\"hash\",\"fa-icon-style\",\"fa-icon-value\",\"concat\",\"unless\",\"o-s-s/tag\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/layout/sidebar/item.hbs",
     "isStrictMode": false
   });
@@ -75953,6 +76063,9 @@ require('@ember/-internals/bootstrap')
       const classes = ['oss-sidebar-item'];
       if (this.args.expanded) {
         classes.push('oss-sidebar-item--expanded');
+      }
+      if (this.args.active) {
+        classes.push('active');
       }
       return classes.join(' ');
     }
@@ -75998,11 +76111,10 @@ require('@ember/-internals/bootstrap')
       <span class={{if @icon "margin-left-xxx-sm"}}>{{@label}}</span>
     {{/if}}
   </div>
-  
   */
   {
-    "id": "5XpLMiAI",
-    "block": "[[[11,0],[24,0,\"upf-link\"],[24,\"role\",\"button\"],[17,1],[4,[38,0],[\"click\",[30,0,[\"goTo\"]]],null],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"    \"],[8,[39,2],null,[[\"@style\",\"@icon\"],[[28,[37,3],[[30,2]],null],[28,[37,4],[[30,2]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,3],[[[1,\"    \"],[10,1],[15,0,[52,[30,2],\"margin-left-xxx-sm\"]],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"]],[\"&attrs\",\"@icon\",\"@label\"],false,[\"on\",\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
+    "id": "XXe/YnqP",
+    "block": "[[[11,0],[24,0,\"upf-link\"],[24,\"role\",\"button\"],[17,1],[4,[38,0],[\"click\",[30,0,[\"goTo\"]]],null],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"    \"],[8,[39,2],null,[[\"@style\",\"@icon\"],[[28,[37,3],[[30,2]],null],[28,[37,4],[[30,2]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,3],[[[1,\"    \"],[10,1],[15,0,[52,[30,2],\"margin-left-xxx-sm\"]],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@icon\",\"@label\"],false,[\"on\",\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/link.hbs",
     "isStrictMode": false
   });
@@ -76208,7 +76320,7 @@ require('@ember/-internals/bootstrap')
   }), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSModalDialog);
 });
-;define("@upfluence/oss-components/components/o-s-s/mode-switch", ["exports", "@ember/component", "@ember/object", "@ember/object/internals", "@ember/runloop", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _object, _internals, _runloop, _component2, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/mode-switch", ["exports", "@ember/component", "@ember/object", "@ember/object/internals", "@ember/runloop", "@ember/template", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _object, _internals, _runloop, _template, _component2, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -76216,7 +76328,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class;
-  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@ember/object/internals",0,"@ember/runloop",0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@ember/object/internals",0,"@ember/runloop",0,"@ember/template",0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
@@ -76230,12 +76342,13 @@ require('@ember/-internals/bootstrap')
         name={{this.guid}}
         id={{concat this.guid "-" option.key}}
         checked={{eq this.selectedOptionKey option.key}}
+        disabled={{@disabled}}
         {{on "change" (fn @onSelect option.key)}}
         data-control-name={{concat option.key "-input"}}
       />
       <label
         for={{concat this.guid "-" option.key}}
-        tabindex="0"
+        tabindex={{this.optionLabelTabIndex}}
         {{on "keydown" (fn this.onKeyDown option.key)}}
         data-control-name={{concat option.key "-label"}}
       >
@@ -76257,12 +76370,14 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "Txc+BxIy",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[16,5,[30,0,[\"computedStyles\"]]],[17,1],[4,[38,0],[[30,0,[\"registerContainerDiv\"]]],null],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,2]],null]],null],null,[[[1,\"    \"],[11,\"input\"],[16,3,[30,0,[\"guid\"]]],[16,1,[28,[37,3],[[30,0,[\"guid\"]],\"-\",[30,3,[\"key\"]]],null]],[16,\"checked\",[28,[37,4],[[30,0,[\"selectedOptionKey\"]],[30,3,[\"key\"]]],null]],[16,\"data-control-name\",[28,[37,3],[[30,3,[\"key\"]],\"-input\"],null]],[24,4,\"radio\"],[4,[38,5],[\"change\",[28,[37,6],[[30,4],[30,3,[\"key\"]]],null]],null],[12],[13],[1,\"\\n    \"],[11,\"label\"],[16,\"for\",[28,[37,3],[[30,0,[\"guid\"]],\"-\",[30,3,[\"key\"]]],null]],[24,\"tabindex\",\"0\"],[16,\"data-control-name\",[28,[37,3],[[30,3,[\"key\"]],\"-label\"],null]],[4,[38,5],[\"keydown\",[28,[37,6],[[30,0,[\"onKeyDown\"]],[30,3,[\"key\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,3,[\"icon\"]],[[[1,\"        \"],[8,[39,8],null,[[\"@style\",\"@icon\"],[[28,[37,9],[[30,3,[\"icon\"]]],null],[28,[37,10],[[30,3,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[1,[30,3,[\"label\"]]],[1,\"\\n\"],[41,[30,3,[\"tag\"]],[[[1,\"        \"],[8,[39,11],null,[[\"@skin\",\"@plain\",\"@label\",\"@size\"],[[30,3,[\"tag\",\"skin\"]],[30,3,[\"tag\",\"plain\"]],[30,3,[\"tag\",\"label\"]],[30,3,[\"tag\",\"size\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[3]],null],[1,\"  \"],[11,0],[24,0,\"mode-switch__background\"],[4,[38,0],[[30,0,[\"registerBackgroundElement\"]]],null],[12],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@options\",\"option\",\"@onSelect\"],false,[\"did-insert\",\"each\",\"-track-array\",\"concat\",\"eq\",\"on\",\"fn\",\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/tag\"]]",
+    "id": "CZIT3GeM",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[16,5,[30,0,[\"computedStyles\"]]],[17,1],[4,[38,0],[[30,0,[\"registerContainerDiv\"]]],null],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,2]],null]],null],null,[[[1,\"    \"],[11,\"input\"],[16,3,[30,0,[\"guid\"]]],[16,1,[28,[37,3],[[30,0,[\"guid\"]],\"-\",[30,3,[\"key\"]]],null]],[16,\"checked\",[28,[37,4],[[30,0,[\"selectedOptionKey\"]],[30,3,[\"key\"]]],null]],[16,\"disabled\",[30,4]],[16,\"data-control-name\",[28,[37,3],[[30,3,[\"key\"]],\"-input\"],null]],[24,4,\"radio\"],[4,[38,5],[\"change\",[28,[37,6],[[30,5],[30,3,[\"key\"]]],null]],null],[12],[13],[1,\"\\n    \"],[11,\"label\"],[16,\"for\",[28,[37,3],[[30,0,[\"guid\"]],\"-\",[30,3,[\"key\"]]],null]],[16,\"tabindex\",[30,0,[\"optionLabelTabIndex\"]]],[16,\"data-control-name\",[28,[37,3],[[30,3,[\"key\"]],\"-label\"],null]],[4,[38,5],[\"keydown\",[28,[37,6],[[30,0,[\"onKeyDown\"]],[30,3,[\"key\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,3,[\"icon\"]],[[[1,\"        \"],[8,[39,8],null,[[\"@style\",\"@icon\"],[[28,[37,9],[[30,3,[\"icon\"]]],null],[28,[37,10],[[30,3,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[1,[30,3,[\"label\"]]],[1,\"\\n\"],[41,[30,3,[\"tag\"]],[[[1,\"        \"],[8,[39,11],null,[[\"@skin\",\"@plain\",\"@label\",\"@size\"],[[30,3,[\"tag\",\"skin\"]],[30,3,[\"tag\",\"plain\"]],[30,3,[\"tag\",\"label\"]],[30,3,[\"tag\",\"size\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[3]],null],[1,\"  \"],[11,0],[24,0,\"mode-switch__background\"],[4,[38,0],[[30,0,[\"registerBackgroundElement\"]]],null],[12],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@options\",\"option\",\"@disabled\",\"@onSelect\"],false,[\"did-insert\",\"each\",\"-track-array\",\"concat\",\"eq\",\"on\",\"fn\",\"if\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/tag\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/mode-switch.hbs",
     "isStrictMode": false
   });
   const DEFAULT_SKIN = 'primary';
+  const FOCUSABLE_INDEX = '0';
+  const NON_FOCUSABLE_INDEX = '-1';
   let ModeSwitchComponent = _exports.default = (_class = class ModeSwitchComponent extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
@@ -76270,12 +76385,13 @@ require('@ember/-internals/bootstrap')
       _defineProperty(this, "containerStyles", getComputedStyle(this.containerDiv));
       _defineProperty(this, "backgroundElement", document.createElement('div'));
       _defineProperty(this, "guid", (0, _internals.guidFor)(this));
-      (0, _runloop.scheduleOnce)('afterRender', this, () => {
-        this.initComponent();
-      });
+      (0, _runloop.scheduleOnce)('afterRender', this, this.initComponent);
     }
     get selectedOptionKey() {
       return this.args.selected ?? this.args.options[0].key;
+    }
+    get optionLabelTabIndex() {
+      return this.args.disabled ? NON_FOCUSABLE_INDEX : FOCUSABLE_INDEX;
     }
     registerContainerDiv(container) {
       this.containerDiv = container;
@@ -76285,6 +76401,7 @@ require('@ember/-internals/bootstrap')
       this.backgroundElement = backgroundDiv;
     }
     onKeyDown(inputId, event) {
+      if (this.args.disabled) return;
       if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
       const inputElement = document.getElementById(`${this.guid}-${inputId}`);
@@ -76298,13 +76415,16 @@ require('@ember/-internals/bootstrap')
       if (this.args.size === 'xs') {
         classes.push('mode-switch--xs');
       }
+      if (this.args.disabled) {
+        classes.push('mode-switch--disabled');
+      }
       return classes.join(' ');
     }
     get computedStyles() {
       this.moveBackgroundElement();
       const colorPath = this.getColorPath();
-      if (!this.containerStyles) return '';
-      return [`--mode-switch__selected-color:${this.containerStyles?.getPropertyValue(`--color-${colorPath}-500`)}`, `--mode-switch__selected-background-color:${this.containerStyles?.getPropertyValue(`--color-${colorPath}-50`)}`].join(';');
+      if (!this.containerStyles) return (0, _template.htmlSafe)('');
+      return (0, _template.htmlSafe)([`--mode-switch__selected-color:${this.containerStyles?.getPropertyValue(`--color-${colorPath}-500`)}`, `--mode-switch__selected-background-color:${this.containerStyles?.getPropertyValue(`--color-${colorPath}-50`)}`].join(';'));
     }
     moveBackgroundElement() {
       const destinationLabelDivRect = document.querySelector(`label[for='${this.guid}-${this.selectedOptionKey}']`)?.getBoundingClientRect();
@@ -76327,7 +76447,6 @@ require('@ember/-internals/bootstrap')
     }
     addTransitionsStyle() {
       this.backgroundElement.style.setProperty('transition', 'left 0.25s ease, width 0.25s ease, background-color 0.25s ease');
-      this.containerDiv.style.setProperty('transition', 'font-weight 0.25s ease, color 0.25s ease');
     }
   }, _applyDecoratedDescriptor(_class.prototype, "registerContainerDiv", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerContainerDiv"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "registerBackgroundElement", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerBackgroundElement"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onKeyDown", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onKeyDown"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, ModeSwitchComponent);
@@ -76347,6 +76466,7 @@ require('@ember/-internals/bootstrap')
     <div class="fx-row fx-1 tab-container">
     {{#each @tabArray as |tab|}}
       <button
+        {{! template-lint-disable u-template-lint/no-bare-button}}
         type="button"
         class="fx-col tab {{if tab.selected 'tab--selected'}} {{if tab.disabled 'tab--disabled'}}"
         disabled={{tab.disabled}}
@@ -76411,20 +76531,37 @@ require('@ember/-internals/bootstrap')
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <div class="number-input fx-row" ...attributes>
-    <OSS::Button @square={{true}} @size="md" @icon="far fa-minus" {{on "click" this.decreaseValue}}
-                 disabled={{or this.isMinDisabled @disabled}} {{enable-tooltip title=this.minTooltipTitle placement="top"}} />
+    <OSS::Button
+      @square={{true}}
+      @size="md"
+      @icon="far fa-minus"
+      {{on "click" this.decreaseValue}}
+      disabled={{or this.isMinDisabled @disabled}}
+      {{enable-tooltip title=this.minTooltipTitle placement="top"}}
+    />
     {{! template-lint-disable no-triple-curlies}}
-    <OSS::InputContainer @value={{this.localValue}} @onChange={{this.checkUserInput}} @disabled={{@disabled}} style={{{this.dynamicWidth}}}
-                         {{on "keydown" this.keyParser}} {{on "blur" this.checkUserInput}}
-                         {{did-insert this.registerInputElement}} />
-    <OSS::Button @square={{true}} @size="md" @icon="far fa-plus" {{on "click" this.increaseValue}}
-                 disabled={{or this.isMaxDisabled @disabled}} {{enable-tooltip title=this.maxTooltipTitle placement="top"}} />
+    <OSS::InputContainer
+      @value={{this.localValue}}
+      @onChange={{this.checkUserInput}}
+      @disabled={{@disabled}}
+      style={{{this.dynamicWidth}}}
+      {{on "keydown" this.keyParser}}
+      {{on "blur" this.checkUserInput}}
+      {{did-insert this.registerInputElement}}
+    />
+    <OSS::Button
+      @square={{true}}
+      @size="md"
+      @icon="far fa-plus"
+      {{on "click" this.increaseValue}}
+      disabled={{or this.isMaxDisabled @disabled}}
+      {{enable-tooltip title=this.maxTooltipTitle placement="top"}}
+    />
   </div>
-  
   */
   {
-    "id": "POZ7QwXl",
-    "block": "[[[11,0],[24,0,\"number-input fx-row\"],[17,1],[12],[1,\"\\n  \"],[8,[39,0],[[16,\"disabled\",[28,[37,1],[[30,0,[\"isMinDisabled\"]],[30,2]],null]],[4,[38,2],[\"click\",[30,0,[\"decreaseValue\"]]],null],[4,[38,3],null,[[\"title\",\"placement\"],[[30,0,[\"minTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-minus\"]],null],[1,\"\\n\"],[1,\"  \"],[8,[39,4],[[23,5,[30,0,[\"dynamicWidth\"]]],[4,[38,2],[\"keydown\",[30,0,[\"keyParser\"]]],null],[4,[38,2],[\"blur\",[30,0,[\"checkUserInput\"]]],null],[4,[38,5],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@onChange\",\"@disabled\"],[[30,0,[\"localValue\"]],[30,0,[\"checkUserInput\"]],[30,2]]],null],[1,\"\\n  \"],[8,[39,0],[[16,\"disabled\",[28,[37,1],[[30,0,[\"isMaxDisabled\"]],[30,2]],null]],[4,[38,2],[\"click\",[30,0,[\"increaseValue\"]]],null],[4,[38,3],null,[[\"title\",\"placement\"],[[30,0,[\"maxTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-plus\"]],null],[1,\"\\n\"],[13],[1,\"\\n\"]],[\"&attrs\",\"@disabled\"],false,[\"o-s-s/button\",\"or\",\"on\",\"enable-tooltip\",\"o-s-s/input-container\",\"did-insert\"]]",
+    "id": "cAs+FJ3B",
+    "block": "[[[11,0],[24,0,\"number-input fx-row\"],[17,1],[12],[1,\"\\n  \"],[8,[39,0],[[16,\"disabled\",[28,[37,1],[[30,0,[\"isMinDisabled\"]],[30,2]],null]],[4,[38,2],[\"click\",[30,0,[\"decreaseValue\"]]],null],[4,[38,3],null,[[\"title\",\"placement\"],[[30,0,[\"minTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-minus\"]],null],[1,\"\\n\"],[1,\"  \"],[8,[39,4],[[23,5,[30,0,[\"dynamicWidth\"]]],[4,[38,2],[\"keydown\",[30,0,[\"keyParser\"]]],null],[4,[38,2],[\"blur\",[30,0,[\"checkUserInput\"]]],null],[4,[38,5],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@onChange\",\"@disabled\"],[[30,0,[\"localValue\"]],[30,0,[\"checkUserInput\"]],[30,2]]],null],[1,\"\\n  \"],[8,[39,0],[[16,\"disabled\",[28,[37,1],[[30,0,[\"isMaxDisabled\"]],[30,2]],null]],[4,[38,2],[\"click\",[30,0,[\"increaseValue\"]]],null],[4,[38,3],null,[[\"title\",\"placement\"],[[30,0,[\"maxTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-plus\"]],null],[1,\"\\n\"],[13]],[\"&attrs\",\"@disabled\"],false,[\"o-s-s/button\",\"or\",\"on\",\"enable-tooltip\",\"o-s-s/input-container\",\"did-insert\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/number-input.hbs",
     "isStrictMode": false
   });
@@ -76671,37 +76808,47 @@ require('@ember/-internals/bootstrap')
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <div class="fx-col fx-1 fx-gap-px-6">
-    <OSS::InputContainer @errorMessage={{this.errorMessage}} ...attributes>
+    <OSS::InputContainer @feedbackMessage={{@feedbackMessage}} @errorMessage={{this.errorMessage}} ...attributes>
       <:input>
         <Input
           @value={{@value}}
           @type={{this.visibility}}
           disabled={{@disabled}}
           placeholder={{this.placeholder}}
-          autocomplete="current-password"
-          {{on "keyup" this.validateInput}}
+          aria-label={{@ariaLabel}}
+          autocomplete={{this.autocomplete}}
+          {{on "input" this.validateInput}}
         />
       </:input>
       <:suffix>
         {{#if @disabled}}
           <OSS::Icon class="font-color-gray-500" @icon={{this.visibilityIcon}} />
         {{else}}
-          <OSS::Button class="margin-px-6" @icon={{this.visibilityIcon}} @square={{true}}
-                       {{on "click" this.toggleVisibility}} />
+          <OSS::Button
+            class="margin-px-6"
+            @icon={{this.visibilityIcon}}
+            @square={{true}}
+            {{on "click" this.toggleVisibility}}
+          />
         {{/if}}
       </:suffix>
     </OSS::InputContainer>
     {{#if @validates}}
-      <div class="fx-row fx-gap-px-12" data-control-name="password-input-validators">
+      <div class="fx-row fx-gap-px-12 fx-wrap" data-control-name="password-input-validators">
         {{#each this.inputValidators as |inputValidator|}}
           {{#let (this.validatorAttributes type=inputValidator) as |validator|}}
-            <div class="password-input-validator fx-row fx-gap-px-6"
-                 data-control-name="password-input-validator-{{inputValidator}}">
+            <div
+              class="password-input-validator fx-row fx-gap-px-6"
+              data-control-name="password-input-validator-{{inputValidator}}"
+            >
               <div class="validator-icon-container">
                 {{#each this.validationIcons as |validationIcon|}}
-                  <OSS::Icon @icon={{validationIcon.icon}}
-                             class="validator-icon {{validator.iconClass}}
-                                    {{this.validationIconVisibility validator=validator state=validationIcon.state}}" />
+                  <OSS::Icon
+                    @icon={{validationIcon.icon}}
+                    class="validator-icon
+                      {{validator.iconClass}}
+                      {{this.validationIconVisibility validator=validator state=validationIcon.state}}"
+                  />
                 {{/each}}
               </div>
               <span class={{validator.labelClass}}>{{t validator.labelKey}}</span>
@@ -76713,8 +76860,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "zGp9XQ3G",
-    "block": "[[[10,0],[14,0,\"fx-col fx-1 fx-gap-px-6\"],[12],[1,\"\\n  \"],[8,[39,0],[[17,1]],[[\"@errorMessage\"],[[30,0,[\"errorMessage\"]]]],[[\"input\",\"suffix\"],[[[[1,\"\\n      \"],[8,[39,1],[[16,\"disabled\",[30,2]],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[24,\"autocomplete\",\"current-password\"],[4,[38,2],[\"keyup\",[30,0,[\"validateInput\"]]],null]],[[\"@value\",\"@type\"],[[30,3],[30,0,[\"visibility\"]]]],null],[1,\"\\n    \"]],[]],[[[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[8,[39,4],[[24,0,\"font-color-gray-500\"]],[[\"@icon\"],[[30,0,[\"visibilityIcon\"]]]],null],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,5],[[24,0,\"margin-px-6\"],[4,[38,2],[\"click\",[30,0,[\"toggleVisibility\"]]],null]],[[\"@icon\",\"@square\"],[[30,0,[\"visibilityIcon\"]],true]],null],[1,\"\\n\"]],[]]],[1,\"    \"]],[]]]]],[1,\"\\n\"],[41,[30,4],[[[1,\"    \"],[10,0],[14,0,\"fx-row fx-gap-px-12\"],[14,\"data-control-name\",\"password-input-validators\"],[12],[1,\"\\n\"],[42,[28,[37,7],[[28,[37,7],[[30,0,[\"inputValidators\"]]],null]],null],null,[[[44,[[28,[30,0,[\"validatorAttributes\"]],null,[[\"type\"],[[30,5]]]]],[[[1,\"          \"],[10,0],[14,0,\"password-input-validator fx-row fx-gap-px-6\"],[15,\"data-control-name\",[29,[\"password-input-validator-\",[30,5]]]],[12],[1,\"\\n            \"],[10,0],[14,0,\"validator-icon-container\"],[12],[1,\"\\n\"],[42,[28,[37,7],[[28,[37,7],[[30,0,[\"validationIcons\"]]],null]],null],null,[[[1,\"                \"],[8,[39,4],[[16,0,[29,[\"validator-icon \",[30,6,[\"iconClass\"]],\"\\n                                  \",[28,[30,0,[\"validationIconVisibility\"]],null,[[\"validator\",\"state\"],[[30,6],[30,7,[\"state\"]]]]]]]]],[[\"@icon\"],[[30,7,[\"icon\"]]]],null],[1,\"\\n\"]],[7]],null],[1,\"            \"],[13],[1,\"\\n            \"],[10,1],[15,0,[30,6,[\"labelClass\"]]],[12],[1,[28,[35,9],[[30,6,[\"labelKey\"]]],null]],[13],[1,\"\\n          \"],[13],[1,\"\\n\"]],[6]]]],[5]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@disabled\",\"@value\",\"@validates\",\"inputValidator\",\"validator\",\"validationIcon\"],false,[\"o-s-s/input-container\",\"input\",\"on\",\"if\",\"o-s-s/icon\",\"o-s-s/button\",\"each\",\"-track-array\",\"let\",\"t\"]]",
+    "id": "mzZcEaTO",
+    "block": "[[[10,0],[14,0,\"fx-col fx-1 fx-gap-px-6\"],[12],[1,\"\\n  \"],[8,[39,0],[[17,1]],[[\"@feedbackMessage\",\"@errorMessage\"],[[30,2],[30,0,[\"errorMessage\"]]]],[[\"input\",\"suffix\"],[[[[1,\"\\n      \"],[8,[39,1],[[16,\"disabled\",[30,3]],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"aria-label\",[30,4]],[16,\"autocomplete\",[30,0,[\"autocomplete\"]]],[4,[38,2],[\"input\",[30,0,[\"validateInput\"]]],null]],[[\"@value\",\"@type\"],[[30,5],[30,0,[\"visibility\"]]]],null],[1,\"\\n    \"]],[]],[[[1,\"\\n\"],[41,[30,3],[[[1,\"        \"],[8,[39,4],[[24,0,\"font-color-gray-500\"]],[[\"@icon\"],[[30,0,[\"visibilityIcon\"]]]],null],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,5],[[24,0,\"margin-px-6\"],[4,[38,2],[\"click\",[30,0,[\"toggleVisibility\"]]],null]],[[\"@icon\",\"@square\"],[[30,0,[\"visibilityIcon\"]],true]],null],[1,\"\\n\"]],[]]],[1,\"    \"]],[]]]]],[1,\"\\n\"],[41,[30,6],[[[1,\"    \"],[10,0],[14,0,\"fx-row fx-gap-px-12 fx-wrap\"],[14,\"data-control-name\",\"password-input-validators\"],[12],[1,\"\\n\"],[42,[28,[37,7],[[28,[37,7],[[30,0,[\"inputValidators\"]]],null]],null],null,[[[44,[[28,[30,0,[\"validatorAttributes\"]],null,[[\"type\"],[[30,7]]]]],[[[1,\"          \"],[10,0],[14,0,\"password-input-validator fx-row fx-gap-px-6\"],[15,\"data-control-name\",[29,[\"password-input-validator-\",[30,7]]]],[12],[1,\"\\n            \"],[10,0],[14,0,\"validator-icon-container\"],[12],[1,\"\\n\"],[42,[28,[37,7],[[28,[37,7],[[30,0,[\"validationIcons\"]]],null]],null],null,[[[1,\"                \"],[8,[39,4],[[16,0,[29,[\"validator-icon\\n                    \",[30,8,[\"iconClass\"]],\"\\n                    \",[28,[30,0,[\"validationIconVisibility\"]],null,[[\"validator\",\"state\"],[[30,8],[30,9,[\"state\"]]]]]]]]],[[\"@icon\"],[[30,9,[\"icon\"]]]],null],[1,\"\\n\"]],[9]],null],[1,\"            \"],[13],[1,\"\\n            \"],[10,1],[15,0,[30,8,[\"labelClass\"]]],[12],[1,[28,[35,9],[[30,8,[\"labelKey\"]]],null]],[13],[1,\"\\n          \"],[13],[1,\"\\n\"]],[8]]]],[7]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@feedbackMessage\",\"@disabled\",\"@ariaLabel\",\"@value\",\"@validates\",\"inputValidator\",\"validator\",\"validationIcon\"],false,[\"o-s-s/input-container\",\"input\",\"on\",\"if\",\"o-s-s/icon\",\"o-s-s/button\",\"each\",\"-track-array\",\"let\",\"t\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/password-input.hbs",
     "isStrictMode": false
   });
@@ -76799,11 +76946,19 @@ require('@ember/-internals/bootstrap')
         };
       });
     }
-    validateInput() {
+    get autocomplete() {
+      if (this.args.autocomplete === 'off') {
+        return 'new-password';
+      }
+      if (this.args.autocomplete) return this.args.autocomplete;
+      return 'current-password';
+    }
+    validateInput(event) {
+      const value = event?.target?.value;
       this.regexError = '';
-      if (!this.runValidation || !this.args.value) {
+      if (!this.runValidation || !value) {
         this.args.validates?.(true);
-      } else if (!this.testAllValidators()) {
+      } else if (!this.testAllValidators(value)) {
         this.regexError = this.intl.t('oss-components.password-input.regex_error');
         this.args.validates?.(false);
       } else {
@@ -76813,10 +76968,10 @@ require('@ember/-internals/bootstrap')
     toggleVisibility() {
       this.visibility = this.visibility === 'password' ? 'text' : 'password';
     }
-    testAllValidators() {
+    testAllValidators(value) {
       return this.inputValidators.every(key => {
         if (!this.validatorSet[key]) return false;
-        return this.validatorSet[key].regex.test(this.args.value);
+        return this.validatorSet[key].regex.test(value);
       });
     }
     validationStateFromRegex(regex) {
@@ -76874,7 +77029,7 @@ require('@ember/-internals/bootstrap')
         <div class="fflag fflag-{{this.selectedCountry.id}} ff-sm ff-round"></div>
         <OSS::Icon @icon="fa-chevron-{{if this.isOpen 'up' 'down'}}" />
       </div>
-      <div class="fx-1 fx-row upf-input" {{on "click" this.focusInput}}>
+      <div class="fx-1 fx-row upf-input" role="button" {{on "click" this.focusInput}}>
         <span class="fx-row fx-xalign-center phone-prefix">{{@prefix}}</span>
         <Input
           @value={{@number}}
@@ -76882,6 +77037,7 @@ require('@ember/-internals/bootstrap')
           class="fx-1"
           name="telephone"
           placeholder={{this.placeholder}}
+          aria-label={{@ariaLabel}}
           {{on "keydown" this.onlyNumeric}}
           {{on "paste" this.handlePaste}}
           {{on "blur" this.onlyNumeric}}
@@ -76927,8 +77083,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "6BQgDs2u",
-    "block": "[[[11,0],[24,0,\"phone-number-container fx-1\"],[24,\"data-toggle\",\"oss-dropdown\"],[17,1],[4,[38,0],[[30,0,[\"registerContainer\"]]],null],[4,[38,1],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"phone-number-input fx-row fx-1 fx-xalign-center \",[30,0,[\"interactiveClasses\"]]]]],[12],[1,\"\\n    \"],[11,0],[24,0,\"country-selector fx-row\"],[24,\"role\",\"button\"],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,0,[\"selectedCountry\",\"id\"]],\" ff-sm ff-round\"]]],[12],[13],[1,\"\\n      \"],[8,[39,3],null,[[\"@icon\"],[[29,[\"fa-chevron-\",[52,[30,0,[\"isOpen\"]],\"up\",\"down\"]]]]],null],[1,\"\\n    \"],[13],[1,\"\\n    \"],[11,0],[24,0,\"fx-1 fx-row upf-input\"],[4,[38,2],[\"click\",[30,0,[\"focusInput\"]]],null],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-row fx-xalign-center phone-prefix\"],[12],[1,[30,2]],[13],[1,\"\\n      \"],[8,[39,5],[[24,0,\"fx-1\"],[24,3,\"telephone\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[4,[38,2],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,2],[\"paste\",[30,0,[\"handlePaste\"]]],null],[4,[38,2],[\"blur\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,0],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@type\"],[[30,3],\"tel\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"invalidInputError\"]],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,\"\\n      \"],[1,[30,0,[\"invalidInputError\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,4],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,\"\\n      \"],[1,[30,4]],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[1,\"\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[1,\"      \"],[8,[39,8],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,9],[\"margin-top-px-0 phone-number-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,10],[[30,0,[\"onClickOutside\"]]],null],[4,[38,2],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchPlaceholder\"],[[30,0,[\"filteredCountries\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],\"Search\"]],[[\"option\"],[[[[1,\"\\n          \"],[8,[39,11],null,[[\"@title\",\"@prefixCountry\",\"@subtitle\",\"@selected\",\"@onSelect\"],[[30,5,[\"name\"]],[30,5,[\"id\"]],[28,[37,9],[\"(+\",[28,[37,12],[[30,5,[\"countryCallingCodes\"]],0],null],\")\"],null],[28,[37,13],[[30,0,[\"selectedCountry\"]],[30,5]],null],[28,[37,14],[[30,0,[\"onSelect\"]],[30,5]],null]]],null],[1,\"\\n        \"]],[5]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,7],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"&attrs\",\"@prefix\",\"@number\",\"@errorMessage\",\"country\"],false,[\"did-insert\",\"will-destroy\",\"on\",\"o-s-s/icon\",\"if\",\"input\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"concat\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"get\",\"eq\",\"fn\"]]",
+    "id": "Pl5UzEDB",
+    "block": "[[[11,0],[24,0,\"phone-number-container fx-1\"],[24,\"data-toggle\",\"oss-dropdown\"],[17,1],[4,[38,0],[[30,0,[\"registerContainer\"]]],null],[4,[38,1],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[10,0],[15,0,[29,[\"phone-number-input fx-row fx-1 fx-xalign-center \",[30,0,[\"interactiveClasses\"]]]]],[12],[1,\"\\n    \"],[11,0],[24,0,\"country-selector fx-row\"],[24,\"role\",\"button\"],[4,[38,2],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n      \"],[10,0],[15,0,[29,[\"fflag fflag-\",[30,0,[\"selectedCountry\",\"id\"]],\" ff-sm ff-round\"]]],[12],[13],[1,\"\\n      \"],[8,[39,3],null,[[\"@icon\"],[[29,[\"fa-chevron-\",[52,[30,0,[\"isOpen\"]],\"up\",\"down\"]]]]],null],[1,\"\\n    \"],[13],[1,\"\\n    \"],[11,0],[24,0,\"fx-1 fx-row upf-input\"],[24,\"role\",\"button\"],[4,[38,2],[\"click\",[30,0,[\"focusInput\"]]],null],[12],[1,\"\\n      \"],[10,1],[14,0,\"fx-row fx-xalign-center phone-prefix\"],[12],[1,[30,2]],[13],[1,\"\\n      \"],[8,[39,5],[[24,0,\"fx-1\"],[24,3,\"telephone\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"aria-label\",[30,3]],[4,[38,2],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,2],[\"paste\",[30,0,[\"handlePaste\"]]],null],[4,[38,2],[\"blur\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,0],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@type\"],[[30,4],\"tel\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"invalidInputError\"]],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,\"\\n      \"],[1,[30,0,[\"invalidInputError\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,5],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,\"\\n      \"],[1,[30,5]],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[1,\"\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[1,\"      \"],[8,[39,8],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,9],[\"margin-top-px-0 phone-number-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,10],[[30,0,[\"onClickOutside\"]]],null],[4,[38,2],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchPlaceholder\"],[[30,0,[\"filteredCountries\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],\"Search\"]],[[\"option\"],[[[[1,\"\\n          \"],[8,[39,11],null,[[\"@title\",\"@prefixCountry\",\"@subtitle\",\"@selected\",\"@onSelect\"],[[30,6,[\"name\"]],[30,6,[\"id\"]],[28,[37,9],[\"(+\",[28,[37,12],[[30,6,[\"countryCallingCodes\"]],0],null],\")\"],null],[28,[37,13],[[30,0,[\"selectedCountry\"]],[30,6]],null],[28,[37,14],[[30,0,[\"onSelect\"]],[30,6]],null]]],null],[1,\"\\n        \"]],[6]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,7],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"&attrs\",\"@prefix\",\"@ariaLabel\",\"@number\",\"@errorMessage\",\"country\"],false,[\"did-insert\",\"will-destroy\",\"on\",\"o-s-s/icon\",\"if\",\"input\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"concat\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"get\",\"eq\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/phone-number-input.hbs",
     "isStrictMode": false
   });
@@ -76956,7 +77112,7 @@ require('@ember/-internals/bootstrap')
       return this.args.hasError || !(0, _utils.isBlank)(this.args.errorMessage);
     }
     get interactiveClasses() {
-      let classArray = [];
+      const classArray = [];
       if (this.isOpen) {
         classArray.push('phone-number-input--active');
       }
@@ -76998,15 +77154,7 @@ require('@ember/-internals/bootstrap')
     toggleDropdown(event) {
       super.toggleDropdown(event);
       if (this.isOpen) {
-        (0, _runloop.scheduleOnce)('afterRender', this, () => {
-          const referenceTarget = this.container;
-          const floatingTarget = document.querySelector(`#${this.portalId}`);
-          if (referenceTarget && floatingTarget) {
-            this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, {
-              placementStrategy: 'auto'
-            });
-          }
-        });
+        (0, _runloop.scheduleOnce)('afterRender', this, this.attachDropdownToContainer);
       }
     }
     focusInput() {
@@ -77017,6 +77165,15 @@ require('@ember/-internals/bootstrap')
     }
     handleSelectorClose() {
       this.hideCountrySelector();
+    }
+    attachDropdownToContainer() {
+      const referenceTarget = this.container;
+      const floatingTarget = document.querySelector(`#${this.portalId}`);
+      if (referenceTarget && floatingTarget) {
+        this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, {
+          placementStrategy: 'auto'
+        });
+      }
     }
     hideCountrySelector() {
       this.filteredCountries = this._countries;
@@ -77210,6 +77367,7 @@ require('@ember/-internals/bootstrap')
     data-toggle="oss-dropdown"
     {{did-insert this.registerContainer}}
     {{did-insert (fn this.ensureBlockPresence (has-block "selected-item") (has-block "option-item"))}}
+    {{did-update this.resetSearch this.isOpen}}
     {{will-destroy this.disconnectObserver}}
     ...attributes
   >
@@ -77286,8 +77444,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "Tz1D7vHf",
-    "block": "[[[11,0],[16,0,[29,[\"upf-power-select fx-1 fx-col \",[52,[30,1],\"upf-power-select--borderless\"]]]],[24,\"data-toggle\",\"oss-dropdown\"],[17,2],[4,[38,1],[[30,0,[\"registerContainer\"]]],null],[4,[38,1],[[28,[37,2],[[30,0,[\"ensureBlockPresence\"]],[48,[30,17]],[48,[30,18]]],null]],null],[4,[38,4],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[11,0],[24,0,\"upf-power-select__array-container\"],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n    \"],[10,0],[15,0,[29,[\"array-input-container \",[30,0,[\"inputBorderStateClass\"]],\" fx-row padding-px-6 \",[52,[30,0,[\"isOpen\"]],\"active\"]]]],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-1 padding-left-px-6 padding-right-px-24 fx-gap-px-6 fx-wrap\"],[12],[1,\"\\n\"],[42,[28,[37,7],[[28,[37,7],[[30,3]],null]],null],null,[[[1,\"          \"],[18,17,[[30,4],[30,5]]],[1,\"\\n\"]],[4,5]],[[[1,\"          \"],[10,1],[14,0,\"text-size-5 text-color-default-light\"],[12],[1,\"\\n            \"],[1,[30,0,[\"placeholder\"]]],[1,\"\\n          \"],[13],[1,\"\\n\"]],[]]],[1,\"      \"],[13],[1,\"\\n      \"],[8,[39,9],[[24,0,\"dropdown-icon\"]],[[\"@icon\"],[[52,[30,0,[\"isOpen\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"safeFeedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,10],[\"margin-top-px-6 font-color-\",[30,0,[\"safeFeedbackMessage\",\"type\"]],\"-500\"],null]],[14,\"data-control-name\",\"power-select-feedback-message\"],[12],[1,\"\\n      \"],[1,[30,0,[\"safeFeedbackMessage\",\"value\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[41,[48,[30,19]],[[[1,\"        \"],[8,[39,13],[[16,0,[28,[37,10],[\"margin-top-px-0 upf-power-select__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null],[4,[38,14],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,12]]]]],[[\"@items\",\"@onSearch\",\"@inline\",\"@onSelect\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\"],[[30,6],[30,7],false,[30,0,[\"onSelect\"]],[30,8],[30,9],[30,10],[30,11]]],[[\"option\",\"empty-state\"],[[[[1,\"\\n            \"],[18,18,[[30,13],[30,14]]],[1,\"\\n          \"]],[13,14]],[[[1,\"\\n            \"],[18,19,null],[1,\"\\n          \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,13],[[16,0,[28,[37,10],[\"margin-top-px-0 upf-power-select__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null],[4,[38,14],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,12]]]]],[[\"@items\",\"@onSearch\",\"@inline\",\"@onSelect\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\"],[[30,6],[30,7],false,[30,0,[\"onSelect\"]],[30,8],[30,9],[30,10],[30,11]]],[[\"option\"],[[[[1,\"\\n            \"],[18,18,[[30,15],[30,16]]],[1,\"\\n          \"]],[15,16]]]]],[1,\"\\n\"]],[]]]],[]],\"%cursor:0%\",[28,[37,12],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"@borderless\",\"&attrs\",\"@selectedItems\",\"selectedItem\",\"index\",\"@items\",\"@onSearch\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\",\"@captureClickOutside\",\"item\",\"index\",\"item\",\"index\",\"&selected-item\",\"&option-item\",\"&empty-state\"],false,[\"if\",\"did-insert\",\"fn\",\"has-block\",\"will-destroy\",\"on\",\"each\",\"-track-array\",\"yield\",\"o-s-s/icon\",\"concat\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"on-click-outside\"]]",
+    "id": "Q9y0cLa1",
+    "block": "[[[11,0],[16,0,[29,[\"upf-power-select fx-1 fx-col \",[52,[30,1],\"upf-power-select--borderless\"]]]],[24,\"data-toggle\",\"oss-dropdown\"],[17,2],[4,[38,1],[[30,0,[\"registerContainer\"]]],null],[4,[38,1],[[28,[37,2],[[30,0,[\"ensureBlockPresence\"]],[48,[30,17]],[48,[30,18]]],null]],null],[4,[38,4],[[30,0,[\"resetSearch\"]],[30,0,[\"isOpen\"]]],null],[4,[38,5],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[11,0],[24,0,\"upf-power-select__array-container\"],[24,\"role\",\"button\"],[4,[38,6],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n    \"],[10,0],[15,0,[29,[\"array-input-container \",[30,0,[\"inputBorderStateClass\"]],\" fx-row padding-px-6 \",[52,[30,0,[\"isOpen\"]],\"active\"]]]],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-1 padding-left-px-6 padding-right-px-24 fx-gap-px-6 fx-wrap\"],[12],[1,\"\\n\"],[42,[28,[37,8],[[28,[37,8],[[30,3]],null]],null],null,[[[1,\"          \"],[18,17,[[30,4],[30,5]]],[1,\"\\n\"]],[4,5]],[[[1,\"          \"],[10,1],[14,0,\"text-size-5 text-color-default-light\"],[12],[1,\"\\n            \"],[1,[30,0,[\"placeholder\"]]],[1,\"\\n          \"],[13],[1,\"\\n\"]],[]]],[1,\"      \"],[13],[1,\"\\n      \"],[8,[39,10],[[24,0,\"dropdown-icon\"]],[[\"@icon\"],[[52,[30,0,[\"isOpen\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"safeFeedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,11],[\"margin-top-px-6 font-color-\",[30,0,[\"safeFeedbackMessage\",\"type\"]],\"-500\"],null]],[14,\"data-control-name\",\"power-select-feedback-message\"],[12],[1,\"\\n      \"],[1,[30,0,[\"safeFeedbackMessage\",\"value\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[41,[48,[30,19]],[[[1,\"        \"],[8,[39,14],[[16,0,[28,[37,11],[\"margin-top-px-0 upf-power-select__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,6],[\"click\",[30,0,[\"noop\"]]],null],[4,[38,15],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,12]]]]],[[\"@items\",\"@onSearch\",\"@inline\",\"@onSelect\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\"],[[30,6],[30,7],false,[30,0,[\"onSelect\"]],[30,8],[30,9],[30,10],[30,11]]],[[\"option\",\"empty-state\"],[[[[1,\"\\n            \"],[18,18,[[30,13],[30,14]]],[1,\"\\n          \"]],[13,14]],[[[1,\"\\n            \"],[18,19,null],[1,\"\\n          \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,14],[[16,0,[28,[37,11],[\"margin-top-px-0 upf-power-select__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,6],[\"click\",[30,0,[\"noop\"]]],null],[4,[38,15],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,12]]]]],[[\"@items\",\"@onSearch\",\"@inline\",\"@onSelect\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\"],[[30,6],[30,7],false,[30,0,[\"onSelect\"]],[30,8],[30,9],[30,10],[30,11]]],[[\"option\"],[[[[1,\"\\n            \"],[18,18,[[30,15],[30,16]]],[1,\"\\n          \"]],[15,16]]]]],[1,\"\\n\"]],[]]]],[]],\"%cursor:0%\",[28,[37,13],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"@borderless\",\"&attrs\",\"@selectedItems\",\"selectedItem\",\"index\",\"@items\",\"@onSearch\",\"@searchPlaceholder\",\"@loading\",\"@loadingMore\",\"@onBottomReached\",\"@captureClickOutside\",\"item\",\"index\",\"item\",\"index\",\"&selected-item\",\"&option-item\",\"&empty-state\"],false,[\"if\",\"did-insert\",\"fn\",\"has-block\",\"did-update\",\"will-destroy\",\"on\",\"each\",\"-track-array\",\"yield\",\"o-s-s/icon\",\"concat\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"on-click-outside\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/power-select.hbs",
     "isStrictMode": false
   });
@@ -77325,15 +77483,18 @@ require('@ember/-internals/bootstrap')
     toggleDropdown(event) {
       super.toggleDropdown(event);
       if (!this.isOpen) {
-        this.args.onSearch?.('');
         return;
       }
       (0, _runloop.scheduleOnce)('afterRender', this, this.setupDropdownAutoplacement);
     }
+    resetSearch() {
+      if (!this.isOpen) {
+        this.args.onSearch?.('');
+      }
+    }
     onClickOutside(_, event) {
       super.onClickOutside(_, event);
       this.cleanupDrodpownAutoplacement?.();
-      this.args.onSearch?.('');
       document.querySelector(`#${this.portalId}`)?.remove();
     }
     setupDropdownAutoplacement() {
@@ -77346,7 +77507,7 @@ require('@ember/-internals/bootstrap')
         });
       }
     }
-  }, _applyDecoratedDescriptor(_class.prototype, "ensureBlockPresence", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "ensureBlockPresence"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onSelect", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onSelect"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleSelectorClose", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleSelectorClose"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleDropdown", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleDropdown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onClickOutside", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onClickOutside"), _class.prototype), _class);
+  }, _applyDecoratedDescriptor(_class.prototype, "ensureBlockPresence", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "ensureBlockPresence"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onSelect", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onSelect"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleSelectorClose", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleSelectorClose"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleDropdown", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleDropdown"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "resetSearch", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "resetSearch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onClickOutside", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onClickOutside"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSPowerSelect);
 });
 ;define("@upfluence/oss-components/components/o-s-s/private/base-dropdown", ["exports", "@glimmer/component", "@glimmer/tracking", "@ember/object", "@ember/object/internals"], function (_exports, _component, _tracking, _object, _internals) {
@@ -77530,7 +77691,7 @@ require('@ember/-internals/bootstrap')
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
+  _exports.default = _exports.PROGRESS_BAR_SKINS = void 0;
   0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/debug",0,"@ember/template",0,"@ember/component/helper",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
@@ -77581,6 +77742,7 @@ require('@ember/-internals/bootstrap')
     "moduleName": "@upfluence/oss-components/components/o-s-s/progress-bar.hbs",
     "isStrictMode": false
   });
+  const PROGRESS_BAR_SKINS = _exports.PROGRESS_BAR_SKINS = ['pending', 'attention', 'warning', 'success', 'danger'];
   class OSSProgressBar extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
@@ -77679,14 +77841,17 @@ require('@ember/-internals/bootstrap')
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <button class="oss-radio-btn {{if @selected 'oss-radio-btn--selected'}} {{if @disabled 'oss-radio-btn--disabled'}}"
-          {{on "click" this.onSelection}}
-          type="button" ...attributes />
-  
+    <button
+    {{! template-lint-disable u-template-lint/no-bare-button}}
+    class="oss-radio-btn {{if @selected 'oss-radio-btn--selected'}} {{if @disabled 'oss-radio-btn--disabled'}}"
+    {{on "click" this.onSelection}}
+    type="button"
+    ...attributes
+  />
   */
   {
-    "id": "rjSQ0uME",
-    "block": "[[[11,\"button\"],[16,0,[29,[\"oss-radio-btn \",[52,[30,1],\"oss-radio-btn--selected\"],\" \",[52,[30,2],\"oss-radio-btn--disabled\"]]]],[24,4,\"button\"],[17,3],[4,[38,1],[\"click\",[30,0,[\"onSelection\"]]],null],[12],[13],[1,\"\\n\"]],[\"@selected\",\"@disabled\",\"&attrs\"],false,[\"if\",\"on\"]]",
+    "id": "tvjsmUEX",
+    "block": "[[[11,\"button\"],[16,0,[29,[\"oss-radio-btn \",[52,[30,1],\"oss-radio-btn--selected\"],\" \",[52,[30,2],\"oss-radio-btn--disabled\"]]]],[24,4,\"button\"],[17,3],[4,[38,1],[\"click\",[30,0,[\"onSelection\"]]],null],[12],[13]],[\"@selected\",\"@disabled\",\"&attrs\"],false,[\"if\",\"on\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/radio-button.hbs",
     "isStrictMode": false
   });
@@ -77720,8 +77885,10 @@ require('@ember/-internals/bootstrap')
     {{#if this.isLeftScrollable}}
       {{#if (eq this.buttonStyle "icon")}}
         <button
+          {{! template-lint-disable u-template-lint/no-bare-button}}
           class="scroll-to-left-icon"
           data-control-name="scrollable-bar-container-scroll-to-left-icon"
+          type="button"
           {{on "click" this.scrollToLeft}}
         >
           <OSS::Icon @style={{fa-icon-style "fa-chevron-left"}} @icon={{fa-icon-value "fa-chevron-left"}} />
@@ -77745,8 +77912,10 @@ require('@ember/-internals/bootstrap')
     {{#if this.isRightScrollable}}
       {{#if (eq this.buttonStyle "icon")}}
         <button
+          {{! template-lint-disable u-template-lint/no-bare-button}}
           class="scroll-to-right-icon"
           data-control-name="scrollable-bar-container-scroll-to-right-icon"
+          type="button"
           {{on "click" this.scrollToRight}}
         >
           <OSS::Icon @style={{fa-icon-style "fa-chevron-right"}} @icon={{fa-icon-value "fa-chevron-right"}} />
@@ -77765,8 +77934,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "Vhm8lNyc",
-    "block": "[[[11,0],[24,0,\"scrollable-bar-container\"],[16,1,[30,0,[\"scrollableBarId\"]]],[17,1],[12],[1,\"\\n\"],[41,[30,0,[\"isLeftScrollable\"]],[[[41,[28,[37,1],[[30,0,[\"buttonStyle\"]],\"icon\"],null],[[[1,\"      \"],[11,\"button\"],[24,0,\"scroll-to-left-icon\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-left-icon\"],[4,[38,2],[\"click\",[30,0,[\"scrollToLeft\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[\"fa-chevron-left\"],null],[28,[37,5],[\"fa-chevron-left\"],null]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,6],[[24,0,\"scroll-to-left-btn\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-left-btn\"],[4,[38,2],[\"click\",[30,0,[\"scrollToLeft\"]]],null]],[[\"@icon\",\"@size\",\"@square\"],[\"fa-arrow-left\",\"sm\",true]],null],[1,\"\\n\"]],[]]]],[]],null],[1,\"\\n  \"],[10,0],[15,0,[30,0,[\"innerContainerStyle\"]]],[12],[1,\"\\n    \"],[18,2,[[28,[37,8],null,[[\"setupFn\",\"teardownFn\"],[[30,0,[\"observeIntersection\"]],[30,0,[\"unobserveIntersection\"]]]]]]],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isRightScrollable\"]],[[[41,[28,[37,1],[[30,0,[\"buttonStyle\"]],\"icon\"],null],[[[1,\"      \"],[11,\"button\"],[24,0,\"scroll-to-right-icon\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-right-icon\"],[4,[38,2],[\"click\",[30,0,[\"scrollToRight\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[\"fa-chevron-right\"],null],[28,[37,5],[\"fa-chevron-right\"],null]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,6],[[24,0,\"scroll-to-right-btn\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-right-btn\"],[4,[38,2],[\"click\",[30,0,[\"scrollToRight\"]]],null]],[[\"@icon\",\"@size\",\"@square\"],[\"fa-arrow-right\",\"sm\",true]],null],[1,\"\\n\"]],[]]]],[]],null],[13]],[\"&attrs\",\"&content\"],false,[\"if\",\"eq\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/button\",\"yield\",\"hash\"]]",
+    "id": "wNPwRSH9",
+    "block": "[[[11,0],[24,0,\"scrollable-bar-container\"],[16,1,[30,0,[\"scrollableBarId\"]]],[17,1],[12],[1,\"\\n\"],[41,[30,0,[\"isLeftScrollable\"]],[[[41,[28,[37,1],[[30,0,[\"buttonStyle\"]],\"icon\"],null],[[[1,\"      \"],[11,\"button\"],[24,0,\"scroll-to-left-icon\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-left-icon\"],[24,4,\"button\"],[4,[38,2],[\"click\",[30,0,[\"scrollToLeft\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[\"fa-chevron-left\"],null],[28,[37,5],[\"fa-chevron-left\"],null]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,6],[[24,0,\"scroll-to-left-btn\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-left-btn\"],[4,[38,2],[\"click\",[30,0,[\"scrollToLeft\"]]],null]],[[\"@icon\",\"@size\",\"@square\"],[\"fa-arrow-left\",\"sm\",true]],null],[1,\"\\n\"]],[]]]],[]],null],[1,\"\\n  \"],[10,0],[15,0,[30,0,[\"innerContainerStyle\"]]],[12],[1,\"\\n    \"],[18,2,[[28,[37,8],null,[[\"setupFn\",\"teardownFn\"],[[30,0,[\"observeIntersection\"]],[30,0,[\"unobserveIntersection\"]]]]]]],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isRightScrollable\"]],[[[41,[28,[37,1],[[30,0,[\"buttonStyle\"]],\"icon\"],null],[[[1,\"      \"],[11,\"button\"],[24,0,\"scroll-to-right-icon\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-right-icon\"],[24,4,\"button\"],[4,[38,2],[\"click\",[30,0,[\"scrollToRight\"]]],null],[12],[1,\"\\n        \"],[8,[39,3],null,[[\"@style\",\"@icon\"],[[28,[37,4],[\"fa-chevron-right\"],null],[28,[37,5],[\"fa-chevron-right\"],null]]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,6],[[24,0,\"scroll-to-right-btn\"],[24,\"data-control-name\",\"scrollable-bar-container-scroll-to-right-btn\"],[4,[38,2],[\"click\",[30,0,[\"scrollToRight\"]]],null]],[[\"@icon\",\"@size\",\"@square\"],[\"fa-arrow-right\",\"sm\",true]],null],[1,\"\\n\"]],[]]]],[]],null],[13]],[\"&attrs\",\"&content\"],false,[\"if\",\"eq\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/button\",\"yield\",\"hash\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/scrollable-bar.hbs",
     "isStrictMode": false
   });
@@ -77981,7 +78150,7 @@ require('@ember/-internals/bootstrap')
         this.shadowRightVisible = true;
       }
     }
-    resizeObserverCallback(_) {
+    resizeObserverCallback() {
       if (this.args.horizontal) {
         this.horizontalScrollListener();
       } else {
@@ -78147,7 +78316,12 @@ require('@ember/-internals/bootstrap')
             <span class="text-ellipsis">{{get @value this.targetValue}}</span>
           {{/if}}
         {{else}}
-          <span class="upf-input--placeholder">{{this.placeholder}}</span>
+          <span
+            class={{concat "upf-input--placeholder" (if @placeholderEllipsis " text-ellipsis")}}
+            {{enable-tooltip title=this.placeholder placement="top" displayOnlyOnOverflow=true}}
+          >
+            {{this.placeholder}}
+          </span>
         {{/if}}
         <OSS::Icon @icon="fa-chevron-{{if this.isOpen 'up' 'down'}}" class="margin-left-px-6" />
       </div>
@@ -78232,11 +78406,10 @@ require('@ember/-internals/bootstrap')
       </div>
     {{/if}}
   </div>
-  
   */
   {
-    "id": "F1yLSmjt",
-    "block": "[[[11,0],[16,0,[30,0,[\"classNames\"]]],[24,\"data-toggle\",\"oss-dropdown\"],[17,1],[4,[38,0],[[28,[37,1],[[30,0,[\"ensureBlockPresence\"]],[48,[30,12]]],null]],null],[4,[38,0],[[30,0,[\"registerContainer\"]]],null],[4,[38,3],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"upf-input \",[52,[30,0,[\"isOpen\"]],\"active\"],\" fx-row fx-1 fx-xalign-center\"]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-1 fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,2],[[[41,[48,[30,13]],[[[1,\"          \"],[18,13,[[30,2]]],[1,\"\\n\"]],[]],[[[1,\"          \"],[10,1],[14,0,\"text-ellipsis\"],[12],[1,[28,[35,7],[[30,2],[30,0,[\"targetValue\"]]],null]],[13],[1,\"\\n\"]],[]]]],[]],[[[1,\"        \"],[10,1],[14,0,\"upf-input--placeholder\"],[12],[1,[30,0,[\"placeholder\"]]],[13],[1,\"\\n\"]],[]]],[1,\"      \"],[8,[39,8],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[\"fa-chevron-\",[52,[30,0,[\"isOpen\"]],\"up\",\"down\"]]]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[41,[48,[30,14]],[[[1,\"        \"],[8,[39,11],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,12],[\"margin-top-px-0 oss-select-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,13],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,5]]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\",\"@action\",\"@skin\"],[[30,3],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"searchEnabled\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"actionArguments\"]],[30,4]]],[[\"option\",\"empty-state\"],[[[[1,\"\\n            \"],[10,0],[15,0,[29,[\"item-wrapper fx-row fx-xalign-center fx-malign-space-between \",[52,[28,[37,14],[[30,2],[30,6]],null],\"selected\"]]]],[12],[1,\"\\n\"],[41,[48,[30,12]],[[[1,\"                \"],[18,12,[[30,6],[30,7]]],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[28,[37,14],[[30,2],[30,6]],null],[[[1,\"                \"],[8,[39,8],[[24,0,\"font-color-primary-500 padding-right-px-6\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"            \"],[13],[1,\"\\n          \"]],[6,7]],[[[1,\"\\n            \"],[18,14,null],[1,\"\\n          \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,11],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,12],[\"margin-top-px-0 oss-select-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,13],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,5]]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\",\"@action\",\"@skin\"],[[30,3],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"searchEnabled\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"actionArguments\"]],[30,4]]],[[\"option\"],[[[[1,\"\\n            \"],[10,0],[15,0,[29,[\"item-wrapper fx-row fx-xalign-center fx-malign-space-between \",[52,[28,[37,14],[[30,2],[30,8]],null],\"selected\"]]]],[12],[1,\"\\n\"],[41,[48,[30,12]],[[[1,\"                \"],[18,12,[[30,8],[30,9]]],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[28,[37,14],[[30,2],[30,8]],null],[[[1,\"                \"],[8,[39,8],[[24,0,\"font-color-primary-500 padding-right-px-6\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"            \"],[13],[1,\"\\n          \"]],[8,9]]]]],[1,\"\\n\"]],[]]]],[]],\"%cursor:0%\",[28,[37,10],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[1,\"\\n\"],[41,[30,10],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,8],null,[[\"@icon\"],[\"fa-exclamation-triangle\"]],null],[1,\"\\n      \"],[1,[30,10]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,11],[[[1,\"    \"],[10,0],[14,0,\"font-color-success-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,8],null,[[\"@icon\"],[\"fa-check-circle\"]],null],[1,\"\\n      \"],[1,[30,11]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"]],[\"&attrs\",\"@value\",\"@items\",\"@skin\",\"@captureClickOutside\",\"item\",\"index\",\"item\",\"index\",\"@errorMessage\",\"@successMessage\",\"&option\",\"&selected\",\"&empty-state\"],false,[\"did-insert\",\"fn\",\"has-block\",\"will-destroy\",\"if\",\"on\",\"yield\",\"get\",\"o-s-s/icon\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"concat\",\"on-click-outside\",\"eq\"]]",
+    "id": "FRy6eHVs",
+    "block": "[[[11,0],[16,0,[30,0,[\"classNames\"]]],[24,\"data-toggle\",\"oss-dropdown\"],[17,1],[4,[38,0],[[28,[37,1],[[30,0,[\"ensureBlockPresence\"]],[48,[30,13]]],null]],null],[4,[38,0],[[30,0,[\"registerContainer\"]]],null],[4,[38,3],[[30,0,[\"disconnectObserver\"]]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"upf-input \",[52,[30,0,[\"isOpen\"]],\"active\"],\" fx-row fx-1 fx-xalign-center\"]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[30,0,[\"toggleDropdown\"]]],null],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-1 fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,2],[[[41,[48,[30,14]],[[[1,\"          \"],[18,14,[[30,2]]],[1,\"\\n\"]],[]],[[[1,\"          \"],[10,1],[14,0,\"text-ellipsis\"],[12],[1,[28,[35,7],[[30,2],[30,0,[\"targetValue\"]]],null]],[13],[1,\"\\n\"]],[]]]],[]],[[[1,\"        \"],[11,1],[16,0,[28,[37,8],[\"upf-input--placeholder\",[52,[30,3],\" text-ellipsis\"]],null]],[4,[38,9],null,[[\"title\",\"placement\",\"displayOnlyOnOverflow\"],[[30,0,[\"placeholder\"]],\"top\",true]]],[12],[1,\"\\n          \"],[1,[30,0,[\"placeholder\"]]],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]]],[1,\"      \"],[8,[39,10],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[\"fa-chevron-\",[52,[30,0,[\"isOpen\"]],\"up\",\"down\"]]]]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isOpen\"]],[[[40,[[[41,[48,[30,15]],[[[1,\"        \"],[8,[39,13],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,8],[\"margin-top-px-0 oss-select-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,14],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,6]]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\",\"@action\",\"@skin\"],[[30,4],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"searchEnabled\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"actionArguments\"]],[30,5]]],[[\"option\",\"empty-state\"],[[[[1,\"\\n            \"],[10,0],[15,0,[29,[\"item-wrapper fx-row fx-xalign-center fx-malign-space-between \",[52,[28,[37,15],[[30,2],[30,7]],null],\"selected\"]]]],[12],[1,\"\\n\"],[41,[48,[30,13]],[[[1,\"                \"],[18,13,[[30,7],[30,8]]],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[28,[37,15],[[30,2],[30,7]],null],[[[1,\"                \"],[8,[39,10],[[24,0,\"font-color-primary-500 padding-right-px-6\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"            \"],[13],[1,\"\\n          \"]],[7,8]],[[[1,\"\\n            \"],[18,15,null],[1,\"\\n          \"]],[]]]]],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,13],[[16,1,[30,0,[\"portalId\"]]],[16,0,[28,[37,8],[\"margin-top-px-0 oss-select-container__dropdown \",[30,0,[\"dropdownAddressableClass\"]]],null]],[4,[38,14],[[30,0,[\"onClickOutside\"]]],[[\"useCapture\"],[[30,6]]]],[4,[38,5],[\"click\",[30,0,[\"noop\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchEnabled\",\"@searchPlaceholder\",\"@action\",\"@skin\"],[[30,4],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[30,0,[\"searchEnabled\"]],[30,0,[\"searchPlaceholder\"]],[30,0,[\"actionArguments\"]],[30,5]]],[[\"option\"],[[[[1,\"\\n            \"],[10,0],[15,0,[29,[\"item-wrapper fx-row fx-xalign-center fx-malign-space-between \",[52,[28,[37,15],[[30,2],[30,9]],null],\"selected\"]]]],[12],[1,\"\\n\"],[41,[48,[30,13]],[[[1,\"                \"],[18,13,[[30,9],[30,10]]],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[28,[37,15],[[30,2],[30,9]],null],[[[1,\"                \"],[8,[39,10],[[24,0,\"font-color-primary-500 padding-right-px-6\"]],[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"            \"],[13],[1,\"\\n          \"]],[9,10]]]]],[1,\"\\n\"]],[]]]],[]],\"%cursor:0%\",[28,[37,12],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[1,\"\\n\"],[41,[30,11],[[[1,\"    \"],[10,0],[14,0,\"font-color-error-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,10],null,[[\"@icon\"],[\"fa-exclamation-triangle\"]],null],[1,\"\\n      \"],[1,[30,11]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,12],[[[1,\"    \"],[10,0],[14,0,\"font-color-success-500 margin-top-px-6 fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n      \"],[8,[39,10],null,[[\"@icon\"],[\"fa-check-circle\"]],null],[1,\"\\n      \"],[1,[30,12]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@value\",\"@placeholderEllipsis\",\"@items\",\"@skin\",\"@captureClickOutside\",\"item\",\"index\",\"item\",\"index\",\"@errorMessage\",\"@successMessage\",\"&option\",\"&selected\",\"&empty-state\"],false,[\"did-insert\",\"fn\",\"has-block\",\"will-destroy\",\"if\",\"on\",\"yield\",\"get\",\"concat\",\"enable-tooltip\",\"o-s-s/icon\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"on-click-outside\",\"eq\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/select.hbs",
     "isStrictMode": false
   });
@@ -78324,11 +78497,18 @@ require('@ember/-internals/bootstrap')
     setupDropdownAutoplacement() {
       const referenceTarget = this.container.querySelector('.upf-input');
       const floatingTarget = document.querySelector(`#${this.portalId}`);
-      if (referenceTarget && floatingTarget) {
-        this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, {
-          maxHeight: 300,
+      const attachDropdownOptions = {
+        maxHeight: 300,
+        ...(this.args.dropdownWidth ? {
+          width: this.args.dropdownWidth
+        } : {}),
+        ...(this.args.dropdownPlacementOptions ?? {
           placementStrategy: 'auto'
-        });
+        })
+      };
+      if (this.args.dropdownWidth) attachDropdownOptions.width = this.args.dropdownWidth;
+      if (referenceTarget && floatingTarget) {
+        this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(referenceTarget, floatingTarget, attachDropdownOptions);
       }
     }
   }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "intl", [_service.inject], {
@@ -78366,6 +78546,7 @@ require('@ember/-internals/bootstrap')
     <div class="oss-side-panel {{if @visible 'oss-side-panel--visible'}}" {{will-destroy this.onDestroy}} ...attributes>
     <div
       class="oss-side-panel__backdrop {{unless @backdrop 'oss-side-panel__backdrop--transparent'}} "
+      role="button"
       {{on "click" @onClose}}
       {{on-click-outside this.onClickOutside}}
       {{did-insert this.initialize}}
@@ -78394,8 +78575,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "Mtf67Pem",
-    "block": "[[[11,0],[16,0,[29,[\"oss-side-panel \",[52,[30,1],\"oss-side-panel--visible\"]]]],[17,2],[4,[38,1],[[30,0,[\"onDestroy\"]]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-side-panel__backdrop \",[52,[51,[30,3]],\"oss-side-panel__backdrop--transparent\"],\" \"]]],[4,[38,3],[\"click\",[30,4]],null],[4,[38,4],[[30,0,[\"onClickOutside\"]]],null],[4,[38,5],[[30,0,[\"initialize\"]]],null],[12],[13],[1,\"\\n  \"],[10,0],[15,0,[29,[\"oss-side-panel__content \",[30,0,[\"sidePanelSize\"]],\" \",[52,[51,[30,1]],\"oss-side-panel__content--closed\"]]]],[12],[1,\"\\n\"],[41,[48,[30,6]],[[[1,\"      \"],[18,6,null],[1,\"\\n\"]],[]],[[[41,[48,[30,7]],[[[1,\"        \"],[10,\"header\"],[15,0,[29,[\"oss-side-panel__header \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,7,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,8]],[[[1,\"        \"],[10,0],[15,0,[29,[\"oss-side-panel__main fx-col fx-1 \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,8,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,9]],[[[1,\"        \"],[10,\"footer\"],[15,0,[29,[\"oss-side-panel__footer fx-row fx-xalign-center \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,9,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@visible\",\"&attrs\",\"@backdrop\",\"@onClose\",\"@noPadding\",\"&global\",\"&header\",\"&main\",\"&footer\"],false,[\"if\",\"will-destroy\",\"unless\",\"on\",\"on-click-outside\",\"did-insert\",\"has-block\",\"yield\"]]",
+    "id": "6V6qYPPD",
+    "block": "[[[11,0],[16,0,[29,[\"oss-side-panel \",[52,[30,1],\"oss-side-panel--visible\"]]]],[17,2],[4,[38,1],[[30,0,[\"onDestroy\"]]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-side-panel__backdrop \",[52,[51,[30,3]],\"oss-side-panel__backdrop--transparent\"],\" \"]]],[24,\"role\",\"button\"],[4,[38,3],[\"click\",[30,4]],null],[4,[38,4],[[30,0,[\"onClickOutside\"]]],null],[4,[38,5],[[30,0,[\"initialize\"]]],null],[12],[13],[1,\"\\n  \"],[10,0],[15,0,[29,[\"oss-side-panel__content \",[30,0,[\"sidePanelSize\"]],\" \",[52,[51,[30,1]],\"oss-side-panel__content--closed\"]]]],[12],[1,\"\\n\"],[41,[48,[30,6]],[[[1,\"      \"],[18,6,null],[1,\"\\n\"]],[]],[[[41,[48,[30,7]],[[[1,\"        \"],[10,\"header\"],[15,0,[29,[\"oss-side-panel__header \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,7,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,8]],[[[1,\"        \"],[10,0],[15,0,[29,[\"oss-side-panel__main fx-col fx-1 \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,8,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[41,[48,[30,9]],[[[1,\"        \"],[10,\"footer\"],[15,0,[29,[\"oss-side-panel__footer fx-row fx-xalign-center \",[52,[30,5],\"padding-none\"]]]],[12],[1,\"\\n          \"],[18,9,null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@visible\",\"&attrs\",\"@backdrop\",\"@onClose\",\"@noPadding\",\"&global\",\"&header\",\"&main\",\"&footer\"],false,[\"if\",\"will-destroy\",\"unless\",\"on\",\"on-click-outside\",\"did-insert\",\"has-block\",\"yield\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/side-panel.hbs",
     "isStrictMode": false
   });
@@ -78423,8 +78604,8 @@ require('@ember/-internals/bootstrap')
         });
       }
     }
-    onClickOutside(_, event) {
-      const sidePanelElement = document.querySelector('.oss-side-panel');
+    onClickOutside(backdrop, event) {
+      const sidePanelElement = backdrop.closest('.oss-side-panel');
       if (sidePanelElement?.contains(event.target)) return;
       if (event.target === this.initialTarget) {
         this.args.onClose();
@@ -78469,7 +78650,6 @@ require('@ember/-internals/bootstrap')
     "moduleName": "@upfluence/oss-components/components/o-s-s/side-panel/header.hbs",
     "isStrictMode": false
   });
-  // eslint-disable-next-line ember/no-empty-glimmer-component-classes
   class OssSidePanelHeader extends _component2.default {}
   _exports.default = OssSidePanelHeader;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OssSidePanelHeader);
@@ -78495,7 +78675,6 @@ require('@ember/-internals/bootstrap')
       <div class="upf-skeleton-effect" style={{row}} ...attributes></div>
     {{/each}}
   {{/if}}
-  
   */
   {
     "id": "ZaSX7bCK",
@@ -78531,14 +78710,14 @@ require('@ember/-internals/bootstrap')
       return this.args.direction || 'row';
     }
     get computedClass() {
-      let style = [`fx-gap-px-${this.gap}`];
-      this.direction === 'row' ? style.push('fx-row') : style.push('fx-col');
+      const style = [`fx-gap-px-${this.gap}`];
+      style.push(this.direction === 'row' ? 'fx-row' : 'fx-col');
       return style.join(' ');
     }
     get rows() {
       const randomizeInRange = this.width * (RANGE_PERCENTAGE / 100);
-      let rows = [];
-      let multiple = this.args.multiple || 1;
+      const rows = [];
+      const multiple = this.args.multiple || 1;
       for (let i = 0; i < multiple; ++i) {
         let width = this.width;
         if (this.args.randomize) {
@@ -78575,6 +78754,7 @@ require('@ember/-internals/bootstrap')
       <input
         class="oss-slider__range"
         type="range"
+        aria-label={{t "oss-components.slider.range_label"}}
         min={{this.sliderOptions.min}}
         max={{this.sliderOptions.max}}
         value={{this.currentRangeValue}}
@@ -78622,6 +78802,7 @@ require('@ember/-internals/bootstrap')
             min={{this.sliderOptions.min}}
             max={{this.sliderOptions.max}}
             placeholder={{this.currentRangeValue}}
+            aria-label={{t "oss-components.slider.input_label"}}
             disabled={{@disabled}}
             autocomplete={{this.sliderOptions.autocomplete}}
             class="upf-input"
@@ -78633,8 +78814,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "vLFIRxD3",
-    "block": "[[[11,0],[16,0,[29,[\"oss-slider__container \",[52,[30,1],\"oss-slider__container--disabled\"]]]],[17,2],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-slider__range-container\"],[12],[1,\"\\n    \"],[11,\"input\"],[24,0,\"oss-slider__range\"],[16,\"min\",[30,0,[\"sliderOptions\",\"min\"]]],[16,\"max\",[30,0,[\"sliderOptions\",\"max\"]]],[16,2,[30,0,[\"currentRangeValue\"]]],[16,\"step\",[30,0,[\"sliderOptions\",\"step\"]]],[16,\"disabled\",[30,1]],[16,5,[30,0,[\"activeBackgroundWidth\"]]],[24,4,\"range\"],[4,[38,1],[\"input\",[30,0,[\"onRangeChange\"]]],null],[4,[38,1],[\"mouseenter\",[30,0,[\"showTooltip\"]]],null],[4,[38,1],[\"mouseleave\",[30,0,[\"removeTooltip\"]]],null],[4,[38,2],[[30,0,[\"initializeSliderInput\"]]],null],[12],[13],[1,\"\\n    \"],[11,0],[16,0,[29,[\"upf-tooltip oss-slider__tooltip\\n        \",[52,[51,[30,0,[\"displayTooltip\"]]],\"oss-slider__tooltip--hidden\"],\"\\n        \",[52,[28,[37,4],[[30,3],false],null],\"oss-slider__tooltip__without_input\"]]]],[16,5,[30,0,[\"tooltipPositionStyle\"]]],[4,[38,2],[[30,0,[\"initializeTooltip\"]]],null],[12],[1,\"\\n      \"],[10,1],[12],[1,\"\\n\"],[41,[30,4],[[[1,\"          \"],[1,[30,4]],[1,\"\\n\"]],[]],[[[1,\"          \"],[1,[28,[35,5],[[30,0,[\"currentRangeValue\"]],[52,[28,[37,4],[[30,5],\"percentage\"],null],\"%\"]],null]],[1,\"\\n\"]],[]]],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,3],[[[1,\"    \"],[10,0],[14,0,\"oss-slider__number-input\"],[12],[1,\"\\n\"],[41,[30,5],[[[1,\"        \"],[8,[39,6],[[4,[38,1],[\"input\",[30,0,[\"onNumberInput\"]]],null]],[[\"@value\",\"@type\",\"@suffix\",\"@placeholder\",\"@disabled\",\"@autocomplete\"],[[30,6],\"number\",[30,0,[\"unitIcon\"]],[30,0,[\"currentRangeValue\"]],[30,1],[30,0,[\"sliderOptions\",\"autocomplete\"]]]],null],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,7],[[16,\"step\",[30,0,[\"sliderOptions\",\"step\"]]],[16,\"min\",[30,0,[\"sliderOptions\",\"min\"]]],[16,\"max\",[30,0,[\"sliderOptions\",\"max\"]]],[16,\"placeholder\",[30,0,[\"currentRangeValue\"]]],[16,\"disabled\",[30,1]],[16,\"autocomplete\",[30,0,[\"sliderOptions\",\"autocomplete\"]]],[24,0,\"upf-input\"],[4,[38,1],[\"input\",[30,0,[\"onNumberInput\"]]],null]],[[\"@type\",\"@value\"],[\"number\",[30,6]]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"@disabled\",\"&attrs\",\"@displayInputValue\",\"@tooltipLabel\",\"@unit\",\"@value\"],false,[\"if\",\"on\",\"did-insert\",\"unless\",\"eq\",\"concat\",\"o-s-s/input-group\",\"input\"]]",
+    "id": "MF1/gjQ1",
+    "block": "[[[11,0],[16,0,[29,[\"oss-slider__container \",[52,[30,1],\"oss-slider__container--disabled\"]]]],[17,2],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-slider__range-container\"],[12],[1,\"\\n    \"],[11,\"input\"],[24,0,\"oss-slider__range\"],[16,\"aria-label\",[28,[37,1],[\"oss-components.slider.range_label\"],null]],[16,\"min\",[30,0,[\"sliderOptions\",\"min\"]]],[16,\"max\",[30,0,[\"sliderOptions\",\"max\"]]],[16,2,[30,0,[\"currentRangeValue\"]]],[16,\"step\",[30,0,[\"sliderOptions\",\"step\"]]],[16,\"disabled\",[30,1]],[16,5,[30,0,[\"activeBackgroundWidth\"]]],[24,4,\"range\"],[4,[38,2],[\"input\",[30,0,[\"onRangeChange\"]]],null],[4,[38,2],[\"mouseenter\",[30,0,[\"showTooltip\"]]],null],[4,[38,2],[\"mouseleave\",[30,0,[\"removeTooltip\"]]],null],[4,[38,3],[[30,0,[\"initializeSliderInput\"]]],null],[12],[13],[1,\"\\n    \"],[11,0],[16,0,[29,[\"upf-tooltip oss-slider__tooltip\\n        \",[52,[51,[30,0,[\"displayTooltip\"]]],\"oss-slider__tooltip--hidden\"],\"\\n        \",[52,[28,[37,5],[[30,3],false],null],\"oss-slider__tooltip__without_input\"]]]],[16,5,[30,0,[\"tooltipPositionStyle\"]]],[4,[38,3],[[30,0,[\"initializeTooltip\"]]],null],[12],[1,\"\\n      \"],[10,1],[12],[1,\"\\n\"],[41,[30,4],[[[1,\"          \"],[1,[30,4]],[1,\"\\n\"]],[]],[[[1,\"          \"],[1,[28,[35,6],[[30,0,[\"currentRangeValue\"]],[52,[28,[37,5],[[30,5],\"percentage\"],null],\"%\"]],null]],[1,\"\\n\"]],[]]],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,3],[[[1,\"    \"],[10,0],[14,0,\"oss-slider__number-input\"],[12],[1,\"\\n\"],[41,[30,5],[[[1,\"        \"],[8,[39,7],[[4,[38,2],[\"input\",[30,0,[\"onNumberInput\"]]],null]],[[\"@value\",\"@type\",\"@suffix\",\"@placeholder\",\"@disabled\",\"@autocomplete\"],[[30,6],\"number\",[30,0,[\"unitIcon\"]],[30,0,[\"currentRangeValue\"]],[30,1],[30,0,[\"sliderOptions\",\"autocomplete\"]]]],null],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,8],[[16,\"step\",[30,0,[\"sliderOptions\",\"step\"]]],[16,\"min\",[30,0,[\"sliderOptions\",\"min\"]]],[16,\"max\",[30,0,[\"sliderOptions\",\"max\"]]],[16,\"placeholder\",[30,0,[\"currentRangeValue\"]]],[16,\"aria-label\",[28,[37,1],[\"oss-components.slider.input_label\"],null]],[16,\"disabled\",[30,1]],[16,\"autocomplete\",[30,0,[\"sliderOptions\",\"autocomplete\"]]],[24,0,\"upf-input\"],[4,[38,2],[\"input\",[30,0,[\"onNumberInput\"]]],null]],[[\"@type\",\"@value\"],[\"number\",[30,6]]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"@disabled\",\"&attrs\",\"@displayInputValue\",\"@tooltipLabel\",\"@unit\",\"@value\"],false,[\"if\",\"t\",\"on\",\"did-insert\",\"unless\",\"eq\",\"concat\",\"o-s-s/input-group\",\"input\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/slider.hbs",
     "isStrictMode": false
   });
@@ -78755,6 +78936,59 @@ require('@ember/-internals/bootstrap')
   }), _applyDecoratedDescriptor(_class.prototype, "onRangeChange", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onRangeChange"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onNumberInput", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onNumberInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "showTooltip", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "showTooltip"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "removeTooltip", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "removeTooltip"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "initializeSliderInput", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "initializeSliderInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "initializeTooltip", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "initializeTooltip"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, SliderComponent);
 });
+;define("@upfluence/oss-components/components/o-s-s/smart/blob", ["exports", "@ember/component", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _component2, _templateFactory) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div class={{this.computedClass}} ...attributes>
+    <div class="smart-blob">
+      <img
+        src="/@upfluence/oss-components/assets/images/smart-blob-loading-07c59b7ccad5103e3f14b2a9e03a45e4.gif"
+        alt="smart-blob-loading"
+        class={{this.loadingClass}}
+      />
+      <img
+        src="/@upfluence/oss-components/assets/images/smart-blob-inactive-bd73eeb5b1004eecdf86d3831263a141.gif"
+        alt="smart-blob-inactive"
+        class={{this.inactiveClass}}
+      />
+    </div>
+  </div>
+  */
+  {
+    "id": "rgzGzdI+",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClass\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[14,0,\"smart-blob\"],[12],[1,\"\\n    \"],[10,\"img\"],[14,\"src\",\"/@upfluence/oss-components/assets/images/smart-blob-loading-07c59b7ccad5103e3f14b2a9e03a45e4.gif\"],[14,\"alt\",\"smart-blob-loading\"],[15,0,[30,0,[\"loadingClass\"]]],[12],[13],[1,\"\\n    \"],[10,\"img\"],[14,\"src\",\"/@upfluence/oss-components/assets/images/smart-blob-inactive-bd73eeb5b1004eecdf86d3831263a141.gif\"],[14,\"alt\",\"smart-blob-inactive\"],[15,0,[30,0,[\"inactiveClass\"]]],[12],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\"],false,[]]",
+    "moduleName": "@upfluence/oss-components/components/o-s-s/smart/blob.hbs",
+    "isStrictMode": false
+  });
+  class SmartBlob extends _component2.default {
+    get size() {
+      return this.args.size ?? 'md';
+    }
+    get loadingClass() {
+      return this.args.loading ? 'fade-in' : 'fade-out';
+    }
+    get inactiveClass() {
+      return this.args.loading ? 'fade-out' : 'fade-in';
+    }
+    get computedClass() {
+      const classes = ['smart-blob-container'];
+      if (this.args.loading) {
+        classes.push('smart-blob-container--active');
+      }
+      classes.push(`smart-blob-container--${this.size}`);
+      return classes.join(' ');
+    }
+  }
+  _exports.default = SmartBlob;
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, SmartBlob);
+});
 ;define("@upfluence/oss-components/components/o-s-s/smart/button", ["exports", "@ember/component", "@ember/debug", "@upfluence/oss-components/components/o-s-s/button", "@ember/template-factory"], function (_exports, _component, _debug, _button, _templateFactory) {
   "use strict";
 
@@ -78819,7 +79053,7 @@ require('@ember/-internals/bootstrap')
       return SmartSkinDefinition[this.args.skin] ?? SmartSkinDefinition.primary;
     }
     get computedSmartClasses() {
-      let classes = [this.isCircle ? SMART_SQUARE_CLASS : SMART_BASE_CLASS, `upf-smart-btn--${this.smartSkin}`];
+      const classes = [this.isCircle ? SMART_SQUARE_CLASS : SMART_BASE_CLASS, `upf-smart-btn--${this.smartSkin}`];
       if (this.size) {
         classes.push(this.isCircle ? `upf-smart-square-btn--${this.size}` : `upf-smart-btn--${this.size}`);
       }
@@ -78829,57 +79063,182 @@ require('@ember/-internals/bootstrap')
   _exports.default = OSSSmartButton;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSSmartButton);
 });
-;define("@upfluence/oss-components/components/o-s-s/smart/feedback", ["exports", "@ember/component", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _component2, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/smart/feedback", ["exports", "@ember/component", "@ember/object", "@glimmer/component", "@glimmer/tracking", "@ember/template-factory"], function (_exports, _component, _object, _component2, _tracking, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  var _class, _descriptor, _descriptor2;
+  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
+  function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+  function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
+  function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="oss-smart__feedback {{this.currentStateClass}} fx-row fx-gap-px-18 fx-xalign-center" ...attributes>
-    <div>
-      {{yield to="icon"}}
-    </div>
+    <div
+    class="oss-smart__feedback {{this.currentStateClass}}"
+    role={{if this.showChevron "button"}}
+    {{on "click" this.toggle}}
+    ...attributes
+  >
+    <OSS::Smart::Blob @loading={{@loading}} />
     <div class="oss-smart__feedback__content">
-      {{#if @loading}}
-        <div class="fx-col fx-1 fx-gap-px-10">
-          <OSS::Smart::Skeleton @width="75%" height="10px" />
-          <OSS::Smart::Skeleton @width="45%" height="10px" />
-        </div>
-      {{else}}
-        {{#if @contentString}}
-          <span class="oss-smart__feedback__content__text">{{@contentString}}</span>
-        {{else if @contentArray}}
-          <span class="oss-smart__feedback__content__text">
-            {{#each @contentArray as |item|}}
-              {{item}}
+      <div
+        class="oss-smart__feedback__content__inner"
+        {{did-insert this.setupTruncation}}
+        {{did-update this.measureTruncation @loading @error @content @collapsible}}
+      >
+        {{#if @loading}}
+          <div class="fx-col fx-1 fx-gap-px-12">
+            <OSS::Smart::Skeleton @width="75%" @height={{10}} />
+            <OSS::Smart::Skeleton @width="45%" @height={{10}} />
+          </div>
+        {{else if @error}}
+          <div class="fx-row fx-xalign-center fx-gap-px-12">
+            <div class="fx-col fx-1 fx-gap-px-3">
+              <span class="oss-smart__feedback__content__title" data-control-name="oss-smart-feedback-error-title">
+                {{@error.title}}
+              </span>
+              {{#if @error.subtitle}}
+                <span
+                  class="oss-smart__feedback__content__subtitle"
+                  data-control-name="oss-smart-feedback-error-subtitle"
+                >
+                  {{@error.subtitle}}
+                </span>
+              {{/if}}
+            </div>
+            {{#if @error.onRetry}}
+              <OSS::Button
+                @label={{t "oss-components.smart.feedback.retry"}}
+                @size="sm"
+                {{on "click" @error.onRetry}}
+                data-control-name="oss-smart-feedback-retry-button"
+              />
+            {{/if}}
+          </div>
+        {{else}}
+          <div class="fx-col fx-gap-px-12">
+            {{#each @content as |section|}}
+              <div class="fx-col fx-gap-px-3" data-control-name="oss-smart-feedback-section">
+                {{#if section.title}}
+                  <span class="oss-smart__feedback__content__title">{{section.title}}</span>
+                {{/if}}
+                {{#if section.text}}
+                  <span class="oss-smart__feedback__content__text">{{section.text}}</span>
+                {{/if}}
+                {{#if section.bullets}}
+                  <ul class="oss-smart__feedback__content__bullets">
+                    {{#each section.bullets as |bullet|}}
+                      <li>{{bullet}}</li>
+                    {{/each}}
+                  </ul>
+                {{/if}}
+              </div>
             {{/each}}
-          </span>
+          </div>
         {{/if}}
-      {{/if}}
+      </div>
     </div>
+    {{#if this.showChevron}}
+      <OSS::Icon
+        @style="solid"
+        @icon={{if this.expanded "fa-chevron-up" "fa-chevron-down"}}
+        class="oss-smart__feedback__chevron"
+        data-control-name="oss-smart-feedback-chevron"
+      />
+    {{/if}}
   </div>
   */
   {
-    "id": "Vgmt6O4j",
-    "block": "[[[11,0],[16,0,[29,[\"oss-smart__feedback \",[30,0,[\"currentStateClass\"]],\" fx-row fx-gap-px-18 fx-xalign-center\"]]],[17,1],[12],[1,\"\\n  \"],[10,0],[12],[1,\"\\n    \"],[18,6,null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"oss-smart__feedback__content\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-10\"],[12],[1,\"\\n        \"],[8,[39,2],[[24,\"height\",\"10px\"]],[[\"@width\"],[\"75%\"]],null],[1,\"\\n        \"],[8,[39,2],[[24,\"height\",\"10px\"]],[[\"@width\"],[\"45%\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[41,[30,3],[[[1,\"        \"],[10,1],[14,0,\"oss-smart__feedback__content__text\"],[12],[1,[30,3]],[13],[1,\"\\n\"]],[]],[[[41,[30,4],[[[1,\"        \"],[10,1],[14,0,\"oss-smart__feedback__content__text\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,4]],null]],null],null,[[[1,\"            \"],[1,[30,5]],[1,\"\\n\"]],[5]],null],[1,\"        \"],[13],[1,\"\\n      \"]],[]],null]],[]]]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@loading\",\"@contentString\",\"@contentArray\",\"item\",\"&icon\"],false,[\"yield\",\"if\",\"o-s-s/smart/skeleton\",\"each\",\"-track-array\"]]",
+    "id": "bZLFun8w",
+    "block": "[[[11,0],[16,0,[29,[\"oss-smart__feedback \",[30,0,[\"currentStateClass\"]]]]],[16,\"role\",[52,[30,0,[\"showChevron\"]],\"button\"]],[17,1],[4,[38,1],[\"click\",[30,0,[\"toggle\"]]],null],[12],[1,\"\\n  \"],[8,[39,2],null,[[\"@loading\"],[[30,2]]],null],[1,\"\\n  \"],[10,0],[14,0,\"oss-smart__feedback__content\"],[12],[1,\"\\n    \"],[11,0],[24,0,\"oss-smart__feedback__content__inner\"],[4,[38,3],[[30,0,[\"setupTruncation\"]]],null],[4,[38,4],[[30,0,[\"measureTruncation\"]],[30,2],[30,3],[30,4],[30,5]],null],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-12\"],[12],[1,\"\\n          \"],[8,[39,5],null,[[\"@width\",\"@height\"],[\"75%\",10]],null],[1,\"\\n          \"],[8,[39,5],null,[[\"@width\",\"@height\"],[\"45%\",10]],null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],[[[41,[30,3],[[[1,\"        \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-12\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-3\"],[12],[1,\"\\n            \"],[10,1],[14,0,\"oss-smart__feedback__content__title\"],[14,\"data-control-name\",\"oss-smart-feedback-error-title\"],[12],[1,\"\\n              \"],[1,[30,3,[\"title\"]]],[1,\"\\n            \"],[13],[1,\"\\n\"],[41,[30,3,[\"subtitle\"]],[[[1,\"              \"],[10,1],[14,0,\"oss-smart__feedback__content__subtitle\"],[14,\"data-control-name\",\"oss-smart-feedback-error-subtitle\"],[12],[1,\"\\n                \"],[1,[30,3,[\"subtitle\"]]],[1,\"\\n              \"],[13],[1,\"\\n\"]],[]],null],[1,\"          \"],[13],[1,\"\\n\"],[41,[30,3,[\"onRetry\"]],[[[1,\"            \"],[8,[39,6],[[24,\"data-control-name\",\"oss-smart-feedback-retry-button\"],[4,[38,1],[\"click\",[30,3,[\"onRetry\"]]],null]],[[\"@label\",\"@size\"],[[28,[37,7],[\"oss-components.smart.feedback.retry\"],null],\"sm\"]],null],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n\"]],[]],[[[1,\"        \"],[10,0],[14,0,\"fx-col fx-gap-px-12\"],[12],[1,\"\\n\"],[42,[28,[37,9],[[28,[37,9],[[30,4]],null]],null],null,[[[1,\"            \"],[10,0],[14,0,\"fx-col fx-gap-px-3\"],[14,\"data-control-name\",\"oss-smart-feedback-section\"],[12],[1,\"\\n\"],[41,[30,6,[\"title\"]],[[[1,\"                \"],[10,1],[14,0,\"oss-smart__feedback__content__title\"],[12],[1,[30,6,[\"title\"]]],[13],[1,\"\\n\"]],[]],null],[41,[30,6,[\"text\"]],[[[1,\"                \"],[10,1],[14,0,\"oss-smart__feedback__content__text\"],[12],[1,[30,6,[\"text\"]]],[13],[1,\"\\n\"]],[]],null],[41,[30,6,[\"bullets\"]],[[[1,\"                \"],[10,\"ul\"],[14,0,\"oss-smart__feedback__content__bullets\"],[12],[1,\"\\n\"],[42,[28,[37,9],[[28,[37,9],[[30,6,[\"bullets\"]]],null]],null],null,[[[1,\"                    \"],[10,\"li\"],[12],[1,[30,7]],[13],[1,\"\\n\"]],[7]],null],[1,\"                \"],[13],[1,\"\\n\"]],[]],null],[1,\"            \"],[13],[1,\"\\n\"]],[6]],null],[1,\"        \"],[13],[1,\"\\n      \"]],[]]]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"showChevron\"]],[[[1,\"    \"],[8,[39,10],[[24,0,\"oss-smart__feedback__chevron\"],[24,\"data-control-name\",\"oss-smart-feedback-chevron\"]],[[\"@style\",\"@icon\"],[\"solid\",[52,[30,0,[\"expanded\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]],null],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@loading\",\"@error\",\"@content\",\"@collapsible\",\"section\",\"bullet\"],false,[\"if\",\"on\",\"o-s-s/smart/blob\",\"did-insert\",\"did-update\",\"o-s-s/smart/skeleton\",\"o-s-s/button\",\"t\",\"each\",\"-track-array\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/feedback.hbs",
     "isStrictMode": false
   });
-  class OSSSmartFeedback extends _component2.default {
-    get currentStateClass() {
-      if (this.args.loading) return 'oss-smart__feedback__loading';
-      if (this.args.contentString || this.args.contentArray) return 'oss-smart__generated';
-      return null;
+  let OSSSmartFeedback = _exports.default = (_class = class OSSSmartFeedback extends _component2.default {
+    constructor(...args) {
+      super(...args);
+      _initializerDefineProperty(this, "expanded", _descriptor, this);
+      _initializerDefineProperty(this, "truncated", _descriptor2, this);
+      _defineProperty(this, "contentElement", void 0);
+      _defineProperty(this, "resizeObserver", void 0);
     }
-  }
-  _exports.default = OSSSmartFeedback;
+    get currentStateClass() {
+      const classes = [];
+      if (this.args.loading) {
+        classes.push('oss-smart__feedback__loading');
+      } else if (!this.args.error && this.args.content) {
+        classes.push('oss-smart__generated');
+      }
+      if (this.collapsed) classes.push('oss-smart__feedback--collapsed');
+      if (this.showChevron) classes.push('oss-smart__feedback--truncated');
+      return classes.join(' ');
+    }
+    get collapsible() {
+      return this.args.collapsible !== false && !this.args.error;
+    }
+    get collapsed() {
+      return this.collapsible && !this.expanded;
+    }
+    get showChevron() {
+      return this.collapsible && this.truncated;
+    }
+    toggle() {
+      if (!this.showChevron) return;
+      this.expanded = !this.expanded;
+      if (!this.expanded) {
+        requestAnimationFrame(() => this.measureTruncation());
+      }
+    }
+    setupTruncation(element) {
+      this.contentElement = element;
+      this.measureTruncation();
+    }
+    willDestroy() {
+      super.willDestroy();
+      this.resizeObserver?.disconnect();
+    }
+    measureTruncation() {
+      if (!this.collapsible) {
+        this.resizeObserver?.disconnect();
+        this.resizeObserver = undefined;
+        this.truncated = false;
+        return;
+      }
+      if (this.expanded || this.isDestroying || this.isDestroyed) return;
+      const element = this.contentElement;
+      const container = element?.parentElement;
+      if (!element || !container) return;
+      if (!this.resizeObserver) {
+        this.resizeObserver = new ResizeObserver(() => this.measureTruncation());
+        this.resizeObserver.observe(element);
+      }
+      this.truncated = element.scrollHeight > container.clientHeight;
+    }
+  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "expanded", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
+    }
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "truncated", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
+    }
+  }), _applyDecoratedDescriptor(_class.prototype, "toggle", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggle"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "setupTruncation", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "setupTruncation"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "measureTruncation", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "measureTruncation"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSSmartFeedback);
 });
-;define("@upfluence/oss-components/components/o-s-s/smart/immersive/currency-input", ["exports", "@ember/component", "@ember/debug", "@upfluence/oss-components/components/o-s-s/currency-input", "@ember/object", "@glimmer/tracking", "@upfluence/oss-components/utils/run-smart-gradient-animation", "@ember/utils", "@ember/object/internals", "@upfluence/oss-components/utils/attach-dropdown", "@ember/runloop", "@ember/template-factory"], function (_exports, _component, _debug, _currencyInput, _object, _tracking, _runSmartGradientAnimation, _utils, _internals, _attachDropdown, _runloop, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/smart/immersive/currency-input", ["exports", "@ember/component", "@ember/debug", "@ember/object", "@ember/object/internals", "@ember/runloop", "@ember/utils", "@glimmer/tracking", "@upfluence/oss-components/utils/attach-dropdown", "@upfluence/oss-components/utils/run-smart-gradient-animation", "@upfluence/oss-components/components/o-s-s/currency-input", "@ember/template-factory"], function (_exports, _component, _debug, _object, _internals, _runloop, _utils, _tracking, _attachDropdown, _runSmartGradientAnimation, _currencyInput, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -78887,7 +79246,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class, _descriptor;
-  0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@upfluence/oss-components/components/o-s-s/currency-input",0,"@ember/object",0,"@glimmer/tracking",0,"@upfluence/oss-components/utils/run-smart-gradient-animation",0,"@ember/utils",0,"@ember/object/internals",0,"@upfluence/oss-components/utils/attach-dropdown",0,"@ember/runloop",0,"@embroider/macros",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@ember/object",0,"@ember/object/internals",0,"@ember/runloop",0,"@ember/utils",0,"@embroider/macros",0,"@glimmer/tracking",0,"@upfluence/oss-components/utils/attach-dropdown",0,"@upfluence/oss-components/utils/run-smart-gradient-animation",0,"@upfluence/oss-components/components/o-s-s/currency-input",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
@@ -78907,6 +79266,7 @@ require('@ember/-internals/bootstrap')
       <div
         class="currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center"
         role={{if this.allowCurrencyUpdate "button" "img"}}
+        tabindex={{if this.allowCurrencyUpdate "0"}}
         {{on "click" this.toggleCurrencySelector}}
       >
         <div class="fx-col">
@@ -78936,6 +79296,7 @@ require('@ember/-internals/bootstrap')
             min="0"
             autocomplete="off"
             placeholder={{this.placeholder}}
+            aria-label={{@ariaLabel}}
             disabled={{@disabled}}
             {{on "keydown" this.onlyNumeric}}
             {{on "keyup" (fn this.onChange @currency @value)}}
@@ -78974,8 +79335,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "UHlS6m3d",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[16,1,[30,0,[\"inputId\"]]],[17,1],[4,[38,0],[[30,0,[\"registerElement\"]]],null],[4,[38,1],[[30,0,[\"runAnimationOnLoadEnd\"]],[30,2]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"smart-immersive-currency-input fx-row\"],[12],[1,\"\\n    \"],[11,0],[24,0,\"currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center\"],[16,\"role\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"button\",\"img\"]],[4,[38,3],[\"click\",[30,0,[\"toggleCurrencySelector\"]]],null],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-gap-px-9\"],[12],[1,\"\\n          \"],[10,1],[12],[1,[30,0,[\"selectedCurrencySymbol\"]]],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"allowCurrencyUpdate\"]],[[[1,\"        \"],[8,[39,4],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[[52,[30,0,[\"currencySelectorShown\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,0],[14,0,\"loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"rainbow-text-animated\"],[12],[1,[30,3]],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,0],[14,0,\"input-container\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"hidden-span\"],[12],[1,[28,[35,5],[[30,4],[30,3]],null]],[13],[1,\"\\n        \"],[8,[39,6],[[24,0,\"displayed-input\"],[24,\"min\",\"0\"],[24,\"autocomplete\",\"off\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"disabled\",[30,5]],[4,[38,3],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,3],[\"keyup\",[28,[37,7],[[30,0,[\"onChange\"]],[30,6],[30,4]],null]],null],[4,[38,3],[\"paste\",[30,0,[\"handlePaste\"]]],null]],[[\"@value\",\"@type\"],[[30,4],\"text\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,0,[\"currencySelectorShown\"]],[[[40,[[[1,\"      \"],[8,[39,10],[[16,0,[28,[37,11],[\"margin-top-px-0 \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,13],[[30,0,[\"hideCurrencySelector\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchPlaceholder\"],[[30,0,[\"filteredCurrencies\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[28,[37,12],[\"oss-components.currency-input.search\"],null]]],[[\"option\"],[[[[1,\"\\n          \"],[8,[39,14],null,[[\"@title\",\"@selected\",\"@onSelect\"],[[30,7,[\"code\"]],[28,[37,15],[[30,0,[\"selectedCurrency\"]],[30,7]],null],[28,[37,7],[[30,0,[\"onSelect\"]],[30,7]],null]]],[[\"prefix\"],[[[[1,\"\\n              \"],[10,1],[15,0,[52,[28,[37,15],[[30,0,[\"selectedCurrency\"]],[30,7]],null],\"font-color-primary-500\"]],[12],[1,\"\\n                \"],[1,[30,7,[\"symbol\"]]],[1,\"\\n              \"],[13],[1,\"\\n            \"]],[]]]]],[1,\"\\n        \"]],[7]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,9],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"&attrs\",\"@loading\",\"@placeholder\",\"@value\",\"@disabled\",\"@currency\",\"currency\"],false,[\"did-insert\",\"did-update\",\"if\",\"on\",\"o-s-s/icon\",\"or\",\"input\",\"fn\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"concat\",\"t\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"eq\"]]",
+    "id": "o8vLSWZJ",
+    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[16,1,[30,0,[\"inputId\"]]],[17,1],[4,[38,0],[[30,0,[\"registerElement\"]]],null],[4,[38,1],[[30,0,[\"runAnimationOnLoadEnd\"]],[30,2]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"smart-immersive-currency-input fx-row\"],[12],[1,\"\\n    \"],[11,0],[24,0,\"currency-selector fx-row fx-gap-px-12 fx-malign-space-between fx-xalign-center\"],[16,\"role\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"button\",\"img\"]],[16,\"tabindex\",[52,[30,0,[\"allowCurrencyUpdate\"]],\"0\"]],[4,[38,3],[\"click\",[30,0,[\"toggleCurrencySelector\"]]],null],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-gap-px-9\"],[12],[1,\"\\n          \"],[10,1],[12],[1,[30,0,[\"selectedCurrencySymbol\"]]],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"allowCurrencyUpdate\"]],[[[1,\"        \"],[8,[39,4],[[24,0,\"margin-left-px-6\"]],[[\"@icon\"],[[29,[[52,[30,0,[\"currencySelectorShown\"]],\"fa-chevron-up\",\"fa-chevron-down\"]]]]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,0],[14,0,\"loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"rainbow-text-animated\"],[12],[1,[30,3]],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,0],[14,0,\"input-container\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"hidden-span\"],[12],[1,[28,[35,5],[[30,4],[30,3]],null]],[13],[1,\"\\n        \"],[8,[39,6],[[24,0,\"displayed-input\"],[24,\"min\",\"0\"],[24,\"autocomplete\",\"off\"],[16,\"placeholder\",[30,0,[\"placeholder\"]]],[16,\"aria-label\",[30,5]],[16,\"disabled\",[30,6]],[4,[38,3],[\"keydown\",[30,0,[\"onlyNumeric\"]]],null],[4,[38,3],[\"keyup\",[28,[37,7],[[30,0,[\"onChange\"]],[30,7],[30,4]],null]],null],[4,[38,3],[\"paste\",[30,0,[\"handlePaste\"]]],null]],[[\"@value\",\"@type\"],[[30,4],\"text\"]],null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]]],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,0,[\"currencySelectorShown\"]],[[[40,[[[1,\"      \"],[8,[39,10],[[16,0,[28,[37,11],[\"margin-top-px-0 \",[30,0,[\"dropdownAddressableClass\"]]],null]],[16,1,[30,0,[\"portalId\"]]],[4,[38,13],[[30,0,[\"hideCurrencySelector\"]]],null]],[[\"@items\",\"@onSearch\",\"@onSelect\",\"@searchPlaceholder\"],[[30,0,[\"filteredCurrencies\"]],[30,0,[\"onSearch\"]],[30,0,[\"onSelect\"]],[28,[37,12],[\"oss-components.currency-input.search\"],null]]],[[\"option\"],[[[[1,\"\\n          \"],[8,[39,14],null,[[\"@title\",\"@selected\",\"@onSelect\"],[[30,8,[\"code\"]],[28,[37,15],[[30,0,[\"selectedCurrency\"]],[30,8]],null],[28,[37,7],[[30,0,[\"onSelect\"]],[30,8]],null]]],[[\"prefix\"],[[[[1,\"\\n              \"],[10,1],[15,0,[52,[28,[37,15],[[30,0,[\"selectedCurrency\"]],[30,8]],null],\"font-color-primary-500\"]],[12],[1,\"\\n                \"],[1,[30,8,[\"symbol\"]]],[1,\"\\n              \"],[13],[1,\"\\n            \"]],[]]]]],[1,\"\\n        \"]],[8]]]]],[1,\"\\n\"]],[]],\"%cursor:0%\",[28,[37,9],[[30,0,[\"portalTarget\"]]],null],null]],[]],null],[13]],[\"&attrs\",\"@loading\",\"@placeholder\",\"@value\",\"@ariaLabel\",\"@disabled\",\"@currency\",\"currency\"],false,[\"did-insert\",\"did-update\",\"if\",\"on\",\"o-s-s/icon\",\"or\",\"input\",\"fn\",\"in-element\",\"-in-el-null\",\"o-s-s/infinite-select\",\"concat\",\"t\",\"on-click-outside\",\"o-s-s/infinite-select/option\",\"eq\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/immersive/currency-input.hbs",
     "isStrictMode": false
   });
@@ -79012,6 +79373,11 @@ require('@ember/-internals/bootstrap')
         (0, _runSmartGradientAnimation.runSmartGradientAnimation)(this.element);
       }
     }
+    onSelect(value, _selected, event) {
+      event?.stopPropagation();
+      this.args.onChange(value.code, this.args.value);
+      this.hideCurrencySelector();
+    }
     toggleCurrencySelector(e) {
       super.toggleCurrencySelector(e);
       (0, _runloop.scheduleOnce)('afterRender', this, this.setupDropdownAutoplacement);
@@ -79036,7 +79402,7 @@ require('@ember/-internals/bootstrap')
     enumerable: true,
     writable: true,
     initializer: null
-  }), _applyDecoratedDescriptor(_class.prototype, "onChange", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onChange"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "registerElement", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerElement"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "runAnimationOnLoadEnd", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "runAnimationOnLoadEnd"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleCurrencySelector", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleCurrencySelector"), _class.prototype), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "onChange", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onChange"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "registerElement", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerElement"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "runAnimationOnLoadEnd", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "runAnimationOnLoadEnd"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onSelect", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onSelect"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "toggleCurrencySelector", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "toggleCurrencySelector"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSSmartImmersiveCurrencyInput);
 });
 ;define("@upfluence/oss-components/components/o-s-s/smart/immersive/input", ["exports", "@ember/component", "@ember/object", "@ember/utils", "@glimmer/tracking", "@upfluence/oss-components/utils/run-smart-gradient-animation", "@upfluence/oss-components/components/o-s-s/input-container", "@ember/template-factory"], function (_exports, _component, _object, _utils, _tracking, _runSmartGradientAnimation, _inputContainer, _templateFactory) {
@@ -79191,7 +79557,7 @@ require('@ember/-internals/bootstrap')
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/immersive/logo.hbs",
     "isStrictMode": false
   });
-  const FALLBACK_SVG_URL = '/assets/images/picture-frame.svg';
+  const FALLBACK_SVG_URL = '/@upfluence/oss-components/assets/images/picture-frame-a396af609c9820931cdcc35d424d745f.svg';
   const BASE_COMPONENT_CLASS = 'oss-smart__immersive-icon-container';
   let OSSSmartImmersiveLogoComponent = _exports.default = (_class = class OSSSmartImmersiveLogoComponent extends _component2.default {
     constructor(owner, args) {
@@ -79249,7 +79615,7 @@ require('@ember/-internals/bootstrap')
   }), _applyDecoratedDescriptor(_class.prototype, "handleLoadingUpdate", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleLoadingUpdate"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "registerElement", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerElement"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onError", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onError"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSSmartImmersiveLogoComponent);
 });
-;define("@upfluence/oss-components/components/o-s-s/smart/immersive/select", ["exports", "@ember/component", "@ember/object", "@upfluence/oss-components/components/o-s-s/private/base-dropdown", "@upfluence/oss-components/utils/run-smart-gradient-animation", "@ember/utils", "@ember/debug", "@ember/runloop", "@upfluence/oss-components/utils/attach-dropdown", "@ember/component/helper", "@ember/template-factory"], function (_exports, _component, _object, _baseDropdown, _runSmartGradientAnimation, _utils, _debug, _runloop, _attachDropdown, _helper, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/smart/immersive/select", ["exports", "@ember/component", "@ember/object", "@upfluence/oss-components/components/o-s-s/private/base-dropdown", "@upfluence/oss-components/utils/run-smart-gradient-animation", "@ember/utils", "@ember/debug", "@ember/runloop", "@upfluence/oss-components/utils/attach-dropdown", "@ember/component/helper", "@ember/template", "@ember/template-factory"], function (_exports, _component, _object, _baseDropdown, _runSmartGradientAnimation, _utils, _debug, _runloop, _attachDropdown, _helper, _template, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -79257,7 +79623,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class;
-  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@upfluence/oss-components/components/o-s-s/private/base-dropdown",0,"@upfluence/oss-components/utils/run-smart-gradient-animation",0,"@ember/utils",0,"@ember/debug",0,"@ember/runloop",0,"@upfluence/oss-components/utils/attach-dropdown",0,"@ember/component/helper",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@upfluence/oss-components/components/o-s-s/private/base-dropdown",0,"@upfluence/oss-components/utils/run-smart-gradient-animation",0,"@ember/utils",0,"@ember/debug",0,"@ember/runloop",0,"@upfluence/oss-components/utils/attach-dropdown",0,"@ember/component/helper",0,"@ember/template",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
@@ -79367,7 +79733,7 @@ require('@ember/-internals/bootstrap')
       if (this.args.maxItemWidth) {
         style.push(`max-width: ${this.args.maxItemWidth}px;`);
       }
-      return style.join(' ');
+      return (0, _template.htmlSafe)(style.join(' '));
     }
     get dropdownAddressableClass() {
       return this.args.addressableAs ? `${this.args.addressableAs}__dropdown` : '';
@@ -79376,8 +79742,7 @@ require('@ember/-internals/bootstrap')
       return this.args.displayedItems ?? 0;
     }
     get values() {
-      let values = [];
-      values = [...(this.args.values?.filter(el => {
+      let values = [...(this.args.values?.filter(el => {
         return !(0, _utils.isBlank)(el) && el !== undefined;
       }) ?? [])];
       if (this.displayedItems > 0 && values.length > this.displayedItems) {
@@ -79483,6 +79848,7 @@ require('@ember/-internals/bootstrap')
             @value={{@value}}
             @type={{this.type}}
             placeholder={{@placeholder}}
+            aria-label={{@ariaLabel}}
             disabled={{@disabled}}
             class="upf-input"
             {{on "keyup" (fn this._onChange @value)}}
@@ -79500,17 +79866,17 @@ require('@ember/-internals/bootstrap')
       <span class="text-color-error margin-top-px-6">{{@errorMessage}}</span>
     {{else if this.feedbackMessage}}
       <span class={{concat "margin-top-px-6 font-color-" this.feedbackMessage.type "-500"}}>
-        {{#unless (eq this.feedbackMessage.type "error")}}
+        {{#if (not-eq this.feedbackMessage.type "error")}}
           <OSS::Icon @icon={{this.messageIcon}} />
-        {{/unless}}
+        {{/if}}
         <span>{{this.feedbackMessage.value}}</span>
       </span>
     {{/if}}
   </div>
   */
   {
-    "id": "t5VdfFFR",
-    "block": "[[[11,0],[24,0,\"fx-col oss-smart-input-container\"],[4,[38,0],[[30,0,[\"handleUpdate\"]],[30,1]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-input-container\\n      \",[30,0,[\"containerClass\"]],\"\\n      \",[52,[48,[30,7]],\" has-prefix\"],\"\\n      \",[52,[48,[30,8]],\" has-suffix\"]]]],[24,\"data-control-name\",\"oss-smart-input\"],[17,2],[4,[38,3],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n\"],[41,[48,[30,7]],[[[1,\"      \"],[10,0],[14,0,\"prefix\"],[12],[18,7,null],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,9]],[[[1,\"      \"],[10,0],[14,0,\"yielded-input\"],[12],[1,\"\\n        \"],[18,9,null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[41,[30,1],[[[1,\"        \"],[10,0],[14,0,\"upf-input loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n          \"],[10,1],[14,0,\"smart_text_animated\"],[12],[1,[30,3]],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,5],[[16,\"placeholder\",[30,3]],[16,\"disabled\",[30,4]],[24,0,\"upf-input\"],[4,[38,6],[\"keyup\",[28,[37,7],[[30,0,[\"_onChange\"]],[30,5]],null]],null],[4,[38,6],[\"paste\",[30,0,[\"onPaste\"]]],null]],[[\"@value\",\"@type\"],[[30,5],[30,0,[\"type\"]]]],null],[1,\"\\n\"]],[]]]],[]]],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"      \"],[10,0],[14,0,\"suffix\"],[12],[18,8,null],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,6],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,6]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,8],[\"margin-top-px-6 font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[51,[28,[37,10],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null]],[[[1,\"        \"],[8,[39,11],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"@loading\",\"&attrs\",\"@placeholder\",\"@disabled\",\"@value\",\"@errorMessage\",\"&prefix\",\"&suffix\",\"&input\"],false,[\"did-update\",\"if\",\"has-block\",\"did-insert\",\"yield\",\"input\",\"on\",\"fn\",\"concat\",\"unless\",\"eq\",\"o-s-s/icon\"]]",
+    "id": "au41pRmA",
+    "block": "[[[11,0],[24,0,\"fx-col oss-smart-input-container\"],[4,[38,0],[[30,0,[\"handleUpdate\"]],[30,1]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-input-container\\n      \",[30,0,[\"containerClass\"]],\"\\n      \",[52,[48,[30,8]],\" has-prefix\"],\"\\n      \",[52,[48,[30,9]],\" has-suffix\"]]]],[24,\"data-control-name\",\"oss-smart-input\"],[17,2],[4,[38,3],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"      \"],[10,0],[14,0,\"prefix\"],[12],[18,8,null],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,10]],[[[1,\"      \"],[10,0],[14,0,\"yielded-input\"],[12],[1,\"\\n        \"],[18,10,null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[41,[30,1],[[[1,\"        \"],[10,0],[14,0,\"upf-input loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n          \"],[10,1],[14,0,\"smart_text_animated\"],[12],[1,[30,3]],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],[[[1,\"        \"],[8,[39,5],[[16,\"placeholder\",[30,3]],[16,\"aria-label\",[30,4]],[16,\"disabled\",[30,5]],[24,0,\"upf-input\"],[4,[38,6],[\"keyup\",[28,[37,7],[[30,0,[\"_onChange\"]],[30,6]],null]],null],[4,[38,6],[\"paste\",[30,0,[\"onPaste\"]]],null]],[[\"@value\",\"@type\"],[[30,6],[30,0,[\"type\"]]]],null],[1,\"\\n\"]],[]]]],[]]],[1,\"\\n\"],[41,[48,[30,9]],[[[1,\"      \"],[10,0],[14,0,\"suffix\"],[12],[18,9,null],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,7],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,7]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"feedbackMessage\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,8],[\"margin-top-px-6 font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[28,[37,9],[[30,0,[\"feedbackMessage\",\"type\"]],\"error\"],null],[[[1,\"        \"],[8,[39,10],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"@loading\",\"&attrs\",\"@placeholder\",\"@ariaLabel\",\"@disabled\",\"@value\",\"@errorMessage\",\"&prefix\",\"&suffix\",\"&input\"],false,[\"did-update\",\"if\",\"has-block\",\"did-insert\",\"yield\",\"input\",\"on\",\"fn\",\"concat\",\"not-eq\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/input.hbs",
     "isStrictMode": false
   });
@@ -79591,17 +79957,17 @@ require('@ember/-internals/bootstrap')
       <span class="text-color-error margin-top-px-6">{{@errorMessage}}</span>
     {{else if @feedbackMessage}}
       <span class={{concat "margin-top-px-6 font-color-" @feedbackMessage.type "-500"}}>
-        {{#unless (eq @feedbackMessage.type "error")}}
+        {{#if (not-eq @feedbackMessage.type "error")}}
           <OSS::Icon @icon={{this.messageIcon}} />
-        {{/unless}}
+        {{/if}}
         <span>{{@feedbackMessage.value}}</span>
       </span>
     {{/if}}
   </div>
   */
   {
-    "id": "VeCtQYy2",
-    "block": "[[[11,0],[24,0,\"fx-col oss-smart-number-input-container\"],[4,[38,0],[[30,0,[\"handleUpdate\"]],[30,1]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"smart-number-input fx-row \",[30,0,[\"computedClasses\"]]]]],[17,2],[4,[38,1],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n    \"],[8,[39,2],[[16,\"disabled\",[28,[37,3],[[30,0,[\"isMinDisabled\"]],[30,3],[30,1]],null]],[4,[38,4],[\"click\",[30,0,[\"decreaseValue\"]]],null],[4,[38,5],null,[[\"title\",\"placement\"],[[30,0,[\"minTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-minus\"]],null],[1,\"\\n\\n\"],[1,\"    \"],[8,[39,6],[[23,5,[30,0,[\"dynamicWidth\"]]],[4,[38,4],[\"keydown\",[30,0,[\"keyParser\"]]],null],[4,[38,4],[\"blur\",[30,0,[\"checkUserInput\"]]],null],[4,[38,1],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@onChange\",\"@disabled\",\"@hasError\",\"@errorMessage\",\"@feedbackMessage\"],[[30,0,[\"localValue\"]],[30,0,[\"checkUserInput\"]],[30,3],[30,4],[30,5],[30,6]]],null],[1,\"\\n\\n    \"],[8,[39,2],[[16,\"disabled\",[28,[37,3],[[30,0,[\"isMaxDisabled\"]],[30,3],[30,1]],null]],[4,[38,4],[\"click\",[30,0,[\"increaseValue\"]]],null],[4,[38,5],null,[[\"title\",\"placement\"],[[30,0,[\"maxTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-plus\"]],null],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,5],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],[[[41,[30,6],[[[1,\"    \"],[10,1],[15,0,[28,[37,8],[\"margin-top-px-6 font-color-\",[30,6,[\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[51,[28,[37,10],[[30,6,[\"type\"]],\"error\"],null]],[[[1,\"        \"],[8,[39,11],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,6,[\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"@loading\",\"&attrs\",\"@disabled\",\"@hasError\",\"@errorMessage\",\"@feedbackMessage\"],false,[\"did-update\",\"did-insert\",\"o-s-s/button\",\"or\",\"on\",\"enable-tooltip\",\"o-s-s/input-container\",\"if\",\"concat\",\"unless\",\"eq\",\"o-s-s/icon\"]]",
+    "id": "3ClPPoFf",
+    "block": "[[[11,0],[24,0,\"fx-col oss-smart-number-input-container\"],[4,[38,0],[[30,0,[\"handleUpdate\"]],[30,1]],null],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"smart-number-input fx-row \",[30,0,[\"computedClasses\"]]]]],[17,2],[4,[38,1],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n    \"],[8,[39,2],[[16,\"disabled\",[28,[37,3],[[30,0,[\"isMinDisabled\"]],[30,3],[30,1]],null]],[4,[38,4],[\"click\",[30,0,[\"decreaseValue\"]]],null],[4,[38,5],null,[[\"title\",\"placement\"],[[30,0,[\"minTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-minus\"]],null],[1,\"\\n\\n\"],[1,\"    \"],[8,[39,6],[[23,5,[30,0,[\"dynamicWidth\"]]],[4,[38,4],[\"keydown\",[30,0,[\"keyParser\"]]],null],[4,[38,4],[\"blur\",[30,0,[\"checkUserInput\"]]],null],[4,[38,1],[[30,0,[\"registerInputElement\"]]],null]],[[\"@value\",\"@onChange\",\"@disabled\",\"@hasError\",\"@errorMessage\",\"@feedbackMessage\"],[[30,0,[\"localValue\"]],[30,0,[\"checkUserInput\"]],[30,3],[30,4],[30,5],[30,6]]],null],[1,\"\\n\\n    \"],[8,[39,2],[[16,\"disabled\",[28,[37,3],[[30,0,[\"isMaxDisabled\"]],[30,3],[30,1]],null]],[4,[38,4],[\"click\",[30,0,[\"increaseValue\"]]],null],[4,[38,5],null,[[\"title\",\"placement\"],[[30,0,[\"maxTooltipTitle\"]],\"top\"]]]],[[\"@square\",\"@size\",\"@icon\"],[true,\"md\",\"far fa-plus\"]],null],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[41,[30,5],[[[1,\"    \"],[10,1],[14,0,\"text-color-error margin-top-px-6\"],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],[[[41,[30,6],[[[1,\"    \"],[10,1],[15,0,[28,[37,8],[\"margin-top-px-6 font-color-\",[30,6,[\"type\"]],\"-500\"],null]],[12],[1,\"\\n\"],[41,[28,[37,9],[[30,6,[\"type\"]],\"error\"],null],[[[1,\"        \"],[8,[39,10],null,[[\"@icon\"],[[30,0,[\"messageIcon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[10,1],[12],[1,[30,6,[\"value\"]]],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"@loading\",\"&attrs\",\"@disabled\",\"@hasError\",\"@errorMessage\",\"@feedbackMessage\"],false,[\"did-update\",\"did-insert\",\"o-s-s/button\",\"or\",\"on\",\"enable-tooltip\",\"o-s-s/input-container\",\"if\",\"concat\",\"not-eq\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/number-input.hbs",
     "isStrictMode": false
   });
@@ -79709,14 +80075,14 @@ require('@ember/-internals/bootstrap')
   }), _applyDecoratedDescriptor(_class.prototype, "registerElement", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "registerElement"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "runAnimationOnLoadEnd", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "runAnimationOnLoadEnd"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSSmartPill);
 });
-;define("@upfluence/oss-components/components/o-s-s/smart/skeleton", ["exports", "@ember/component", "@ember/component/helper", "@upfluence/oss-components/components/o-s-s/skeleton", "@ember/debug", "@ember/template-factory"], function (_exports, _component, _helper, _skeleton, _debug, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/smart/skeleton", ["exports", "@ember/component", "@ember/component/helper", "@upfluence/oss-components/components/o-s-s/skeleton", "@ember/debug", "@ember/template", "@ember/template-factory"], function (_exports, _component, _helper, _skeleton, _debug, _template, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/component/helper",0,"@upfluence/oss-components/components/o-s-s/skeleton",0,"@ember/debug",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/component/helper",0,"@upfluence/oss-components/components/o-s-s/skeleton",0,"@ember/debug",0,"@ember/template",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
@@ -79767,14 +80133,14 @@ require('@ember/-internals/bootstrap')
       return Math.round(maxDegree - scale * (maxDegree - minDegree));
     }
     get backgroundImage() {
-      return `background-image: linear-gradient(
+      return (0, _template.htmlSafe)(`background-image: linear-gradient(
       ${this.rotationDegrees}deg,
       rgba(255, 255, 255, 0.15) 8.2%,
       rgba(247, 213, 250, 0.15) 23.6%,
       rgba(83, 94, 252, 0.15) 38.3%,
       rgba(237, 33, 255, 0.15) 53.2%,
       rgba(255, 255, 255, 0.15) 91.7%
-    );`;
+    );`);
     }
   }
   _exports.default = OSSSmartSkeleton;
@@ -79799,6 +80165,7 @@ require('@ember/-internals/bootstrap')
   /*
     <div
     class="tag-input-container {{if (gt this.inputValue.length 0) 'tag-input-container--active'}}"
+    role="button"
     {{on "click" this.onClickQueryBuilder}}
     {{did-insert this.registerElement}}
     ...attributes
@@ -79815,6 +80182,7 @@ require('@ember/-internals/bootstrap')
             class="displayed-input"
             @value={{this.inputValue}}
             @type="text"
+            aria-label={{@ariaLabel}}
             data-control-name="tag-input"
             {{on "keydown" this.onKeydown}}
             {{on "focusin" this.onFocusin}}
@@ -79833,8 +80201,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "WxGTPib6",
-    "block": "[[[11,0],[16,0,[29,[\"tag-input-container \",[52,[28,[37,1],[[30,0,[\"inputValue\",\"length\"]],0],null],\"tag-input-container--active\"]]]],[17,1],[4,[38,2],[\"click\",[30,0,[\"onClickQueryBuilder\"]]],null],[4,[38,3],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n  \"],[10,0],[15,0,[30,0,[\"keywordInputClasses\"]]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,0],[14,0,\"animated-overlay\"],[12],[1,\"\\n        \"],[1,[28,[35,4],[[30,0,[\"inputValue\"]],[30,0,[\"placeholder\"]]],null]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"hidden-span\"],[12],[1,[30,0,[\"hiddenSpanValue\"]]],[13],[1,\"\\n        \"],[8,[39,5],[[24,0,\"displayed-input\"],[24,\"data-control-name\",\"tag-input\"],[24,\"autocomplete\",\"off\"],[4,[38,2],[\"keydown\",[30,0,[\"onKeydown\"]]],null],[4,[38,2],[\"focusin\",[30,0,[\"onFocusin\"]]],null],[4,[38,6],[[30,0,[\"onClickOutside\"]]],null]],[[\"@value\",\"@type\"],[[30,0,[\"inputValue\"]],\"text\"]],null],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"tag-input-empty-state\"],[12],[1,\"\\n        \"],[1,[30,0,[\"placeholder\"]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]]],[1,\"    \"],[10,1],[14,0,\"tag-input-icon\"],[12],[1,\"\\n      \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[\"solid\",\"fa-arrow-turn-down-left\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@loading\"],false,[\"if\",\"gt\",\"on\",\"did-insert\",\"or\",\"input\",\"on-click-outside\",\"o-s-s/icon\"]]",
+    "id": "gaPxQK2H",
+    "block": "[[[11,0],[16,0,[29,[\"tag-input-container \",[52,[28,[37,1],[[30,0,[\"inputValue\",\"length\"]],0],null],\"tag-input-container--active\"]]]],[24,\"role\",\"button\"],[17,1],[4,[38,2],[\"click\",[30,0,[\"onClickQueryBuilder\"]]],null],[4,[38,3],[[30,0,[\"registerElement\"]]],null],[12],[1,\"\\n  \"],[10,0],[15,0,[30,0,[\"keywordInputClasses\"]]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"      \"],[10,0],[14,0,\"animated-overlay\"],[12],[1,\"\\n        \"],[1,[28,[35,4],[[30,0,[\"inputValue\"]],[30,0,[\"placeholder\"]]],null]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],[[[1,\"      \"],[10,0],[14,0,\"fx-col\"],[12],[1,\"\\n        \"],[10,1],[14,0,\"hidden-span\"],[12],[1,[30,0,[\"hiddenSpanValue\"]]],[13],[1,\"\\n        \"],[8,[39,5],[[24,0,\"displayed-input\"],[16,\"aria-label\",[30,3]],[24,\"data-control-name\",\"tag-input\"],[24,\"autocomplete\",\"off\"],[4,[38,2],[\"keydown\",[30,0,[\"onKeydown\"]]],null],[4,[38,2],[\"focusin\",[30,0,[\"onFocusin\"]]],null],[4,[38,6],[[30,0,[\"onClickOutside\"]]],null]],[[\"@value\",\"@type\"],[[30,0,[\"inputValue\"]],\"text\"]],null],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"tag-input-empty-state\"],[12],[1,\"\\n        \"],[1,[30,0,[\"placeholder\"]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]]],[1,\"    \"],[10,1],[14,0,\"tag-input-icon\"],[12],[1,\"\\n      \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[\"solid\",\"fa-arrow-turn-down-left\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"&attrs\",\"@loading\",\"@ariaLabel\"],false,[\"if\",\"gt\",\"on\",\"did-insert\",\"or\",\"input\",\"on-click-outside\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/tag-input.hbs",
     "isStrictMode": false
   });
@@ -80065,6 +80433,7 @@ require('@ember/-internals/bootstrap')
       <Textarea
         @value={{@value}}
         placeholder={{@placeholder}}
+        aria-label={{@ariaLabel}}
         disabled={{@disabled}}
         rows={{this.rows}}
         class="oss-textarea {{this.computedClass}}"
@@ -80075,8 +80444,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "ZOODWMvl",
-    "block": "[[[11,0],[16,0,[29,[\"oss-smart-text-area-container \",[52,[30,1],\" oss-smart-text-area-container--errored\"]]]],[17,2],[4,[38,1],[[30,0,[\"registerElement\"]]],null],[4,[38,2],[[30,0,[\"handleUpdate\"]],[30,3]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[10,0],[14,0,\"upf-input loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n        \"],[10,\"pre\"],[14,0,\"smart_text_animated\"],[12],[1,[28,[35,3],[[30,4],[30,5]],null]],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"    \"],[8,[39,4],[[16,\"placeholder\",[30,5]],[16,\"disabled\",[30,6]],[16,\"rows\",[30,0,[\"rows\"]]],[16,0,[29,[\"oss-textarea \",[30,0,[\"computedClass\"]]]]],[4,[38,5],[\"keyup\",[28,[37,6],[[30,0,[\"_onChange\"]],[30,4]],null]],null]],[[\"@value\"],[[30,4]]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[13]],[\"@hasError\",\"&attrs\",\"@loading\",\"@value\",\"@placeholder\",\"@disabled\"],false,[\"if\",\"did-insert\",\"did-update\",\"or\",\"textarea\",\"on\",\"fn\"]]",
+    "id": "v8MAq5w1",
+    "block": "[[[11,0],[16,0,[29,[\"oss-smart-text-area-container \",[52,[30,1],\" oss-smart-text-area-container--errored\"]]]],[17,2],[4,[38,1],[[30,0,[\"registerElement\"]]],null],[4,[38,2],[[30,0,[\"handleUpdate\"]],[30,3]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[10,0],[14,0,\"upf-input loading-placeholder fx-row fx-xalign-center\"],[12],[1,\"\\n        \"],[10,\"pre\"],[14,0,\"smart_text_animated\"],[12],[1,[28,[35,3],[[30,4],[30,5]],null]],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"    \"],[8,[39,4],[[16,\"placeholder\",[30,5]],[16,\"aria-label\",[30,6]],[16,\"disabled\",[30,7]],[16,\"rows\",[30,0,[\"rows\"]]],[16,0,[29,[\"oss-textarea \",[30,0,[\"computedClass\"]]]]],[4,[38,5],[\"keyup\",[28,[37,6],[[30,0,[\"_onChange\"]],[30,4]],null]],null]],[[\"@value\"],[[30,4]]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[13]],[\"@hasError\",\"&attrs\",\"@loading\",\"@value\",\"@placeholder\",\"@ariaLabel\",\"@disabled\"],false,[\"if\",\"did-insert\",\"did-update\",\"or\",\"textarea\",\"on\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/text-area.hbs",
     "isStrictMode": false
   });
@@ -80140,6 +80509,8 @@ require('@ember/-internals/bootstrap')
       >
         {{#if toggle.icon}}
           <OSS::Icon @style={{fa-icon-style toggle.icon}} @icon={{fa-icon-value toggle.icon}} />
+        {{else if toggle.image}}
+          <img src={{toggle.image}} role="presentation" alt="" />
         {{/if}}
         {{toggle.label}}
       </div>
@@ -80147,8 +80518,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "IWcgGGdS",
-    "block": "[[[11,0],[16,0,[28,[37,0],[\"oss-smart-toggle-buttons-container \",[52,[30,1],\"oss-smart-toggle-buttons-container--disabled\"]],null]],[17,2],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"    \"],[11,0],[16,0,[29,[\"oss-smart-toggle-buttons-btn\\n        \",[52,[28,[37,4],[[30,5],[30,4,[\"value\"]]],null],\" oss-smart-toggle-buttons-btn--selected\"]]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"onSelectToggle\"]],[30,4,[\"value\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,4,[\"icon\"]],[[[1,\"        \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[[28,[37,8],[[30,4,[\"icon\"]]],null],[28,[37,9],[[30,4,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[1,[30,4,[\"label\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[4]],null],[13]],[\"@disabled\",\"&attrs\",\"@toggles\",\"toggle\",\"@selectedToggle\"],false,[\"concat\",\"if\",\"each\",\"-track-array\",\"eq\",\"on\",\"fn\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
+    "id": "Ww2TKghF",
+    "block": "[[[11,0],[16,0,[28,[37,0],[\"oss-smart-toggle-buttons-container \",[52,[30,1],\"oss-smart-toggle-buttons-container--disabled\"]],null]],[17,2],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"    \"],[11,0],[16,0,[29,[\"oss-smart-toggle-buttons-btn\\n        \",[52,[28,[37,4],[[30,5],[30,4,[\"value\"]]],null],\" oss-smart-toggle-buttons-btn--selected\"]]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"onSelectToggle\"]],[30,4,[\"value\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,4,[\"icon\"]],[[[1,\"        \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[[28,[37,8],[[30,4,[\"icon\"]]],null],[28,[37,9],[[30,4,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,4,[\"image\"]],[[[1,\"        \"],[10,\"img\"],[15,\"src\",[30,4,[\"image\"]]],[14,\"role\",\"presentation\"],[14,\"alt\",\"\"],[12],[13],[1,\"\\n      \"]],[]],null]],[]]],[1,\"      \"],[1,[30,4,[\"label\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[4]],null],[13]],[\"@disabled\",\"&attrs\",\"@toggles\",\"toggle\",\"@selectedToggle\"],false,[\"concat\",\"if\",\"each\",\"-track-array\",\"eq\",\"on\",\"fn\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/smart/toggle-buttons.hbs",
     "isStrictMode": false
   });
@@ -80400,7 +80771,7 @@ require('@ember/-internals/bootstrap')
     value: true
   });
   _exports.default = _exports.StarColor = void 0;
-  var _class, _descriptor;
+  var _class, _descriptor, _descriptor2, _descriptor3;
   0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/debug",0,"@ember/object",0,"@glimmer/tracking",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
@@ -80410,21 +80781,21 @@ require('@ember/-internals/bootstrap')
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="star-rating fx-row">
-    {{#each this.stars as |star index|}}
-      <OSS::Icon class={{concat (if @disablePointerCursor "no-pointer-cursor ") this.activeColorClass}}
-                 @style={{star.type}}
-                 @icon="fa-star"
-                 {{on "click" (fn this.setRating index)}}
-                 {{on "mouseenter" (fn this.onMouseEnter index)}}
-                 {{on "mouseleave" this.onMouseLeave}} />
+    <div class="star-rating fx-row" {{on "mouseleave" this.onMouseLeave}}>
+    {{#each this.stars key="@index" as |star index|}}
+      <OSS::Icon
+        class={{concat (if @disablePointerCursor "no-pointer-cursor ") this.activeColorClass}}
+        @style={{star.type}}
+        @icon="fa-star"
+        {{on "click" (fn this.setRating index)}}
+        {{on "mouseenter" (fn this.onMouseEnter index)}}
+      />
     {{/each}}
   </div>
-  
   */
   {
-    "id": "zaguwIf2",
-    "block": "[[[10,0],[14,0,\"star-rating fx-row\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"stars\"]]],null]],null],null,[[[1,\"    \"],[8,[39,2],[[16,0,[28,[37,3],[[52,[30,3],\"no-pointer-cursor \"],[30,0,[\"activeColorClass\"]]],null]],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"setRating\"]],[30,2]],null]],null],[4,[38,5],[\"mouseenter\",[28,[37,6],[[30,0,[\"onMouseEnter\"]],[30,2]],null]],null],[4,[38,5],[\"mouseleave\",[30,0,[\"onMouseLeave\"]]],null]],[[\"@style\",\"@icon\"],[[30,1,[\"type\"]],\"fa-star\"]],null],[1,\"\\n\"]],[1,2]],null],[13],[1,\"\\n\"]],[\"star\",\"index\",\"@disablePointerCursor\"],false,[\"each\",\"-track-array\",\"o-s-s/icon\",\"concat\",\"if\",\"on\",\"fn\"]]",
+    "id": "uIBIfbX0",
+    "block": "[[[11,0],[24,0,\"star-rating fx-row\"],[4,[38,0],[\"mouseleave\",[30,0,[\"onMouseLeave\"]]],null],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"stars\"]]],null]],null],\"@index\",[[[1,\"    \"],[8,[39,3],[[16,0,[28,[37,4],[[52,[30,3],\"no-pointer-cursor \"],[30,0,[\"activeColorClass\"]]],null]],[4,[38,0],[\"click\",[28,[37,6],[[30,0,[\"setRating\"]],[30,2]],null]],null],[4,[38,0],[\"mouseenter\",[28,[37,6],[[30,0,[\"onMouseEnter\"]],[30,2]],null]],null]],[[\"@style\",\"@icon\"],[[30,1,[\"type\"]],\"fa-star\"]],null],[1,\"\\n\"]],[1,2]],null],[13]],[\"star\",\"index\",\"@disablePointerCursor\"],false,[\"on\",\"each\",\"-track-array\",\"o-s-s/icon\",\"concat\",\"if\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/star-rating.hbs",
     "isStrictMode": false
   });
@@ -80446,8 +80817,9 @@ require('@ember/-internals/bootstrap')
   let OSSStarRating = _exports.default = (_class = class OSSStarRating extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
-      _initializerDefineProperty(this, "stars", _descriptor, this);
-      this.stars = this.generateStarsArray();
+      _initializerDefineProperty(this, "optimisticRating", _descriptor, this);
+      _initializerDefineProperty(this, "hoverIndex", _descriptor2, this);
+      _initializerDefineProperty(this, "isSubmitting", _descriptor3, this);
       (false && !(typeof args.rating === 'number') && (0, _debug.assert)(`[component][OSS::StarRating] @rating argument is mandatory and must be a number`, typeof args.rating === 'number'));
       (false && !(typeof args.totalStars === 'number') && (0, _debug.assert)(`[component][OSS::StarRating] @totalStars argument is mandatory and must be a number`, typeof args.totalStars === 'number'));
     }
@@ -80457,38 +80829,192 @@ require('@ember/-internals/bootstrap')
     get passiveColorClass() {
       return `color-${this.args.passiveColor || 'grey'}`;
     }
-    setRating(value, event) {
-      event.stopPropagation();
-      this.args.onChange?.(value + 1);
-    }
-    onMouseEnter(index) {
-      if (this.args.onChange && index + 1 !== this.args.rating) {
-        this.stars.forEach((star, i) => {
-          (0, _object.set)(star, 'type', i <= index ? 'solid' : 'regular');
-        });
-      }
-    }
-    onMouseLeave() {
-      this.stars = this.generateStarsArray();
-    }
-    generateStarsArray() {
+    get stars() {
+      const activeCount = this.hoverIndex !== null ? this.hoverIndex + 1 : this.optimisticRating ?? this.args.rating;
       const result = [];
       for (let i = 0; i < this.args.totalStars; i++) {
         result.push({
-          type: i < this.args.rating ? 'solid' : 'regular'
+          type: i < activeCount ? 'solid' : 'regular'
         });
       }
       return result;
     }
-  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "stars", [_tracking.tracked], {
+    async setRating(value, event) {
+      event.stopPropagation();
+      const newRating = value + 1;
+      this.optimisticRating = newRating;
+      this.hoverIndex = null;
+      this.isSubmitting = true;
+      await Promise.resolve(this.args.onChange?.(newRating)).finally(() => {
+        this.isSubmitting = false;
+      });
+    }
+    onMouseEnter(index) {
+      if (this.args.onChange && !this.isSubmitting) {
+        this.hoverIndex = index;
+      }
+    }
+    onMouseLeave() {
+      if (this.isSubmitting) {
+        return;
+      }
+      this.hoverIndex = null;
+    }
+  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "optimisticRating", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
-      return [];
+      return null;
+    }
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "hoverIndex", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return null;
+    }
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "isSubmitting", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
     }
   }), _applyDecoratedDescriptor(_class.prototype, "setRating", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "setRating"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onMouseEnter", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onMouseEnter"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onMouseLeave", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onMouseLeave"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSStarRating);
+});
+;define("@upfluence/oss-components/components/o-s-s/stats/banner", ["exports", "@ember/component", "@ember/debug", "@ember/object", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _debug, _object, _component2, _templateFactory) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _class;
+  0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@ember/object",0,"@glimmer/component",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
+  const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <div
+    class="oss-stats-banner"
+    data-control-name="oss-stats-banner"
+    {{did-insert (fn this.ensureBlockPresence (has-block "title"))}}
+    ...attributes
+  >
+    <div class="oss-stats-banner__header" data-control-name="stats-banner-header">
+      <div class="oss-stats-banner__header_content" data-control-name="stats-banner-header-content">
+        {{#if @badge}}
+          <div class="oss-stats-banner__badge" data-control-name="stats-banner-badge">
+            {{#if @badge.extraIcon}}
+              <OSS::Icon
+                @icon={{@badge.extraIcon.icon}}
+                style={{if @badge.extraIcon.color (concat "color:" @badge.extraIcon.color)}}
+              />
+            {{/if}}
+            <OSS::Badge
+              @icon={{@badge.icon}}
+              @image={{@badge.image}}
+              @text={{@badge.text}}
+              @skin={{@badge.skin}}
+              @size="sm"
+            />
+          </div>
+        {{/if}}
+  
+        <div class="oss-stats-banner__content" data-control-name="stats-banner-content">
+          {{#if @loading}}
+            <OSS::Skeleton @height={{12}} @width={{150}} class="oss-stats-banner__skeleton--title" />
+          {{else}}
+            {{#if (has-block "title")}}
+              {{yield to="title"}}
+            {{else}}
+              <div class="oss-stats-banner__title-row" data-control-name="stats-banner-title-row">
+                <span
+                  class="oss-stats-banner__title text-ellipsis font-color-gray-600 font-weight-semibold"
+                  {{enable-tooltip title=@titleConfig.text placement="top" displayOnlyOnOverflow=true}}
+                >
+                  {{@titleConfig.text}}
+                </span>
+  
+                <div class="oss-stats-banner__title-actions" data-control-name="stats-banner-title-actions">
+                  {{#if @titleConfig.infoCircle}}
+                    <span
+                      data-control-name="stats-banner-title-info-circle"
+                      {{enable-tooltip title=@titleConfig.infoCircle placement="top"}}
+                    >
+                      <OSS::Icon @icon="fa-info-circle" class="font-color-gray-400" />
+                    </span>
+                  {{/if}}
+  
+                  {{#if (has-block "title-suffix")}}
+                    {{yield to="title-suffix"}}
+                  {{/if}}
+                </div>
+              </div>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+  
+      {{#if (and (has-block "extra-badges") (not @loading))}}
+        <div class="oss-stats-banner__extra-badges" data-control-name="stats-banner-extra-badges">
+          {{yield to="extra-badges"}}
+        </div>
+      {{/if}}
+    </div>
+  
+    <div class="oss-stats-banner__bottom_content" data-control-name="stats-banner-bottom-content">
+      <div class="oss-stats-banner__stat" data-control-name="stats-banner-stat">
+        {{#if @loading}}
+          <OSS::Skeleton @height={{30}} @width={{150}} class="oss-stats-banner__skeleton--stat-value" />
+        {{else}}
+          <div class="oss-stats-banner__stat-main" data-control-name="stats-banner-stat-main">
+            <div class="oss-stats-banner__stat-main-content" data-control-name="stats-banner-stat-main-content">
+              {{#if @statValue}}
+                <span
+                  class="oss-stats-banner__stat-value"
+                  {{enable-tooltip title=@statValue.label placement="top" displayOnlyOnOverflow=true}}
+                >
+                  {{@statValue.label}}
+                </span>
+  
+                {{#if @statValue.suffix}}
+                  <span class="oss-stats-banner__stat-extra font-color-gray-500">{{@statValue.suffix}}</span>
+                {{/if}}
+  
+                {{#if @statValue.tags}}
+                  {{#each @statValue.tags as |tag|}}
+                    <OSS::Tag @label={{tag.label}} @skin={{tag.skin}} @icon={{tag.icon}} @plain={{tag.plain}} />
+                  {{/each}}
+                {{/if}}
+              {{/if}}
+            </div>
+  
+            {{#if (has-block "cta")}}
+              <div class="oss-stats-banner__cta" data-control-name="stats-banner-cta">
+                {{yield to="cta"}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  
+  </div>
+  */
+  {
+    "id": "wDm18eSW",
+    "block": "[[[11,0],[24,0,\"oss-stats-banner\"],[24,\"data-control-name\",\"oss-stats-banner\"],[17,1],[4,[38,0],[[28,[37,1],[[30,0,[\"ensureBlockPresence\"]],[48,[30,7]]],null]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"oss-stats-banner__header\"],[14,\"data-control-name\",\"stats-banner-header\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"oss-stats-banner__header_content\"],[14,\"data-control-name\",\"stats-banner-header-content\"],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"        \"],[10,0],[14,0,\"oss-stats-banner__badge\"],[14,\"data-control-name\",\"stats-banner-badge\"],[12],[1,\"\\n\"],[41,[30,2,[\"extraIcon\"]],[[[1,\"            \"],[8,[39,4],[[16,5,[52,[30,2,[\"extraIcon\",\"color\"]],[28,[37,5],[\"color:\",[30,2,[\"extraIcon\",\"color\"]]],null]]]],[[\"@icon\"],[[30,2,[\"extraIcon\",\"icon\"]]]],null],[1,\"\\n\"]],[]],null],[1,\"          \"],[8,[39,6],null,[[\"@icon\",\"@image\",\"@text\",\"@skin\",\"@size\"],[[30,2,[\"icon\"]],[30,2,[\"image\"]],[30,2,[\"text\"]],[30,2,[\"skin\"]],\"sm\"]],null],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n      \"],[10,0],[14,0,\"oss-stats-banner__content\"],[14,\"data-control-name\",\"stats-banner-content\"],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"          \"],[8,[39,7],[[24,0,\"oss-stats-banner__skeleton--title\"]],[[\"@height\",\"@width\"],[12,150]],null],[1,\"\\n\"]],[]],[[[41,[48,[30,7]],[[[1,\"            \"],[18,7,null],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,0],[14,0,\"oss-stats-banner__title-row\"],[14,\"data-control-name\",\"stats-banner-title-row\"],[12],[1,\"\\n              \"],[11,1],[24,0,\"oss-stats-banner__title text-ellipsis font-color-gray-600 font-weight-semibold\"],[4,[38,9],null,[[\"title\",\"placement\",\"displayOnlyOnOverflow\"],[[30,4,[\"text\"]],\"top\",true]]],[12],[1,\"\\n                \"],[1,[30,4,[\"text\"]]],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"oss-stats-banner__title-actions\"],[14,\"data-control-name\",\"stats-banner-title-actions\"],[12],[1,\"\\n\"],[41,[30,4,[\"infoCircle\"]],[[[1,\"                  \"],[11,1],[24,\"data-control-name\",\"stats-banner-title-info-circle\"],[4,[38,9],null,[[\"title\",\"placement\"],[[30,4,[\"infoCircle\"]],\"top\"]]],[12],[1,\"\\n                    \"],[8,[39,4],[[24,0,\"font-color-gray-400\"]],[[\"@icon\"],[\"fa-info-circle\"]],null],[1,\"\\n                  \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[48,[30,8]],[[[1,\"                  \"],[18,8,null],[1,\"\\n\"]],[]],null],[1,\"              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]]]],[]]],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n\"],[41,[28,[37,10],[[48,[30,9]],[28,[37,11],[[30,3]],null]],null],[[[1,\"      \"],[10,0],[14,0,\"oss-stats-banner__extra-badges\"],[14,\"data-control-name\",\"stats-banner-extra-badges\"],[12],[1,\"\\n        \"],[18,9,null],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,0],[14,0,\"oss-stats-banner__bottom_content\"],[14,\"data-control-name\",\"stats-banner-bottom-content\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"oss-stats-banner__stat\"],[14,\"data-control-name\",\"stats-banner-stat\"],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"        \"],[8,[39,7],[[24,0,\"oss-stats-banner__skeleton--stat-value\"]],[[\"@height\",\"@width\"],[30,150]],null],[1,\"\\n\"]],[]],[[[1,\"        \"],[10,0],[14,0,\"oss-stats-banner__stat-main\"],[14,\"data-control-name\",\"stats-banner-stat-main\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"oss-stats-banner__stat-main-content\"],[14,\"data-control-name\",\"stats-banner-stat-main-content\"],[12],[1,\"\\n\"],[41,[30,5],[[[1,\"              \"],[11,1],[24,0,\"oss-stats-banner__stat-value\"],[4,[38,9],null,[[\"title\",\"placement\",\"displayOnlyOnOverflow\"],[[30,5,[\"label\"]],\"top\",true]]],[12],[1,\"\\n                \"],[1,[30,5,[\"label\"]]],[1,\"\\n              \"],[13],[1,\"\\n\\n\"],[41,[30,5,[\"suffix\"]],[[[1,\"                \"],[10,1],[14,0,\"oss-stats-banner__stat-extra font-color-gray-500\"],[12],[1,[30,5,[\"suffix\"]]],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,5,[\"tags\"]],[[[42,[28,[37,13],[[28,[37,13],[[30,5,[\"tags\"]]],null]],null],null,[[[1,\"                  \"],[8,[39,14],null,[[\"@label\",\"@skin\",\"@icon\",\"@plain\"],[[30,6,[\"label\"]],[30,6,[\"skin\"]],[30,6,[\"icon\"]],[30,6,[\"plain\"]]]],null],[1,\"\\n\"]],[6]],null]],[]],null]],[]],null],[1,\"          \"],[13],[1,\"\\n\\n\"],[41,[48,[30,10]],[[[1,\"            \"],[10,0],[14,0,\"oss-stats-banner__cta\"],[14,\"data-control-name\",\"stats-banner-cta\"],[12],[1,\"\\n              \"],[18,10,null],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n\"]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n\"],[13]],[\"&attrs\",\"@badge\",\"@loading\",\"@titleConfig\",\"@statValue\",\"tag\",\"&title\",\"&title-suffix\",\"&extra-badges\",\"&cta\"],false,[\"did-insert\",\"fn\",\"has-block\",\"if\",\"o-s-s/icon\",\"concat\",\"o-s-s/badge\",\"o-s-s/skeleton\",\"yield\",\"enable-tooltip\",\"and\",\"not\",\"each\",\"-track-array\",\"o-s-s/tag\"]]",
+    "moduleName": "@upfluence/oss-components/components/o-s-s/stats/banner.hbs",
+    "isStrictMode": false
+  });
+  let OSSStatsBanner = _exports.default = (_class = class OSSStatsBanner extends _component2.default {
+    ensureBlockPresence(hasTitleBlock) {
+      (false && !(hasTitleBlock || Boolean(this.args.titleConfig?.text)) && (0, _debug.assert)('[component][OSS::Stats::Banner] You must pass a title via @titleConfig.text or the "title" named block.', hasTitleBlock || Boolean(this.args.titleConfig?.text)));
+    }
+  }, _applyDecoratedDescriptor(_class.prototype, "ensureBlockPresence", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "ensureBlockPresence"), _class.prototype), _class);
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSStatsBanner);
 });
 ;define("@upfluence/oss-components/components/o-s-s/tag", ["exports", "@ember/component", "@glimmer/component", "@ember/debug", "@ember/template", "@ember/template-factory"], function (_exports, _component, _component2, _debug, _template, _templateFactory) {
   "use strict";
@@ -80561,7 +81087,7 @@ require('@ember/-internals/bootstrap')
       return this.args.hasEllipsis || false;
     }
     get computedClass() {
-      let classes = [BASE_CLASS];
+      const classes = [BASE_CLASS];
       if (this.skin) {
         classes.push(`upf-tag--${this.skin}`);
       }
@@ -80604,6 +81130,7 @@ require('@ember/-internals/bootstrap')
       <Textarea
         @value={{@value}}
         placeholder={{@placeholder}}
+        aria-label={{@ariaLabel}}
         disabled={{@disabled}}
         rows={{this.rows}}
         class="oss-textarea {{this.computedClass}}"
@@ -80616,8 +81143,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "um37+MnC",
-    "block": "[[[10,0],[14,0,\"fx-1\"],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-textarea-container \",[52,[30,0,[\"hasError\"]],\" oss-textarea-container--errored\"]]]],[17,1],[12],[1,\"\\n    \"],[8,[39,1],[[16,\"placeholder\",[30,2]],[16,\"disabled\",[30,3]],[16,\"rows\",[30,0,[\"rows\"]]],[16,0,[29,[\"oss-textarea \",[30,0,[\"computedClass\"]]]]],[4,[38,2],[\"keyup\",[28,[37,3],[[30,0,[\"_onChange\"]],[30,4]],null]],null]],[[\"@value\"],[[30,4]]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,5],[[[1,\"    \"],[10,1],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,[30,5]],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@placeholder\",\"@disabled\",\"@value\",\"@errorMessage\"],false,[\"if\",\"textarea\",\"on\",\"fn\"]]",
+    "id": "Cn4Kvcv1",
+    "block": "[[[10,0],[14,0,\"fx-1\"],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"oss-textarea-container \",[52,[30,0,[\"hasError\"]],\" oss-textarea-container--errored\"]]]],[17,1],[12],[1,\"\\n    \"],[8,[39,1],[[16,\"placeholder\",[30,2]],[16,\"aria-label\",[30,3]],[16,\"disabled\",[30,4]],[16,\"rows\",[30,0,[\"rows\"]]],[16,0,[29,[\"oss-textarea \",[30,0,[\"computedClass\"]]]]],[4,[38,2],[\"keyup\",[28,[37,3],[[30,0,[\"_onChange\"]],[30,5]],null]],null]],[[\"@value\"],[[30,5]]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[30,6],[[[1,\"    \"],[10,1],[14,0,\"font-color-error-500 margin-top-px-6\"],[12],[1,[30,6]],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@placeholder\",\"@ariaLabel\",\"@disabled\",\"@value\",\"@errorMessage\"],false,[\"if\",\"textarea\",\"on\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/text-area.hbs",
     "isStrictMode": false
   });
@@ -80683,7 +81210,7 @@ require('@ember/-internals/bootstrap')
   _exports.default = Tip;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, Tip);
 });
-;define("@upfluence/oss-components/components/o-s-s/togglable-section", ["exports", "@ember/component", "@glimmer/component", "@ember/debug", "@ember/object", "@ember/template-factory"], function (_exports, _component, _component2, _debug, _object, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/togglable-section", ["exports", "@ember/component", "@glimmer/component", "@ember/debug", "@ember/object", "@upfluence/oss-components/utils", "@ember/template-factory"], function (_exports, _component, _component2, _debug, _object, _utils, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -80691,13 +81218,19 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class;
-  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/debug",0,"@ember/object",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@ember/debug",0,"@ember/object",0,"@upfluence/oss-components/utils",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
     <div class="togglable-section fx-1 fx-col border fx-xalign-center" ...attributes>
-    <div class="header-block fx-row {{this.paddingClass}} fx-gap-px-12 fx-xalign-center width-pc-100 inner-header
-                {{if @toggled "background-color-gray-50"}}" {{on "click" this.onHeaderClick}} role="button">
+    <div
+      class="header-block fx-row
+        {{this.paddingClass}}
+        fx-gap-px-12 fx-xalign-center width-pc-100 inner-header
+        {{if @toggled 'background-color-gray-50'}}"
+      {{on "click" this.onHeaderClick}}
+      role="button"
+    >
       {{#if @iconUrl}}
         <img class="upf-badge upf-badge--size-md upf-badge--shape-round" src={{@iconUrl}} alt={{@title}} />
       {{else if @icon}}
@@ -80712,7 +81245,9 @@ require('@ember/-internals/bootstrap')
       {{#if (and (has-block "header-actions"))}}
         {{yield to="header-actions"}}
       {{/if}}
-      <OSS::ToggleSwitch @value={{@toggled}} @onChange={{this.noop}} @disabled={{@disabled}} />
+      {{#if this.isSwitchable}}
+        <OSS::ToggleSwitch @value={{@toggled}} @onChange={{this.noop}} @disabled={{@disabled}} />
+      {{/if}}
     </div>
     {{#if (and (has-block "contents") @toggled)}}
       <hr class="margin-px-0 width-pc-100" />
@@ -80723,28 +81258,30 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "tB4a4vsl",
-    "block": "[[[11,0],[24,0,\"togglable-section fx-1 fx-col border fx-xalign-center\"],[17,1],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"header-block fx-row \",[30,0,[\"paddingClass\"]],\" fx-gap-px-12 fx-xalign-center width-pc-100 inner-header\\n              \",[52,[30,2],\"background-color-gray-50\"]]]],[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onHeaderClick\"]]],null],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[10,\"img\"],[14,0,\"upf-badge upf-badge--size-md upf-badge--shape-round\"],[15,\"src\",[30,3]],[15,\"alt\",[30,4]],[12],[13],[1,\"\\n\"]],[]],[[[41,[30,5],[[[1,\"      \"],[8,[39,2],null,[[\"@style\",\"@icon\"],[[28,[37,3],[[30,5]],null],[28,[37,4],[[30,5]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,6],[[[1,\"      \"],[8,[39,5],null,[[\"@icon\"],[[30,6]]],null],[1,\"\\n    \"]],[]],null]],[]]]],[]]],[1,\"    \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-3\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"font-weight-semibold font-size-md font-color-gray-900\"],[12],[1,[30,4]],[13],[1,\"\\n      \"],[10,1],[14,0,\"font-color-gray-500\"],[12],[1,[30,7]],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[41,[28,[37,6],[[48,[30,9]]],null],[[[1,\"      \"],[18,9,null],[1,\"\\n\"]],[]],null],[1,\"    \"],[8,[39,9],null,[[\"@value\",\"@onChange\",\"@disabled\"],[[30,2],[30,0,[\"noop\"]],[30,8]]],null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[28,[37,6],[[48,[30,10]],[30,2]],null],[[[1,\"    \"],[10,\"hr\"],[14,0,\"margin-px-0 width-pc-100\"],[12],[13],[1,\"\\n    \"],[10,0],[15,0,[29,[\"width-pc-100 \",[30,0,[\"paddingClass\"]],\" content-block\"]]],[12],[1,\"\\n      \"],[18,10,null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@toggled\",\"@iconUrl\",\"@title\",\"@icon\",\"@badgeIcon\",\"@subtitle\",\"@disabled\",\"&header-actions\",\"&contents\"],false,[\"if\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/badge\",\"and\",\"has-block\",\"yield\",\"o-s-s/toggle-switch\"]]",
+    "id": "GRHSnGFU",
+    "block": "[[[11,0],[24,0,\"togglable-section fx-1 fx-col border fx-xalign-center\"],[17,1],[12],[1,\"\\n  \"],[11,0],[16,0,[29,[\"header-block fx-row\\n      \",[30,0,[\"paddingClass\"]],\"\\n      fx-gap-px-12 fx-xalign-center width-pc-100 inner-header\\n      \",[52,[30,2],\"background-color-gray-50\"]]]],[24,\"role\",\"button\"],[4,[38,1],[\"click\",[30,0,[\"onHeaderClick\"]]],null],[12],[1,\"\\n\"],[41,[30,3],[[[1,\"      \"],[10,\"img\"],[14,0,\"upf-badge upf-badge--size-md upf-badge--shape-round\"],[15,\"src\",[30,3]],[15,\"alt\",[30,4]],[12],[13],[1,\"\\n\"]],[]],[[[41,[30,5],[[[1,\"      \"],[8,[39,2],null,[[\"@style\",\"@icon\"],[[28,[37,3],[[30,5]],null],[28,[37,4],[[30,5]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,6],[[[1,\"      \"],[8,[39,5],null,[[\"@icon\"],[[30,6]]],null],[1,\"\\n    \"]],[]],null]],[]]]],[]]],[1,\"    \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-3\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"font-weight-semibold font-size-md font-color-gray-900\"],[12],[1,[30,4]],[13],[1,\"\\n      \"],[10,1],[14,0,\"font-color-gray-500\"],[12],[1,[30,7]],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[41,[28,[37,6],[[48,[30,9]]],null],[[[1,\"      \"],[18,9,null],[1,\"\\n\"]],[]],null],[41,[30,0,[\"isSwitchable\"]],[[[1,\"      \"],[8,[39,9],null,[[\"@value\",\"@onChange\",\"@disabled\"],[[30,2],[30,0,[\"noop\"]],[30,8]]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[41,[28,[37,6],[[48,[30,10]],[30,2]],null],[[[1,\"    \"],[10,\"hr\"],[14,0,\"margin-px-0 width-pc-100\"],[12],[13],[1,\"\\n    \"],[10,0],[15,0,[29,[\"width-pc-100 \",[30,0,[\"paddingClass\"]],\" content-block\"]]],[12],[1,\"\\n      \"],[18,10,null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@toggled\",\"@iconUrl\",\"@title\",\"@icon\",\"@badgeIcon\",\"@subtitle\",\"@disabled\",\"&header-actions\",\"&contents\"],false,[\"if\",\"on\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\",\"o-s-s/badge\",\"and\",\"has-block\",\"yield\",\"o-s-s/toggle-switch\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/togglable-section.hbs",
     "isStrictMode": false
   });
-  let CampaignTogglableSection = _exports.default = (_class = class CampaignTogglableSection extends _component2.default {
+  var _default = _exports.default = (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, (_class = class extends _component2.default {
     constructor(owner, args) {
       super(owner, args);
-      (false && !(typeof args.title === 'string') && (0, _debug.assert)('[OSS::TogglableSection] The @title parameter is mandatory', typeof args.title === 'string'));
+      (false && !(typeof args.title === 'string' || (0, _utils.isSafeString)(args.title)) && (0, _debug.assert)('[OSS::TogglableSection] The @title parameter is mandatory', typeof args.title === 'string' || (0, _utils.isSafeString)(args.title)));
       (false && !(typeof args.toggled === 'boolean') && (0, _debug.assert)('[OSS::TogglableSection] The @toggled parameter is mandatory', typeof args.toggled === 'boolean'));
       (false && !(args.onChange) && (0, _debug.assert)('[OSS::TogglableSection] The @onChange function is mandatory', args.onChange));
     }
     get paddingClass() {
       return this.args.size === 'sm' ? 'padding-px-12' : 'padding-px-18';
     }
+    get isSwitchable() {
+      return this.args.switchable ?? true;
+    }
     onHeaderClick() {
-      if (this.args.disabled) return;
+      if (this.args.disabled || !this.isSwitchable) return;
       this.args.onChange(!this.args.toggled);
     }
     noop() {}
-  }, _applyDecoratedDescriptor(_class.prototype, "onHeaderClick", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onHeaderClick"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "noop", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "noop"), _class.prototype), _class);
-  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, CampaignTogglableSection);
+  }, _applyDecoratedDescriptor(_class.prototype, "onHeaderClick", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onHeaderClick"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "noop", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "noop"), _class.prototype), _class));
 });
 ;define("@upfluence/oss-components/components/o-s-s/toggle-buttons", ["exports", "@ember/component", "@ember/debug", "@glimmer/component", "@ember/object", "@ember/template-factory"], function (_exports, _component, _debug, _component2, _object, _templateFactory) {
   "use strict";
@@ -80766,10 +81303,13 @@ require('@ember/-internals/bootstrap')
       <div
         class="oss-toggle-buttons-btn {{if (eq @selectedToggle toggle.value) ' oss-toggle-buttons-btn--selected'}}"
         role="button"
+        data-control-name={{concat "oss-toggle-button-option-" toggle.value}}
         {{on "click" (fn this.onSelectToggle toggle.value)}}
       >
         {{#if toggle.icon}}
           <OSS::Icon @style={{fa-icon-style toggle.icon}} @icon={{fa-icon-value toggle.icon}} />
+        {{else if toggle.image}}
+          <img src={{toggle.image}} role="presentation" alt="" />
         {{/if}}
         {{toggle.label}}
       </div>
@@ -80777,8 +81317,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "SZrXxblj",
-    "block": "[[[11,0],[16,0,[28,[37,0],[\"oss-toggle-buttons-container \",[52,[30,1],\"oss-toggle-buttons-container--disabled\"]],null]],[17,2],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"    \"],[11,0],[16,0,[29,[\"oss-toggle-buttons-btn \",[52,[28,[37,4],[[30,5],[30,4,[\"value\"]]],null],\" oss-toggle-buttons-btn--selected\"]]]],[24,\"role\",\"button\"],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"onSelectToggle\"]],[30,4,[\"value\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,4,[\"icon\"]],[[[1,\"        \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[[28,[37,8],[[30,4,[\"icon\"]]],null],[28,[37,9],[[30,4,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],null],[1,\"      \"],[1,[30,4,[\"label\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[4]],null],[13]],[\"@disabled\",\"&attrs\",\"@toggles\",\"toggle\",\"@selectedToggle\"],false,[\"concat\",\"if\",\"each\",\"-track-array\",\"eq\",\"on\",\"fn\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
+    "id": "uqZ+xmzu",
+    "block": "[[[11,0],[16,0,[28,[37,0],[\"oss-toggle-buttons-container \",[52,[30,1],\"oss-toggle-buttons-container--disabled\"]],null]],[17,2],[12],[1,\"\\n\"],[42,[28,[37,3],[[28,[37,3],[[30,3]],null]],null],null,[[[1,\"    \"],[11,0],[16,0,[29,[\"oss-toggle-buttons-btn \",[52,[28,[37,4],[[30,5],[30,4,[\"value\"]]],null],\" oss-toggle-buttons-btn--selected\"]]]],[24,\"role\",\"button\"],[16,\"data-control-name\",[28,[37,0],[\"oss-toggle-button-option-\",[30,4,[\"value\"]]],null]],[4,[38,5],[\"click\",[28,[37,6],[[30,0,[\"onSelectToggle\"]],[30,4,[\"value\"]]],null]],null],[12],[1,\"\\n\"],[41,[30,4,[\"icon\"]],[[[1,\"        \"],[8,[39,7],null,[[\"@style\",\"@icon\"],[[28,[37,8],[[30,4,[\"icon\"]]],null],[28,[37,9],[[30,4,[\"icon\"]]],null]]],null],[1,\"\\n\"]],[]],[[[41,[30,4,[\"image\"]],[[[1,\"        \"],[10,\"img\"],[15,\"src\",[30,4,[\"image\"]]],[14,\"role\",\"presentation\"],[14,\"alt\",\"\"],[12],[13],[1,\"\\n      \"]],[]],null]],[]]],[1,\"      \"],[1,[30,4,[\"label\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[4]],null],[13]],[\"@disabled\",\"&attrs\",\"@toggles\",\"toggle\",\"@selectedToggle\"],false,[\"concat\",\"if\",\"each\",\"-track-array\",\"eq\",\"on\",\"fn\",\"o-s-s/icon\",\"fa-icon-style\",\"fa-icon-value\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/toggle-buttons.hbs",
     "isStrictMode": false
   });
@@ -80814,6 +81354,9 @@ require('@ember/-internals/bootstrap')
   /*
     <div
     class="upf-toggle {{if @value 'upf-toggle--toggled'}} {{if @disabled 'upf-toggle--disabled'}}"
+    role="checkbox"
+    aria-checked={{if @value "true" "false"}}
+    tabindex="0"
     {{on "click" this.switchState}}
     ...attributes
   >
@@ -80825,8 +81368,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "22iguFhG",
-    "block": "[[[11,0],[16,0,[29,[\"upf-toggle \",[52,[30,1],\"upf-toggle--toggled\"],\" \",[52,[30,2],\"upf-toggle--disabled\"]]]],[17,3],[4,[38,1],[\"click\",[30,0,[\"switchState\"]]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"upf-toggle__switch\"],[12],[1,\"\\n\"],[41,[30,1],[[[1,\"      \"],[8,[39,2],null,[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@value\",\"@disabled\",\"&attrs\"],false,[\"if\",\"on\",\"o-s-s/icon\"]]",
+    "id": "1IylgYqJ",
+    "block": "[[[11,0],[16,0,[29,[\"upf-toggle \",[52,[30,1],\"upf-toggle--toggled\"],\" \",[52,[30,2],\"upf-toggle--disabled\"]]]],[24,\"role\",\"checkbox\"],[16,\"aria-checked\",[52,[30,1],\"true\",\"false\"]],[24,\"tabindex\",\"0\"],[17,3],[4,[38,1],[\"click\",[30,0,[\"switchState\"]]],null],[12],[1,\"\\n  \"],[10,0],[14,0,\"upf-toggle__switch\"],[12],[1,\"\\n\"],[41,[30,1],[[[1,\"      \"],[8,[39,2],null,[[\"@icon\"],[\"fa-check\"]],null],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@value\",\"@disabled\",\"&attrs\"],false,[\"if\",\"on\",\"o-s-s/icon\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/toggle-switch.hbs",
     "isStrictMode": false
   });
@@ -80845,7 +81388,7 @@ require('@ember/-internals/bootstrap')
   }, _applyDecoratedDescriptor(_class.prototype, "switchState", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "switchState"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSToggleSwitchComponent);
 });
-;define("@upfluence/oss-components/components/o-s-s/upload-area", ["exports", "@ember/component", "@glimmer/component", "@glimmer/tracking", "@ember/debug", "@ember/object", "@ember/service", "@upfluence/oss-components/types/uploader", "@ember/utils", "@upfluence/oss-components/utils", "@ember/template-factory"], function (_exports, _component, _component2, _tracking, _debug, _object, _service, _uploader, _utils, _utils2, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/upload-area", ["exports", "@ember/component", "@ember/debug", "@ember/object", "@ember/service", "@ember/utils", "@glimmer/component", "@glimmer/tracking", "@upfluence/oss-components/types/uploader", "@upfluence/oss-components/utils", "@ember/template-factory"], function (_exports, _component, _debug, _object, _service, _utils, _component2, _tracking, _uploader, _utils2, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -80853,7 +81396,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
-  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@upfluence/oss-components/types/uploader",0,"@ember/utils",0,"@upfluence/oss-components/utils",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@ember/utils",0,"@glimmer/component",0,"@glimmer/tracking",0,"@upfluence/oss-components/types/uploader",0,"@upfluence/oss-components/utils",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
@@ -80866,6 +81409,8 @@ require('@ember/-internals/bootstrap')
     {{#if this.displayUploadArea}}
       <div
         class={{this.computedClass}}
+        role="button"
+        tabindex="0"
         {{on "dragover" this._allowDropEvent}}
         {{on "dragenter" this._onDragEnter}}
         {{on "dragleave" this._onDragLeave}}
@@ -80933,7 +81478,12 @@ require('@ember/-internals/bootstrap')
       </div>
     {{/if}}
   
-    <input type="file" {{on "change" this.onFileSelected}} {{did-insert this.assignFileInput}} />
+    <input
+      type="file"
+      aria-label={{t "oss-components.upload-area.file_input_label"}}
+      {{on "change" this.onFileSelected}}
+      {{did-insert this.assignFileInput}}
+    />
     {{#if this.feedbackMessage.value}}
       <span class={{concat "fx-row font-color-" this.feedbackMessage.type "-500 padding-top-px-6"}}>
         {{this.feedbackMessage.value}}
@@ -80942,8 +81492,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "TEMahQC3",
-    "block": "[[[10,0],[14,0,\"oss-upload-area-container fx-1\"],[12],[1,\"\\n\"],[41,[30,0,[\"displayUploadArea\"]],[[[1,\"    \"],[11,0],[16,0,[30,0,[\"computedClass\"]]],[17,1],[4,[38,1],[\"dragover\",[30,0,[\"_allowDropEvent\"]]],null],[4,[38,1],[\"dragenter\",[30,0,[\"_onDragEnter\"]]],null],[4,[38,1],[\"dragleave\",[30,0,[\"_onDragLeave\"]]],null],[4,[38,1],[\"drop\",[30,0,[\"_onDrop\"]]],null],[4,[38,1],[\"click\",[30,0,[\"triggerFileBrowser\"]]],null],[4,[38,1],[\"mouseenter\",[30,0,[\"_mouseEnter\"]]],null],[4,[38,1],[\"mouseleave\",[30,0,[\"_mouseLeave\"]]],null],[4,[38,2],[[30,0,[\"onInit\"]]],null],[12],[1,\"\\n      \"],[10,0],[15,0,[29,[\"fx-gap-px-18 fx-xalign-center \",[52,[28,[37,3],[[30,0,[\"size\"]],\"lg\"],null],\"fx-col\",\"fx-row fx-1\"]]]],[12],[1,\"\\n        \"],[10,0],[15,0,[30,0,[\"computedClassIllustration\"]]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"            \"],[10,\"img\"],[15,\"src\",[28,[37,4],[[28,[37,5],[\"@upfluence/oss-components/assets/images/upload-area/disabled-\",[30,0,[\"size\"]],\".svg\"],null]],null]],[14,\"alt\",\"Upload area - disabled\"],[12],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"img\"],[15,\"src\",[28,[37,4],[[28,[37,5],[\"@upfluence/oss-components/assets/images/upload-area/default-\",[30,0,[\"size\"]],\".svg\"],null]],null]],[14,\"alt\",\"Upload area\"],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\\n        \"],[10,0],[15,0,[29,[\"fx-col fx-gap-px-3 \",[52,[28,[37,3],[[30,0,[\"size\"]],\"lg\"],null],\"fx-xalign-center\"]]]],[12],[1,\"\\n          \"],[10,0],[15,0,[52,[30,2],\"font-color-gray-500\",\"font-color-gray-900\"]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"              \"],[1,[28,[35,6],[\"oss-components.upload-area.drop_file.disabled\"],null]],[1,\"\\n\"]],[]],[[[1,\"              \"],[1,[28,[35,6],[\"oss-components.upload-area.drop_file.default\"],null]],[1,\"\\n              \"],[8,[39,7],[[4,[38,1],[\"click\",[30,0,[\"triggerFileBrowser\"]]],null]],[[\"@label\"],[[28,[37,6],[\"oss-components.upload-area.browse\"],null]]],null],[1,\"\\n\"]],[]]],[1,\"          \"],[13],[1,\"\\n\\n\"],[41,[30,3],[[[1,\"            \"],[10,1],[14,0,\"font-color-gray-500\"],[12],[1,\"\\n              \"],[1,[30,3]],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"selectedFiles\"]],[[[1,\"    \"],[10,0],[15,0,[29,[\"fx-col fx-gap-px-6 \",[52,[30,0,[\"multiple\"]],\"margin-top-px-12\"]]]],[12],[1,\"\\n\"],[42,[28,[37,9],[[28,[37,9],[[30,0,[\"selectedFiles\"]]],null]],null],null,[[[1,\"        \"],[8,[39,10],null,[[\"@uploader\",\"@file\",\"@rules\",\"@scope\",\"@privacy\",\"@onEdition\",\"@onDeletion\",\"@onUploadSuccess\",\"@onUploadFailure\",\"@displayPreview\"],[[30,6],[30,4],[30,7],[30,0,[\"scope\"]],[30,0,[\"filePrivacy\"]],[28,[37,11],[[30,0,[\"onFileEdition\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onFileDeletion\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onUploadSuccess\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onUploadFailure\"]],[30,5]],null],[30,8]]],null],[1,\"\\n\"]],[4,5]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n  \"],[11,\"input\"],[24,4,\"file\"],[4,[38,1],[\"change\",[30,0,[\"onFileSelected\"]]],null],[4,[38,2],[[30,0,[\"assignFileInput\"]]],null],[12],[13],[1,\"\\n\"],[41,[30,0,[\"feedbackMessage\",\"value\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,5],[\"fx-row font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500 padding-top-px-6\"],null]],[12],[1,\"\\n      \"],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@disabled\",\"@subtitle\",\"selectedFile\",\"index\",\"@uploader\",\"@rules\",\"@displayPreview\"],false,[\"if\",\"on\",\"did-insert\",\"eq\",\"asset-map\",\"concat\",\"t\",\"o-s-s/link\",\"each\",\"-track-array\",\"o-s-s/upload-item\",\"fn\"]]",
+    "id": "wTbL+Y/1",
+    "block": "[[[10,0],[14,0,\"oss-upload-area-container fx-1\"],[12],[1,\"\\n\"],[41,[30,0,[\"displayUploadArea\"]],[[[1,\"    \"],[11,0],[16,0,[30,0,[\"computedClass\"]]],[24,\"role\",\"button\"],[24,\"tabindex\",\"0\"],[17,1],[4,[38,1],[\"dragover\",[30,0,[\"_allowDropEvent\"]]],null],[4,[38,1],[\"dragenter\",[30,0,[\"_onDragEnter\"]]],null],[4,[38,1],[\"dragleave\",[30,0,[\"_onDragLeave\"]]],null],[4,[38,1],[\"drop\",[30,0,[\"_onDrop\"]]],null],[4,[38,1],[\"click\",[30,0,[\"triggerFileBrowser\"]]],null],[4,[38,1],[\"mouseenter\",[30,0,[\"_mouseEnter\"]]],null],[4,[38,1],[\"mouseleave\",[30,0,[\"_mouseLeave\"]]],null],[4,[38,2],[[30,0,[\"onInit\"]]],null],[12],[1,\"\\n      \"],[10,0],[15,0,[29,[\"fx-gap-px-18 fx-xalign-center \",[52,[28,[37,3],[[30,0,[\"size\"]],\"lg\"],null],\"fx-col\",\"fx-row fx-1\"]]]],[12],[1,\"\\n        \"],[10,0],[15,0,[30,0,[\"computedClassIllustration\"]]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"            \"],[10,\"img\"],[15,\"src\",[28,[37,4],[[28,[37,5],[\"@upfluence/oss-components/assets/images/upload-area/disabled-\",[30,0,[\"size\"]],\".svg\"],null]],null]],[14,\"alt\",\"Upload area - disabled\"],[12],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"img\"],[15,\"src\",[28,[37,4],[[28,[37,5],[\"@upfluence/oss-components/assets/images/upload-area/default-\",[30,0,[\"size\"]],\".svg\"],null]],null]],[14,\"alt\",\"Upload area\"],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\\n        \"],[10,0],[15,0,[29,[\"fx-col fx-gap-px-3 \",[52,[28,[37,3],[[30,0,[\"size\"]],\"lg\"],null],\"fx-xalign-center\"]]]],[12],[1,\"\\n          \"],[10,0],[15,0,[52,[30,2],\"font-color-gray-500\",\"font-color-gray-900\"]],[12],[1,\"\\n\"],[41,[30,2],[[[1,\"              \"],[1,[28,[35,6],[\"oss-components.upload-area.drop_file.disabled\"],null]],[1,\"\\n\"]],[]],[[[1,\"              \"],[1,[28,[35,6],[\"oss-components.upload-area.drop_file.default\"],null]],[1,\"\\n              \"],[8,[39,7],[[4,[38,1],[\"click\",[30,0,[\"triggerFileBrowser\"]]],null]],[[\"@label\"],[[28,[37,6],[\"oss-components.upload-area.browse\"],null]]],null],[1,\"\\n\"]],[]]],[1,\"          \"],[13],[1,\"\\n\\n\"],[41,[30,3],[[[1,\"            \"],[10,1],[14,0,\"font-color-gray-500\"],[12],[1,\"\\n              \"],[1,[30,3]],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],null],[1,\"        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"selectedFiles\"]],[[[1,\"    \"],[10,0],[15,0,[29,[\"fx-col fx-gap-px-6 \",[52,[30,0,[\"multiple\"]],\"margin-top-px-12\"]]]],[12],[1,\"\\n\"],[42,[28,[37,9],[[28,[37,9],[[30,0,[\"selectedFiles\"]]],null]],null],null,[[[1,\"        \"],[8,[39,10],null,[[\"@uploader\",\"@file\",\"@rules\",\"@scope\",\"@privacy\",\"@onEdition\",\"@onDeletion\",\"@onUploadSuccess\",\"@onUploadFailure\",\"@displayPreview\"],[[30,6],[30,4],[30,7],[30,0,[\"scope\"]],[30,0,[\"filePrivacy\"]],[28,[37,11],[[30,0,[\"onFileEdition\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onFileDeletion\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onUploadSuccess\"]],[30,5]],null],[28,[37,11],[[30,0,[\"onUploadFailure\"]],[30,5]],null],[30,8]]],null],[1,\"\\n\"]],[4,5]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n  \"],[11,\"input\"],[16,\"aria-label\",[28,[37,6],[\"oss-components.upload-area.file_input_label\"],null]],[24,4,\"file\"],[4,[38,1],[\"change\",[30,0,[\"onFileSelected\"]]],null],[4,[38,2],[[30,0,[\"assignFileInput\"]]],null],[12],[13],[1,\"\\n\"],[41,[30,0,[\"feedbackMessage\",\"value\"]],[[[1,\"    \"],[10,1],[15,0,[28,[37,5],[\"fx-row font-color-\",[30,0,[\"feedbackMessage\",\"type\"]],\"-500 padding-top-px-6\"],null]],[12],[1,\"\\n      \"],[1,[30,0,[\"feedbackMessage\",\"value\"]]],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],null],[13]],[\"&attrs\",\"@disabled\",\"@subtitle\",\"selectedFile\",\"index\",\"@uploader\",\"@rules\",\"@displayPreview\"],false,[\"if\",\"on\",\"did-insert\",\"eq\",\"asset-map\",\"concat\",\"t\",\"o-s-s/link\",\"each\",\"-track-array\",\"o-s-s/upload-item\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/upload-area.hbs",
     "isStrictMode": false
   });
@@ -80982,7 +81532,6 @@ require('@ember/-internals/bootstrap')
       const classes = ['oss-upload-area__illustration'];
       if (this.dragging || this.hover) {
         classes.push(`oss-upload-area__illustration--dragging-start`);
-        this.alreadyTriggerAnimation = true;
       } else if (this.alreadyTriggerAnimation) {
         classes.push(`oss-upload-area__illustration--dragging-end`);
       }
@@ -81038,6 +81587,7 @@ require('@ember/-internals/bootstrap')
     _onDragEnter() {
       if (this.args.disabled) return;
       this.dragging = true;
+      this.alreadyTriggerAnimation = true;
     }
     _onDragLeave(event) {
       if (this.args.disabled) return;
@@ -81056,6 +81606,7 @@ require('@ember/-internals/bootstrap')
     _mouseEnter() {
       if (this.args.disabled) return;
       this.hover = true;
+      this.alreadyTriggerAnimation = true;
     }
     _mouseLeave() {
       if (this.args.disabled) return;
@@ -81080,17 +81631,18 @@ require('@ember/-internals/bootstrap')
       }
     }
     onUploadFailure(index, error) {
+      this.toast.error(this.intl.t('oss-components.upload-area.errors.upload_failed.description'), this.intl.t('oss-components.upload-area.errors.upload_failed.title'));
       if (this.multiple) {
         this.args.onUploadFailure?.(index, error);
       } else {
         this.args.onUploadFailure?.(error);
       }
     }
-    _handleFileUpload(file) {
+    async _handleFileUpload(file) {
       if (this.args.disabled) return;
       this.args.onHandleFileUpload?.();
       this.localFeedbackMessage = undefined;
-      if (this._validateFile(file)) {
+      if (await this._validateFile(file)) {
         if (this.args.onDryRun) {
           this.args.onDryRun(file);
           return;
@@ -81104,13 +81656,13 @@ require('@ember/-internals/bootstrap')
         }
       }
     }
-    _validateFile(file) {
+    async _validateFile(file) {
       const request = {
         file,
         privacy: this.filePrivacy,
         scope: this.scope
       };
-      const validationResponse = this.args.uploader.validate(request, this.args.rules || []);
+      const validationResponse = await this.args.uploader.validate(request, this.args.rules || []);
       if (validationResponse.passes) {
         return true;
       }
@@ -81174,7 +81726,7 @@ require('@ember/-internals/bootstrap')
   }), _applyDecoratedDescriptor(_class.prototype, "onInit", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onInit"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "assignFileInput", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "assignFileInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "triggerFileBrowser", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "triggerFileBrowser"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onFileSelected", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onFileSelected"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onFileEdition", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onFileEdition"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_allowDropEvent", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_allowDropEvent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_onDragEnter", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_onDragEnter"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_onDragLeave", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_onDragLeave"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_onDrop", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_onDrop"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_mouseEnter", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_mouseEnter"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "_mouseLeave", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "_mouseLeave"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onFileDeletion", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onFileDeletion"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onUploadSuccess", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadSuccess"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onUploadFailure", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadFailure"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSUploadArea);
 });
-;define("@upfluence/oss-components/components/o-s-s/upload-item", ["exports", "@ember/component", "@glimmer/component", "@glimmer/tracking", "@ember/object", "@upfluence/oss-components/utils/filesize-parser", "@ember/template-factory"], function (_exports, _component, _component2, _tracking, _object, _filesizeParser, _templateFactory) {
+;define("@upfluence/oss-components/components/o-s-s/upload-item", ["exports", "@ember/component", "@ember/object", "@ember/template", "@glimmer/component", "@glimmer/tracking", "@upfluence/oss-components/utils/filesize-parser", "@ember/template-factory"], function (_exports, _component, _object, _template, _component2, _tracking, _filesizeParser, _templateFactory) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -81182,7 +81734,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
-  0; //eaimeta@70e063a35619d71f0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/object",0,"@upfluence/oss-components/utils/filesize-parser",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/object",0,"@ember/template",0,"@glimmer/component",0,"@glimmer/tracking",0,"@upfluence/oss-components/utils/filesize-parser",0,"@ember/template-factory",0,"@ember/component"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
   function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
@@ -81215,8 +81767,7 @@ require('@ember/-internals/bootstrap')
   
       <div class="fx-row fx-gap-px-6 fx-xalign-center">
         {{#if this.uploading}}
-          {{! template-lint-disable no-triple-curlies}}
-          <div class="oss-upload-item__loader" style={{{this.loaderStyle}}}>
+          <div class="oss-upload-item__loader" style={{this.loaderStyle}}>
             <div class="value">
               {{this.uploadProgress}}
             </div>
@@ -81244,7 +81795,7 @@ require('@ember/-internals/bootstrap')
               @icon="far fa-eye"
               @square={{true}}
               data-control-name="upload-item-view-button"
-              {{on "click" (redirect-to url=this.fileUrl target="_blank")}}
+              {{on "click" (fn this.viewItem this.fileUrl)}}
               {{enable-tooltip title=(t "oss-components.upload-area.tooltips.view")}}
             />
           {{/if}}
@@ -81262,8 +81813,8 @@ require('@ember/-internals/bootstrap')
   </div>
   */
   {
-    "id": "vpSxBY6U",
-    "block": "[[[10,0],[15,0,[29,[\"oss-upload-item \",[52,[30,0,[\"error\"]],\"oss-upload-item--errored\"]]]],[12],[1,\"\\n\"],[41,[30,0,[\"shouldDisplayPreview\"]],[[[1,\"    \"],[10,0],[14,0,\"upf-badge upf-badge--shape-round upf-badge--size-md\"],[15,5,[30,0,[\"dynamicBackgroundImage\"]]],[12],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[8,[39,1],null,[[\"@icon\"],[[30,0,[\"icon\"]]]],null],[1,\"\\n\"]],[]]],[1,\"\\n  \"],[10,0],[14,0,\"fx-row fx-1 fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-3\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"font-color-gray-900 text-ellipsis padding-right-px-12\"],[14,\"data-control-name\",\"upload-item-filename\"],[12],[1,\"\\n        \"],[1,[30,0,[\"filename\"]]],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"error\"]],[[[1,\"        \"],[10,1],[14,0,\"font-color-error-500\"],[12],[1,[28,[35,2],[\"oss-components.upload-area.errors.server\"],null]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"filesize\"]],[[[1,\"        \"],[10,1],[14,0,\"font-color-gray-500\"],[14,\"data-control-name\",\"upload-item-filesize\"],[12],[1,\"\\n          \"],[1,[30,0,[\"filesize\"]]],[1,\"\\n        \"],[13],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,0,[\"uploading\"]],[[[1,\"        \"],[10,0],[14,0,\"oss-upload-item__loader\"],[22,5,[30,0,[\"loaderStyle\"]]],[12],[1,\"\\n          \"],[10,0],[14,0,\"value\"],[12],[1,\"\\n            \"],[1,[30,0,[\"uploadProgress\"]]],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"error\"]],[[[1,\"          \"],[11,1],[24,0,\"fx-row fx-gap-px-6 font-color-gray-500 fx-xalign-center\"],[24,\"role\",\"button\"],[24,\"data-control-name\",\"upload-item-try-again-button\"],[4,[38,3],[\"click\",[30,0,[\"performUpload\"]]],null],[12],[1,\"\\n            \"],[8,[39,4],null,[[\"@icon\"],[\"fa-redo\"]],null],[1,\"\\n            \"],[1,[28,[35,2],[\"oss-components.upload-area.errors.try_again\"],null]],[1,\"\\n          \"],[13],[1,\"\\n\"]],[]],[[[1,\"          \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-edit-button\"],[4,[38,3],[\"click\",[30,1]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.edit\"],null],\"top\"]]]],[[\"@icon\",\"@square\"],[\"far fa-pen\",true]],null],[1,\"\\n          \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-view-button\"],[4,[38,3],[\"click\",[28,[37,7],null,[[\"url\",\"target\"],[[30,0,[\"fileUrl\"]],\"_blank\"]]]],null],[4,[38,6],null,[[\"title\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.view\"],null]]]]],[[\"@icon\",\"@square\"],[\"far fa-eye\",true]],null],[1,\"\\n\"]],[]]],[1,\"\\n        \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-remove-button\"],[4,[38,3],[\"click\",[30,2]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.delete\"],null],\"top\"]]]],[[\"@icon\",\"@square\"],[\"far fa-trash\",true]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"@onEdition\",\"@onDeletion\"],false,[\"if\",\"o-s-s/badge\",\"t\",\"on\",\"o-s-s/icon\",\"o-s-s/button\",\"enable-tooltip\",\"redirect-to\"]]",
+    "id": "INPxxSnw",
+    "block": "[[[10,0],[15,0,[29,[\"oss-upload-item \",[52,[30,0,[\"error\"]],\"oss-upload-item--errored\"]]]],[12],[1,\"\\n\"],[41,[30,0,[\"shouldDisplayPreview\"]],[[[1,\"    \"],[10,0],[14,0,\"upf-badge upf-badge--shape-round upf-badge--size-md\"],[15,5,[30,0,[\"dynamicBackgroundImage\"]]],[12],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[8,[39,1],null,[[\"@icon\"],[[30,0,[\"icon\"]]]],null],[1,\"\\n\"]],[]]],[1,\"\\n  \"],[10,0],[14,0,\"fx-row fx-1 fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"fx-col fx-1 fx-gap-px-3\"],[12],[1,\"\\n      \"],[10,1],[14,0,\"font-color-gray-900 text-ellipsis padding-right-px-12\"],[14,\"data-control-name\",\"upload-item-filename\"],[12],[1,\"\\n        \"],[1,[30,0,[\"filename\"]]],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"error\"]],[[[1,\"        \"],[10,1],[14,0,\"font-color-error-500\"],[12],[1,[28,[35,2],[\"oss-components.upload-area.errors.server\"],null]],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"filesize\"]],[[[1,\"        \"],[10,1],[14,0,\"font-color-gray-500\"],[14,\"data-control-name\",\"upload-item-filesize\"],[12],[1,\"\\n          \"],[1,[30,0,[\"filesize\"]]],[1,\"\\n        \"],[13],[1,\"\\n      \"]],[]],null]],[]]],[1,\"    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-6 fx-xalign-center\"],[12],[1,\"\\n\"],[41,[30,0,[\"uploading\"]],[[[1,\"        \"],[10,0],[14,0,\"oss-upload-item__loader\"],[15,5,[30,0,[\"loaderStyle\"]]],[12],[1,\"\\n          \"],[10,0],[14,0,\"value\"],[12],[1,\"\\n            \"],[1,[30,0,[\"uploadProgress\"]]],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"error\"]],[[[1,\"          \"],[11,1],[24,0,\"fx-row fx-gap-px-6 font-color-gray-500 fx-xalign-center\"],[24,\"role\",\"button\"],[24,\"data-control-name\",\"upload-item-try-again-button\"],[4,[38,3],[\"click\",[30,0,[\"performUpload\"]]],null],[12],[1,\"\\n            \"],[8,[39,4],null,[[\"@icon\"],[\"fa-redo\"]],null],[1,\"\\n            \"],[1,[28,[35,2],[\"oss-components.upload-area.errors.try_again\"],null]],[1,\"\\n          \"],[13],[1,\"\\n\"]],[]],[[[1,\"          \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-edit-button\"],[4,[38,3],[\"click\",[30,1]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.edit\"],null],\"top\"]]]],[[\"@icon\",\"@square\"],[\"far fa-pen\",true]],null],[1,\"\\n          \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-view-button\"],[4,[38,3],[\"click\",[28,[37,7],[[30,0,[\"viewItem\"]],[30,0,[\"fileUrl\"]]],null]],null],[4,[38,6],null,[[\"title\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.view\"],null]]]]],[[\"@icon\",\"@square\"],[\"far fa-eye\",true]],null],[1,\"\\n\"]],[]]],[1,\"\\n        \"],[8,[39,5],[[24,\"data-control-name\",\"upload-item-remove-button\"],[4,[38,3],[\"click\",[30,2]],null],[4,[38,6],null,[[\"title\",\"placement\"],[[28,[37,2],[\"oss-components.upload-area.tooltips.delete\"],null],\"top\"]]]],[[\"@icon\",\"@square\"],[\"far fa-trash\",true]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"@onEdition\",\"@onDeletion\"],false,[\"if\",\"o-s-s/badge\",\"t\",\"on\",\"o-s-s/icon\",\"o-s-s/button\",\"enable-tooltip\",\"fn\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/upload-item.hbs",
     "isStrictMode": false
   });
@@ -81307,9 +81858,9 @@ require('@ember/-internals/bootstrap')
     }
     get loaderStyle() {
       const angle = this.uploadProgress / 100 * 360;
-      return `
+      return (0, _template.htmlSafe)(`
         background-image: conic-gradient(var(--color-primary-500) ${angle}deg, transparent ${angle + 0.5}deg 100%),
-                          conic-gradient(var(--color-border-default) 360deg 100%);`;
+                          conic-gradient(var(--color-border-default) 360deg 100%);`);
     }
     get displayPreview() {
       return this.args.displayPreview || false;
@@ -81335,11 +81886,16 @@ require('@ember/-internals/bootstrap')
     onProgress(event) {
       this.uploadProgress = Math.trunc(event.loaded / event.total * 100);
     }
-    performUpload() {
+    performUpload(event) {
+      event?.stopPropagation();
       if (this.request) {
         this.uploading = true;
+        this.error = undefined;
         this.args.uploader.upload(this.request, this.args.rules);
       }
+    }
+    viewItem(url) {
+      window.open(url, '_blank');
     }
     _extractFileTypeCategory() {
       const mimetype = this.args.file instanceof File ? this.args.file.type : this.args.file.content_type;
@@ -81375,7 +81931,7 @@ require('@ember/-internals/bootstrap')
     enumerable: true,
     writable: true,
     initializer: null
-  }), _applyDecoratedDescriptor(_class.prototype, "onUploadSuccess", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadSuccess"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onUploadFailure", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadFailure"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onProgress", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onProgress"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "performUpload", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "performUpload"), _class.prototype), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "onUploadSuccess", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadSuccess"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onUploadFailure", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onUploadFailure"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onProgress", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onProgress"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "performUpload", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "performUpload"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "viewItem", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "viewItem"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, OSSUploadItem);
 });
 ;define("@upfluence/oss-components/components/o-s-s/url-input", ["exports", "@ember/component", "@ember/object", "@ember/service", "@glimmer/tracking", "@glimmer/component", "@ember/template-factory"], function (_exports, _component, _object, _service, _tracking, _component2, _templateFactory) {
@@ -81395,14 +81951,20 @@ require('@ember/-internals/bootstrap')
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <OSS::InputGroup @value={{@value}} @prefix={{@prefix}} @suffix={{@suffix}}
-                   @placeholder={{@placeholder}} @errorMessage={{this.errorLabel}}
-                   @onChange={{this.onInputChanged}} @disabled={{@disabled}} ...attributes />
-  
+    <OSS::InputGroup
+    @value={{@value}}
+    @prefix={{@prefix}}
+    @suffix={{@suffix}}
+    @placeholder={{@placeholder}}
+    @errorMessage={{this.errorLabel}}
+    @onChange={{this.onInputChanged}}
+    @disabled={{@disabled}}
+    ...attributes
+  />
   */
   {
-    "id": "QKFrJt92",
-    "block": "[[[8,[39,0],[[17,1]],[[\"@value\",\"@prefix\",\"@suffix\",\"@placeholder\",\"@errorMessage\",\"@onChange\",\"@disabled\"],[[30,2],[30,3],[30,4],[30,5],[30,0,[\"errorLabel\"]],[30,0,[\"onInputChanged\"]],[30,6]]],null],[1,\"\\n\"]],[\"&attrs\",\"@value\",\"@prefix\",\"@suffix\",\"@placeholder\",\"@disabled\"],false,[\"o-s-s/input-group\"]]",
+    "id": "m4eommfd",
+    "block": "[[[8,[39,0],[[17,1]],[[\"@value\",\"@prefix\",\"@suffix\",\"@placeholder\",\"@errorMessage\",\"@onChange\",\"@disabled\"],[[30,2],[30,3],[30,4],[30,5],[30,0,[\"errorLabel\"]],[30,0,[\"onInputChanged\"]],[30,6]]],null]],[\"&attrs\",\"@value\",\"@prefix\",\"@suffix\",\"@placeholder\",\"@disabled\"],false,[\"o-s-s/input-group\"]]",
     "moduleName": "@upfluence/oss-components/components/o-s-s/url-input.hbs",
     "isStrictMode": false
   });
@@ -81450,7 +82012,7 @@ require('@ember/-internals/bootstrap')
     classNames: ['upf-image'],
     didInsertElement() {
       this._super();
-      this.element.style.backgroundImage = `url("${this.src}"), url("assets/images/no-image.svg")`;
+      this.element.style.backgroundImage = `url("${this.src}"), url("/@upfluence/oss-components/assets/images/no-image-c6cf20bc82d9440b3ca6d9194ae65f9c.svg")`;
     }
   });
 });
@@ -81611,7 +82173,7 @@ require('@ember/-internals/bootstrap')
   const DEFAULT_BASE_CLASS = 'step-wrapper';
   const DEFAULT_CLASS_TO_SKIP_SCROLL_LISTENER = 'prevent-wizard-scroll-events';
   const WHEEL_MINIMAL_VELOCITY = 9;
-  let WizardStepWrapperComponent = _exports.default = (_dec = (0, _object.computed)('args.step.displayState'), _dec2 = (0, _object.computed)('args.step.{displayState,hidden}'), _class = class WizardStepWrapperComponent extends _component2.default {
+  let WizardStepWrapperComponent = _exports.default = (_dec = (0, _object.computed)('args.step.displayState'), _dec2 = (0, _object.computed)('args.step.{displayState,hidden}', 'baseClass'), _class = class WizardStepWrapperComponent extends _component2.default {
     constructor(...args) {
       super(...args);
       _initializerDefineProperty(this, "wizardManager", _descriptor, this);
@@ -81742,6 +82304,36 @@ require('@ember/-internals/bootstrap')
   }), _applyDecoratedDescriptor(_class.prototype, "isVisible", [_dec], Object.getOwnPropertyDescriptor(_class.prototype, "isVisible"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "computedClasses", [_dec2], Object.getOwnPropertyDescriptor(_class.prototype, "computedClasses"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "initStepView", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "initStepView"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "onDisplayStateUpdate", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "onDisplayStateUpdate"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleWheelEvent", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleWheelEvent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "handleScrollEvent", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "handleScrollEvent"), _class.prototype), _class);
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, WizardStepWrapperComponent);
 });
+;define("@upfluence/oss-components/helpers/asset-map", ["exports", "@ember/component/helper", "@ember/service"], function (_exports, _helper, _service) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _class, _descriptor;
+  0; //eaimeta@70e063a35619d71f0,"@ember/component/helper",0,"@ember/service"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
+  function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+  function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
+  function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
+  let AssetMapHelper = _exports.default = (_dec = (0, _service.inject)('asset-map'), _class = class AssetMapHelper extends _helper.default {
+    constructor(...args) {
+      super(...args);
+      _initializerDefineProperty(this, "assetMap", _descriptor, this);
+    }
+    compute([name]) {
+      return name ? this.assetMap.resolve(name) : undefined;
+    }
+  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "assetMap", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _class);
+});
 ;define("@upfluence/oss-components/helpers/fa-icon-style", ["exports", "@ember/component/helper", "@ember/debug", "@upfluence/oss-components/utils/icon-details"], function (_exports, _helper, _debug, _iconDetails) {
   "use strict";
 
@@ -81833,9 +82425,9 @@ require('@ember/-internals/bootstrap')
     return _getFormatter(currency, compact).format(value);
   };
   function formatMoneyHelper(params) {
-    let [amount, currency, format = 'raw', compact = false] = params;
-    if (amount < PREVENT_COMPACT_NOTATION_ON_RAW_BELOW && format === 'raw' || amount < PREVENT_COMPACT_NOTATION_ON_CENTS_BELOW && format === 'cents') compact = false;
-    return _formatMoney(amount, currency, format, compact);
+    const [amount, currency, format = 'raw', compact = false] = params;
+    const preventsCompactNotation = amount < PREVENT_COMPACT_NOTATION_ON_RAW_BELOW && format === 'raw' || amount < PREVENT_COMPACT_NOTATION_ON_CENTS_BELOW && format === 'cents';
+    return _formatMoney(amount, currency, format, preventsCompactNotation ? false : compact);
   }
   var _default = _exports.default = _helper.default.helper(formatMoneyHelper);
 });
@@ -81849,8 +82441,8 @@ require('@ember/-internals/bootstrap')
   _exports.formatNumericHelper = formatNumericHelper;
   0; //eaimeta@70e063a35619d71f0,"@ember/component/helper"eaimeta@70e063a35619d71f
   function formatNumericHelper(params) {
-    let [number] = params;
-    let formatter = Intl.NumberFormat(['en-EN', 'fr-FR'], {
+    const [number] = params;
+    const formatter = Intl.NumberFormat(['en-EN', 'fr-FR'], {
       style: 'decimal',
       minimumFractionDigits: 0
     });
@@ -81980,7 +82572,10 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"@ember/runloop",0,"@upfluence/oss-components/utils/attach-dropdown"eaimeta@70e063a35619d71f
-  // @ts-ignore
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
+  function attachElementToTarget(attachmentOptions) {
+    this.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(this.referenceTarget, this.attachedElement, attachmentOptions);
+  }
   const setupModifier = (state, element, args) => {
     state.referenceTarget = args.named.to instanceof HTMLElement ? args.named.to : document.querySelector(args.named.to);
     state.attachedElement = element;
@@ -81996,9 +82591,7 @@ require('@ember/-internals/bootstrap')
       }
       return acc;
     }, {});
-    (0, _runloop.scheduleOnce)('afterRender', void 0, () => {
-      state.cleanupDrodpownAutoplacement = (0, _attachDropdown.default)(state.referenceTarget, state.attachedElement, attachmentOptions);
-    });
+    (0, _runloop.scheduleOnce)('afterRender', state, attachElementToTarget, attachmentOptions);
   };
   var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
     capabilities: (0, _modifier.capabilities)('3.22'),
@@ -82021,30 +82614,6 @@ require('@ember/-internals/bootstrap')
     }
   }), class AttachElementModifierNewManager {});
 });
-;define("@upfluence/oss-components/modifiers/enable-dropdown", ["exports", "@ember/modifier", "jquery"], function (_exports, _modifier, _jquery) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"jquery"eaimeta@70e063a35619d71f
-  var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
-    capabilities: (0, _modifier.capabilities)('3.22'),
-    createModifier() {
-      return {
-        element: null
-      };
-    },
-    installModifier(state, element) {
-      (0, _jquery.default)(element).dropdown();
-    },
-    destroyModifier() {
-      // We don't need to do anything here, but a function
-      // still has to be here so we'll leave it blank.
-    }
-  }), class EnableDropdownModifierManager {});
-});
 ;define("@upfluence/oss-components/modifiers/enable-input-autofocus", ["exports", "@ember/modifier"], function (_exports, _modifier) {
   "use strict";
 
@@ -82053,7 +82622,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   0; //eaimeta@70e063a35619d71f0,"@ember/modifier"eaimeta@70e063a35619d71f
-  // @ts-ignore
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
   var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
     capabilities: (0, _modifier.capabilities)('3.22'),
     createModifier() {
@@ -82079,37 +82648,6 @@ require('@ember/-internals/bootstrap')
     destroyModifier() {} // keep even if empty
   }), class EnableInputAutofocusModifierManager {});
 });
-;define("@upfluence/oss-components/modifiers/enable-popover", ["exports", "@ember/modifier", "jquery"], function (_exports, _modifier, _jquery) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"jquery"eaimeta@70e063a35619d71f
-  var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
-    capabilities: (0, _modifier.capabilities)('3.22'),
-    createModifier() {
-      return {
-        element: null,
-        handler: null
-      };
-    },
-    installModifier(state, element, {
-      positional: [trigger]
-    }) {
-      state.element = element;
-      trigger ??= 'hover';
-      (0, _jquery.default)(element).popover({
-        trigger
-      });
-    },
-    destroyModifier() {
-      // We don't need to do anything here, but a function
-      // still has to be here so we'll leave it blank.
-    }
-  }), class EnablePopoverModifierManager {});
-});
 ;define("@upfluence/oss-components/modifiers/enable-tooltip", ["exports", "@ember/modifier", "@upfluence/oss-components/utils/dope", "@ember/runloop", "@upfluence/oss-components/utils/animation-manager", "@upfluence/oss-components/utils/element", "@ember/utils"], function (_exports, _modifier, _dope, _runloop, _animationManager, _element, _utils) {
   "use strict";
 
@@ -82119,7 +82657,7 @@ require('@ember/-internals/bootstrap')
   _exports.default = _exports.RENDERING_DELAY = _exports.ANIMATION_DURATION = void 0;
   _exports.initEventListener = initEventListener;
   0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"@upfluence/oss-components/utils/dope",0,"@ember/runloop",0,"@upfluence/oss-components/utils/animation-manager",0,"@upfluence/oss-components/utils/element",0,"@embroider/macros",0,"@ember/utils"eaimeta@70e063a35619d71f
-  // @ts-ignore
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
   const ANIMATION_DURATION = _exports.ANIMATION_DURATION = 250;
   const RENDERING_DELAY = _exports.RENDERING_DELAY = 300;
   const DEFAULT_CONFIGURATION = {
@@ -82155,6 +82693,9 @@ require('@ember/-internals/bootstrap')
     setElementContent(subtitleSpan, subtitle, html);
     container.append(subtitleSpan);
   }
+  function noopEvent(event) {
+    event.stopPropagation();
+  }
   function generateHTMLStructure(state) {
     const {
       title,
@@ -82172,6 +82713,7 @@ require('@ember/-internals/bootstrap')
     generateTitle(titleContainer, title, html);
     state.tooltipElement.append(titleContainer);
     generateSubTitle(state.tooltipElement, subtitle, html);
+    state.tooltipElement.addEventListener('click', noopEvent);
     if (false) {
       document.querySelector('#ember-testing')?.append(state.tooltipElement);
     } else {
@@ -82179,7 +82721,7 @@ require('@ember/-internals/bootstrap')
     }
   }
   function delayedRender(state) {
-    if (state.tooltipConfig.displayOnlyOnOverflow && !(0, _element.hasOverflow)(state.originElement)) {
+    if (state.tooltipConfig.displayOnlyOnOverflow && !(0, _element.hasOverflow)(state.originElement, state.tooltipConfig.overflowDirection)) {
       return;
     }
     if ((0, _utils.isEmpty)(state.tooltipConfig.title) || state.isRendered || state.setTimeoutId) return;
@@ -82231,6 +82773,7 @@ require('@ember/-internals/bootstrap')
     state.animation.reverse();
     state.animation.finished.then(() => {
       (0, _runloop.run)(() => {
+        state.tooltipElement?.removeEventListener('click', noopEvent);
         state.tooltipElement?.remove();
         state.isRendered = false;
         state.tooltipElement = null;
@@ -82319,17 +82862,40 @@ require('@ember/-internals/bootstrap')
     }
   }), class EnableTooltipModifierNewManager {});
 });
-;define("@upfluence/oss-components/modifiers/on-bottom-reached", ["exports", "@ember/modifier", "@ember/runloop"], function (_exports, _modifier, _runloop) {
+;define("@upfluence/oss-components/modifiers/install-scroll-reached-modifier", ["exports", "@ember/runloop"], function (_exports, _runloop) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.installScrollReachedModifier = installScrollReachedModifier;
+  0; //eaimeta@70e063a35619d71f0,"@ember/runloop"eaimeta@70e063a35619d71f
+  const TRIGGER_OFFSET = 20;
+  function installScrollReachedModifier(state, element, positional, named, shouldTrigger) {
+    const [callback] = positional;
+    const {
+      offset = TRIGGER_OFFSET
+    } = named;
+    state.element = element;
+    state.handler = event => {
+      if (shouldTrigger(state.element, offset)) {
+        callback(state.element, event);
+      }
+    };
+    (0, _runloop.run)(() => {
+      state.element.addEventListener('scroll', state.handler, false);
+    });
+  }
+});
+;define("@upfluence/oss-components/modifiers/on-bottom-reached", ["exports", "@ember/modifier", "@ember/runloop", "@upfluence/oss-components/modifiers/install-scroll-reached-modifier"], function (_exports, _modifier, _runloop, _installScrollReachedModifier) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"@ember/runloop"eaimeta@70e063a35619d71f
-  // @ts-ignore
-  const TRIGGER_OFFSET = 20;
-
+  0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"@ember/runloop",0,"@upfluence/oss-components/modifiers/install-scroll-reached-modifier"eaimeta@70e063a35619d71f
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
   /**
    * Used to trigger an action a user reaches the bottom of the modified element.
    * This is useful especially for infinite scrolls.
@@ -82343,17 +82909,11 @@ require('@ember/-internals/bootstrap')
       };
     },
     installModifier(state, element, {
-      positional
+      positional,
+      named
     }) {
-      const [callback] = positional;
-      state.element = element;
-      state.handler = _ => {
-        if (Math.ceil(state.element.scrollTop) + state.element.clientHeight >= state.element.scrollHeight - TRIGGER_OFFSET) {
-          callback(state.element, event);
-        }
-      };
-      (0, _runloop.run)(() => {
-        state.element.addEventListener('scroll', state.handler, false);
+      (0, _installScrollReachedModifier.installScrollReachedModifier)(state, element, positional, named, (targetElement, offset) => {
+        return Math.ceil(targetElement.scrollTop) + targetElement.clientHeight >= targetElement.scrollHeight - offset;
       });
     },
     destroyModifier(state) {
@@ -82408,6 +82968,42 @@ require('@ember/-internals/bootstrap')
     }
   }), class OnClickOutsideModifierManager {});
 });
+;define("@upfluence/oss-components/modifiers/on-top-reached", ["exports", "@ember/modifier", "@ember/runloop", "@upfluence/oss-components/modifiers/install-scroll-reached-modifier"], function (_exports, _modifier, _runloop, _installScrollReachedModifier) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember/modifier",0,"@ember/runloop",0,"@upfluence/oss-components/modifiers/install-scroll-reached-modifier"eaimeta@70e063a35619d71f
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
+  /**
+   * Used to trigger an action a user reaches the top of the modified element.
+   * This is useful especially for infinite scrolls.
+   */
+  var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
+    capabilities: (0, _modifier.capabilities)('3.22'),
+    createModifier() {
+      return {
+        element: null,
+        handler: null
+      };
+    },
+    installModifier(state, element, {
+      positional,
+      named
+    }) {
+      (0, _installScrollReachedModifier.installScrollReachedModifier)(state, element, positional, named, (targetElement, offset) => {
+        return Math.ceil(targetElement.scrollTop) <= offset;
+      });
+    },
+    destroyModifier(state) {
+      (0, _runloop.run)(() => {
+        state.element.removeEventListener('scroll', state.handler, false);
+      });
+    }
+  }), class OnTopReachedModifierManager {});
+});
 ;define("@upfluence/oss-components/modifiers/register-form-field", ["exports", "@ember/debug", "@ember/destroyable", "@ember/service", "ember-modifier"], function (_exports, _debug, _destroyable, _service, _emberModifier) {
   "use strict";
 
@@ -82424,9 +83020,8 @@ require('@ember/-internals/bootstrap')
   function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
   function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
   function cleanup(instance) {
-    instance.targetElement.removeAttribute('data-plan-field-id');
-    instance.formManager.unregisterField(instance.form, instance.field);
-    instance.formInstance.validateField(instance.field);
+    instance.targetElement.removeAttribute('data-form-field-id');
+    instance.formManager.unregisterField(instance.form, instance.field, instance.runValidator);
     if (instance.innerInputs.length > 0) {
       instance.innerInputs.forEach(input => {
         input.removeEventListener('input', instance.clearErrorsOnInput);
@@ -82439,6 +83034,7 @@ require('@ember/-internals/bootstrap')
       super(owner, args);
       _initializerDefineProperty(this, "formManager", _descriptor, this);
       _defineProperty(this, "innerInputs", []);
+      _defineProperty(this, "runValidator", () => this.validator());
       _defineProperty(this, "validateField", () => {
         this.formInstance.validateField(this.field);
       });
@@ -82455,14 +83051,15 @@ require('@ember/-internals/bootstrap')
     }) {
       (false && !(typeof form === 'string') && (0, _debug.assert)(`'form' arg must be a string but was ${typeof form}`, typeof form === 'string'));
       (false && !(typeof fieldId === 'string') && (0, _debug.assert)(`'fieldId' arg must be a string but was ${typeof fieldId}`, typeof fieldId === 'string'));
-      (false && !(typeof validator === 'function') && (0, _debug.assert)(`'validator' arg must be a string but was ${typeof validator}`, typeof validator === 'function'));
+      (false && !(typeof validator === 'function') && (0, _debug.assert)(`'validator' arg must be a function but was ${typeof validator}`, typeof validator === 'function'));
       this.targetElement = element;
       this.form = form;
       this.field = fieldId;
+      this.validator = validator;
       this.validateOnBlur = typeof validateOnBlur === 'boolean' ? validateOnBlur : true;
       this.formInstance = this.formManager.getInstance(form);
       element.setAttribute('data-form-field-id', fieldId);
-      this.formManager.registerField(form, fieldId, validator);
+      this.formManager.registerField(form, fieldId, this.runValidator);
       const inputs = element.tagName === 'INPUT' ? [element] : Array.from(element.querySelectorAll('input'));
       this.innerInputs = inputs;
       inputs.forEach(input => {
@@ -82481,21 +83078,35 @@ require('@ember/-internals/bootstrap')
     initializer: null
   }), _class);
 });
-;define("@upfluence/oss-components/modifiers/required-input", ["exports", "ember-modifier"], function (_exports, _emberModifier) {
+;define("@upfluence/oss-components/modifiers/required-input", ["exports", "ember-modifier", "@ember/destroyable"], function (_exports, _emberModifier, _destroyable) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"ember-modifier"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"ember-modifier",0,"@ember/destroyable"eaimeta@70e063a35619d71f
+  function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
   class RegisterFormField extends _emberModifier.default {
+    constructor(owner, args) {
+      super(owner, args);
+      _defineProperty(this, "markerElement", void 0);
+      (0, _destroyable.registerDestructor)(this, () => this.cleanup());
+    }
     modify(element) {
       this.targetElement = element;
+      this.cleanup();
       const span = document.createElement('span');
       span.classList.add('font-color-error-500');
       span.textContent = '*';
+      this.markerElement = span;
       element.appendChild(span);
+    }
+    cleanup() {
+      this.markerElement?.remove();
+      this.markerElement = undefined;
     }
   }
   _exports.default = RegisterFormField;
@@ -82508,7 +83119,7 @@ require('@ember/-internals/bootstrap')
   });
   _exports.default = void 0;
   0; //eaimeta@70e063a35619d71f0,"@ember/modifier"eaimeta@70e063a35619d71f
-  // @ts-ignore
+  // @ts-expect-error setModifierManager is not exposed by the Ember typings
   const SCROLL_SHADOW_CLASS = 'scroll-shadow';
   var _default = _exports.default = (0, _modifier.setModifierManager)(() => ({
     capabilities: (0, _modifier.capabilities)('3.22'),
@@ -82546,6 +83157,140 @@ require('@ember/-internals/bootstrap')
     }
   }), class scrollShadow {});
 });
+;define("@upfluence/oss-components/modifiers/text-carousel", ["exports", "ember-modifier", "@ember/destroyable"], function (_exports, _emberModifier, _destroyable) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"ember-modifier",0,"@ember/destroyable"eaimeta@70e063a35619d71f
+  function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+  class TextCarouselModifier extends _emberModifier.default {
+    constructor(owner, args) {
+      super(owner, args);
+      _defineProperty(this, "intervalId", void 0);
+      (0, _destroyable.registerDestructor)(this, () => this.clearInterval());
+    }
+    modify(element, [labels], {
+      interval = 3000,
+      loop = false
+    }) {
+      this.clearInterval();
+      if (!labels?.length) {
+        throw new Error('[modifier][text-carousel] Requires a non-empty labels array');
+      }
+      let index = 0;
+      element.textContent = labels[index] ?? '';
+      if (labels.length === 1) return;
+      this.intervalId = window.setInterval(() => {
+        index = loop ? (index + 1) % labels.length : index + 1;
+        element.textContent = labels[index] ?? '';
+        if (!loop && index >= labels.length - 1) {
+          this.clearInterval();
+        }
+      }, interval);
+    }
+    clearInterval() {
+      if (this.intervalId === undefined) return;
+      window.clearInterval(this.intervalId);
+      this.intervalId = undefined;
+    }
+  }
+  _exports.default = TextCarouselModifier;
+});
+;define("@upfluence/oss-components/services/asset-map", ["exports", "@ember/debug", "@ember/service", "@glimmer/tracking"], function (_exports, _debug, _service, _tracking) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = _exports.AssetURLTable = void 0;
+  _exports.validateAssetManifest = validateAssetManifest;
+  var _class2, _descriptor;
+  0; //eaimeta@70e063a35619d71f0,"@ember/debug",0,"@ember/service",0,"@glimmer/tracking"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(e, i, r, l) { r && Object.defineProperty(e, i, { enumerable: r.enumerable, configurable: r.configurable, writable: r.writable, value: r.initializer ? r.initializer.call(l) : void 0 }); }
+  function _applyDecoratedDescriptor(i, e, r, n, l) { var a = {}; return Object.keys(n).forEach(function (i) { a[i] = n[i]; }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), a = r.slice().reverse().reduce(function (r, n) { return n(i, e, r) || r; }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), null) : a; }
+  function _initializerWarningHelper(r, e) { throw Error("Decorating class property failed. Please ensure that transform-class-properties is enabled and runs after the decorators transform."); }
+  function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+  function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+  function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+  function validateAssetManifest(value) {
+    const manifest = value;
+    if (!manifest || !manifest.assets || typeof manifest.assets !== 'object' || Array.isArray(manifest.assets) || Object.values(manifest.assets).some(url => typeof url !== 'string') || typeof manifest.prepend !== 'string' || manifest.rootURL !== undefined && typeof manifest.rootURL !== 'string' || manifest.enabled !== undefined && typeof manifest.enabled !== 'boolean') {
+      throw new Error('[upfluence asset-map] Invalid consumer manifest.');
+    }
+    return manifest;
+  }
+  class AssetURLTable {
+    constructor(manifest) {
+      _defineProperty(this, "urls", void 0);
+      _defineProperty(this, "resolved", void 0);
+      _defineProperty(this, "warned", new Set());
+      _defineProperty(this, "prefix", void 0);
+      _defineProperty(this, "enabled", void 0);
+      validateAssetManifest(manifest);
+      this.prefix = manifest.prepend || manifest.rootURL || '/';
+      this.enabled = manifest.enabled !== false;
+      this.urls = new Map(Object.entries(manifest.assets).map(([key, value]) => [key.replace(/^\/+/, ''), value]));
+      for (const url of Object.values(manifest.assets)) {
+        const key = url.replace(/^\/+/, '');
+        if (!this.urls.has(key)) this.urls.set(key, url);
+      }
+      this.resolved = new Set([...this.urls.values()].map(url => this.withPrefix(url)));
+    }
+    resolve(name) {
+      if (!name || this.isAbsolute(name) || this.resolved.has(name) || this.prefix !== '/' && name.startsWith(this.prefix)) {
+        return name;
+      }
+      const key = name.replace(/^\/+/, '');
+      const mapped = this.urls.get(key);
+      if (!mapped && this.enabled && !this.warned.has(key)) {
+        this.warned.add(key);
+        (false && (0, _debug.warn)(`[upfluence asset-map] No manifest entry for "${name}".`, false, {
+          id: 'upfluence.asset-map.missing-entry'
+        }));
+      }
+      return this.withPrefix(mapped ?? key);
+    }
+    isAbsolute(url) {
+      return /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(url);
+    }
+    withPrefix(url) {
+      if (this.isAbsolute(url) || url.startsWith(this.prefix)) return url;
+      return `${this.prefix.replace(/\/+$/, '')}/${url.replace(/^\/+/, '')}`;
+    }
+  }
+  _exports.AssetURLTable = AssetURLTable;
+  let AssetMapService = _exports.default = (_class2 = class AssetMapService extends _service.default {
+    constructor(...args) {
+      super(...args);
+      _initializerDefineProperty(this, "table", _descriptor, this);
+      const meta = typeof document === 'undefined' ? null : document.querySelector('meta[name="upfluence:asset-map"]');
+      if (meta?.content && meta.content !== '__UPFLUENCE_ASSET_MAP__') {
+        this.configure(validateAssetManifest(JSON.parse(decodeURIComponent(meta.content))));
+      }
+    }
+
+    // Also provides the build-independent seam for a future Vite integration.
+    configure(manifest) {
+      this.table = new AssetURLTable(manifest);
+    }
+    resolve(name) {
+      if (!this.table) {
+        throw new Error('[upfluence asset-map] Missing consumer manifest. Wrap the consuming app build with injectAssetMap.');
+      }
+      return this.table.resolve(name);
+    }
+  }, _descriptor = _applyDecoratedDescriptor(_class2.prototype, "table", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _class2);
+});
 ;define("@upfluence/oss-components/services/base-uploader", ["exports", "@ember/service", "@ember/utils", "@upfluence/oss-components/utils/uploader-validators"], function (_exports, _service, _utils, _uploaderValidators) {
   "use strict";
 
@@ -82558,10 +83303,10 @@ require('@ember/-internals/bootstrap')
   class BaseUploader extends _service.default {
     validate(request, rules) {
       const validations = this.buildValidators(rules).map(validator => validator.validate(request));
-      return {
+      return Promise.resolve({
         passes: validations.every(validation => validation.passes),
         validations
-      };
+      });
     }
     upload(_request, _validationRules) {
       throw new Error('[@upfluence/oss-components::uploader] NotImpemented: Please extend this service and inherit this method.');
@@ -82578,7 +83323,7 @@ require('@ember/-internals/bootstrap')
       }).map(rule => {
         const validator = AVAILABLE_VALIDATORS.find(validator => validator.key === rule.type);
 
-        // @ts-ignore
+        // @ts-expect-error the validator union type is not constructible as is
         return new validator(rule);
       });
     }
@@ -82623,9 +83368,16 @@ require('@ember/-internals/bootstrap')
       this.formValidators[id] = this.formValidators[id] ?? {};
       this.formValidators[id][field] = validator;
     }
-    unregisterField(id, field) {
-      if (this.formValidators[id]) {
-        delete this.formValidators[id][field];
+    unregisterField(id, field, validator) {
+      if (validator && this.formValidators[id]?.[field] !== validator) return;
+      delete this.formValidators[id]?.[field];
+      if (this.formFeedbacks[id]?.[field]) this.deleteFieldFeedback(id, field);
+    }
+    unregisterForm(id) {
+      delete this.formValidators[id];
+      if (this.formFeedbacks[id]) {
+        delete this.formFeedbacks[id];
+        this.refreshFormFeedbacks();
       }
     }
     validateForm(id) {
@@ -82669,11 +83421,16 @@ require('@ember/-internals/bootstrap')
     }
     clearErrors(id, field) {
       if (this.formFeedbacks[id]?.[field]?.message?.type !== 'error') return;
+      this.deleteFieldFeedback(id, field);
+    }
+    deleteFieldFeedback(id, field) {
       delete this.formFeedbacks[id]?.[field];
       this.refreshFormFeedbacks();
     }
     refreshFormFeedbacks() {
-      this.formFeedbacks = this.formFeedbacks;
+      this.formFeedbacks = {
+        ...this.formFeedbacks
+      };
     }
   }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "formFeedbacks", [_tracking.tracked], {
     configurable: true,
@@ -82783,7 +83540,7 @@ require('@ember/-internals/bootstrap')
         duration: duration,
         fill: 'forwards'
       });
-      let counterAnimation = new Animation(counterDownKeyframes, document.timeline);
+      const counterAnimation = new Animation(counterDownKeyframes, document.timeline);
       counterAnimation.id = 'counter';
       return counterAnimation;
     }
@@ -82798,7 +83555,7 @@ require('@ember/-internals/bootstrap')
         duration: 300,
         fill: 'forwards'
       });
-      let destroyAnimation = new Animation(destroyDownKeyframes, document.timeline);
+      const destroyAnimation = new Animation(destroyDownKeyframes, document.timeline);
       destroyAnimation.id = 'destroy';
       return destroyAnimation;
     }
@@ -83319,13 +84076,13 @@ require('@ember/-internals/bootstrap')
         fallbackPlacements: mergedOptions.fallbackPlacements ?? ['top', 'bottom']
       }));
     }
-    let arrowEl = floatingTarget.querySelector('[data-floating-arrow]');
+    const arrowElement = floatingTarget.querySelector('[data-floating-arrow]');
     if (mergedOptions.enableArrow) {
-      if (!arrowEl) {
+      if (!arrowElement) {
         throw new Error('Arrow support is enabled but no [data-floating-arrow] element was found.');
       }
       middlewares.push((0, _dom.arrow)({
-        element: arrowEl
+        element: arrowElement
       }));
     }
     const updatePosition = () => {
@@ -83353,7 +84110,7 @@ require('@ember/-internals/bootstrap')
             y: arrowY
           } = middlewareData.arrow;
           const staticSide = RELATIVE_ARROW_PLACEMENT[placement.split('-')[0]];
-          Object.assign(arrowEl.style, {
+          Object.assign(arrowElement.style, {
             left: arrowX != null ? `${arrowX}px` : '',
             top: arrowY != null ? `${arrowY}px` : '',
             right: '',
@@ -83365,6 +84122,17 @@ require('@ember/-internals/bootstrap')
     };
     return (0, _dom.autoUpdate)(referenceTarget, floatingTarget, updatePosition);
   }
+});
+;define("@upfluence/oss-components/utils/constants", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.DEFAULT_DATE_FORMAT_WITH_TIME = _exports.DEFAULT_DATE_FORMAT = void 0;
+  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
+  const DEFAULT_DATE_FORMAT = _exports.DEFAULT_DATE_FORMAT = 'MMM DD, YYYY';
+  const DEFAULT_DATE_FORMAT_WITH_TIME = _exports.DEFAULT_DATE_FORMAT_WITH_TIME = 'MMM DD, YYYY - hh:mma';
 });
 ;define("@upfluence/oss-components/utils/country-codes", ["exports"], function (_exports) {
   "use strict";
@@ -88462,12 +89230,12 @@ require('@ember/-internals/bootstrap')
   });
   _exports.hasOverflow = hasOverflow;
   0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
-  function hasOverflow(element) {
+  function hasOverflow(element, direction = 'horizontal') {
     if (!Array.from(element.children).length) {
-      return element.offsetWidth < element.scrollWidth;
+      return direction === 'horizontal' ? element.offsetWidth < element.scrollWidth : element.offsetHeight < element.scrollHeight;
     }
     return Array.from(element.children).some(child => {
-      return hasOverflow(child);
+      return hasOverflow(child, direction);
     });
   }
 });
@@ -88488,7 +89256,7 @@ require('@ember/-internals/bootstrap')
   }
   const INCREMENT_BASE = [[['B'], 1], [['KB'], 1000], [['MB'], 1.0e6], [['GB'], 1.0e9]];
   function parseFilesize(filesize) {
-    const parsed = filesize.toString().match(/^([0-9\.,]*)(?:\s*)?(.*)$/);
+    const parsed = filesize.toString().match(/^([0-9.,]*)(?:\s*)?(.*)$/);
     if (!parsed || !parsed[1] || !parsed[2]) {
       throw new Error('[filesize-parser] Could not parse the filesize provided');
     }
@@ -88551,7 +89319,7 @@ require('@ember/-internals/bootstrap')
     return iconStyle;
   }
   function getIconValue(fontAwesomeIcon) {
-    let iconValues = [];
+    const iconValues = [];
     fontAwesomeIcon.split(' ').forEach(part => {
       if (part.includes(FA_ICON_PREFIX)) iconValues.push(part);
     });
@@ -88606,6 +89374,17 @@ require('@ember/-internals/bootstrap')
     }
   }
 });
+;define("@upfluence/oss-components/utils/logo-config", ["exports"], function (_exports) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.LOGO_ICONS = _exports.LOGO_COLORS = void 0;
+  0; //eaimeta@70e063a35619d71feaimeta@70e063a35619d71f
+  const LOGO_ICONS = _exports.LOGO_ICONS = ['rabbit', 'star', 'heart', 'rocket-launch', 'money-bill', 'glass-whiskey-rocks', 'joystick', 'scroll', 'carrot', 'volleyball-ball', 'crown', 'chart-bar', 'users', 'saxophone', 'duck', 'university', 'tree-palm', 'trophy', 'pizza-slice', 'popcorn', 'chart-line', 'analytics', 'hat-wizard', 'chart-network', 'leaf', 'utensils', 'ufo', 'hat-winter', 'guitar', 'parachute-box', 'sheep', 'boot', 'shopping-basket', 'shopping-cart', 'shopping-bag', 'tags', 'meteor', 'globe-americas', 'globe-snow'];
+  const LOGO_COLORS = _exports.LOGO_COLORS = ['stone', 'rose', 'orange', 'yellow', 'lime', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuschia', 'pink', 'slate'];
+});
 ;define("@upfluence/oss-components/utils/run-smart-gradient-animation", ["exports"], function (_exports) {
   "use strict";
 
@@ -88654,7 +89433,7 @@ require('@ember/-internals/bootstrap')
    * Strict configuration allowing Rich Text and Inline SVGs (No <use> tags).
    */
   const RICH_TEXT_SVG_CONFIG = _exports.RICH_TEXT_SVG_CONFIG = {
-    ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms):|[^a-z]|[a-z+.\-]+(?:[^a-z+.-:]|$))/i,
+    ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms):|[^a-z]|[a-z+.-]+(?:[^a-z+.-:]|$))/i,
     USE_PROFILES: {
       html: true,
       svg: false,
@@ -88771,121 +89550,6 @@ require('@ember/-internals/bootstrap')
   }
   _exports.FileTypeValidator = FileTypeValidator;
   _defineProperty(FileTypeValidator, "key", 'filetype');
-});
-;define("ember-cli-ifa/helpers/asset-map", ["exports", "@ember/component/helper", "@ember/service", "@ember/object"], function (_exports, _helper, _service, _object) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _exports.default = _helper.default.extend({
-    assetMap: (0, _service.inject)(),
-    compute(params) {
-      const file = params[0] || "";
-      if (!file) {
-        return;
-      }
-      return (0, _object.get)(this, 'assetMap').resolve(file);
-    }
-  });
-});
-;define("ember-cli-ifa/initializers/asset-map", ["exports", "rsvp", "ember-cli-ifa/services/asset-map", "@ember/utils", "ember-cli-ifa/utils/get-asset-map-data"], function (_exports, _rsvp, _assetMap, _utils, _getAssetMapData) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  _exports.initialize = initialize;
-  function initialize(app) {
-    let assetMapFile = (0, _getAssetMapData.default)();
-    if (!assetMapFile) {
-      app.register('service:asset-map', _assetMap.default);
-      return;
-    }
-    if ((0, _utils.typeOf)(assetMapFile) === 'object' && assetMapFile.assets) {
-      _assetMap.default.reopen({
-        map: assetMapFile.assets,
-        prepend: assetMapFile.prepend,
-        enabled: true
-      });
-      app.register('service:asset-map', _assetMap.default);
-    } else {
-      app.deferReadiness();
-      const promise = fetch(assetMapFile).then(response => response.json());
-      promise.then((map = {}) => {
-        _assetMap.default.reopen({
-          map: map.assets,
-          prepend: map.prepend,
-          enabled: true
-        });
-      }).then(() => {
-        app.register('service:asset-map', _assetMap.default);
-      }).catch(err => {
-        console.error('Failed to register service:asset-map', err);
-      }).finally(() => {
-        app.advanceReadiness();
-      });
-    }
-  }
-  var _default = _exports.default = {
-    name: 'asset-map',
-    initialize
-  };
-});
-;define("ember-cli-ifa/services/asset-map", ["exports", "@ember/service", "@ember/object"], function (_exports, _service, _object) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  var _default = _exports.default = _service.default.extend({
-    enabled: false,
-    map: (0, _object.computed)(() => ({})),
-    prepend: '/',
-    fullMap: (0, _object.computed)('map', function () {
-      const map = (0, _object.get)(this, 'map');
-      const ret = {};
-      Object.keys(map).forEach(k => {
-        const v = map[k];
-        ret[k] = v;
-        ret[v] = v;
-      });
-      return ret;
-    }),
-    resolve(name) {
-      const fullMap = (0, _object.get)(this, 'fullMap') || {};
-      const prepend = (0, _object.get)(this, 'prepend');
-      const enabled = (0, _object.get)(this, 'enabled');
-      const assetName = enabled ? fullMap[name] || name : name;
-      return `${prepend}${assetName}`;
-    }
-  });
-});
-;define("ember-cli-ifa/utils/get-asset-map-data", ["exports", "require"], function (_exports, _require) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = getAssetMapData;
-  function getAssetMapData() {
-    if (typeof FastBoot !== "undefined") {
-      let assetMap = (0, _require.default)("ember-cli-ifa/fastboot-asset-map");
-      return assetMap.default;
-    }
-    let metaTag = document.querySelector("meta[name='ember-cli-ifa:assetMap']");
-    if (!metaTag) {
-      console.warn('<meta name="ember-cli-ifa:assetMap"> tag is missing.');
-      return;
-    }
-    const assetMapString = metaTag.content;
-    if (assetMapString) {
-      return JSON.parse(decodeURIComponent(assetMapString));
-    }
-  }
 });
 ;define("ember-intl/-private/formatters/-base", ["exports"], function (_exports) {
   "use strict";
@@ -90256,6 +90920,7 @@ require('@ember/-internals/bootstrap')
       },
       "forms": {
         "errors": {
+          "invalid_format": "Invalid format. Make sure the value is correct.",
           "required": "This field is required.",
           "toast": {
             "format": {
@@ -90312,7 +90977,14 @@ require('@ember/-internals/bootstrap')
       "sidebar": {
         "collapse": "Collapse"
       },
+      "slider": {
+        "input_label": "Value",
+        "range_label": "Value slider"
+      },
       "smart": {
+        "feedback": {
+          "retry": "Retry"
+        },
         "tag_input": {
           "placeholder": "Add keywords, @mentions and #hashtags"
         }
@@ -90330,13 +91002,18 @@ require('@ember/-internals/bootstrap')
             "title": "File size too large"
           },
           "filetype": {
-            "description": "The uploaded file format is not allowed",
+            "description": "The uploaded file format is not allowed.",
             "feedback": "Invalid format. Please upload a correctly formatted file.",
             "title": "Unsupported format"
           },
           "server": "Upload failed, please try again",
-          "try_again": "Try again"
+          "try_again": "Try again",
+          "upload_failed": {
+            "description": "We couldn't upload your file. Please try again. If the problem persists, contact support.",
+            "title": "Upload failed"
+          }
         },
+        "file_input_label": "Choose a file to upload",
         "tooltips": {
           "delete": "Delete",
           "edit": "Edit",
