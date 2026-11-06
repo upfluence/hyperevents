@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { injectAssetMap } = require('@upfluence/oss-components/build/classic-asset-map.cjs');
 const { version } = require('./package');
 
 class IgnoreRemoteCssImports {
@@ -15,6 +16,11 @@ class IgnoreRemoteCssImports {
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
+    fingerprint: {
+      generateAssetMap: true,
+      assetMapPath: 'assets/upfluence-asset-map.json',
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot']
+    },
     autoImport: {
       publicAssetURL: '/assets/'
     },
@@ -34,5 +40,8 @@ module.exports = function (defaults) {
     }
   });
 
-  return app.toTree();
+  return injectAssetMap(app.toTree(), {
+    fingerprint: app.options.fingerprint,
+    rootURL: app.project.config(app.env).rootURL
+  });
 };
