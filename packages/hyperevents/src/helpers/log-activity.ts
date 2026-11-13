@@ -1,7 +1,7 @@
 import Helper from '@ember/component/helper';
 import { assert } from '@ember/debug';
 import { run } from '@ember/runloop';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 import ActivityTracking from '../services/activity-tracking';
 

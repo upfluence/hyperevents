@@ -8,7 +8,7 @@ interface Constructable {
 }
 
 function getActivityTrackingService(instance: object) {
-  return getOwner(instance).lookup('service:activity-tracking');
+  return getOwner(instance)!.lookup('service:activity-tracking');
 }
 
 export function logConstruction(actionDescription: string, actionType: ActivityType) {
