@@ -1642,8 +1642,8 @@
   </div>
   */
   {
-    "id": "NM6s49JA",
-    "block": "[[[10,0],[14,0,\"subscription-feed padding-xx-sm\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,1],[12],[10,\"b\"],[15,0,[29,[[52,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"]]]],[12],[1,[30,0,[\"listeningState\"]]],[13],[1,\"\\n      for events on:\\n      \"],[1,[30,1]],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-1\"],[12],[13],[1,\"\\n\"],[41,[28,[37,1],[[30,0,[\"listeningState\"]],\"Listening\"],null],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,2],[[4,[38,3],[\"click\",[30,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[8,[39,2],[[24,0,\"margin-left-xxx-sm\"],[4,[38,3],[\"click\",[30,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"events\"],[12],[1,\"\\n\"],[42,[28,[37,5],[[28,[37,5],[[30,0,[\"data\"]]],null]],null],null,[[[1,\"      \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n        \"],[1,[30,2]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[2]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@url\",\"event\"],false,[\"if\",\"eq\",\"o-s-s/button\",\"on\",\"each\",\"-track-array\"]]",
+    "id": "Da4AtDY6",
+    "block": "[[[10,0],[14,0,\"subscription-feed padding-xx-sm\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"fx-1 fx-row fx-malign-space-between fx-xalign-center\"],[12],[1,\"\\n    \"],[10,1],[12],[10,\"b\"],[15,0,[29,[[52,[28,[37,4],[[30,0,[\"listeningState\"]],\"Listening\"],null],\"linked\",\"unlinked\"]]]],[12],[1,[30,0,[\"listeningState\"]]],[13],[1,\"\\n      for events on:\\n      \"],[1,[30,1]],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-1\"],[12],[13],[1,\"\\n\"],[41,[28,[37,4],[[30,0,[\"listeningState\"]],\"Listening\"],null],[[[1,\"      \"],[8,[39,5],[[4,[38,6],[\"click\",[30,0,[\"unsubscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Unsubscribe\",\"fas fa-unlink\"]],null],[1,\"\\n\"]],[]],[[[1,\"      \"],[8,[39,5],[[4,[38,6],[\"click\",[30,0,[\"subscribe\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"default\",\"Subscribe\",\"fas fa-link\"]],null],[1,\"\\n\"]],[]]],[1,\"    \"],[8,[39,5],[[24,0,\"margin-left-xxx-sm\"],[4,[38,6],[\"click\",[30,0,[\"removeObs\"]]],null]],[[\"@skin\",\"@icon\"],[\"default\",\"fa fa-times\"]],null],[1,\"\\n  \"],[13],[1,\"\\n  \"],[10,0],[14,0,\"events\"],[12],[1,\"\\n\"],[42,[28,[37,8],[[28,[37,8],[[30,0,[\"data\"]]],null]],null],null,[[[1,\"      \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n        \"],[1,[30,2]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[2]],null],[1,\"  \"],[13],[1,\"\\n\"],[13]],[\"@url\",\"event\"],[\"div\",\"span\",\"b\",\"if\",\"eq\",\"o-s-s/button\",\"on\",\"each\",\"-track-array\"]]",
     "moduleName": "test-app/components/subscription-feed.hbs",
     "isStrictMode": false
   });
@@ -1676,7 +1676,7 @@
         this.data = [...this.data, JSON.stringify(event)];
       });
     }
-  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.inject], {
+  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.service], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1729,8 +1729,8 @@
   </OSS::ModalDialog>
   */
   {
-    "id": "vAejSYxl",
-    "block": "[[[8,[39,0],[[4,[38,1],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,2],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\"],[\"Example modal\",[30,1],\"md\"]],[[\"content\",\"footer\"],[[[[1,\"\\n    \"],[10,0],[14,0,\"test-modal-content\"],[12],[1,\"\\n      Fake content goes here\\n    \"],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12\"],[12],[1,\"\\n      \"],[8,[39,3],[[4,[38,4],[\"click\",[30,1]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"@closeModal\"],false,[\"o-s-s/modal-dialog\",\"log-insertion\",\"log-deletion\",\"o-s-s/button\",\"on\"]]",
+    "id": "p1vZOTrK",
+    "block": "[[[8,[39,0],[[4,[38,1],[\"log-insertion: Product Modal has been opened\"],null],[4,[38,2],[\"log-deletion: Product Modal has been closed\"],null]],[[\"@title\",\"@close\",\"@size\"],[\"Example modal\",[30,1],\"md\"]],[[\"content\",\"footer\"],[[[[1,\"\\n    \"],[10,0],[14,0,\"test-modal-content\"],[12],[1,\"\\n      Fake content goes here\\n    \"],[13],[1,\"\\n  \"]],[]],[[[1,\"\\n    \"],[10,0],[14,0,\"fx-row fx-gap-px-12\"],[12],[1,\"\\n      \"],[8,[39,6],[[4,[38,7],[\"click\",[30,1]],null]],[[\"@skin\",\"@label\"],[\"default\",\"Close\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]]]]]],[\"@closeModal\"],[\"o-s-s/modal-dialog\",\"log-insertion\",\"log-deletion\",\":content\",\"div\",\":footer\",\"o-s-s/button\",\"on\"]]",
     "moduleName": "test-app/components/test-modal.hbs",
     "isStrictMode": false
   });
@@ -1870,12 +1870,12 @@
       this.obsUrlArray = [...this.obsUrlArray, this.newObserver];
       this.newObserver = '';
     }
-  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.inject], {
+  }, _descriptor = _applyDecoratedDescriptor(_class.prototype, "eventsService", [_service.service], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "session", [_service.inject], {
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "session", [_service.service], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -2512,22 +2512,6 @@
   });
   0; //eaimeta@70e063a35619d71f0,"ember-truth-helpers/helpers/xor"eaimeta@70e063a35619d71f
 });
-;define("test-app/initializers/container-debug-adapter", ["exports", "ember-resolver/resolvers/classic/container-debug-adapter"], function (_exports, _containerDebugAdapter) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"ember-resolver/resolvers/classic/container-debug-adapter"eaimeta@70e063a35619d71f
-  var _default = _exports.default = {
-    name: 'container-debug-adapter',
-    initialize() {
-      let app = arguments[1] || arguments[0];
-      app.register('container-debug-adapter:main', _containerDebugAdapter.default);
-    }
-  };
-});
 ;define("test-app/instance-initializers/override-intl", ["exports", "@upfluence/oss-components/instance-initializers/override-intl"], function (_exports, _overrideIntl) {
   "use strict";
 
@@ -3023,124 +3007,9 @@
   </div>
   */
   {
-    "id": "c17O5WWl",
-    "block": "[[[10,0],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[1,\"\\n  \"],[10,0],[12],[1,\"Example of activity-tracking service usages:\"],[13],[1,\"\\n  \"],[10,0],[12],[1,\"\\n    \"],[8,[39,0],[[4,[38,1],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,2],[\"click\",[28,[37,3],[[28,[37,4],[[30,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"modalVisible\"]],[[[1,\"    \"],[8,[39,6],null,[[\"@closeModal\"],[[30,0,[\"closeModal\"]]]],null],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"],[10,0],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"\"],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7 text-color-default\"],[12],[1,\"Socket Configuration\"],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"socket-config-panel fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter WS Url:\"],[13],[1,\"\\n          \"],[8,[39,7],null,[[\"@value\"],[[30,0,[\"wsUrl\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter token :\"],[13],[1,\"\\n          \"],[8,[39,7],null,[[\"@value\"],[[30,0,[\"token\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[1,\"\\n        \"],[8,[39,0],[[4,[38,2],[\"click\",[30,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[1,\"\\n        \"],[8,[39,0],[[16,\"disabled\",[28,[37,8],[[30,0,[\"wsConnected\"]]],null]],[4,[38,2],[\"click\",[30,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n  \"],[10,0],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7\"],[12],[1,\"Observers:\"],[13],[1,\"\\n    \"],[10,0],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col margin-bottom-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[1,\"\\n          Create a new observer :\\n          \"],[10,0],[14,0,\"fx-row fx-gap-px-20\"],[12],[1,\"\\n            \"],[8,[39,7],[[4,[38,2],[\"keydown\",[30,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[30,0,[\"newObserver\"]]]],null],[1,\"\\n            \"],[8,[39,0],[[4,[38,2],[\"click\",[30,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-gap-px-20\"],[12],[1,\"\\n\"],[42,[28,[37,10],[[28,[37,10],[[30,0,[\"obsUrlArray\"]]],null]],null],null,[[[1,\"          \"],[8,[39,11],null,[[\"@url\",\"@removeObs\"],[[30,1],[30,0,[\"removeObs\"]]]],null],[1,\"\\n\"]],[1]],null],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"obsUrl\"],false,[\"o-s-s/button\",\"enable-tooltip\",\"on\",\"log-activity\",\"fn\",\"if\",\"test-modal\",\"o-s-s/input-container\",\"not\",\"each\",\"-track-array\",\"subscription-feed\"]]",
+    "id": "RP65Ac8e",
+    "block": "[[[10,0],[14,0,\"padding-lg fx-col fx-gap-px-12\"],[12],[1,\"\\n  \"],[10,0],[12],[1,\"Example of activity-tracking service usages:\"],[13],[1,\"\\n  \"],[10,0],[12],[1,\"\\n    \"],[8,[39,1],[[4,[38,2],null,[[\"title\"],[\"Click will trigger activity-tracker log\"]]],[4,[38,3],[\"click\",[28,[37,4],[[28,[37,5],[[30,0,[\"openModal\"]],\"randomParam\"],null],\"open product modal\"],null]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Open modal\",\"fa-connect\"]],null],[1,\"\\n  \"],[13],[1,\"\\n\"],[41,[30,0,[\"modalVisible\"]],[[[1,\"    \"],[8,[39,7],null,[[\"@closeModal\"],[[30,0,[\"closeModal\"]]]],null],[1,\"\\n\"]],[]],null],[13],[1,\"\\n\"],[10,0],[14,0,\"fx-col padding-lg fx-gpap-px-40\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"\"],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7 text-color-default\"],[12],[1,\"Socket Configuration\"],[13],[1,\"\\n    \"],[10,0],[14,0,\"fx-row\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"socket-config-panel fx-col fx-gap-px-20 fx-malign-space-between fx-xalign-center padding-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter WS Url:\"],[13],[1,\"\\n          \"],[8,[39,9],null,[[\"@value\"],[[30,0,[\"wsUrl\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,0],[14,0,\"socket-config-field fx-col fx-1\"],[12],[1,\"\\n          \"],[10,1],[12],[1,\"Enter token :\"],[13],[1,\"\\n          \"],[8,[39,9],null,[[\"@value\"],[[30,0,[\"token\"]]]],null],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-malign-end fx-gap-px-20\"],[12],[1,\"\\n        \"],[8,[39,1],[[4,[38,3],[\"click\",[30,0,[\"initSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"primary\",\"Establish connection\",\"fa-connect\"]],null],[1,\"\\n        \"],[8,[39,1],[[16,\"disabled\",[28,[37,10],[[30,0,[\"wsConnected\"]]],null]],[4,[38,3],[\"click\",[30,0,[\"terminateSocket\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"destructive\",\"Terminate connection\",\"fa-connect\"]],null],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\\n  \"],[10,0],[12],[1,\"\\n    \"],[10,1],[14,0,\"text-size-7\"],[12],[1,\"Observers:\"],[13],[1,\"\\n    \"],[10,0],[12],[1,\"\\n      \"],[10,0],[14,0,\"fx-col margin-bottom-sm\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"fx-row fx-xalign-center fx-gap-px-40\"],[12],[1,\"\\n          Create a new observer :\\n          \"],[10,0],[14,0,\"fx-row fx-gap-px-20\"],[12],[1,\"\\n            \"],[8,[39,9],[[4,[38,3],[\"keydown\",[30,0,[\"handleNewObserverInput\"]]],null]],[[\"@value\"],[[30,0,[\"newObserver\"]]]],null],[1,\"\\n            \"],[8,[39,1],[[4,[38,3],[\"click\",[30,0,[\"createNewObserver\"]]],null]],[[\"@skin\",\"@label\",\"@icon\"],[\"success\",\"Create\",\"fas fa-check\"]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n      \"],[10,0],[14,0,\"fx-col fx-gap-px-20\"],[12],[1,\"\\n\"],[42,[28,[37,12],[[28,[37,12],[[30,0,[\"obsUrlArray\"]]],null]],null],null,[[[1,\"          \"],[8,[39,13],null,[[\"@url\",\"@removeObs\"],[[30,1],[30,0,[\"removeObs\"]]]],null],[1,\"\\n\"]],[1]],null],[1,\"      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[\"obsUrl\"],[\"div\",\"o-s-s/button\",\"enable-tooltip\",\"on\",\"log-activity\",\"fn\",\"if\",\"test-modal\",\"span\",\"o-s-s/input-container\",\"not\",\"each\",\"-track-array\",\"subscription-feed\"]]",
     "moduleName": "test-app/templates/application.hbs",
-    "isStrictMode": false
-  });
-});
-;define("test-app/templates/components/input-wrapper", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
-  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
-  /*
-    <div class={{this.computedClasses}} ...attributes>
-    {{yield}}
-  
-    {{#if this.error}}
-      <span class="upf-input-feedback upf-input-feedback--error">
-        <OSS::Icon @icon="fa-exclamation-circle" aria-label={{this.error}} />
-      </span>
-    {{else if this.help}}
-      <span class="upf-input-feedback upf-input-feedback--help">
-        <OSS::Icon @icon="fa-question-circle" aria-label={{this.help}} />
-      </span>
-    {{/if}}
-  </div>
-  */
-  {
-    "id": "RcCpyS78",
-    "block": "[[[11,0],[16,0,[30,0,[\"computedClasses\"]]],[17,1],[12],[1,\"\\n  \"],[18,2,null],[1,\"\\n\\n\"],[41,[30,0,[\"error\"]],[[[1,\"    \"],[10,1],[14,0,\"upf-input-feedback upf-input-feedback--error\"],[12],[1,\"\\n      \"],[8,[39,2],[[16,\"aria-label\",[30,0,[\"error\"]]]],[[\"@icon\"],[\"fa-exclamation-circle\"]],null],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[41,[30,0,[\"help\"]],[[[1,\"    \"],[10,1],[14,0,\"upf-input-feedback upf-input-feedback--help\"],[12],[1,\"\\n      \"],[8,[39,2],[[16,\"aria-label\",[30,0,[\"help\"]]]],[[\"@icon\"],[\"fa-question-circle\"]],null],[1,\"\\n    \"],[13],[1,\"\\n  \"]],[]],null]],[]]],[13]],[\"&attrs\",\"&default\"],false,[\"yield\",\"if\",\"o-s-s/icon\"]]",
-    "moduleName": "test-app/templates/components/input-wrapper.hbs",
-    "isStrictMode": false
-  });
-});
-;define("test-app/templates/components/loading-state", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
-  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
-  /*
-    <div class="upf-align--center">
-    <div class="spinner">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-  </div>
-  */
-  {
-    "id": "Sco8jCO0",
-    "block": "[[[10,0],[14,0,\"upf-align--center\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"spinner\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"bounce1\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce2\"],[12],[13],[1,\"\\n    \"],[10,0],[14,0,\"bounce3\"],[12],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13]],[],false,[]]",
-    "moduleName": "test-app/templates/components/loading-state.hbs",
-    "isStrictMode": false
-  });
-});
-;define("test-app/templates/components/upf-stat", ["exports", "@ember/template-factory"], function (_exports, _templateFactory) {
-  "use strict";
-
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/template-factory"eaimeta@70e063a35619d71f
-  var _default = _exports.default = (0, _templateFactory.createTemplateFactory)(
-  /*
-    <div class={{this.computedClasses}}>
-    <span class="upf-stat__name">
-      {{this.name}}
-  
-      {{#if this.icon}}
-        {{#if (eq this.iconPlacement "top")}}
-          <span class="upf-stat__icon" {{enable-tooltip title=this.iconLabel}}>
-            {{#if this.iconUrl}}
-              <a href="{{this.iconUrl}}" target="_blank" rel="noopener noreferrer">
-                <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
-              </a>
-            {{else}}
-              <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
-            {{/if}}
-          </span>
-        {{/if}}
-      {{/if}}
-    </span>
-  
-    <span class={{concat "upf-stat__data " this.dataClass (unless this.data " upf-stat__data--null")}}>
-      {{this.data}}
-  
-      {{#if this.icon}}
-        {{#if (eq this.iconPlacement "right")}}
-          <span class="upf-stat__icon" {{enable-tooltip title=this.iconLabel}}>
-            <i class="fa fa-{{this.icon}} {{this.iconClass}}"></i>
-          </span>
-        {{/if}}
-      {{/if}}
-    </span>
-  
-    {{#if this.label}}
-      <span class={{if this.tooltip "upf-stat__label--with-tooltip" "upf-stat__label"}}>
-        {{! template-lint-disable no-triple-curlies}}
-        {{{this.label}}}
-        {{#if this.tooltip}}
-          <OSS::Icon @icon="fa-info-circle" {{enable-tooltip title=this.tooltip}} />
-        {{/if}}
-      </span>
-    {{/if}}
-  </div>
-  */
-  {
-    "id": "P9xrLAVK",
-    "block": "[[[10,0],[15,0,[30,0,[\"computedClasses\"]]],[12],[1,\"\\n  \"],[10,1],[14,0,\"upf-stat__name\"],[12],[1,\"\\n    \"],[1,[30,0,[\"name\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"top\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n\"],[41,[30,0,[\"iconUrl\"]],[[[1,\"            \"],[10,3],[15,6,[29,[[30,0,[\"iconUrl\"]]]]],[14,\"target\",\"_blank\"],[14,\"rel\",\"noopener noreferrer\"],[12],[1,\"\\n              \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n\"]],[]],[[[1,\"            \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n\"]],[]]],[1,\"        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n  \"],[10,1],[15,0,[28,[37,3],[\"upf-stat__data \",[30,0,[\"dataClass\"]],[52,[51,[30,0,[\"data\"]]],\" upf-stat__data--null\"]],null]],[12],[1,\"\\n    \"],[1,[30,0,[\"data\"]]],[1,\"\\n\\n\"],[41,[30,0,[\"icon\"]],[[[41,[28,[37,1],[[30,0,[\"iconPlacement\"]],\"right\"],null],[[[1,\"        \"],[11,1],[24,0,\"upf-stat__icon\"],[4,[38,2],null,[[\"title\"],[[30,0,[\"iconLabel\"]]]]],[12],[1,\"\\n          \"],[10,\"i\"],[15,0,[29,[\"fa fa-\",[30,0,[\"icon\"]],\" \",[30,0,[\"iconClass\"]]]]],[12],[13],[1,\"\\n        \"],[13],[1,\"\\n\"]],[]],null]],[]],null],[1,\"  \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"label\"]],[[[1,\"    \"],[10,1],[15,0,[52,[30,0,[\"tooltip\"]],\"upf-stat__label--with-tooltip\",\"upf-stat__label\"]],[12],[1,\"\\n\"],[1,\"      \"],[2,[30,0,[\"label\"]]],[1,\"\\n\"],[41,[30,0,[\"tooltip\"]],[[[1,\"        \"],[8,[39,5],[[4,[38,2],null,[[\"title\"],[[30,0,[\"tooltip\"]]]]]],[[\"@icon\"],[\"fa-info-circle\"]],null],[1,\"\\n\"]],[]],null],[1,\"    \"],[13],[1,\"\\n\"]],[]],null],[13]],[],false,[\"if\",\"eq\",\"enable-tooltip\",\"concat\",\"unless\",\"o-s-s/icon\"]]",
-    "moduleName": "test-app/templates/components/upf-stat.hbs",
     "isStrictMode": false
   });
 });
